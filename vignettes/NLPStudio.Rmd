@@ -1,0 +1,74 @@
+---
+title: "NLP Studio"
+author: "John James jjames@datasciencesalon.org"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    css: rmdStyles.css
+bibliography: library.bib
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE, warning=FALSE, message=FALSE}
+options(knitr.table.format = "html")
+options(max.print=100, scipen=999, width = 800)
+knitr::opts_chunk$set(echo=FALSE,
+	             cache=FALSE,
+               prompt=FALSE,
+	             eval = TRUE,
+               tidy=TRUE,
+               root.dir = "..",
+               fig.height = 8,
+               fig.width = 20,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+knitr::opts_knit$set(width=100, figr.prefix = T, figr.link = T)
+knitr::knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark=",")
+})
+```
+
+```{r load-libraries}
+library(dplyr)
+library(extrafont)
+library(ggplot2)
+```
+
+```{r source-functions}
+source("../R/analysis.R")
+source("../R/associate.R")
+source("../R/back.R")
+source("../R/comparePredictions.R")
+source("../R/conclusion.R")
+source("../R/correlate.R")
+source("../R/createDependent.R")
+source("../R/forward.R")
+source("../R/intro.R")
+source("../R/prediction.R")
+source("../R/prepareData.R")
+source("../R/preprocess.R")
+source("../R/process.R")
+source("../R/regressionAnalysis.R")
+source("../R/sampleSize.R")
+source("../R/slr.R")
+source("../R/univariate.R")
+source("../R/univariateQual.R")
+source("../R/univariateQuant.R")
+source("../R/visualization.R")
+```
+
+```{r rerun}
+rerun <- FALSE
+```
+
+```{r model, child = '1.intro.rmd'}
+```
+
+
+# References
