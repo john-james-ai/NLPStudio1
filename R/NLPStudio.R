@@ -43,7 +43,9 @@ NLPStudio <- R6::R6Class(
           ..desc = character(),
           ..path = character(),
           ..labs = list(),
-          ..log = character(),
+          ..archives = list(),
+          ..logs = character(),
+          ..state = character(),
           ..created = "None",
           ..modified = "None"
         ),
@@ -75,16 +77,16 @@ NLPStudio <- R6::R6Class(
             })
 
             # # Create logger and initialization log entry
-            private$..log <- Logger$new(file.path(private$..path, 'logs'))
-            private$..log$entry$owner <- private$..name
-            private$..log$entry$className <- "NLPStudio"
-            private$..log$entry$methodName <- "initialize"
-            private$..log$entry$path <- private$..path
-            private$..log$entry$level <- "Info"
-            private$..log$entry$msg <- "Initialized NLPStudio"
-            private$..log$entry$fieldName <- 'nlpStudio'
-            private$..log$entry$created <- Sys.time()
-            private$..log$writeLog()
+            private$..logs <- Logger$new(file.path(private$..path, 'logs'))
+            private$..logs$entry$owner <- private$..name
+            private$..logs$entry$className <- "NLPStudio"
+            private$..logs$entry$methodName <- "initialize"
+            private$..logs$entry$path <- private$..path
+            private$..logs$entry$level <- "Info"
+            private$..logs$entry$msg <- private$..state <- "Initialized NLPStudio."
+            private$..logs$entry$fieldName <- 'nlpStudio'
+            private$..logs$entry$created <- Sys.time()
+            private$..logs$writelogs()
 
             invisible(self)
           },
@@ -99,13 +101,20 @@ NLPStudio <- R6::R6Class(
           addLab = function(lab) {
             name <- lab$getName()
             private$..labs[['name']] <- lab
+            private$..state <- paste("Added lab,", name, "to", private$..name, "at", Sys.time())
             invisible(self)
+          },
+
+          removeLab = function(lab) {
+            #TODO: Archive to archive folder then remove
           },
 
           #-------------------------------------------------------------------------#
           #                           Visitor Method                                #
           #-------------------------------------------------------------------------#
           accept = function(visitor)  {
+            name <- visitor$getName()
+            private$..state <- paste("Accepted visitor,", name, "at", Sys.time())
             visitor$nlpStudio(self)
           },
 

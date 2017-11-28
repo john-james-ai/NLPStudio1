@@ -15,8 +15,6 @@
 #'   \item{\code{new(name, desc = NULL)}}{Creates an object of Lab Class}
 #'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Lab description variable.}
 #'   \item{\code{getName()}}{Returns the name of the Lab object.}
-#'   \item{\code{exposeObject(requester)}}{Returns object elements in a list format to authorized requester.}
-#'   \item{\code{restore(requester, prior)}}{Restores an object to a prior state, if invoked by authorized requester.}
 #'  }
 #'
 #' \strong{Lab Aggregate Methods:}
@@ -25,12 +23,6 @@
 #'   \item{\code{addChild(document)}}{Adds a child document, an object of the DocumentCollection class, to the Lab object.}
 #'   \item{\code{removeChild(document)}}{Removes a child document, an object of the DocumentCollection class, from the Lab object.}
 #'   \item{\code{parent(value)}}{Getter/setter method for the parent field, implemented as an active binding on the private member.}
-#' }
-#'
-#' \strong{State Methods:}
-#'  \describe{
-#'   \item{\code{saveState()}}{Retrieves a list containing meta data for child objects of the DocumentCollection class.}
-#'   \item{\code{restoreState()}}{Removes a child document, an object of the DocumentCollection class, from the Lab object.}
 #' }
 #'
 #'
@@ -43,7 +35,6 @@
 #' @param desc A chararacter string containing the description of the Lab
 #' @param document An object of the DocumentCollection class to be added to the Lab object's list of document collections.
 #' @param visitor An object of one of the visitor classes.
-#' @param stateId Character string identifying a prior stateDesc for a Lab object.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -57,8 +48,8 @@ Lab <- R6::R6Class(
     ..desc = character(0),
     ..parent = character(0),
     ..collections = list(),
-    ..stateId = character(0),
-    ..stateDesc = character(0),
+    ..state = character(),
+    ..logs = character(),
     ..modified = "None",
     ..created = "None"
   ),
@@ -71,45 +62,13 @@ Lab <- R6::R6Class(
       } else {
         private$..desc <- value
         private$..modified <- Sys.time()
-        private$..stateDesc <- paste(private$..name,
+        private$..state <- paste(private$..name,
                                      "Lab description changed at",
                                      Sys.time())
-        # self$saveState()
-
         # Log Event
         historian$addEvent(className = "Lab", objectName = private$..name,
                            method = "desc",
-                           event = private$..stateDesc)
-      }
-
-    },
-
-    parent = function(value) {
-      if (missing(value)) {
-        private$..parent
-      } else {
-        v <- Validator$new()
-        if (v$setParent(self, value) == FALSE) {
-          stop()
-        }
-        # Before
-        private$..stateDesc <- paste("Memento of ",private$..name, "prior to",
-                                     "changing its parent at", Sys.time())
-        # self$saveState()
-
-        private$..parent <- value
-        private$..modified <- Sys.time()
-
-        # After
-        name <- ifelse(is.null(value), "NULL", value$getName())
-        private$..stateDesc <- paste(private$..name, "parent changed to",
-                                     name, "at", Sys.time())
-        # self$saveState()
-
-        # Log Event
-        historian$addEvent(className = "Lab", objectName = private$..name,
-                           method = "parent",
-                           event = private$..stateDesc)
+                           event = private$..state)
       }
     }
   ),
@@ -125,7 +84,7 @@ Lab <- R6::R6Class(
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "Lab"), desc)
       private$..parent <- nlpStudio$getInstance()
-      private$..stateDesc <- paste("Lab", name, "instantiated at", Sys.time())
+      private$..state <- paste("Lab", name, "instantiated at", Sys.time())
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
 
@@ -139,34 +98,13 @@ Lab <- R6::R6Class(
       # Log Event
       historian$addEvent(className = "Lab", objectName = name,
                          method = "initialize",
-                         event = private$..stateDesc)
+                         event = private$..state)
 
       invisible(self)
     },
 
     getName = function() {
       return(private$..name)
-    },
-
-    exposeObject = function(requester) {
-
-      # TODO; Uncomment after testing
-      # v <- Validator()
-      # if (v$exposeObject(object = self,
-      #                 requester = requester) == FALSE) stop()
-
-      lab = list(
-        name = private$..name,
-        desc = private$..desc,
-        parent = private$..parent,
-        collections = private$..collections,
-        stateDesc = private$..stateDesc,
-        stateId = private$..stateId,
-        modified = private$..modified,
-        created = private$..created
-      )
-
-      return(lab)
     },
 
     restore = function(requester, prior) {
@@ -179,7 +117,7 @@ Lab <- R6::R6Class(
       private$..desc <- r$desc
       private$..parent <- r$parent
       private$..collections <- r$collections
-      private$..stateDesc <- paste("Lab object", private$..name,
+      private$..state <- paste("Lab object", private$..name,
                                    "restored to prior state designated",
                                    "by state id:", r$stateId, "at",
                                    system.time())
@@ -190,7 +128,7 @@ Lab <- R6::R6Class(
       # Log event
       # historian$addEvent(className = class(self)[1], objectName = name,
       #                    method = "restore",
-      #                    event = private$..stateDesc)
+      #                    event = private$..state)
 
       invisible(self)
     },
@@ -210,7 +148,7 @@ Lab <- R6::R6Class(
       kidsName <- child$getName()
 
       # Save state as memento
-      private$..stateDesc <- paste("Memento of", private$..name,
+      private$..state <- paste("Memento of", private$..name,
                                    "before adding ", kidsName, "at", Sys.time())
       # private$saveState(self)
 
@@ -224,13 +162,13 @@ Lab <- R6::R6Class(
       private$..modified <- Sys.time()
 
       # Save State
-      private$..stateDesc <- paste("Collection", kidsName, "added to Lab", private$..name, "at", Sys.time())
+      private$..state <- paste("Collection", kidsName, "added to Lab", private$..name, "at", Sys.time())
       # private$saveState(self)
 
       # Log Event
       historian$addEvent(className = "Lab", objectName = private$..name,
                          method = "addChild",
-                         event = private$..stateDesc)
+                         event = private$..state)
 
       invisible(self)
 
@@ -246,7 +184,7 @@ Lab <- R6::R6Class(
       kidsName <- child$getName()
 
       # Save state as memento
-      private$..stateDesc <- paste("Memento of", private$..name, "before removing ", kidsName, "at", Sys.time())
+      private$..state <- paste("Memento of", private$..name, "before removing ", kidsName, "at", Sys.time())
       # private$saveState(self)
 
 
@@ -260,38 +198,49 @@ Lab <- R6::R6Class(
       private$..modified <- Sys.time()
 
       # Update State
-      private$..stateDesc <- paste("Collection", kidsName, "removed from Lab", private$..name, "at", Sys.time())
+      private$..state <- paste("Collection", kidsName, "removed from Lab", private$..name, "at", Sys.time())
       # private$saveState(self)
 
       # Log Event
       historian$addEvent(className = "Lab", objectName = private$..name,
                          method = "removeChild",
-                         event = private$..stateDesc)
+                         event = private$..state)
 
       invisible(self)
 
     },
-
-    #-------------------------------------------------------------------#
-    #                           State Method                            #
-    #-------------------------------------------------------------------#
-    saveState = function() {
-      state <- State$new()
-      private$..stateId <- state$save(self)
-    },
-
-    restoreState = function(stateId) {
-      private$..stateId <- stateId
-      state <- State$new()
-      state$restore(self)
-      invisible(self)
-    },
+    #-------------------------------------------------------------------------#
+    #                             Logs Methods                                #
+    #-------------------------------------------------------------------------#
+    writeLog = funcion(level, msg) {
+    }
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       visitor$lab(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                           Test Methods                                  #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+
+      #TODO: Remove after testing
+
+      lab = list(
+        name = private$..name,
+        desc = private$..desc,
+        parent = private$..parent,
+        collections = private$..collections,
+        logs <- private$..logs,
+        state = private$..state,
+        modified = private$..modified,
+        created = private$..created
+      )
+
+      return(lab)
     }
   )
 )

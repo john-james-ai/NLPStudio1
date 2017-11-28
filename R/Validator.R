@@ -6,19 +6,20 @@
 #' @description
 #' \code{Validator} Class responsible for validation of requests pertaining to:
 #' \itemize{
-#'  \item Object Instantiation
+#'  \item Object instantiation
 #'  \item Composition and Aggregation: Requests to manipulate aggregate and composite objects
+#'  \item History: Requests to read historical records for an object or objects.#'
+#'  \item State: Requests to read, save, and restore object states
 #'  \item Document I/O: Requests to read and write documents.
 #' }
 #'
 #' @section Validator methods:
 #' This section summarizes the methods in the Validator class.
 #'
-#' \strong{Object Create and Read Methods:}
+#' \strong{Object Instantiation Methods::}
 #' \describe{
 #'  \item{\code{new()}}{Creates an object of Validator class}
 #'  \item{\code{init(object)}}{Dispatches the initialization validation visitor, via the accept method of object.}
-#'  \item{\code{exposeObject(object)}}{Dispatches the exposeObject validation visitor, via the accept method of object.}
 #'  }
 #'
 #' \strong{Composition and Aggregation Methods:}
@@ -26,24 +27,6 @@
 #'  \item{\code{addChild(object)}}{Dispatches the addChild validation visitor, via the accept method of object.}
 #'  \item{\code{removeChild(object)}}{Dispatches the removeChild validation visitor, via the accept method of object.}
 #'  \item{\code{setParent(object, parent)}}{Dispatches the setParent validation visitor, via the accept method of object.}
-#'  }
-#'
-#' \strong{Curator Methods:}
-#' \describe{
-#'  \item{\code{setQueryTarget(object, target)}}{Dispatches the setQueryTarget validation visitor, via the accept method of object.}
-#'  \item{\code{submitQuery(object)}}{Dispatches the removeChild validation visitor, via the accept method of object.}
-#'  }
-#'
-#' \strong{History Methods:}
-#' \describe{
-#'  \item{\code{readHistory(object)}}{Dispatches the readHistory validation visitor, via the accept method of object.}
-#'  }
-#'
-#' \strong{State Methods:}
-#' \describe{
-#'  \item{\code{readStates(object)}}{Dispatches the readStates validation visitor, via the accept method of object.}
-#'  \item{\code{saveState(object)}}{Dispatches the saveState validation visitor, via the accept method of object.}
-#'  \item{\code{restoreState(object)}}{Dispatches the restoreState validation visitor, via the accept method of object.}
 #'  }
 #'
 #' \strong{Document I/O Methods:}
@@ -70,5 +53,44 @@ Validator <- R6::R6Class(
 
   public = list(
 
-     )
+    #-------------------------------------------------------------------------#
+    #                      Object Creation and Read                           #
+    #-------------------------------------------------------------------------#
+    init = function(object) {
+      visitor <- VValidatorInit$new()
+      object$accept(visitor)
+    },
+    exposeObject = function(object) {
+      visitor <- VValidatorexposeObject$new()
+      object$accept(visitor)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                   Composition and Aggregation                           #
+    #-------------------------------------------------------------------------#
+    addChild = function(object, child) {
+      visitor <- VValidatorAddChild$new(object, child)
+      object$accept(visitor)
+    },
+    removeChild = function(object, child) {
+      visitor <- VValidatorRemoveChild$new(object, child)
+      object$accept(visitor)
+    },
+    setParent = function(object, parent) {
+      visitor <- VValidatorSetParent$new(object, parent)
+      object$accept(visitor)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                              Document I/O                               #
+    #-------------------------------------------------------------------------#
+    read = function(object) {
+      visitor <- VValidatorRead$new(object)
+      object$accept(visitor)
+    },
+    write = function(object, content) {
+      visitor <- VValidatorWrite$new(object, content)
+      object$accept(visitor)
+    }
+  )
 )

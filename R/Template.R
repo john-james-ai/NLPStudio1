@@ -93,6 +93,7 @@ Template <- R6::R6Class(
     ..desc = character(),
     ..path = character(),
     ..log = character(),
+    ..state = character(),
     ..created = "None",
     ..modified = "None"
   ),

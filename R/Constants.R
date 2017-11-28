@@ -23,7 +23,8 @@ Constants <- R6::R6Class(
     ..studioPaths = list(
       config = "config",
       labs = "labs",
-      logs = "logs"
+      logs = "logs",
+      archives = archives
     ),
     ..labPaths = list(
       data = "data",
