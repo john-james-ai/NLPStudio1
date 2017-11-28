@@ -1,8 +1,5 @@
 .onLoad <- function(libname, pkgname) {
 
-  # Instantiate Singleton Classes
-  nlpStudio <<- NLPStudio$new()$getInstance()
-
   packageStartupMessage(paste0("#=========================================================================================#"))
   packageStartupMessage(paste0("#                                                                                         #"))
   packageStartupMessage(paste0("#                           Welcome to the NLPStudio (Beta)!                              #"))

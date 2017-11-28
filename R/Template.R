@@ -88,9 +88,13 @@ Template <- R6::R6Class(
   classname = "Template",
   lock_objects = TRUE,
   lock_class = TRUE,
-  inherit = NLPSuper,
-
   private = list(
+    ..name = character(),
+    ..desc = character(),
+    ..path = character(),
+    ..log = character(),
+    ..created = "None",
+    ..modified = "None"
   ),
 
   public = list(
@@ -98,7 +102,19 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                             Core Methods                                #
     #-------------------------------------------------------------------------#
-    init = function() {
+    initialize = function() {
+
+      # Create logger and initialization log entry
+      private$..log <- Logger$new(private$..path)
+      private$..log$entry$owner <- private$..name
+      private$..log$entry$className <- "Lab"
+      private$..log$entry$methodName <- "initialize"
+      private$..log$entry$path <- private$..path
+      private$..log$entry$level <- "Info"
+      private$..log$entry$msg <- paste("Initialized", private$..name, "lab.")
+      private$..log$entry$fieldName <- private$..name
+      private$..log$entry$created <- Sys.time()
+      private$..log$writeLog()
 
       # Assign its name in the global environment
       assign(name, self, envir = .GlobalEnv)
@@ -106,11 +122,30 @@ Template <- R6::R6Class(
       invisible(self)
     },
 
+    getName = function() {
+      return(private$..name)
+    },
+
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
-    #---------------------------------------------------------,----------------#
+    #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       visitor$template(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                             Test Methods                                #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+      o <- list(
+        name <- private$..name,
+        desc <- private$..desc,
+        path <- private$..path,
+        log <- private$..log,
+        created <- private$..created,
+        modified <- private$..modified
+      )
+      return(o)
     }
 
   )

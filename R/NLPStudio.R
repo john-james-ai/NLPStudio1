@@ -18,6 +18,7 @@
 #' \strong{NLPStudio Core Methods:}
 #' \describe{
 #'  \item{\code{new()}}{Initializes the NLPStudio as s singleton object at load time.}
+#'
 #'  \item{\code{getInstance()}}{Returns the current NLPStudio instance object. This will be the only instantiation called "nlpStudio.},
 #' }
 #'
@@ -30,6 +31,8 @@
 NLPStudio <- R6::R6Class(
   "SingletonContainer",
   portable = FALSE,
+  lock_objects = FALSE,
+  lock_class = FALSE,
   inherit = Singleton,
   public = list(
     initialize = function(...) {
@@ -63,14 +66,16 @@ NLPStudio <- R6::R6Class(
             on.exit(options(opt))
 
             # Create Directories
+            if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
             c <- Constants$new()
-            paths <- c$getPaths()
+            paths <- c$getStudioPaths()
             lapply(paths, function(p) {
-              if (!dir.exists(p))  dir.create(p, recursive = TRUE)
+              dir <- file.path(private$..path, p)
+              if (!dir.exists(dir))  dir.create(dir, recursive = TRUE)
             })
 
-            # Create logger and initialization log entry
-            private$..log <- Logger$new(private$..path)
+            # # Create logger and initialization log entry
+            private$..log <- Logger$new(file.path(private$..path, 'logs'))
             private$..log$entry$owner <- private$..name
             private$..log$entry$className <- "NLPStudio"
             private$..log$entry$methodName <- "initialize"
@@ -81,9 +86,6 @@ NLPStudio <- R6::R6Class(
             private$..log$entry$created <- Sys.time()
             private$..log$writeLog()
 
-            # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
-
             invisible(self)
           },
 
@@ -92,11 +94,37 @@ NLPStudio <- R6::R6Class(
           },
 
           #-------------------------------------------------------------------------#
-          #                           Visitor Methods                               #
+          #                           Composite Methods                             #
+          #-------------------------------------------------------------------------#
+          addLab = function(lab) {
+            name <- lab$getName()
+            private$..labs[['name']] <- lab
+            invisible(self)
+          },
+
+          #-------------------------------------------------------------------------#
+          #                           Visitor Method                                #
           #-------------------------------------------------------------------------#
           accept = function(visitor)  {
             visitor$nlpStudio(self)
+          },
+
+          #-------------------------------------------------------------------------#
+          #                             Test Methods                                #
+          #-------------------------------------------------------------------------#
+          exposeObject = function() {
+            o <- list(
+              name <- private$..name,
+              desc <- private$..desc,
+              path <- private$..path,
+              labs <- private$..labs,
+              log <- private$..log,
+              created <- private$..created,
+              modified <- private$..modified
+            )
+            return(o)
           }
+
         )
       )
       super$initialize(...)

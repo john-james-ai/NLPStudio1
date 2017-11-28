@@ -3,7 +3,7 @@
 export(Constants)
 export(Logger)
 export(NLPStudio)
-export(NLPSuper)
 export(NewSingletonClass)
 export(Singleton)
 export(Template)
+export(Validator)

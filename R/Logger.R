@@ -25,7 +25,7 @@ Logger <- R6::R6Class(
   lock_class = TRUE,
 
   private = list(
-    entries = list(),
+    ..entries = list(),
     notifyInfo  = function(note) futile.logger::flog.info(note, name = "green"),
     notifyWarn  = function(note) futile.logger::flog.warn(note, name = "yellow"),
     notifyError = function(note)  futile.logger::flog.error(note, name = "red")

@@ -24,7 +24,8 @@ clients to add, remove, enter, and leave labs.
 \strong{NLPStudio Core Methods:}
 \describe{
  \item{\code{new()}}{Initializes the NLPStudio as s singleton object at load time.}
- \item{\code{getInstance()}}{Returns the current NLPStudio instance object. This will be the only instantiation called "nlpStudio.},
+
+\item{\code{getInstance()}}{Returns the current NLPStudio instance object. This will be the only instantiation called "nlpStudio.},
 }
 }
 \author{

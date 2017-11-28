@@ -20,17 +20,26 @@ Constants <- R6::R6Class(
   lock_class = TRUE,
 
   private = list(
-    ..paths = list(
-      studio = "./NLPStudio",
-      labs = "./NLPStudio/labs",
-      log = "./NLPStudio/Log",
-      test = './NLPStudio/Test'
+    ..studioPaths = list(
+      config = "config",
+      labs = "labs",
+      logs = "logs"
+    ),
+    ..labPaths = list(
+      data = "data",
+      external = 'data/external',
+      raw = 'data/raw',
+      munge = 'data/munge',
+      processed = 'data/processed',
+      reports = 'reports',
+      logs = 'logs'
     )
   ),
 
   public = list(
 
     # Constants
-    getPaths = function() private$..constants$paths
+    getStudioPaths = function() private$..studioPaths,
+    getLabPaths = function() private$..labPaths
   )
 )
