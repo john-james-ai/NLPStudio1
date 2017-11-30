@@ -28,6 +28,10 @@
 #' @export
 ValidatorExists <- R6::R6Class(
   "ValidatorExists",
+  inherit = Validator0,
+  private = list(
+    ..name = 'ValidatorExists'
+  ),
   public = list(
     validate = function( value, expect = NULL) {
       if (length(value) != 0 & !is.null(value)) {

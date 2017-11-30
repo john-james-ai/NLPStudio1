@@ -33,6 +33,7 @@ VValidatorInit <- R6::R6Class(
 
   private = list(
 
+    ..name = "VValidatorInit",
     validateName = function(object) {
 
       status <- list()
@@ -101,7 +102,7 @@ VValidatorInit <- R6::R6Class(
 
       o <- object$exposeObject()
 
-      if (is.null(o$stateDesc) | is.na(o$stateDesc) | length(o$stateDesc) == 0) {
+      if (is.null(o$state) | is.na(o$state) | length(o$state) == 0) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("State element is missing with no default. ",
                                   "See ?", class(object)[1], " for further assistance.")
@@ -141,53 +142,52 @@ VValidatorInit <- R6::R6Class(
     },
 
     nlpStudio = function(object) {
-      return(TRUE)
+      return(status[['code']] <- TRUE)
     },
 
     lab = function(object) {
-      return(private$validateName(object) &
-               private$validateParent(object, "NLPStudio") &
-               private$validateState(object)
-             )
+      return(private$validateName(object))
     },
 
     documentCollection = function(object) {
-      return(private$validateName(object) &
-               private$validateParent(object, c("Lab", "DocumentCollection")) &
-               private$validateState(object)
-      )
+      return(private$validateName(object))
     },
 
     documentText = function(object) {
-      return(private$validateName(object) &
-               private$validateParent(object, "DocumentCollection") &
-               private$validateState(object) &
-               private$validateFileName(object, "txt")
-      )
+
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      if (private$validateFileName(object, "txt")[['code']] == FALSE)
+        return(private$validateFileName(object, "txt"))
+      return(status[['code']] <- TRUE)
     },
 
     documentCsv = function(object) {
-      return(private$validateName(object) &
-               private$validateParent(object, "DocumentCollection") &
-               private$validateState(object) &
-               private$validateFileName(object, "csv")
-      )
+
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      if (private$validateFileName(object, "csv")[['code']] == FALSE)
+        return(private$validateFileName(object, "csv"))
+      return(status[['code']] <- TRUE)
     },
 
     documentRdata = function(object) {
-      return(private$validateName(object) &
-               private$validateParent(object, "DocumentCollection") &
-               private$validateState(object) &
-               private$validateFileName(object, c("Rdata", "RData", "Rda"))
-      )
+
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      if (private$validateFileName(object, c("Rdata", "RData", "Rda"))[['code']] == FALSE)
+        return(private$validateFileName(object, c("Rdata", "RData", "Rda")))
+      return(status[['code']] <- TRUE)
     },
 
     documentXlsx = function(object) {
-      return(private$validateName(object) &
-               private$validateParent(object, "DocumentCollection") &
-               private$validateState(object) &
-               private$validateFileName(object, c("xlsx", "xls"))
-      )
+
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      if (private$validateFileName(object, c("xlsx", "xls"))[['code']] == FALSE)
+        return(private$validateFileName(object, c("xlsx", "xls")))
+      return(status[['code']] <- TRUE)
+
     }
   )
 )

@@ -21,8 +21,10 @@ A logical, TRUE if validation criteria are met, FALSE, otherwise.
 \description{
 \code{Validator} Class responsible for validation of requests pertaining to:
 \itemize{
- \item Object Instantiation
+ \item Object instantiation
  \item Composition and Aggregation: Requests to manipulate aggregate and composite objects
+ \item History: Requests to read historical records for an object or objects.#'
+ \item State: Requests to read, save, and restore object states
  \item Document I/O: Requests to read and write documents.
 }
 }
@@ -30,11 +32,10 @@ A logical, TRUE if validation criteria are met, FALSE, otherwise.
 
 This section summarizes the methods in the Validator class.
 
-\strong{Object Create and Read Methods:}
+\strong{Object Instantiation Methods::}
 \describe{
  \item{\code{new()}}{Creates an object of Validator class}
  \item{\code{init(object)}}{Dispatches the initialization validation visitor, via the accept method of object.}
- \item{\code{exposeObject(object)}}{Dispatches the exposeObject validation visitor, via the accept method of object.}
  }
 
 \strong{Composition and Aggregation Methods:}
@@ -42,24 +43,6 @@ This section summarizes the methods in the Validator class.
  \item{\code{addChild(object)}}{Dispatches the addChild validation visitor, via the accept method of object.}
  \item{\code{removeChild(object)}}{Dispatches the removeChild validation visitor, via the accept method of object.}
  \item{\code{setParent(object, parent)}}{Dispatches the setParent validation visitor, via the accept method of object.}
- }
-
-\strong{Curator Methods:}
-\describe{
- \item{\code{setQueryTarget(object, target)}}{Dispatches the setQueryTarget validation visitor, via the accept method of object.}
- \item{\code{submitQuery(object)}}{Dispatches the removeChild validation visitor, via the accept method of object.}
- }
-
-\strong{History Methods:}
-\describe{
- \item{\code{readHistory(object)}}{Dispatches the readHistory validation visitor, via the accept method of object.}
- }
-
-\strong{State Methods:}
-\describe{
- \item{\code{readStates(object)}}{Dispatches the readStates validation visitor, via the accept method of object.}
- \item{\code{saveState(object)}}{Dispatches the saveState validation visitor, via the accept method of object.}
- \item{\code{restoreState(object)}}{Dispatches the restoreState validation visitor, via the accept method of object.}
  }
 
 \strong{Document I/O Methods:}
@@ -73,6 +56,18 @@ This section summarizes the methods in the Validator class.
 NA
 }
 
+\seealso{
+Other Validation Classes: \code{\link{Validator0}},
+  \code{\link{ValidatorClass}},
+  \code{\link{ValidatorDate}},
+  \code{\link{ValidatorExists}},
+  \code{\link{ValidatorLogical}},
+  \code{\link{ValidatorNoSpaces}},
+  \code{\link{ValidatorNotEmpty}},
+  \code{\link{ValidatorNumeric}},
+  \code{\link{ValidatorPath}},
+  \code{\link{ValidatorString}}, \code{\link{ValidatorUrl}}
+}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

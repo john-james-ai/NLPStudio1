@@ -26,7 +26,7 @@ LogTest <- R6::R6Class(
 
   private = list(
     ..path = "./test/logs",
-    ..log = character()
+    ..logs = character()
   ),
 
   public = list(
@@ -35,25 +35,25 @@ LogTest <- R6::R6Class(
     #                             Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function() {
-      private$..log <- Logger$new(private$..path)
+      private$..logs <- Logger$new(private$..path)
       invisible(self)
     },
 
     #-------------------------------------------------------------------------#
     #                             Log  Method                                 #
     #--------------------------------------------------------,----------------#
-    log = function(level = 'Info', className, methodName, msg, fieldName = NULL) {
+    logs = function(level = 'Info', className, methodName, msg, fieldName = NA) {
 
       # Create logger and initialization log entry
-      private$..log$entry$owner <- match.call()[1]
-      private$..log$entry$className <- className
-      private$..log$entry$methodName <- methodName
-      private$..log$entry$path <- private$..path
-      private$..log$entry$level <- level
-      private$..log$entry$msg <- msg
-      private$..log$entry$fieldName <- fieldName
-      private$..log$entry$created <- Sys.time()
-      private$..log$writeLog()
+      private$..logs$entry$owner <- match.call()[1]
+      private$..logs$entry$className <- className
+      private$..logs$entry$methodName <- methodName
+      private$..logs$entry$path <- private$..path
+      private$..logs$entry$level <- level
+      private$..logs$entry$msg <- msg
+      private$..logs$entry$fieldName <- fieldName
+      private$..logs$entry$created <- Sys.time()
+      private$..logs$writeLog()
 
     }
   )

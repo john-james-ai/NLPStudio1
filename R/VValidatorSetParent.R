@@ -33,6 +33,7 @@ VValidatorSetParent <- R6::R6Class(
 
   private = list(
 
+    ..name = 'VValidatorSetParent',
     ..object = character(0),
     ..parent = character(0),
 

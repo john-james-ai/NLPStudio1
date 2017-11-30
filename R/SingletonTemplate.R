@@ -32,7 +32,7 @@ NewSingletonClass <- R6::R6Class(
           ..name = character(0),
           ..desc = character(0),
           ..stateId = character(0),
-          ..stateDesc = character(0),
+          ..state = character(0),
           ..created = "None",
           ..modified = "None"
         ),

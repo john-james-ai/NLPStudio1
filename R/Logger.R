@@ -36,7 +36,6 @@ Logger <- R6::R6Class(
       owner = character(),
       className = character(),
       methodName = character(),
-      path = character(),
       level = character(),
       msg = character(),
       fieldName = character(),
@@ -56,8 +55,8 @@ Logger <- R6::R6Class(
     writeLog  = function() {
 
       if (is.null(self$entry$owner) | is.null(self$entry$className) |
-          is.null(self$entry$methodName) | is.null(self$entry$path) |
-          is.null(self$entry$level) | is.null(self$entry$msg)) {
+          is.null(self$entry$methodName) | is.null(self$entry$level) |
+          is.null(self$entry$msg)) {
 
         note <- paste("The usage for the Logger class is",
                       "writeLog(owner, className, methodName,
@@ -69,7 +68,7 @@ Logger <- R6::R6Class(
 
         note <- paste0(level, " for ", self$entry$owner, " in class '",
                        self$entry$className, "', method '", self$entry$methodName, ". ",
-                       ifelse(is.null(self$entry$fieldName), "",
+                       ifelse(is.na(self$entry$fieldName), "",
                               paste0("with variable '",
                               self$entry$fieldName, "'. ")), self$entry$msg)
 

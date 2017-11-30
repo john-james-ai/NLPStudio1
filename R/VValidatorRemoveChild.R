@@ -34,6 +34,7 @@ VValidatorRemoveChild <- R6::R6Class(
 
   private = list(
 
+    ..name = 'VValidatorRemoveChild',
     ..parent = character(0),
     ..child = character(0),
 

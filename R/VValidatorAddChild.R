@@ -34,6 +34,7 @@ VValidatorAddChild <- R6::R6Class(
 
   private = list(
 
+    ..name = "VValidatorAddChild",
     ..parent = character(0),
     ..child = character(0),
 

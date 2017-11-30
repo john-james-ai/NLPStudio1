@@ -46,6 +46,7 @@ Lab <- R6::R6Class(
   private = list(
     ..name = character(0),
     ..desc = character(0),
+    ..path = character(0),
     ..parent = character(0),
     ..collections = list(),
     ..state = character(),
@@ -82,56 +83,54 @@ Lab <- R6::R6Class(
 
       # Instantiate variables
       private$..name <- name
-      private$..desc <- ifelse(is.null(desc), paste(name, "Lab"), desc)
+      private$..desc <- ifelse(is.null(desc), paste(name, "lab"), desc)
+      private$..path <- file.path("./NLPStudio/labs", name)
       private$..parent <- nlpStudio$getInstance()
       private$..state <- paste("Lab", name, "instantiated at", Sys.time())
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
 
+      # Create Directories
+      if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
+      c <- Constants$new()
+      paths <- c$getLabPaths()
+      lapply(paths, function(p) {
+        dir <- file.path(private$..path, p)
+        if (!dir.exists(dir))  dir.create(dir, recursive = TRUE)
+      })
+
+      # Initiate Log
+      private$..logs <- Logger$new(file.path(private$..path, 'logs'))
+      private$..logs$entry$owner <- name
+      private$..logs$entry$className <- "Lab"
+      private$..logs$entry$methodName <- "initialize"
+      private$..logs$entry$path <- private$..path
+      private$..logs$entry$level <- "Info"
+      private$..logs$entry$fieldName <- NA
+
       # Validate Lab
       v <- Validator$new()
-      if (v$init(self) == FALSE) stop()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..logs$entry$msg <- private$..state <- status[['msg']]
+        private$..logs$entry$level <- "Error"
+        private$..logs$entry$created <- Sys.time()
+        private$..logs$writeLog()
+        stop()
+      }
+
+      # Create log entry
+      private$..logs$entry$msg <- private$..state <- paste0("Initialized Lab: ", name)
+      private$..logs$entry$created <- Sys.time()
+      private$..logs$writeLog()
 
       # Assign its name in the global environment
       assign(name, self, envir = .GlobalEnv)
 
-      # Log Event
-      historian$addEvent(className = "Lab", objectName = name,
-                         method = "initialize",
-                         event = private$..state)
-
       invisible(self)
     },
 
-    getName = function() {
-      return(private$..name)
-    },
-
-    restore = function(requester, prior) {
-
-      v <- Validator$new()
-      if (v$restore(object = self,
-                    requester = requester, prior = prior) == FALSE) stop()
-
-      r <- restored$exposeObject()
-      private$..desc <- r$desc
-      private$..parent <- r$parent
-      private$..collections <- r$collections
-      private$..state <- paste("Lab object", private$..name,
-                                   "restored to prior state designated",
-                                   "by state id:", r$stateId, "at",
-                                   system.time())
-      private$..stateId <- r$stateId
-      private$..created <- r$created
-      private$..modified <- Sys.time()
-
-      # Log event
-      # historian$addEvent(className = class(self)[1], objectName = name,
-      #                    method = "restore",
-      #                    event = private$..state)
-
-      invisible(self)
-    },
+    getName = function() private$..name,
 
     #-------------------------------------------------------------------------#
     #                         Lab Aggregate Methods                           #
@@ -142,15 +141,16 @@ Lab <- R6::R6Class(
 
       # Validation
       v <- Validator$new()
-      if (v$addChild(object = self, child = child) == FALSE) stop()
+      status <- v$addChild(self, child)
+      if (status[['code']] == FALSE) {
+        private$..logs$entry$msg <- private$..state <- status[['msg']]
+        private$..logs$entry$created <- Sys.time()
+        private$..logs$writeLog()
+        stop()
+      }
 
       # Get collection information
       kidsName <- child$getName()
-
-      # Save state as memento
-      private$..state <- paste("Memento of", private$..name,
-                                   "before adding ", kidsName, "at", Sys.time())
-      # private$saveState(self)
 
       # Add collection to lab's list of collections
       private$..collections[[kidsName]] <- child
@@ -161,14 +161,14 @@ Lab <- R6::R6Class(
       # Update modified time
       private$..modified <- Sys.time()
 
-      # Save State
-      private$..state <- paste("Collection", kidsName, "added to Lab", private$..name, "at", Sys.time())
-      # private$saveState(self)
+      # Save state and log Event
+      private$..state <- private$..logs$msg <-
+        paste("Collection", kidsName, "added to Lab", private$..name, "at", Sys.time())
+      private$..logs$entry$created <- Sys.time()
+      private$..logs$writeLog()
 
-      # Log Event
-      historian$addEvent(className = "Lab", objectName = private$..name,
-                         method = "addChild",
-                         event = private$..state)
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
 
@@ -178,15 +178,16 @@ Lab <- R6::R6Class(
 
       # Validation
       v <- Validator$new()
-      if (v$removeChild(object = self, child = child) == FALSE) stop()
+      status <- v$removeChild
+      if (status[['code']] == FALSE) {
+        private$..logs$entry$msg <- private$..state <- status[['msg']]
+        private$..logs$entry$created <- Sys.time()
+        private$..logs$writeLog()
+        stop()
+      }
 
       # Obtain collection information
       kidsName <- child$getName()
-
-      # Save state as memento
-      private$..state <- paste("Memento of", private$..name, "before removing ", kidsName, "at", Sys.time())
-      # private$saveState(self)
-
 
       # Remove collection from lab and update modified time
       private$..collections[[kidsName]] <- NULL
@@ -197,28 +198,26 @@ Lab <- R6::R6Class(
       # Update modified tieme
       private$..modified <- Sys.time()
 
-      # Update State
-      private$..state <- paste("Collection", kidsName, "removed from Lab", private$..name, "at", Sys.time())
-      # private$saveState(self)
+      # Save state and log Event
+      private$..state <- private$..logs$msg <-
+        paste("Collection", kidsName, "removed from Lab", private$..name, "at", Sys.time())
+      private$..logs$entry$created <- Sys.time()
+      private$..logs$writeLog()
 
-      # Log Event
-      historian$addEvent(className = "Lab", objectName = private$..name,
-                         method = "removeChild",
-                         event = private$..state)
 
       invisible(self)
 
     },
-    #-------------------------------------------------------------------------#
-    #                             Logs Methods                                #
-    #-------------------------------------------------------------------------#
-    writeLog = funcion(level, msg) {
-    }
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
+      name <- visitor$getName()
+      private$..state <- private$..logs$entry$msg <-
+        paste("Accepted visitor,", name, "at", Sys.time())
+      private$..logs$created <- Sys.time()
+      private$..logs$writeLog()
       visitor$lab(self)
     },
 

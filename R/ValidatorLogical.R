@@ -27,6 +27,10 @@
 #' @export
 ValidatorLogical <- R6::R6Class(
   "ValidatorLogical",
+  inherit = Validator0,
+  private = list(
+    ..name = 'ValidatorLogical'
+  ),
   public = list(
     validate = function(value, expect = NULL) {
         if (is.logical(value) | value == "TRUE" | value == "FALSE") {

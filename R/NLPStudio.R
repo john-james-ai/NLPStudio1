@@ -44,10 +44,38 @@ NLPStudio <- R6::R6Class(
           ..path = character(),
           ..labs = list(),
           ..archives = list(),
+          ..currentLab = character(),
           ..logs = character(),
           ..state = character(),
           ..created = "None",
           ..modified = "None"
+        ),
+
+        active = list(
+
+          currentLab = function(value) {
+            if (missing(value)) {
+              private$..currentLab
+            } else {
+              name <- value$getName()
+              if (!is.null(private$..labs[[name]])) {
+                private$..currentLab <- value
+                private$..modified <- Sys.time()
+                private$..logs$entry$level <- 'Info'
+                private$..logs$entry$msg <- private$..state <-
+                  paste0("Current lab changed to ", name, ". ")
+                private$..logs$entry$created <- Sys.time()
+                private$..logs$writeLog()
+              } else {
+                private$..logs$entry$level <- 'Error'
+                private$..logs$entry$msg <- private$..state <-
+                  paste0("Unable to change current lab; ", value, ", does not exist.")
+                private$..logs$entry$created <- Sys.time()
+                private$..logs$writeLog()
+                stop()
+              }
+            }
+          }
         ),
 
         public = list(
@@ -81,12 +109,14 @@ NLPStudio <- R6::R6Class(
             private$..logs$entry$owner <- private$..name
             private$..logs$entry$className <- "NLPStudio"
             private$..logs$entry$methodName <- "initialize"
-            private$..logs$entry$path <- private$..path
             private$..logs$entry$level <- "Info"
             private$..logs$entry$msg <- private$..state <- "Initialized NLPStudio."
-            private$..logs$entry$fieldName <- 'nlpStudio'
+            private$..logs$entry$fieldName <- NA
             private$..logs$entry$created <- Sys.time()
-            private$..logs$writelogs()
+            private$..logs$writeLog()
+
+            # Assign its name in the global environment
+            assign(private$..name, self, envir = .GlobalEnv)
 
             invisible(self)
           },
@@ -95,17 +125,48 @@ NLPStudio <- R6::R6Class(
             invisible(self)
           },
 
+          getName = function() private$..name,
+
           #-------------------------------------------------------------------------#
           #                           Composite Methods                             #
           #-------------------------------------------------------------------------#
-          addLab = function(lab) {
-            name <- lab$getName()
-            private$..labs[['name']] <- lab
-            private$..state <- paste("Added lab,", name, "to", private$..name, "at", Sys.time())
+          addChild = function(child) {
+
+            # Validation
+            v <- Validator$new()
+            status <- v$addChild(self$getInstance(), child)
+            if (status[['code']] == FALSE) {
+              private$..logs$entry$level <- "Error"
+              private$..logs$entry$msg <- private$..state <- status[['msg']]
+              private$..logs$entry$created <- Sys.time()
+              private$..logs$writeLog()
+              stop()
+            }
+            # Get lab name
+            kidsName <- child$getName()
+
+            # Add lab to list of labs
+            private$..labs[[kidsName]] <- child
+
+            # Set parent to nlpstudio
+            child$parent <- self
+
+            # Update modified time
+            private$..modified <- Sys.time()
+
+            # Save state and log Event
+            private$..state <- private$..logs$msg <-
+              paste("Lab", kidsName, "added to nlpStudio at", Sys.time())
+            private$..logs$entry$created <- Sys.time()
+            private$..logs$writeLog()
+
+            # Assign its name in the global environment
+            assign(private$..name, self, envir = .GlobalEnv)
+
             invisible(self)
           },
 
-          removeLab = function(lab) {
+          removeChild = function(lab) {
             #TODO: Archive to archive folder then remove
           },
 
@@ -114,8 +175,10 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           accept = function(visitor)  {
             name <- visitor$getName()
-            private$..state <- paste("Accepted visitor,", name, "at", Sys.time())
-            visitor$nlpStudio(self)
+            private$..state <- private$..logs$entry$msg <-
+              paste("Accepted visitor,", name, "at", Sys.time())
+            private$..logs$writeLog()
+            visitor$nlpStudio(self$getInstance())
           },
 
           #-------------------------------------------------------------------------#
@@ -123,13 +186,13 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           exposeObject = function() {
             o <- list(
-              name <- private$..name,
-              desc <- private$..desc,
-              path <- private$..path,
-              labs <- private$..labs,
-              log <- private$..log,
-              created <- private$..created,
-              modified <- private$..modified
+              name = private$..name,
+              desc = private$..desc,
+              path = private$..path,
+              labs = private$..labs,
+              log = private$..log,
+              created = private$..created,
+              modified = private$..modified
             )
             return(o)
           }

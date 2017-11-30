@@ -27,6 +27,10 @@
 #' @export
 ValidatorString <- R6::R6Class(
   "ValidatorString",
+  inherit = Validator0,
+  private = list(
+    ..name = 'ValidatorString'
+  ),
   public = list(
     validate = function(value, expect = NULL) {
 

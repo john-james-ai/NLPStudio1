@@ -23,6 +23,10 @@ VValidator <- R6::R6Class(
   classname = "VValidator",
   lock_objects = FALSE,
   lock_class = FALSE,
+  inherit = Validator0,
+  private = list(
+    ..name = 'VValidator'
+  ),
 
   public = list(
     initialize = function() stop("This method is not implemented for this abstract class.")

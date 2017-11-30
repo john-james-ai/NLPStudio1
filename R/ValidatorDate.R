@@ -29,6 +29,10 @@
 #' @export
 ValidatorDate <- R6::R6Class(
   "ValidatorDate",
+  inherit = Validator0,
+  private = list(
+    ..name = 'ValidatorDate'
+  ),
   public = list(
     validate = function(value, expect = NULL) {
 

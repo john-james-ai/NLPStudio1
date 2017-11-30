@@ -28,6 +28,10 @@
 #' @export
 ValidatorNoSpaces <- R6::R6Class(
   "ValidatorNoSpaces",
+  inherit = Validator0,
+  private = list(
+    ..name = 'ValidatorNoSpaces'
+  ),
   public = list(
     validate = function(value, expect = NULL) {
 

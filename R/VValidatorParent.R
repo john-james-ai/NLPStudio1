@@ -33,7 +33,7 @@ VValidatorParent <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
-
+    ..name = 'VValidatorParent',
     validate = function(classes, object, ...) {
 
       status <- list()

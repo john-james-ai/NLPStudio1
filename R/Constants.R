@@ -24,7 +24,7 @@ Constants <- R6::R6Class(
       config = "config",
       labs = "labs",
       logs = "logs",
-      archives = archives
+      archives = "archives"
     ),
     ..labPaths = list(
       data = "data",

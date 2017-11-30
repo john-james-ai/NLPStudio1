@@ -27,6 +27,10 @@
 #' @export
 ValidatorClass <- R6::R6Class(
   "ValidatorClass",
+  inherit = Validator0,
+  private = list(
+    ..name = 'ValidatorClass'
+  ),
   public = list(
     validate = function(value, expect = NULL) {
       if (exists('value') & length(value) != 0) {
