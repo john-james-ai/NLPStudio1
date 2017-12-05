@@ -1,0 +1,78 @@
+---
+title: "NLPStudio: Natural Language Processing Environment"
+author: John James jjamse@datasciencesalon.org
+date: "`r Sys.Date()`"
+output:
+  rmdformats::readthedown:
+    highlight: kate
+---
+
+
+```{r knitr_init, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+
+
+# Log
+
+## Wednesday 10/25/17
+Added read logic to client, visitor and validator classes.
+
+## Saturday 10/14/17
+Organized thinking about validators. Categorized validators and updated validator class documentation. New methods created to validate requests to read history, read, save and restore states.
+
+## Friday 10/13/17
+Created Curator class that handles queries into objects that contain other objects for query purposes. The curator takes a target object to query at instantiation and calls the appropriate validation visitors to confirm that the curator can query the target object. Next, the client can set the query parameters in the curator object.  Once the paramters are set, client calls the query method in the curator object.  This initiates a visitor to verify the parameters, then instantiates the curator visitor object.  It messages the target object with an accept request for the visitor.  The target object accepts and sends itself back to the curator visitor.  
+
+Next steps:
+1) Implement get methods on target objects that return a data frame containing data on all aggregate objects.
+2) Implement code in curator visitor to call the get methods in the target, filter the data using the parameters initialized in the visitor and return the results to the acceptor,which returns the results to the curator. 
+
+## Monday: 9/25/17
+0940: Created getObject validation visitor
+
+# NLPSTudio
+
+## Overview
+## Phase I
+Classes and objects to perform primative tasks, any other composite tasks that are required to complete the data science capstone.   
+
+
+# Design 
+
+## NLPStudio
+
+1. Can't remove a current lab. Client must assign a new lab current.  
+
+## Labs
+Labs are separate environments into which, documents exist.  One can create, enter and leave a lab. When one enters the lab, one can bring a corpus with them, or not.  Bringing in an existing corpus will copy it into the lab. The client can also build and manipulate corpora and documents. The objects in the lab are not effected by other objects in other labs.  Implementation note:
+  1. This will require a new document class that provides the lab 
+
+2. Each lab will have its own collection of documents, builders, etc...
+3. There neednt' be the notion of a current lab. This was a relic of the principle of lab polymorphism. All objects (copora, files) were to be defined analogously to classes. They wouldn't be "instantiated" until they were assigned to a lab. There the objects could be manipulated and chained with other objects in the lab without effecting instances in other labs.  This would require    independent of the notion of a lab.  The assignment of an object to a lab would allow the client to make changes to that instance without effecting other
+
+
+## Cache
+1. All NLPStudio objects will be stored in cache.
+2. Cache will be updated/created on every update/create operation
+3. The cache will be an environment variable
+4. When variables are created, the names given as a variable in the instantiation method will be assigned to the object. It will be cached under this name. 
+5. When the package is loaded, the cache is read from file if available.  Objects in the cache but not in the current environment are loaded. If not available, load the package as normal.
+6. Each instantiation / update method updates the variable in the current and cache environments. The cache environment is saved to disk on each change so that it mirrors the collection of NLPStudio objects in the current environment.
+7. When the package is loaded, variables are loaded from cache.
+
+
+
