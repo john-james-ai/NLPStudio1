@@ -1,0 +1,51 @@
+INFO [2017-11-28 00:40:18] Info for logTest$log in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 00:40:44] Info for logTest$log in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 01:01:54] Info for logTest$log in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 17:33:59] Info for logTest$log in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 17:34:52] Info for logTest$log in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 22:15:56] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 22:19:06] Info for nlpStudio in class 'NLPStudio', method 'initialize. Accepted visitor, VValidator at 2017-11-28 22:19:06
+INFO [2017-11-28 22:20:09] Info for nlpStudio in class 'NLPStudio', method 'initialize. Accepted visitor, VValidator at 2017-11-28 22:20:09
+INFO [2017-11-28 22:37:05] Info for nlpStudio in class 'NLPStudio', method 'initialize. Accepted visitor, VValidator at 2017-11-28 22:37:05
+INFO [2017-11-28 22:39:45] Info for nlpStudio in class 'NLPStudio', method 'initialize. Accepted visitor, VValidatorAddChild at 2017-11-28 22:39:45
+INFO [2017-11-28 22:59:08] Info for nlpStudio in class 'NLPStudio', method 'initialize. Accepted visitor, VValidatorAddChild at 2017-11-28 22:59:08
+INFO [2017-11-28 23:29:41] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:32:53] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:34:10] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:35:24] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:43:12] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:47:17] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:50:00] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:53:15] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-28 23:53:44] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 13:50:59] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 13:51:33] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 13:53:02] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 13:53:56] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 13:55:01] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 14:02:10] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:22:52] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:23:35] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:24:22] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:24:44] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:24:59] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:38:31] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:39:05] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:40:15] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:42:32] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:43:06] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:43:34] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:44:15] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:44:46] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:45:30] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:47:12] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:48:28] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:48:54] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 16:49:06] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+INFO [2017-11-29 19:44:43] Info for fileManagerTests$logs in class 'FileManager', method 'download. Successfully downloaded file.
+INFO [2017-11-29 19:44:52] Info for fileManagerTests$logs in class 'FileManager', method 'download. Successfully downloaded file.
+INFO [2017-11-29 19:57:22] Info for fileManagerTests$logs in class 'FileManager', method 'download. Successfully downloaded file.
+INFO [2017-11-29 19:57:30] Info for fileManagerTests$logs in class 'FileManager', method 'unZipFile. Successfully unzipped file.
+INFO [2017-11-29 20:30:10] Info for fileManagerTests$logs in class 'FileManager', method 'zipFile. Successfully zipped file.
+INFO [2017-11-29 20:36:50] Info for fileManagerTests$logs in class 'FileManager', method 'moveFile. Successfully moved file.
+INFO [2017-11-29 20:37:57] Info for fileManagerTests$logs in class 'FileManager', method 'copyFile. Successfully moved file.
