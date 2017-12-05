@@ -32,6 +32,7 @@ VReader <- R6::R6Class(
   classname = "VReader",
   private = list(
 
+<<<<<<< HEAD
     validateFile = function(document) {
 
       status <- list()
@@ -65,10 +66,59 @@ VReader <- R6::R6Class(
         return(status)
       }
       return(status)
+=======
+    validateFile = function(file, method, class) {
+
+      f <- file$exposeObject()
+
+      if (lengtH(f$path) == 0) {
+        v <- Validator0$new()
+        v$notify(class = "VReader", method = method, fieldName = "path",
+                 level = "Error", value = "",
+                 msg = paste("Unable to read document.",
+                             "Path is missing with no default.",
+                             "See ?VReader for assistance."),
+                 expect = TRUE)
+        stop()
+      }
+
+      if (lengtH(f$fileName) == 0) {
+        v <- Validator0$new()
+        v$notify(class = "VReader", method = method, fieldName = "fileName",
+                 level = "Error", value = "",
+                 msg = paste("Unable to read document.",
+                             "File name is missing with no default.",
+                             "See ?VReader for assistance."),
+                 expect = TRUE)
+        stop()
+      }
+
+      v <- ValidatorClass$new()
+      if (v$validate(class = "VReader", method = method, fieldName = "class(file)",
+                     level = "Error", value = class(file)[1],
+                     msg = paste("Unable to read document. Object is not a",
+                                 class, "class object.",
+                                 "See ?VReader for assistance."),
+                     expect = class) == FALSE) {
+        stop()
+      }
+
+      if (!file.exists(file.path(f$path, f$fileName))) {
+        v <- Validator0$new()
+        v$notify(class = "VReader", method = method, fieldName = "path/fileName",
+                 level = "Error", value = file.path(f$path, f$fileName),
+                 msg = paste("Unable to read document.",
+                             "File does not exist.",
+                             "See ?VReader for assistance."),
+                 expect = TRUE)
+        stop()
+      }
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     }
   ),
   public = list(
 
+<<<<<<< HEAD
     readCsv = function(document) {
 
       status <- private$validateFile(document)
@@ -117,6 +167,37 @@ VReader <- R6::R6Class(
         status[['data']] <- readLines(con)
       }
       return(status)
+=======
+    readCsv = function(file) {
+
+      private$validateFile(file, method = "readCsv", class = "FileCsv")
+      f <- file$exposeObject()
+      content <- read.csv(file.path(f$path, f$fileName), header = header, stringsAsFactors = FALSE,
+                          sep = ",", quote = "\"'")
+      file$addContent(content)
+
+    },
+
+    readRdata = function(file) {
+
+      private$validateFile(file, method = "readRdata", class = "FileRdata")
+      f <- file$exposeObject()
+      env <- new.env()
+      content <- load(file.path(f$path, f$fileName), envir = env)
+      file$addContent(env[[content]])
+
+    },
+
+    readText = function(file) {
+
+      private$validateFile(file, method = "readText", class = "FileText")
+      f <- file$exposeObject()
+      con <- file(file.path(f$path, f$fileName))
+      on.exit(close(con))
+      content <- readLines(con)
+      file$addContent(content)
+
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     }
   )
 )

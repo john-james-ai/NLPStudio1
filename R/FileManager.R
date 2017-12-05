@@ -7,7 +7,11 @@
 #'
 #' This class contains functions for maintaining and manipulating files
 #'
+<<<<<<< HEAD
 #' @section FileManager Methods:
+=======
+#' @section: FileManager Methods:
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 #'  \describe{
 #'   \item{\code{new()}}{Creates an object of FileManager Class}
 #'   \item{\code{move(from, to)}}{Move a file or directory from directory a to directory b.}
@@ -33,6 +37,10 @@ FileManager <- R6::R6Class(
   lock_class = FALSE,
   private = list(
     ..name = "fileManager",
+<<<<<<< HEAD
+=======
+    ..state = character(),
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     ..created = character(),
     ..modified = character()
   ),
@@ -45,6 +53,10 @@ FileManager <- R6::R6Class(
     initialize = function() {
 
       # Instantiate variables
+<<<<<<< HEAD
+=======
+      private$..state <- paste("FileManager", name, "instantiated at", Sys.time())
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
 
@@ -60,6 +72,7 @@ FileManager <- R6::R6Class(
     download = function(url, downloadPath) {
       status <- list()
       status[['code']] <- TRUE
+<<<<<<< HEAD
 
       # Format download path
       constants <- Constants$new()
@@ -72,6 +85,11 @@ FileManager <- R6::R6Class(
       } else {
         status[['msg']] <- paste0("Successfully downloaded ", fileName, ". ")
         status[['data']] <- downloadPath
+=======
+      if (download.file(url, destfile = downloadPath, mode = 'wb') != 0) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Could not download ", url)
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       }
       return(status)
     },
@@ -82,6 +100,7 @@ FileManager <- R6::R6Class(
     zipFile = function(zipFilePath, files) {
       status <- list()
       status[['code']] <- TRUE
+<<<<<<< HEAD
 
       rc <- zip(zipfile = zipFilePath, files = files)
       if (rc == 0) {
@@ -104,6 +123,22 @@ FileManager <- R6::R6Class(
       } else {
         status[['code']] <- FALSE
         status[['msg']] <-  paste0("Could not unzip ", zipFilePath, ". File does not exist.")
+=======
+      zip(zipfile = zipFilePath, files = files)
+      return(status)
+    },
+
+    unZipFile = function(zipFilePath, files, exDir) {
+      status <- list()
+      status[['code']] <- TRUE
+      if (file.exists(zipFilePath)) {
+        unzip(zipfile = zipFilePath, overwrite = FALSE, exdir = exDir,
+              junkpaths = TRUE, files = files)
+      } else {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Could not unzip ", zipFilePath,
+                                  ". File does not exist.")
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       }
       return(status)
     },
@@ -113,6 +148,7 @@ FileManager <- R6::R6Class(
     #                         Move/Copy Methods                               #
     #-------------------------------------------------------------------------#
     moveFile = function(from, to)  {
+<<<<<<< HEAD
       status <- list()
       status[['code']] <- TRUE
 
@@ -151,6 +187,17 @@ FileManager <- R6::R6Class(
       status[['msg']] <-
         paste0("Successfully copied file ", from, "to ", to )
       return(status)
+=======
+      todir <- dirname(to)
+      if (!isTRUE(file.info(todir)$isdir))  dir.create(todir, recursive=TRUE)
+      file.rename(from = from,  to = to)
+    },
+
+    copyFile = function(from, to)  {
+      todir <- dirname(to)
+      if (!isTRUE(file.info(todir)$isdir))  dir.create(todir, recursive=TRUE)
+      file.copy(from = from,  to = to)
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     }
   )
 )

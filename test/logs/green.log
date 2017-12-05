@@ -49,6 +49,7 @@ INFO [2017-11-29 19:57:30] Info for fileManagerTests$logs in class 'FileManager'
 INFO [2017-11-29 20:30:10] Info for fileManagerTests$logs in class 'FileManager', method 'zipFile. Successfully zipped file.
 INFO [2017-11-29 20:36:50] Info for fileManagerTests$logs in class 'FileManager', method 'moveFile. Successfully moved file.
 INFO [2017-11-29 20:37:57] Info for fileManagerTests$logs in class 'FileManager', method 'copyFile. Successfully moved file.
+<<<<<<< HEAD
 INFO [2017-11-29 23:16:51] Info for fileManagerTests$logs in class 'FileManager', method 'download. Successfully downloaded file.
 INFO [2017-11-29 23:18:55] Info for fileManagerTests$logs in class 'FileManager', method 'download. Successfully downloaded file.
 INFO [2017-11-30 14:06:19] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
@@ -143,3 +144,5 @@ INFO [2017-12-04 21:39:42] Info for nlpStudioTests$logs in class 'NLPStudio', me
 INFO [2017-12-04 21:41:21] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
 INFO [2017-12-04 21:41:49] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
 INFO [2017-12-04 21:42:18] Info for nlpStudioTests$logs in class 'NLPStudio', method 'initialize. Successfully created nlpStudio
+=======
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900

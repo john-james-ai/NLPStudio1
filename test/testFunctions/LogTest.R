@@ -35,7 +35,11 @@ LogTest <- R6::R6Class(
     #                             Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function() {
+<<<<<<< HEAD
       private$..logs <- LogR$new(private$..path)
+=======
+      private$..logs <- Logger$new(private$..path)
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       invisible(self)
     },
 

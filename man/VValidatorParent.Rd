@@ -31,6 +31,7 @@ The VValidatorParent methods are as follows:
 }
 }
 \seealso{
+<<<<<<< HEAD
 Other Validation Visitor Classes: \code{\link{VCurator}},
   \code{\link{VValidatorAddChild}},
   \code{\link{VValidatorInit}},
@@ -40,6 +41,12 @@ Other Validation Visitor Classes: \code{\link{VCurator}},
   \code{\link{VValidatorSetQueryTarget}},
   \code{\link{VValidatorSubmitQuery}},
   \code{\link{VValidatorexposeObject}},
+=======
+Other Validation Visitor Classes: \code{\link{VValidatorAddChild}},
+  \code{\link{VValidatorInit}},
+  \code{\link{VValidatorRemoveChild}},
+  \code{\link{VValidatorSetParent}},
+>>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
   \code{\link{VValidator}}
 }
 \author{
