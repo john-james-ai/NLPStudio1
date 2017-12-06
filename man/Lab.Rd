@@ -13,20 +13,12 @@ Lab
 
 \item{desc}{A chararacter string containing the description of the Lab}
 
-<<<<<<< HEAD
 \item{korpus}{An object of the Korpus class}
-=======
-\item{document}{An object of the DocumentCollection class to be added to the Lab object's list of document collections.}
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 
 \item{visitor}{An object of one of the visitor classes.}
 }
 \description{
-<<<<<<< HEAD
 \code{Lab} Class that contains document corpora and the environment in which NLP happens.
-=======
-\code{Lab} Class that contains document collections and the environment in which NLP happens.
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 }
 \details{
 The environment in which NLP happens. There are two groups of methods. The
@@ -39,26 +31,16 @@ the contained documents, add a document, and remove a document.
   \item{\code{new(name, desc = NULL)}}{Creates an object of Lab Class}
   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Lab description variable.}
   \item{\code{getName()}}{Returns the name of the Lab object.}
-<<<<<<< HEAD
   \item{\code{getPath()}}{Returns the path of the Lab object.}
   \item{\code{getLogs()}}{Returns the LogR object for the Lab object.}
   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
-=======
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
  }
 
 \strong{Lab Aggregate Methods:}
  \describe{
-<<<<<<< HEAD
   \item{\code{getKorpora()}}{Retrieves the list of corpora for the lab.}
   \item{\code{addKorpus(document)}}{Adds a corpus to the Lab object.}
   \item{\code{removeKorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
-=======
-  \item{\code{getChildren()}}{Retrieves a list containing meta data for child objects of the DocumentCollection class.}
-  \item{\code{addChild(document)}}{Adds a child document, an object of the DocumentCollection class, to the Lab object.}
-  \item{\code{removeChild(document)}}{Removes a child document, an object of the DocumentCollection class, from the Lab object.}
-  \item{\code{parent(value)}}{Getter/setter method for the parent field, implemented as an active binding on the private member.}
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 }
 
 \strong{Lab Visitor Methods:}

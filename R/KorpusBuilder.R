@@ -11,11 +11,12 @@
 #' and John Vlissides (hence Gang of Four). This pattern allows the
 #' construction process to be defined at runtime.
 #'
-#' @section Korpus Builder Participants
+#' @section Korpus Builder Participants:
 #'  \describe{
 #'   \item{KorpusBuilder0}{This abstract builder interface. Defines the interface for concrete corpus builder sub-classes. }
-#'   \item{KorpusDirector}}{Class that builds the corpus through the concrete builder interface.}
-#'   \item{Korpus}}{The corpus or corpus set product.}
+#'   \item{KorpusDirector}{Class that builds the corpus through the concrete builder interface.}
+#'   \item{Korpus}{The corpus or corpus set product.}
+#'   }
 #'
 #' @section Korpus Builder0 Methods:
 #'  \describe{
@@ -23,8 +24,8 @@
 #'   \item{\code{getData()}}{Obtains the corpus data from an external source.}
 #'   \item{\code{buildDocuments()}}{Builds document objects.}
 #'   \item{\code{repairDocuments()}}{Rapairs corpus document objects}
-#'   \item{\code{splitDocuments()}}{Creates random sample of 10 indices, each representing 10% of the lines of the document..}
-#'   \item{\code{sampleDocuments()}}{Creates sammples of the document according to size increments of 10%.}
+#'   \item{\code{splitDocuments()}}{Creates random sample of 10 indices, each representing 10 pct of the lines of the document..}
+#'   \item{\code{sampleDocuments()}}{Creates sammples of the document according to size increments of 10 pct.}
 #'   \item{\code{normalizeDocuments()}}{Normalizes text in the document objects.}
 #'   \item{\code{correctDocuments()}}{Corrects common misspellings, contractions, and abbreviations.}
 #'   \item{\code{cleanLanguage()}}{Removes sentences containing profane language.}
@@ -75,8 +76,9 @@ KorpusBuilder <- R6::R6Class(
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
 
+
       # Log it
-      private$..logIt()
+      self$logIt()
 
       # Assign its name in the global environment
       assign(private$..name, self, envir = .GlobalEnv)
@@ -99,7 +101,7 @@ KorpusBuilder <- R6::R6Class(
       status <- f$download(private$..url, downloadPath)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
-        private$..logIt(level = 'Error')
+        self$logIt(level = 'Error')
         stop()
       }
 
@@ -110,19 +112,21 @@ KorpusBuilder <- R6::R6Class(
                                           files = private$..files, list = listFiles)
           if (status[['code']] == FALSE) {
             private$..state <- status[['msg']]
-            private$..logIt(level = 'Error')
+            self$logIt(level = 'Error')
           }
         }
       }
       invisible(self)
     },
 
-    getDocuments = function() {
-
-    }
-
-
-
+    buildDocuments = function() {
+      files <- list.files(path = file.path(private$..path, private$..dirs$external),
+                          full.names = TRUE)
+      documents <- lapply(files, function(f) {
+        DocumentText$new(f)
+      })
+      private$..extDocs <- documents
+    },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
@@ -153,17 +157,36 @@ KorpusBuilder <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      Builder0 = list(
-        className = private$..className,
-        methodName = private$..methodName,
-        name = private$..name,
-        builder = private$..builder,
-        state = private$..state,
-        modified = private$..modified,
-        created = private$..created
+      korpus = list(
+        metaData = list(
+          name = private$..korpus$metaData$name,
+          desc = private$..korpus$metaData$desc,
+          parent = private$..korpus$metaData$parent,
+          path = private$..korpus$metaData$path,
+          dirs = private$..korpus$metaData$dirs,
+          logs = private$..korpus$metaData$log,
+          state = private$..korpus$metaData$state,
+          modified = private$..korpus$metaData$modified,
+          created = private$..korpus$metaData$created
+        ),
+        parameters = list(
+          url = private$..korpus$parameters$url,
+          files = private$..korpus$parameters$files,
+          repairs = private$..korpus$parameters$repairs,
+          splits = private$..korpus$parameters$splits,
+          samples = private$..korpus$parameters$samples,
+          normalize = private$..korpus$parameters$normalize,
+          corrections = private$..korpus$parameters$corrections,
+          profanity = private$..korpus$parameters$profanity
+        ),
+        documents = list(
+          extDocs = private$..korpus$documents$extDocs,
+          rawDocs = private$..korpus$documents$rawDocs,
+          sets = private$..korpus$documents$sets
+        )
       )
 
-      return(Builder0)
+      return(korpus)
     }
   )
 )

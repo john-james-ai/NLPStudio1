@@ -151,18 +151,26 @@ VValidatorInit <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      o <- object$exposeObject(self)
+      fileName <- object$getFileName
 
-      if (is.null(o$fileName) | is.na(o$fileName) | length(o$fileName) == 0) {
+      if (is.null(fileName) | is.na(fileName) | length(fileName) == 0) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("File name parameter is missing with no default. ",
                                   "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
 
-      if (!(file_ext(o$fileName) %in% ext)) {
+      if (!(file_ext(fileName) %in% ext)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("File type must be ", ext,
+                                  "See ?", class(object)[1], " for further assistance.")
+        return(status)
+      }
+
+      filePath <- file.path(object$getPath(), fileName)
+      if (!file.exists(filePath)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("File does not exist. ",
                                   "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
@@ -195,8 +203,6 @@ VValidatorInit <- R6::R6Class(
 
     documentText = function(object) {
 
-      if (private$validateParent(object, "Korpus")[['code']] == FALSE)
-        return(private$validateParent(object, "Korpus"))
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
       return(private$validateFileName(object, "txt"))
@@ -211,8 +217,6 @@ VValidatorInit <- R6::R6Class(
 
     documentRdata = function(object) {
 
-      if (private$validateParent(object, "Korpus")[['code']] == FALSE)
-        return(private$validateParent(object, "Korpus"))
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
       return(private$validateFileName(object, c("Rdata", "RData", "Rda")))

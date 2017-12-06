@@ -13,6 +13,8 @@ Document
 
 \item{desc}{Character string containing the description of the document.}
 
+\item{korpus}{Korpus object to which the document belongs}
+
 \item{content}{Nested list of content to be written to files.}
 
 \item{fileName}{Character string indicating File object's file name.}
@@ -37,12 +39,10 @@ of a class to be defined at runtime.
 
 The participants of the Document class are:
 \itemize{
- \item Document: This "abstract leaf" class defines the interface for
- DocumentText, DocumentRdata, DocumentCsv, and DocumentXlsx sub-classes.
- \item DocumentText: This "concrete leaf" class for text documents.
- \item DocumentCsv: This "concrete leaf" class for csv documents.
- \item DocumentRdata: This "concrete leaf" class for RData documents.
- \item DocumentXlsx: This "concrete leaf" class for excel documents.
+ \item Document: This "abstract" class defines the interface for document sub-classes.
+ \item DocumentText: Document class for text documents.
+ \item DocumentNGram: Document class for NGrams
+ \item DocumentPOS: Document class for POS tagged documents.
  }
 }
 
@@ -75,6 +75,10 @@ The collaborators of the Document family  are:
  }
 }
 
+\seealso{
+Other Document classes: \code{\link{DocumentCsv}},
+  \code{\link{DocumentText}}, \code{\link{DocumentXlsx}}
+}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

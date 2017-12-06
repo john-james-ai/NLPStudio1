@@ -9,10 +9,10 @@
 VReader
 }
 \arguments{
-\item{file}{Object of the File family of classes}
+\item{document}{Object of the Document family of classes}
 }
 \description{
-\code{VReader} Visitor class responsible for reading documents of various formats. Current formats include .csv, .Rdata, and .txt files
+\code{VReader} Visitor class responsible for reading documents in .xlsx, .csv, .Rdata, and .txt file formats.
 }
 \details{
 \strong{VReader Class Overview:}
@@ -26,10 +26,14 @@ the visitor method operates.
 \strong{VReader Methods:}
 The VReader class supports csv, Rdata, and text files through the following methods:
  \itemize{
-  \item{\code{readCsv(file)}}{Method for reading csv files.}
-  \item{\code{readRdata(file)}}{Method for reading Rdata files.}
-  \item{\code{readText(file)}}{Method for reading text files.}
+  \item{\code{csv(document)}}{Method for reading csv files.}
+  \item{\code{xlsx(document)}}{Method for reading xlsx files.}
+  \item{\code{rdata(document)}}{Method for reading Rdata files.}
+  \item{\code{text(document)}}{Method for reading text files.}
 }
+}
+\seealso{
+Other Read/Write Classes: \code{\link{IO}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

@@ -13,17 +13,8 @@
 #'
 #' @section Korpus Director Methods:
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Korpus Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Korpus description variable.}
-#'   \item{\code{lab}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Korpus object belongs.}
-#'   \item{\code{getName()}}{Returns the name of the Korpus object.}
-#'   \item{\code{getPath()}}{Returns the path of the Korpus object.}
-#'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
-#'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
-#'  }
-#'
-#'   \item{\code{splitCorpus()}}{Method for initiating the repair operation on a document.}
-#' }
+#'   \item{\code{new(builder)}}{Creates an object of Korpus Class}
+#'   }
 #'
 #' @param builder Corpus builder object
 #'
@@ -40,7 +31,6 @@ KorpusDirector <- R6::R6Class(
     ..methodName = character(),
     ..builder = character(),
     ..state = character(),
-
     ..logs = character(),
     ..modified = "None",
     ..created = "None"
@@ -59,6 +49,7 @@ KorpusDirector <- R6::R6Class(
       private$..name <- 'korpusDirector'
       private$..state <- "Instantiated the corpus build director."
       private$..builder <- builder
+      private$..logs <- NLPStudio$new()$getInstance()$getDirs()$logs
 
       # Validate Korpus
       v <- Validator$new()
@@ -81,7 +72,8 @@ KorpusDirector <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                          Construct Methods                              #
     #-------------------------------------------------------------------------#
-    construct = function() {
+    constructKorpus = function() {
+
 
 
     },

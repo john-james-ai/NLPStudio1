@@ -138,52 +138,14 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(filePath, desc = NULL) {
-
-      # Instantiate variables
-      private$..className <- 'Document'
-      private$..docType <- c('Text', 'nGram', 'POStags', 'POSPairs')
-      private$..name <- basename(filePath)
-      private$..fileName <- basename(filePath)
-      private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
-      private$..korpus <- NULL
-      private$..path <- dirname(filePath)
-      private$..state <- paste("Document", name, "instantiated at", Sys.time())
-      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
-      private$..size <- file.info(filePath)$size
-      private$..modified <- file.info(filePath)$mtime
-      private$..created <- file.info(filePath)$ctime
-      private$..accessed <- file.info(filePath)$atime
-
-      # Initiate Log
-      private$..logs <- LogR$new(file.path(private$..path, 'logs'))
-
-      # Validate Lab
-      v <- Validator$new()
-      status <- v$init(self)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
-      # Create log entry
-      self$logIt()
-
-      # Assign its name in the global environment
-      assign(name, self, envir = .GlobalEnv)
-
-      invisible(self)
-
-
-    },
+    initialize = function(filePath, desc = NULL) stop("This is not implemented for this abstract class."),
 
     #-------------------------------------------------------------------------#
     #                       Path and Filename Methods                         #
     #-------------------------------------------------------------------------#
-    getPath = private$..path,
-    getFileName = private$..fileName,
-    getDocType = private$..docType,
+    getPath = function() private$..path,
+    getFileName = function() private$..fileName,
+    getDocType = function() private$..docType,
 
     readDocument = function() {stop("This method is not implemented for the Document class.")},
     writeDocument = function(content) {stop("This method is not implemented for the Document class.")},

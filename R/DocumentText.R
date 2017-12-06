@@ -66,6 +66,22 @@ DocumentText <- R6::R6Class(
   lock_class = FALSE,
   inherit = Document,
 
+  private = list(
+    ..className = character(),
+    ..docType = character(),
+    ..name = character(),
+    ..fileName = character(),
+    ..desc = character(),
+    ..korpus = character(),
+    ..path = character(),
+    ..content = character(),
+    ..size = numeric(),
+    ..state = character(),
+    ..created = character(),
+    ..modified = character(),
+    ..accessed = character()
+  ),
+
   public = list(
 
     #-------------------------------------------------------------------------#
@@ -81,7 +97,7 @@ DocumentText <- R6::R6Class(
       private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
       private$..korpus <- NULL
       private$..path <- dirname(filePath)
-      private$..state <- paste("Document", name, "instantiated at", Sys.time())
+      private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
       private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
       private$..size <- file.info(filePath)$size
       private$..modified <- file.info(filePath)$mtime
@@ -89,7 +105,7 @@ DocumentText <- R6::R6Class(
       private$..accessed <- file.info(filePath)$atime
 
       # Initiate Log
-      private$..logs <- LogR$new(file.path(private$..path, 'logs'))
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$korpora))
 
       # Validate Lab
       v <- Validator$new()

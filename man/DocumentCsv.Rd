@@ -15,6 +15,8 @@ DocumentCsv
 
 \item{content}{Nested list of content to be written to files.}
 
+\item{path}{Character string containing the path to the document.}
+
 \item{fileName}{Character string indicating File object's file name.}
 
 \item{parent}{An object of the Lab or DocumentCollection class that represents
@@ -123,9 +125,7 @@ There are six types of methods within the Document class and they are:
  }
 }
 \seealso{
-Other Document classes: \code{\link{Document0}},
-  \code{\link{DocumentCollection}},
-  \code{\link{DocumentRdata}}, \code{\link{DocumentText}},
+Other Document classes: \code{\link{DocumentText}},
   \code{\link{DocumentXlsx}}, \code{\link{Document}}
 }
 \author{

@@ -31,6 +31,7 @@ IO <- R6::R6Class(
   classname = "IO",
   lock_objects = TRUE,
   lock_class = FALSE,
+  private = list(),
   public = list(
 
     read = function(document) {

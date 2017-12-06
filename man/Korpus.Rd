@@ -9,8 +9,6 @@
 Korpus
 }
 \arguments{
-\item{lab}{Object of class Lab to which the Corpus is a member.}
-
 \item{name}{A character string containing the name of the Korpus object. This variable is used in the instantiation and remove methods.}
 
 \item{desc}{A chararacter string containing the description of the Korpus.}
@@ -31,38 +29,20 @@ transformations such as nGrams and POS tags
  \describe{
   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Korpus Class}
   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Korpus description variable.}
+  \item{\code{lab}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Korpus object belongs.}
   \item{\code{getName()}}{Returns the name of the Korpus object.}
   \item{\code{getPath()}}{Returns the path of the Korpus object.}
-  \item{\code{getLogs()}}{Returns the LogR object for the Korpus object.}
   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
  }
 }
 
-\section{Korpus Aggregate Methods}{
-
- \describe{
-  \item{\code{getDocuments()}}{Retrieves the list of documents for the Korpus.}
-  \item{\code{addChild(document)}}{Adds a document to the Korpus object.}
-  \item{\code{removeChild(document)}}{Removes a document from the Korpus object.}
-}
-}
-
-\section{Korpus Read/Write Methods}{
-
- \describe{
-  \item{\code{readKorpus()}}{Reads a corpus into memory .}
-  \item{\code{writeKorpus()}}{Writes the contents of each document in the corpus to file.}
-}
-}
-
 \section{Korpus Processing Methods}{
 
  \describe{
+  \item{\code{obtainKorpus()}}{Method for initiating the repair operation on a document.}
   \item{\code{repairKorpus()}}{Method for initiating the repair operation on a document.}
-  \item{\code{cleanKorpus()}}{Method for cleaning the document.}
-  \item{\code{nGramKorpus(nGrams)}}{Method for creating an nGram representation of the document.}
-  \item{\code{posTagKorpus(nGrams)}}{Method for creating an POS tagged representation of the document.}
+  \item{\code{splitCorpus()}}{Method for initiating the repair operation on a document.}
 }
 }
 
