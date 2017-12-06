@@ -32,7 +32,6 @@ The VValidatorAddChild methods are as follows:
 }
 \seealso{
 Other Validation Visitor Classes: \code{\link{VValidatorInit}},
-  \code{\link{VValidatorKorpusBuilder}},
   \code{\link{VValidatorRemoveChild}},
   \code{\link{VValidatorRepair}},
   \code{\link{VValidatorSetParent}},

@@ -31,6 +31,7 @@ Constants <- R6::R6Class(
       data = "data",
       external = 'data/external',
       raw = 'data/raw',
+      pre = 'data/preprocessed',
       sets = 'data/sets',
       reports = 'reports'
     )

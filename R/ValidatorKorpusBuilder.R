@@ -23,17 +23,17 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@DataScienceSalon.org}
-#' @family Validation Visitor Classes
+#' @family Validation Classes
 #' @export
-VValidatorKorpusBuilder <- R6::R6Class(
-  classname = "VValidatorKorpusBuilder",
-  inherit = VValidator,
+ValidatorKorpusBuilder <- R6::R6Class(
+  classname = "ValidatorKorpusBuilder",
+  inherit = Validator0,
   lock_objects = FALSE,
   lock_class = FALSE,
 
   private = list(
 
-    ..name = "VValidatorKorpusBuilder",
+    ..name = "ValidatorKorpusBuilder",
 
     validateName = function(object) {
 
@@ -81,21 +81,9 @@ VValidatorKorpusBuilder <- R6::R6Class(
 
       url <- object$url
       v <- ValidatorUrl$new()
-      if (v$validate(url) == FALSE) {
+      if (v$validate(value = url) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste("URL", url, "is invalid.")
-      }
-      return(status)
-    },
-
-    validateDirs = function(object) {
-      status <- list()
-      status[['code']] <- TRUE
-
-      v <- ValidatorPath$new()
-      status[['code']] <- v$validate(object$extDir, expect = TRUE)
-      if (status[['code']] == FALSE) {
-        status[['msg']] <- paste("Directory", object$extDir, "is invalid.")
       }
       return(status)
     },
@@ -145,12 +133,7 @@ VValidatorKorpusBuilder <- R6::R6Class(
     },
 
     getData = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      if (private$validateURL(object)[['code']] == FALSE)
         return(private$validateURL(object))
-      return(private$validateDirs(object))
-
     },
 
     buildDocuments = function(object) {

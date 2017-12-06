@@ -24,7 +24,7 @@ construction process to be defined at runtime.
 \section{Korpus Director Methods}{
 
  \describe{
-  \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Korpus Class}
+  \item{\code{new(builder)}}{Creates an object of Korpus Class}
   }
 }
 

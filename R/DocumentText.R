@@ -96,7 +96,7 @@ DocumentText <- R6::R6Class(
       private$..fileName <- basename(filePath)
       private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
       private$..korpus <- NULL
-      private$..path <- dirname(filePath)
+      private$..path <- file.path(dirname(filePath), private$..name)
       private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
       private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
       private$..size <- file.info(filePath)$size
@@ -105,7 +105,7 @@ DocumentText <- R6::R6Class(
       private$..accessed <- file.info(filePath)$atime
 
       # Initiate Log
-      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$korpora))
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
 
       # Validate Lab
       v <- Validator$new()
@@ -120,16 +120,50 @@ DocumentText <- R6::R6Class(
       self$logIt()
 
       # Assign its name in the global environment
-      assign(name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
 
     },
+    getName = function() private$..name,
+    getFileName = function() private$..fileName,
+    getPath = function() private$..path,
+
     readDocument = function() {
 
       r <- VReader$new()
 
     },
-    writeDocument = function(content) {stop("This method is not implemented for the Document class.")}
+    writeDocument = function(content) {},
+    #-------------------------------------------------------------------------#
+    #                           Visitor Methods                               #
+    #-------------------------------------------------------------------------#
+    accept = function(visitor)  {
+      visitor$documentText(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                           Expose Object                                 #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+
+      o <- list(
+        className	 =  private$..className ,
+        docType	 = 	  private$..docType ,
+        name	 = 	    private$..name ,
+        fileName	 =  private$..fileName ,
+        desc	 = 	    private$..desc ,
+        korpus	 = 	  private$..korpus ,
+        path	 = 	    private$..path ,
+        state	 = 	    private$..state ,
+        logs	 = 	    private$..logs ,
+        size	 = 	    private$..size ,
+        modified	 = 	private$..modified ,
+        created	 = 	  private$..created ,
+        accessed	 = 	private$..accessed
+      )
+      return(o)
+    }
+
   )
 )

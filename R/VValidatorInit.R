@@ -130,28 +130,12 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-    validateState = function(object) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      o <- object$exposeObject()
-
-      if (is.null(o$state) | is.na(o$state) | length(o$state) == 0) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("State element is missing with no default. ",
-                                  "See ?", class(object)[1], " for further assistance.")
-      }
-      return(status)
-    },
-
-
     validateFileName = function(object, ext) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      fileName <- object$getFileName
+      fileName <- object$getFileName()
 
       if (is.null(fileName) | is.na(fileName) | length(fileName) == 0) {
         status[['code']] <- FALSE
@@ -160,14 +144,14 @@ VValidatorInit <- R6::R6Class(
         return(status)
       }
 
-      if (!(file_ext(fileName) %in% ext)) {
+      if (!(tools::file_ext(fileName) == ext)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("File type must be ", ext,
                                   "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
 
-      filePath <- file.path(object$getPath(), fileName)
+      filePath <- file.path(object$getPath())
       if (!file.exists(filePath)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("File does not exist. ",

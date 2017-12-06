@@ -31,7 +31,6 @@ The VValidatorInit methods are as follows:
 }
 \seealso{
 Other Validation Visitor Classes: \code{\link{VValidatorAddChild}},
-  \code{\link{VValidatorKorpusBuilder}},
   \code{\link{VValidatorRemoveChild}},
   \code{\link{VValidatorRepair}},
   \code{\link{VValidatorSetParent}},

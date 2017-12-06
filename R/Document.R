@@ -127,7 +127,6 @@ Document <- R6::R6Class(
           assign(private$..name, self, envir = .GlobalEnv)
 
           invisible(self)
-
         }
       }
     }

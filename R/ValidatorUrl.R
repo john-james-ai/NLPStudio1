@@ -23,21 +23,18 @@
 #' @export
 ValidatorUrl <- R6::R6Class(
   "ValidatorUrl",
-  inherit = Validator0,
   private = list(
     ..name = 'ValidatorUrl'
   ),
   public = list(
-    validate = function(class, method, fieldName, value, level, msg, expect = NULL) {
+    validate = function(value, expect = NULL) {
       if (exists('value') & length(value) != 0) {
-        if (!url.exists(value)) {
-          self$notify(class, method, fieldName, value, level, msg, expect)
+        if (!RCurl::url.exists(value)) {
           return(FALSE)
         } else {
           return(TRUE)
         }
       } else {
-        self$notify(class, method, fieldName, value, level, msg, expect)
         return(FALSE)
       }
     }

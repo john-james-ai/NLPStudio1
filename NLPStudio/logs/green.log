@@ -1,46 +1,205 @@
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for blue in class 'Lab', method 'initialize. Lab blue instantiated at 2017-12-05 07:20:37
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'addLab. Lab blue added to nlpStudio at 2017-12-05 07:20:37
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for beats in class 'Lab', method 'initialize. Lab beats instantiated at 2017-12-05 07:20:37
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'addLab. Lab beats added to nlpStudio at 2017-12-05 07:20:37
-INFO [2017-12-05 07:20:37] Info for nlpStudioTests$logs in class 'NLPStudio', method 'addLab. Successfully added two labs to NLPStudio.
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'addLab. Current lab changed to blue. 
-INFO [2017-12-05 07:20:37] Info for nlpStudioTests$logs in class 'NLPStudio', method 'currentLab. Current lab set to blue
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for predictifyR in class 'Lab', method 'initialize. Lab predictifyR instantiated at 2017-12-05 07:20:37
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'addLab. Lab predictifyR added to nlpStudio at 2017-12-05 07:20:37
-INFO [2017-12-05 07:20:37] Info for labTests$logs in class 'Lab', method 'initiate. Successfully created lab: predictifyR
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:37] Info for stanford in class 'Korpus', method 'initialize. Corpus stanford instantiated.
-INFO [2017-12-05 07:20:37] Info for korpusTests$logs in class 'Lab', method 'initiate. Successfully created corpus: stanford
-INFO [2017-12-05 07:20:38] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:38] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 07:20:38] Info for oxford in class 'Korpus', method 'initialize. Corpus oxford instantiated.
-INFO [2017-12-05 07:20:38] Info for korpusTests$logs in class 'Lab', method 'initiate. Successfully created corpus: oxford
-INFO [2017-12-05 07:20:38] Info for stanford in class 'Korpus', method 'initialize. Corpus stanfordadded to blue lab. 
-INFO [2017-12-05 07:20:38] Info for blue in class 'Lab', method 'addKorpus. Corpus stanford added to Lab blue at 2017-12-05 07:20:38
-INFO [2017-12-05 07:20:38] Info for korpusTests$logs in class 'Lab', method 'addKorpus. Successfully added corpus: stanford to lab blue
-INFO [2017-12-05 07:20:38] Info for oxford in class 'Korpus', method 'initialize. Corpus oxfordadded to beats lab. 
-INFO [2017-12-05 07:20:38] Info for beats in class 'Lab', method 'addKorpus. Corpus oxford added to Lab beats at 2017-12-05 07:20:38
-INFO [2017-12-05 12:37:54] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 15:58:16] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 15:58:27] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 21:49:12] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 21:49:12] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 21:49:12] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 21:50:06] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 21:50:06] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 21:50:06] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:05:45] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:05:49] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:05:50] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:06:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:06:11] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:06:25] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
-INFO [2017-12-05 22:29:59] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for blue in class 'Lab', method 'initialize. Lab blue instantiated at 2017-12-06 07:41:19
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'addLab. Lab blue added to nlpStudio at 2017-12-06 07:41:19
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for beats in class 'Lab', method 'initialize. Lab beats instantiated at 2017-12-06 07:41:19
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'addLab. Lab beats added to nlpStudio at 2017-12-06 07:41:19
+INFO [2017-12-06 07:41:19] Info for nlpStudioTests$logs in class 'NLPStudio', method 'addLab. Successfully added two labs to NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'addLab. Current lab changed to blue. 
+INFO [2017-12-06 07:41:19] Info for nlpStudioTests$logs in class 'NLPStudio', method 'currentLab. Current lab set to blue
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for predictifyR in class 'Lab', method 'initialize. Lab predictifyR instantiated at 2017-12-06 07:41:19
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'addLab. Lab predictifyR added to nlpStudio at 2017-12-06 07:41:19
+INFO [2017-12-06 07:41:19] Info for labTests$logs in class 'Lab', method 'initiate. Successfully created lab: predictifyR
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:41:19] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 07:41:19] Info for KorpusBuilderTests$logs in class 'Lab', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 07:43:21] Info for KorpusBuilderTests$logs in class 'Lab', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 07:46:13] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:46:13] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:46:13] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:46:13] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:46:13] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 07:46:13] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 07:46:13] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 07:46:13] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully built documents.
+INFO [2017-12-06 07:50:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:50:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:50:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:50:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:50:02] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 07:50:02] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 07:50:02] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 07:50:02] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully built documents.
+INFO [2017-12-06 07:52:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:52:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:52:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:52:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:52:01] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 07:52:01] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 07:52:08] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 07:55:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:55:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:55:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:55:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 07:55:31] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 07:55:31] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 07:55:38] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:01:58] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:01:58] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:01:58] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:01:58] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:01:58] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:01:58] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:02:05] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:05:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:05:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:05:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:05:01] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:05:01] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:05:02] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:05:08] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:06:26] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:06:26] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:06:26] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:06:26] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:06:26] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:06:26] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:06:33] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:08:27] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:28] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:08:28] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:08:34] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:08:56] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:56] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:56] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:56] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:08:56] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:08:56] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:09:03] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:20:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:20:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:20:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:20:31] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:20:31] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:20:31] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:20:38] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:23:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:23:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:23:02] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:23:03] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:23:03] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:23:03] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:23:09] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:26:52] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:26:52] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:26:52] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:26:52] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:26:52] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:26:52] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:26:59] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:26:59] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:27:53] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:27:53] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:27:53] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:27:53] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:27:53] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:27:53] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:27:59] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:28:00] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:45] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:45] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:45] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:45] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:45] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:29:45] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:29:52] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:29:53] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:53] Info for en_US.blogs.txt in class 'DocumentText', method '$. Document en_US.blogs.txt instantiated at 2017-12-06 08:29:52
+INFO [2017-12-06 08:29:53] Info for en_US.blogs.txt in class 'DocumentText', method 'self. Document en_US.blogs.txt instantiated at 2017-12-06 08:29:52
+INFO [2017-12-06 08:29:53] Info for en_US.blogs.txt in class 'DocumentText', method 'logIt. Document en_US.blogs.txt instantiated at 2017-12-06 08:29:52
+INFO [2017-12-06 08:29:56] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:56] Info for en_US.news.txt in class 'DocumentText', method '$. Document en_US.news.txt instantiated at 2017-12-06 08:29:53
+INFO [2017-12-06 08:29:56] Info for en_US.news.txt in class 'DocumentText', method 'self. Document en_US.news.txt instantiated at 2017-12-06 08:29:53
+INFO [2017-12-06 08:29:56] Info for en_US.news.txt in class 'DocumentText', method 'logIt. Document en_US.news.txt instantiated at 2017-12-06 08:29:53
+INFO [2017-12-06 08:29:57] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:29:57] Info for en_US.twitter.txt in class 'DocumentText', method '$. Document en_US.twitter.txt instantiated at 2017-12-06 08:29:56
+INFO [2017-12-06 08:29:57] Info for en_US.twitter.txt in class 'DocumentText', method 'self. Document en_US.twitter.txt instantiated at 2017-12-06 08:29:56
+INFO [2017-12-06 08:29:57] Info for en_US.twitter.txt in class 'DocumentText', method 'logIt. Document en_US.twitter.txt instantiated at 2017-12-06 08:29:56
+INFO [2017-12-06 08:29:57] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully built documents.
+INFO [2017-12-06 08:44:50] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:44:50] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:44:50] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:44:50] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:44:50] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:44:50] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:44:57] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:44:58] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:16] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:16] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:16] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:16] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:16] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:47:16] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:47:23] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:47:24] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:24] Info for en_US.blogs.txt in class 'DocumentText', method '$. Document en_US.blogs.txt instantiated at 2017-12-06 08:47:23
+INFO [2017-12-06 08:47:24] Info for en_US.blogs.txt in class 'DocumentText', method 'self. Document en_US.blogs.txt instantiated at 2017-12-06 08:47:23
+INFO [2017-12-06 08:47:24] Info for en_US.blogs.txt in class 'DocumentText', method 'logIt. Document en_US.blogs.txt instantiated at 2017-12-06 08:47:23
+INFO [2017-12-06 08:47:27] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:27] Info for en_US.news.txt in class 'DocumentText', method '$. Document en_US.news.txt instantiated at 2017-12-06 08:47:24
+INFO [2017-12-06 08:47:27] Info for en_US.news.txt in class 'DocumentText', method 'self. Document en_US.news.txt instantiated at 2017-12-06 08:47:24
+INFO [2017-12-06 08:47:27] Info for en_US.news.txt in class 'DocumentText', method 'logIt. Document en_US.news.txt instantiated at 2017-12-06 08:47:24
+INFO [2017-12-06 08:47:29] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:47:29] Info for en_US.twitter.txt in class 'DocumentText', method '$. Document en_US.twitter.txt instantiated at 2017-12-06 08:47:27
+INFO [2017-12-06 08:47:29] Info for en_US.twitter.txt in class 'DocumentText', method 'self. Document en_US.twitter.txt instantiated at 2017-12-06 08:47:27
+INFO [2017-12-06 08:47:29] Info for en_US.twitter.txt in class 'DocumentText', method 'logIt. Document en_US.twitter.txt instantiated at 2017-12-06 08:47:27
+INFO [2017-12-06 08:48:03] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:03] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:03] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:03] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:03] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:48:03] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:48:10] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:48:11] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:11] Info for en_US.blogs.txt in class 'DocumentText', method '$. Document en_US.blogs.txt instantiated at 2017-12-06 08:48:10
+INFO [2017-12-06 08:48:11] Info for en_US.blogs.txt in class 'DocumentText', method 'self. Document en_US.blogs.txt instantiated at 2017-12-06 08:48:10
+INFO [2017-12-06 08:48:11] Info for en_US.blogs.txt in class 'DocumentText', method 'logIt. Document en_US.blogs.txt instantiated at 2017-12-06 08:48:10
+INFO [2017-12-06 08:48:13] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:13] Info for en_US.news.txt in class 'DocumentText', method '$. Document en_US.news.txt instantiated at 2017-12-06 08:48:11
+INFO [2017-12-06 08:48:13] Info for en_US.news.txt in class 'DocumentText', method 'self. Document en_US.news.txt instantiated at 2017-12-06 08:48:11
+INFO [2017-12-06 08:48:13] Info for en_US.news.txt in class 'DocumentText', method 'logIt. Document en_US.news.txt instantiated at 2017-12-06 08:48:11
+INFO [2017-12-06 08:48:14] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:48:14] Info for en_US.twitter.txt in class 'DocumentText', method '$. Document en_US.twitter.txt instantiated at 2017-12-06 08:48:13
+INFO [2017-12-06 08:48:14] Info for en_US.twitter.txt in class 'DocumentText', method 'self. Document en_US.twitter.txt instantiated at 2017-12-06 08:48:13
+INFO [2017-12-06 08:48:14] Info for en_US.twitter.txt in class 'DocumentText', method 'logIt. Document en_US.twitter.txt instantiated at 2017-12-06 08:48:13
+INFO [2017-12-06 08:53:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:28] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:28] Info for sfc in class 'KorpusBuilder', method 'initialize. Instantiated the Korpus Builder.
+INFO [2017-12-06 08:53:28] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'initialize. Successfully initialized corpus
+INFO [2017-12-06 08:53:35] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully downloaded and unzipped data
+INFO [2017-12-06 08:53:37] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:37] Info for en_US.blogs.txt in class 'DocumentText', method '$. Document en_US.blogs.txt instantiated at 2017-12-06 08:53:35
+INFO [2017-12-06 08:53:37] Info for en_US.blogs.txt in class 'DocumentText', method 'self. Document en_US.blogs.txt instantiated at 2017-12-06 08:53:35
+INFO [2017-12-06 08:53:37] Info for en_US.blogs.txt in class 'DocumentText', method 'logIt. Document en_US.blogs.txt instantiated at 2017-12-06 08:53:35
+INFO [2017-12-06 08:53:39] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:39] Info for en_US.news.txt in class 'DocumentText', method '$. Document en_US.news.txt instantiated at 2017-12-06 08:53:37
+INFO [2017-12-06 08:53:39] Info for en_US.news.txt in class 'DocumentText', method 'self. Document en_US.news.txt instantiated at 2017-12-06 08:53:37
+INFO [2017-12-06 08:53:39] Info for en_US.news.txt in class 'DocumentText', method 'logIt. Document en_US.news.txt instantiated at 2017-12-06 08:53:37
+INFO [2017-12-06 08:53:40] Info for nlpStudio in class 'NLPStudio', method 'initialize. Initialized NLPStudio.
+INFO [2017-12-06 08:53:40] Info for en_US.twitter.txt in class 'DocumentText', method '$. Document en_US.twitter.txt instantiated at 2017-12-06 08:53:39
+INFO [2017-12-06 08:53:40] Info for en_US.twitter.txt in class 'DocumentText', method 'self. Document en_US.twitter.txt instantiated at 2017-12-06 08:53:39
+INFO [2017-12-06 08:53:40] Info for en_US.twitter.txt in class 'DocumentText', method 'logIt. Document en_US.twitter.txt instantiated at 2017-12-06 08:53:39
+INFO [2017-12-06 08:53:40] Info for KorpusBuilderTests$logs in class 'KorpusBuilder', method 'addKorpus. Successfully built documents.

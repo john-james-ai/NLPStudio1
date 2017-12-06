@@ -69,13 +69,20 @@ KorpusBuilder <- R6::R6Class(
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
       private$..parent <- NLPStudio$new()$getInstance()
-      private$..path <- NLPStudio$new()$getInstance()$getDirs()$korpora
+      private$..path <- file.path(NLPStudio$new()$getInstance()$getDirs()$korpora, private$..name)
       private$..dirs <- Constants$new()$getKorpusPaths()
-      private$..logs <- NLPStudio$new()$getInstance()$getDirs()$logs
       private$..state <- "Instantiated the Korpus Builder."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
+      private$..logs <- LogR$new(NLPStudio$new()$getInstance()$getDirs()$logs)
 
+      # Create Directories
+      lapply(private$..dirs, function(d) {
+        oldw <- getOption("warn")
+        options(warn = -1)
+        dir.create(file.path(private$..path, d), recursive = TRUE)
+        options(warn = oldw)
+      })
 
       # Log it
       self$logIt()
@@ -85,69 +92,72 @@ KorpusBuilder <- R6::R6Class(
 
       invisible(self)
     },
+    getName = function() private$..name,
 
     #-------------------------------------------------------------------------#
-    #                      Korpus Build Methods                               #
+    #                               Get Data                                  #
     #-------------------------------------------------------------------------#
-    getData = function() {
+    getData = function(compressed = TRUE, format = 'zip', listFiles = FALSE) {
 
-      v <- Validator$new()
-      v$getData(self)
-
-      downloadPath <- file.path(private$..path, private$..extDir)
-      fileName <- installr::file.name.from.url(private$..url)
-
-      f <- FileManager$new()
-      status <- f$download(private$..url, downloadPath)
+      # Validation
+      private$..methodName <- 'getData'
+      v <- ValidatorKorpusBuilder$new()
+      status <- v$getData(self)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
+        self$logIt(level = "Error")
         stop()
       }
 
+      downloadPath <- file.path(private$..path, private$..dirs$external)
+      fileName <- installr::file.name.from.url(private$..url)
+
+      if (length(list.files(file.path(private$..path, private$..dirs$external))) < 1) {
+
+        # Download data
+        f <- FileManager$new()
+        status <- f$download(private$..url, downloadPath)
+        if (status[['code']] == FALSE) {
+          private$..state <- status[['msg']]
+          self$logIt(level = 'Error')
+          stop()
+        }
+      }
+
+      # Unzip adata
+      f <- FileManager$new()
       if (compressed == TRUE) {
         if (format == 'zip') {
-          status[['data']] <- f$unZipFile(zipFilePath = file.path(downloadPath, fileName),
-                                          exDir = file.path(private$..path, private$..extDir),
-                                          files = private$..files, list = listFiles)
+          oldw <- getOption("warn")
+          options(warn = -1)
+          status[['data']] <- f$unZipFile(zipFilePath = file.path(downloadPath,
+                                                                  fileName),
+                                          exDir = file.path(private$..path,
+                                                            private$..dirs$raw),
+                                          files = private$..files, list = listFiles,
+                                          overwrite = FALSE)
+          options(warn = oldw)
+
           if (status[['code']] == FALSE) {
             private$..state <- status[['msg']]
             self$logIt(level = 'Error')
+            stop()
           }
         }
       }
       invisible(self)
     },
 
+    #-------------------------------------------------------------------------#
+    #                         Build Documents                                 #
+    #-------------------------------------------------------------------------#
     buildDocuments = function() {
-      files <- list.files(path = file.path(private$..path, private$..dirs$external),
+      files <- list.files(path = file.path(private$..path, private$..dirs$raw),
                           full.names = TRUE)
       documents <- lapply(files, function(f) {
         DocumentText$new(f)
       })
-      private$..extDocs <- documents
-    },
-
-    #-------------------------------------------------------------------------#
-    #                           Visitor Methods                               #
-    #-------------------------------------------------------------------------#
-    accept = function(visitor)  {
-      visitor$korpus(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                            Log Method                                   #
-    #-------------------------------------------------------------------------#
-    logIt = function(level = 'Info', fieldName = NA) {
-
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- private$..methodName
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
+      private$..rawDocs <- documents
     },
 
     #-------------------------------------------------------------------------#
@@ -159,30 +169,30 @@ KorpusBuilder <- R6::R6Class(
 
       korpus = list(
         metaData = list(
-          name = private$..korpus$metaData$name,
-          desc = private$..korpus$metaData$desc,
-          parent = private$..korpus$metaData$parent,
-          path = private$..korpus$metaData$path,
-          dirs = private$..korpus$metaData$dirs,
-          logs = private$..korpus$metaData$log,
-          state = private$..korpus$metaData$state,
-          modified = private$..korpus$metaData$modified,
-          created = private$..korpus$metaData$created
+          name = private$..name,
+          desc = private$..desc,
+          parent = private$..parent,
+          path = private$..path,
+          dirs = private$..dirs,
+          logs = private$..logs,
+          state = private$..state,
+          modified = private$..modified,
+          created = private$..created
         ),
         parameters = list(
-          url = private$..korpus$parameters$url,
-          files = private$..korpus$parameters$files,
-          repairs = private$..korpus$parameters$repairs,
-          splits = private$..korpus$parameters$splits,
-          samples = private$..korpus$parameters$samples,
-          normalize = private$..korpus$parameters$normalize,
-          corrections = private$..korpus$parameters$corrections,
-          profanity = private$..korpus$parameters$profanity
+          url = private$..url,
+          files = private$..files,
+          repairs = private$..repairs,
+          splits = private$..splits,
+          samples = private$..samples,
+          normalize = private$..normalize,
+          corrections = private$..corrections,
+          profanity = private$..profanity
         ),
         documents = list(
-          extDocs = private$..korpus$documents$extDocs,
-          rawDocs = private$..korpus$documents$rawDocs,
-          sets = private$..korpus$documents$sets
+          rawDocs = private$..rawDocs,
+          preDocs = private$..preDocs,
+          sets = private$..sets
         )
       )
 

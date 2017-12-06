@@ -13,29 +13,21 @@ KorpusBuilder0
 
 \item{desc}{Character string containing the description for the corpus object}
 
+\item{parent}{Object of the Korpus or Lab classes}
+
 \item{path}{Character string indicating the path to the Korpus object}
 
-\item{extDir}{Character string indicating the directory into which the external files will be stored}
+\item{dirs}{Directory structure for a Korpus object}
 
-\item{getData}{Boolean, indicator to obtain the data from an external source. Default is TRUE}
+\item{state}{Character string indicating last state of object}
 
-\item{documents}{Boolean, indicates whether document objects are to be created. Default is TRUE}
+\item{url}{Character string indicating URL for downloading data}
 
-\item{repair}{Boolean, indicates whether the documents should undergo repair. Default is TRUE}
+\item{files}{Character vector containing names of files to be extracted from zipped archive.}
 
-\item{split}{Boolean, indicates whether documents splits should be created. Default is TRUE}
+\item{repairs}{list of gsub key and value pairs}
 
-\item{sample}{Boolean, indicates whether document samples should be taken. Default is TRUE}
-
-\item{normalize}{Boolean, indicates whether text normalization should take place.Default is TRUE}
-
-\item{correct}{Boolean, to perform corrections. Default is TRUE}
-
-\item{profanity}{Boolean, indicator to remove profanity. Default is TRUE}
-
-\item{nGrams}{Numeric indicator of the number of nGrams to build}
-
-\item{posTags}{Boolean, indicates whether to create POS tags.  Default is TRUE}
+\item{sets}{List of Document class objects, including text, nGrams and pos tags.}
 }
 \description{
 \code{KorpusBuilder0} Abstract class for the Korpus builder classes
@@ -51,7 +43,9 @@ construction process to be defined at runtime.
 
  \describe{
   \item{KorpusBuilder0}{This abstract builder interface. Defines the interface for concrete corpus builder sub-classes. }
-  \item{KorpusDirector}{Class that builds the corpus through the concrete builder interface.}
+  \item{KorpusBuilder}{Concrete builder sub-class that produces the Korpus object. }
+  \item{KorpusSetBuilder}{Concrete builder sub-class that produces the Korpus training, validation and test set objects. }
+  \item{KorpusDirector}{Class that builds the corpus through the concrete builder interfaces.}
   \item{Korpus}{The corpus or corpus set product.}
   }
 }
@@ -64,13 +58,6 @@ construction process to be defined at runtime.
   \item{\code{buildDocuments()}}{Builds document objects.}
   \item{\code{repairDocuments()}}{Rapairs corpus document objects}
   \item{\code{splitDocuments()}}{Creates random sample of 10 indices, each representing 10 pct of the lines of the document.}
-  \item{\code{sampleDocuments()}}{Creates sammples of the document according to size increments of 10 pct.}
-  \item{\code{normalizeDocuments()}}{Normalizes text in the document objects.}
-  \item{\code{correctDocuments()}}{Corrects common misspellings, contractions, and abbreviations.}
-  \item{\code{cleanLanguage()}}{Removes sentences containing profane language.}
-  \item{\code{nGramDocuments()}}{Creates nGram representations of document objects.}
-  \item{\code{posTagDocuments()}}{Creates POS tag representations of document objects.}
-  \item{\code{deliverKorpus()}}{Returns Korpus object.}
  }
 }
 

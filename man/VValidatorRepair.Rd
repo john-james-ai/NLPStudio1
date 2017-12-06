@@ -29,7 +29,6 @@ The VValidatorRepair methods are as follows:
 \seealso{
 Other Validation Visitor Classes: \code{\link{VValidatorAddChild}},
   \code{\link{VValidatorInit}},
-  \code{\link{VValidatorKorpusBuilder}},
   \code{\link{VValidatorRemoveChild}},
   \code{\link{VValidatorSetParent}},
   \code{\link{VValidator}}

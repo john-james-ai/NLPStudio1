@@ -37,6 +37,7 @@ This class provide a methods for validating an object's class.
 Other Validation Classes: \code{\link{Validator0}},
   \code{\link{ValidatorDate}},
   \code{\link{ValidatorExists}},
+  \code{\link{ValidatorKorpusBuilder}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNoSpaces}},
   \code{\link{ValidatorNotEmpty}},

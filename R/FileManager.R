@@ -92,13 +92,14 @@ FileManager <- R6::R6Class(
       return(status)
     },
 
-    unZipFile = function(zipFilePath, exDir, files = NULL, listFiles = FALSE) {
+    unZipFile = function(zipFilePath, exDir, files = NULL, listFiles = FALSE,
+                         overwrite = TRUE) {
       status <- list()
       status[['code']] <- TRUE
 
       if (file.exists(zipFilePath)) {
         status[['msg']] <- paste("Successfully unzipped", zipFilePath)
-        status[['data']] <- unzip(zipfile = zipFilePath, overwrite = FALSE, exdir = exDir,
+        status[['data']] <- unzip(zipfile = zipFilePath, overwrite = overwrite, exdir = exDir,
               junkpaths = TRUE, files = files, list = listFiles)
       } else {
         status[['code']] <- FALSE

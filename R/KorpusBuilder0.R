@@ -35,7 +35,10 @@
 #' @param parent Object of the Korpus or Lab classes
 #' @param path Character string indicating the path to the Korpus object
 #' @param dirs Directory structure for a Korpus object
-#' @param documents
+#' @param state Character string indicating last state of object
+#' @param url Character string indicating URL for downloading data
+#' @param files Character vector containing names of files to be extracted from zipped archive.
+#' @param repairs list of gsub key and value pairs
 #' @param sets List of Document class objects, including text, nGrams and pos tags.
 #'
 #'
@@ -51,37 +54,26 @@ KorpusBuilder0 <- R6::R6Class(
   private = list(
     ..className = 'KorpusBuilder0',
     ..methodName = character(),
+    ..name = character(),
+    ..desc = character(),
+    ..parent = character(),
+    ..path = character(),
+    ..dirs = character(),
+    ..state = character(),
+    ..url = character(),
+    ..files = character(),
+    ..repairs = list(),
+    ..splits = numeric(),
+    ..samples = list(),
+    ..normalize = list(),
+    ..corrections = list(),
+    ..profanity = list(),
+    ..rawDocs = list(),
+    ..preDocs = list(),
+    ..sets = list(),
     ..logs = character(),
-    ..korpus = list(
-      metaData = list(
-        name = character(),
-        desc = character(),
-        parent = character(),
-        path = character(),
-        dirs = character(),
-        logs = character(),
-        state = character(),
-        modified = character(),
-        created = character()
-      ),
-      parameters = list(
-        url = character(),
-        files = character(),
-        repairs = list(),
-        splits = numeric(),
-        samples = list(),
-        normalize = list(),
-        corrections = list(),
-        profanity = list()
-        ),
-      documents = list(
-        extDocs = list(),
-        rawDocs = list(),
-        sets = list()
-      ),
     ..modified = character(),
     ..created = character()
-    )
   ),
 
   active = list(
@@ -201,7 +193,7 @@ KorpusBuilder0 <- R6::R6Class(
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$korpus(self)
+      visitor$korpusBuilder(self)
     },
 
     #-------------------------------------------------------------------------#
