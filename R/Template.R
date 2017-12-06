@@ -106,11 +106,7 @@ Template <- R6::R6Class(
     initialize = function() {
 
       # Create logger and initialization log entry
-<<<<<<< HEAD
       private$..log <- LogR$new(private$..path)
-=======
-      private$..log <- Logger$new(private$..path)
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       private$..log$entry$owner <- private$..name
       private$..log$entry$className <- "Lab"
       private$..log$entry$methodName <- "initialize"
@@ -131,7 +127,6 @@ Template <- R6::R6Class(
       return(private$..name)
     },
 
-<<<<<<< HEAD
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #
@@ -148,18 +143,13 @@ Template <- R6::R6Class(
       private$..logs$writeLog()
     },
 
-=======
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-<<<<<<< HEAD
       name <- visitor$getName()
       private$..state <- paste("Accepted visitor,", name, "at", Sys.time())
       self$logIt()
-=======
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       visitor$template(self)
     },
 

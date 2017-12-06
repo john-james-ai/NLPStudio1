@@ -73,16 +73,11 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-<<<<<<< HEAD
     validateParent = function(object, parentClass) {
-=======
-    validateParent = function(object, parentClasses) {
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 
       status <- list()
       status[['code']] <- TRUE
 
-<<<<<<< HEAD
       parent <- object$getParent()
       name <- object$getName()
 
@@ -102,13 +97,6 @@ VValidatorInit <- R6::R6Class(
 
       v <- ValidatorClass$new()
       if (v$validate(value = parent, expect = parentClass) == FALSE) {
-=======
-      parent <- object$parent
-      name <- object$getName()
-
-      v <- ValidatorClass$new()
-      if (v$validate(value = parent, expect = parentClasses) == FALSE) {
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
                                   " object, ", name, ". Object of class ",
@@ -117,10 +105,27 @@ VValidatorInit <- R6::R6Class(
                                   " as a parent. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
-<<<<<<< HEAD
         return(status)
-=======
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
+      }
+      return(status)
+    },
+
+    validateClass = function(object, builder, className) {
+
+      status <- list()
+      status[['code']] <- TRUE
+
+      name <- object$getName()
+
+      if (v$validate(value = builder, expect = className) == FALSE) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot create ", class(object)[1],
+                                  " object, ", name, ". Object of  ",
+                                  class(object)[1], " requires an ",
+                                  "object of class ", className,
+                                  " as a parameter. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
       }
       return(status)
     },
@@ -179,73 +184,45 @@ VValidatorInit <- R6::R6Class(
       return(private$validateName(object))
     },
 
-<<<<<<< HEAD
     korpus = function(object) {
-=======
-    documentCollection = function(object) {
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       return(private$validateName(object))
+    },
+
+    korpusDirector = function(object) {
+      builder <- object$getBuilder()
+      return(private$validateClass(object, builder, className = "KorpusBuilder"))
     },
 
     documentText = function(object) {
 
-<<<<<<< HEAD
       if (private$validateParent(object, "Korpus")[['code']] == FALSE)
         return(private$validateParent(object, "Korpus"))
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
       return(private$validateFileName(object, "txt"))
-=======
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      if (private$validateFileName(object, "txt")[['code']] == FALSE)
-        return(private$validateFileName(object, "txt"))
-      return(status[['code']] <- TRUE)
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     },
 
     documentCsv = function(object) {
 
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-<<<<<<< HEAD
       return(private$validateFileName(object, "csv"))
-=======
-      if (private$validateFileName(object, "csv")[['code']] == FALSE)
-        return(private$validateFileName(object, "csv"))
-      return(status[['code']] <- TRUE)
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     },
 
     documentRdata = function(object) {
 
-<<<<<<< HEAD
       if (private$validateParent(object, "Korpus")[['code']] == FALSE)
         return(private$validateParent(object, "Korpus"))
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
       return(private$validateFileName(object, c("Rdata", "RData", "Rda")))
-=======
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      if (private$validateFileName(object, c("Rdata", "RData", "Rda"))[['code']] == FALSE)
-        return(private$validateFileName(object, c("Rdata", "RData", "Rda")))
-      return(status[['code']] <- TRUE)
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     },
 
     documentXlsx = function(object) {
 
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-<<<<<<< HEAD
       return(private$validateFileName(object, c("xlsx", "xls")))
-=======
-      if (private$validateFileName(object, c("xlsx", "xls"))[['code']] == FALSE)
-        return(private$validateFileName(object, c("xlsx", "xls")))
-      return(status[['code']] <- TRUE)
-
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     }
   )
 )

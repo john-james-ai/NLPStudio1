@@ -105,7 +105,6 @@ VValidatorSetParent <- R6::R6Class(
       return(private$validate(classes, object))
     },
 
-<<<<<<< HEAD
     korpus = function(object) {
       classes <- c("Lab")
       return(private$validate(classes, object))
@@ -113,46 +112,26 @@ VValidatorSetParent <- R6::R6Class(
 
     cvSet = function(object) {
       classes <- c('Korpus')
-=======
-    documentCollection = function(object) {
-      classes <- c("DocumentCollection", "Lab")
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       return(private$validate(classes, object))
     },
 
     documentText = function(object) {
-<<<<<<< HEAD
       classes <- c("Korpus", "CVSet")
-=======
-      classes <- c("DocumentCollection")
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       return(private$validate(classes, object))
     },
 
     documentCsv = function(object) {
-<<<<<<< HEAD
       classes <- c("Korpus", "CVSet")
-=======
-      classes <- c("DocumentCollection")
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       return(private$validate(classes, object))
     },
 
     documentRdata = function(object) {
-<<<<<<< HEAD
       classes <- c("Korpus", "CVSet")
-=======
-      classes <- c("DocumentCollection")
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       return(private$validate(classes, object))
     },
 
     documentXlsx = function(object) {
-<<<<<<< HEAD
       classes <- c("Korpus", "CVSet")
-=======
-      classes <- c("DocumentCollection")
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
       return(private$validate(classes, object))
     }
   )

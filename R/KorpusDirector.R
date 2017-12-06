@@ -1,14 +1,17 @@
 #==============================================================================#
-#                                 Korpus                                       #
+#                             KorpusDirector                                   #
 #==============================================================================#
-#' Korpus
+#' KorpusDirector
 #'
-#' \code{Korpus} Class that defines a corpus or collection of documents
+#' \code{KorpusDirector} Class that directs the building of Korpus objects
 #'
-#' The class one or several documents in text form, as well as various
-#' transformations such as nGrams and POS tags
+#' The Document family of classes is an implementation of the builder
+#' pattern documented in the book "Design Patterns: Elements of Reusable
+#' Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
+#' and John Vlissides (hence Gang of Four). This pattern allows the
+#' construction process to be defined at runtime.
 #'
-#' @section Korpus Core Methods:
+#' @section Korpus Director Methods:
 #'  \describe{
 #'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Korpus Class}
 #'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Korpus description variable.}
@@ -19,93 +22,28 @@
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#' @section Korpus Processing Methods:
-#'  \describe{
-#'   \item{\code{obtainKorpus()}}{Method for initiating the repair operation on a document.}
-#'   \item{\code{repairKorpus()}}{Method for initiating the repair operation on a document.}
 #'   \item{\code{splitCorpus()}}{Method for initiating the repair operation on a document.}
 #' }
 #'
-#' @param name A character string containing the name of the Korpus object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Korpus.
-#' @param document An object of one of the Document sub-classes.
-#' @param visitor An object of one of the visitor classes.
+#' @param builder Corpus builder object
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
+#' @family Corpus build family
 #' @export
-Korpus <- R6::R6Class(
-  classname = "Korpus",
+KorpusDirector <- R6::R6Class(
+  classname = "KorpusDirector",
   lock_objects = FALSE,
   lock_class = FALSE,
   private = list(
-    ..className = 'Korpus',
+    ..className = 'KorpusDirector',
     ..methodName = character(),
-    ..name = character(),
-    ..desc = character(),
-    ..parent = character(),
-    ..path = character(),
-    ..url = character(),
-    ..files = character(),
-    ..dirs = list(),
-    ..extDocs = list(),
-    ..rawDocs = list(),
-    ..repairs = list(),
-    ..splits = numeric(),
-    ..normalize = list(),
-    ..corrections = list(),
-    ..profanity = list(),
-    ..nGrams = numeric(),
-    ..sets = list(),
-    ..logs = character(),
-    ..reports = list(),
+    ..builder = character(),
     ..state = character(),
+
+    ..logs = character(),
     ..modified = "None",
     ..created = "None"
-  ),
-
-  active = list(
-
-    desc = function(value) {
-      if (missing(value)) {
-        private$..desc
-      } else {
-        private$..desc <- value
-        private$..modified <- Sys.time()
-        private$..state <- paste(private$..name,
-                                     "Corpus description changed at",
-                                     Sys.time())
-        self$logIt()
-      }
-    },
-
-    parent = function(value) {
-      if (missing(value)) {
-        private$..parent
-      } else {
-        v <- Validator$new()
-        status <- v$setParent(self, value)
-        if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
-          self$logIt(level = 'Error')
-          stop()
-        } else {
-          private$..parent <- value
-          private$..path <- file.path(value$getPath(),
-                                      private$..name)
-          private$..modified <- Sys.time()
-          private$..state <- paste0('Corpus ', private$..name, 'added to ',
-                                    value$getName(), ' lab. ')
-          self$logIt()
-
-          # Assign its name in the global environment
-          assign(private$..name, self, envir = .GlobalEnv)
-
-          invisible(self)
-
-        }
-      }
-    }
   ),
 
   public = list(
@@ -113,13 +51,40 @@ Korpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Korpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(object) {
+    initialize = function(builder) {
 
+      # Instantiate variables
+      private$..className <- 'KorpusDirector'
+      private$..methodName <- 'initialize'
+      private$..name <- 'korpusDirector'
+      private$..state <- "Instantiated the corpus build director."
+      private$..builder <- builder
+
+      # Validate Korpus
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Log it
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
-    #                         Korpus Initialization                           #
+    #                          Construct Methods                              #
     #-------------------------------------------------------------------------#
+    construct = function() {
+
+
+    },
 
 
     #-------------------------------------------------------------------------#
@@ -151,24 +116,17 @@ Korpus <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      Korpus = list(
+      director = list(
         className = private$..className,
         methodName = private$..methodName,
         name = private$..name,
-        desc = private$..desc,
-        path = private$..path,
-        parent = private$..parent,
-        external = private$..external,
-        raw = private$..raw,
-        sets = private$..sets,
-        logs = private$..logs,
-        reports = private$..reports,
+        builder = private$..builder,
         state = private$..state,
         modified = private$..modified,
         created = private$..created
       )
 
-      return(Korpus)
+      return(director)
     }
   )
 )

@@ -1,4 +1,0 @@
-ERROR [2017-11-28 21:01:48] Error for blue in class 'Lab', method 'initialize. NACannot create Lab object, blue. Object of class Lab can not have an object of class NULL as a parent. See ?Lab for further assistance
-ERROR [2017-11-28 21:28:22] Error for blue in class 'Lab', method 'initialize. Cannot create Lab object. blue already exists. See ?Lab for further assistance
-ERROR [2017-11-28 23:12:01] Error for blue in class 'Lab', method 'initialize. Cannot create Lab object. blue already exists. See ?Lab for further assistance
-ERROR [2017-11-28 23:24:55] Error for blue in class 'Lab', method 'initialize. Cannot create Lab object. blue already exists. See ?Lab for further assistance

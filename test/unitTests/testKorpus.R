@@ -8,7 +8,7 @@ testKorpus <- function() {
 
   # Test 0: Confirm instantiation of lab
   test0 <- function() {
-    test <- "test0: Korpus Instantiation"
+    test <- "test0: Korpus Instantiation 1"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Test Instantiation
@@ -26,20 +26,25 @@ testKorpus <- function() {
     stopifnot(k$dirs$data == 'data')
     stopifnot(k$dirs$external == 'data/external')
     stopifnot(k$dirs$raw == 'data/raw')
-    stopifnot(k$dirs$processed == 'data/preprocessed')
     stopifnot(k$dirs$processed == 'data/sets')
     stopifnot(dir.exists(file.path(k$path)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$data)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$external)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$raw)))
-    stopifnot(dir.exists(file.path(k$path, k$dirs$preprocessed)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$sets)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$reports)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$logs)))
 
     # Logit
     korpusTests$logs(className = className, methodName = "initiate", msg = paste("Successfully created corpus:", k$name))
+    cat(paste0(test, " Completed: Success!\n"))
 
+    return(stanford)
+  }
+
+  test1 <- function() {
+    test <- "test1: Korpus Instantiation 2"
+    cat(paste0("\n",test, " Commencing\n"))
     Korpus$new(name = "oxford")
 
     # Confirm instantiation
@@ -53,25 +58,24 @@ testKorpus <- function() {
     stopifnot(k$dirs$data == 'data')
     stopifnot(k$dirs$external == 'data/external')
     stopifnot(k$dirs$raw == 'data/raw')
-    stopifnot(k$dirs$processed == 'data/preprocessed')
-    stopifnot(k$dirs$processed == 'data/sets')
+    stopifnot(k$dirs$sets == 'data/sets')
+    stopifnot(k$dirs$reports == 'reports')
     stopifnot(dir.exists(file.path(k$path)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$data)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$external)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$raw)))
-    stopifnot(dir.exists(file.path(k$path, k$dirs$preprocessed)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$sets)))
     stopifnot(dir.exists(file.path(k$path, k$dirs$reports)))
-    stopifnot(dir.exists(file.path(k$path, k$dirs$logs)))
 
     # Logit
     korpusTests$logs(className = className, methodName = "initiate", msg = paste("Successfully created corpus:", k$name))
     cat(paste0(test, " Completed: Success!\n"))
+
+    return(oxford)
   }
 
-  # Test 0: Add korpus to lab
-  test1 <- function() {
-    test <- "test1: Add Corpus to Lab"
+  test2 <- function(stanford) {
+    test <- "test2: Add Corpus to Lab"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Add corpora to labs
@@ -81,61 +85,84 @@ testKorpus <- function() {
     # Confirm corpus added
     l <- blue$exposeObject()
     stopifnot(isTRUE(all.equal(l$korpora[[1]], stanford)))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/data"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/data/external"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/data/raw"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/data/sets"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/data/preprocessed"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/logs"))
-    stopifnot(dir.exists("./NLPStudio/labs/blue/corpora/stanford/reports"))
+    stopifnot(dir.exists("./NLPStudio/labs/blue/stanford"))
+    stopifnot(dir.exists("./NLPStudio/labs/blue/stanford/data"))
+    stopifnot(dir.exists("./NLPStudio/labs/blue/stanford/data/external"))
+    stopifnot(dir.exists("./NLPStudio/labs/blue/stanford/data/raw"))
+    stopifnot(dir.exists("./NLPStudio/labs/blue/stanford/data/sets"))
+    stopifnot(dir.exists("./NLPStudio/labs/blue/stanford/reports"))
 
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/data"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/data/external"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/data/raw"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/data/sets"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/data/preprocessed"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/logs"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/stanford/reports"))
+    stopifnot(!dir.exists("./NLPStudio/stanford"))
+    stopifnot(!dir.exists("./NLPStudio/stanford/data"))
+    stopifnot(!dir.exists("./NLPStudio/stanford/data/external"))
+    stopifnot(!dir.exists("./NLPStudio/stanford/data/raw"))
+    stopifnot(!dir.exists("./NLPStudio/stanford/data/sets"))
+    stopifnot(!dir.exists("./NLPStudio/stanford/reports"))
 
     # Logit
     korpusTests$logs(className = className, methodName = "addKorpus", msg = paste("Successfully added corpus:", k$name, "to lab", l$name))
 
+
+    # Logit
+    #korpusTests$logs(className = className, methodName = "addKorpus", msg = paste("Successfully added corpus:", k$name, "to lab", l$name))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(stanford)
+  }
+
+  test3 <- function(oxford) {
+    test <- "test3: Add Corpus to 2nd Lab"
+    cat(paste0("\n",test, " Commencing\n"))
     beats <- beats$addKorpus(oxford)
     k <- oxford$exposeObject()
 
     # Confirm corpus added
     l <- beats$exposeObject()
     stopifnot(isTRUE(all.equal(l$korpora[[1]], oxford)))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/data"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/data/external"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/data/raw"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/data/sets"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/data/preprocessed"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/logs"))
-    stopifnot(dir.exists("./NLPStudio/labs/beats/corpora/oxford/reports"))
+    stopifnot(dir.exists("./NLPStudio/labs/beats/oxford"))
+    stopifnot(dir.exists("./NLPStudio/labs/beats/oxford/data"))
+    stopifnot(dir.exists("./NLPStudio/labs/beats/oxford/data/external"))
+    stopifnot(dir.exists("./NLPStudio/labs/beats/oxford/data/raw"))
+    stopifnot(dir.exists("./NLPStudio/labs/beats/oxford/data/sets"))
+    stopifnot(dir.exists("./NLPStudio/labs/beats/oxford/reports"))
 
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/data"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/data/external"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/data/raw"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/data/sets"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/data/preprocessed"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/logs"))
-    stopifnot(!dir.exists("./NLPStudio/corpora/oxford/reports"))
+    stopifnot(!dir.exists("./NLPStudio/oxford"))
+    stopifnot(!dir.exists("./NLPStudio/oxford/data"))
+    stopifnot(!dir.exists("./NLPStudio/oxford/data/external"))
+    stopifnot(!dir.exists("./NLPStudio/oxford/data/raw"))
+    stopifnot(!dir.exists("./NLPStudio/oxford/data/sets"))
+    stopifnot(!dir.exists("./NLPStudio/oxford/reports"))
 
 
     # Logit
     #korpusTests$logs(className = className, methodName = "addKorpus", msg = paste("Successfully added corpus:", k$name, "to lab", l$name))
     cat(paste0(test, " Completed: Success!\n"))
+
+    return(oxford)
   }
 
+  test4 <- function(stanford) {
+    test <- "test4: getCorpus"
+    cat(paste0("\n",test, " Commencing\n"))
+    print("*************************************")
+
+    url = 'http://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip'
+    files <- c('final/en_US/en_US.blogs.txt', 'final/en_US/en_US.news.txt', 'final/en_US/en_US.twitter.txt')
+    status <- stanford$getKorpus(url = url, files = files, listFiles = FALSE)
+
+    # Logit
+    #    korpusTests$logs(className = className, methodName = "addKorpus", msg = paste("Successfully added corpus:", k$name, "to lab", l$name))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(status)
+  }
 
   init()
-  test0()
-  test1()
+  stanford <- test0()
+  oxford   <- test1()
+  stanford <- test2(stanford)
+  oxford   <- test3(oxford)
+  stanford <- test4(stanford)
 }
 
 className <- "Korpus"

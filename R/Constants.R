@@ -16,43 +16,23 @@
 #' @export
 Constants <- R6::R6Class(
   classname = "Constants",
-  lock_objects = TRUE,
-  lock_class = TRUE,
+  lock_objects = FALSE,
+  lock_class = FALSE,
 
   private = list(
     ..studioPaths = list(
-<<<<<<< HEAD
+      archives = "./NLPStudio/archives",
       config = "./NLPStudio/config",
-      labs = "./NLPStudio/labs",
       korpora = './NLPStudio/corpora',
-      logs = "./NLPStudio/logs",
-      archives = "./NLPStudio/archives"
-    ),
-    ..labsPaths = list(
-      korpora = 'corpora',
-      archives = 'archives',
-      logs = 'logs'
+      labs = "./NLPStudio/labs",
+      logs = "./NLPStudio/logs"
     ),
     ..korpusPaths = list(
       data = "data",
       external = 'data/external',
       raw = 'data/raw',
       sets = 'data/sets',
-=======
-      config = "config",
-      labs = "labs",
-      logs = "logs",
-      archives = "archives"
-    ),
-    ..labPaths = list(
-      data = "data",
-      external = 'data/external',
-      raw = 'data/raw',
-      munge = 'data/munge',
-      processed = 'data/processed',
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
-      reports = 'reports',
-      logs = 'logs'
+      reports = 'reports'
     )
   ),
 
@@ -60,11 +40,6 @@ Constants <- R6::R6Class(
 
     # Constants
     getStudioPaths = function() private$..studioPaths,
-<<<<<<< HEAD
-    getLabsPaths = function() private$..labsPaths,
     getKorpusPaths = function() private$..korpusPaths
-=======
-    getLabPaths = function() private$..labPaths
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
   )
 )

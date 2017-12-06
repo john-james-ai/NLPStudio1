@@ -14,11 +14,7 @@ testFileManager <- function() {
 
     fileManagerTests <<- LogTest$new()
     fm <<- FileManager$new()
-<<<<<<< HEAD
     stopifnot(fm$download(lab = blue, url = url)[[1]] == TRUE)
-=======
-    stopifnot(fm$download(url = url, downloadPath = downloadPath)[[1]] == TRUE)
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     stopifnot(file.exists(downloadPath))
 
     # Logit
@@ -35,11 +31,7 @@ testFileManager <- function() {
     fileManagerTests <<- LogTest$new()
     fm <<- FileManager$new()
 
-<<<<<<< HEAD
     stopifnot(fm$unZipFile(zipFilePath = downloadPath, exDir = exDir)[[1]] == TRUE)
-=======
-    stopifnot(fm$unZipFile(zipFilePath = downloadPath, files = files, exDir = exDir)[[1]] == TRUE)
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
     stopifnot(file.exists(downloadPath))
 
     # Logit
@@ -101,26 +93,10 @@ testFileManager <- function() {
   }
 
 
-<<<<<<< HEAD
   test1()
-=======
-  test4()
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 
 }
 
 url <- 'http://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip'
-<<<<<<< HEAD
-=======
-downloadPath <- './test/testData/HC-Corpus.zip'
-zipFilePath <- './test/testData/newZip.zip'
-exDir <- './test/testData/hc'
-files <- c(file.path('final/en_US/en_US.blogs.txt'),
-           file.path('final/en_US/en_US.news.txt'),
-           file.path('final/en_US/en_US.twitter.txt'))
-unZipFiles <- c(file.path('./test/testData/hc/en_US.blogs.txt'),
-                file.path('./test/testData/hc/en_US.news.txt'),
-                file.path('./test/testData/hc/en_US.twitter.txt'))
->>>>>>> e259b2c7c12e4427e6348465304e1cdb73f2a900
 
 testFileManager()

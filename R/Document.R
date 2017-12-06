@@ -149,6 +149,7 @@ Document <- R6::R6Class(
       private$..korpus <- NULL
       private$..path <- dirname(filePath)
       private$..state <- paste("Document", name, "instantiated at", Sys.time())
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
       private$..size <- file.info(filePath)$size
       private$..modified <- file.info(filePath)$mtime
       private$..created <- file.info(filePath)$ctime

@@ -82,6 +82,59 @@ Validator <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
+    #                           Korpus Builder                                #
+    #-------------------------------------------------------------------------#
+    getData = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$getData(object)
+      object$accept(visitor)
+    },
+
+    documents = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$documents(object)
+      object$accept(visitor)
+    },
+
+    repair = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$repair(object)
+      object$accept(visitor)
+    },
+
+    split = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$split(object)
+      object$accept(visitor)
+    },
+
+    sample = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$sample(object)
+      object$accept(visitor)
+    },
+
+    normalize = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$normalize(object)
+      object$accept(visitor)
+    },
+
+    corrections = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$corrections(object)
+      object$accept(visitor)
+    },
+
+    profanity = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$profanity(object)
+      object$accept(visitor)
+    },
+
+    nGram = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$nGram(object)
+      object$accept(visitor)
+    },
+
+    posTag = function(object) {
+      visitor <- VValidatorKorpusBuilder$new()$posTag(object)
+      object$accept(visitor)
+    },
+
+    #-------------------------------------------------------------------------#
     #                              Document I/O                               #
     #-------------------------------------------------------------------------#
     read = function(object) {
