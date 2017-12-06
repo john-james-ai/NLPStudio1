@@ -41,33 +41,33 @@
 #'   \item{\code{korpus()}}{Method for retrieving and setting the korpus for the document.}
 #'   \item{\code{readDocument()}}{Method for initiating the read operation for a document.}
 #'   \item{\code{writeDocument(content)}}{Method for initiating the write operation for a document.}
-#'   \item{\code{repairDocument()}}{Method for initiating the repair operation on a document.}
-#'   \item{\code{cleanDocument(reference)}}{Method for cleaning the document.}
-#'   \item{\code{nGramDocument(nGrams)}}{Method for creating an nGram representation of the document.}
+#'   \item{\code{preDocument(rapairs)}}{Method for repairing and preprocessing a document.}
+#'   \item{\code{normalize(norms)}}{Method for normalizing text in a document.}
+#'   \item{\code{correct(corrections)}}{Method for correcting common misspellings, contractoins, etc...in the text of a document.}
+#'   \item{\code{profanity(badWords)}}{Method for removing profanity from a text document.}
+#'   \item{\code{nGram(nGrams)}}{Method for creating nGrams for a document.}
 #'   \item{\code{posTagDocument(nGrams)}}{Method for creating an POS tagged representation of the document.}
 #'  }
 #'
-#' @param name Character string indicating the name of the document or file. Required for all objects.
-#' @param desc Character string containing the description of the document.
-#' @param korpus Korpus object to which the document belongs
-#' @param content Nested list of content to be written to files.
-#' @param fileName Character string indicating File object's file name.
-#' @param korpus A Korpus object
-#' @param reference A list of data frames containing reference information used in the cleaning methods
+#' @param filePath Character string indicating the file path for a document
+#' @param Korpus The Korpus object to which the document belongs
+#' @param repairs A list of key value pairs of strings to be replaced in the repair step
+#' @param norms A list of key value pairs of strings to be replaced in the normalization step
+#' @param corrections A list of key value pairs of strings to be replaced in the corrections step
+#' @param badWords Character vector of profane words to be extracted from the text
 #' @param nGrams Numeric indicator of the number of nGrams to produce
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family Document classes
 #' @export
-Document <- R6::R6Class(
-  classname = "Document",
+DocumentText <- R6::R6Class(
+  classname = "DocumentText",
   lock_objects = FALSE,
   lock_class = FALSE,
 
   private = list(
     ..className = character(),
-    ..docType = character(),
     ..name = character(),
     ..fileName = character(),
     ..desc = character(),
@@ -81,6 +81,9 @@ Document <- R6::R6Class(
     ..accessed = character()
   ),
 
+  #-------------------------------------------------------------------------#
+  #                           Active Bindings                               #
+  #-------------------------------------------------------------------------#
   active = list(
 
     name = function(value) {
@@ -132,56 +135,94 @@ Document <- R6::R6Class(
     }
   ),
 
+
   public = list(
 
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(filePath, desc = NULL) stop("This is not implemented for this abstract class."),
+    initialize = function(filePath, desc = NULL) {
 
+      # Instantiate variables
+      private$..className <- 'DocumentText'
+      private$..name <- basename(filePath)
+      private$..fileName <- basename(filePath)
+      private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
+      private$..korpus <- NULL
+      private$..path <- file.path(dirname(filePath), private$..name)
+      private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
+      private$..size <- file.info(filePath)$size
+      private$..modified <- file.info(filePath)$mtime
+      private$..created <- file.info(filePath)$ctime
+      private$..accessed <- file.info(filePath)$atime
+
+      # Initiate Log
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
+
+      # Validate Lab
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Create log entry
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+
+    },
     #-------------------------------------------------------------------------#
-    #                       Path and Filename Methods                         #
+    #                           Basic Get Methods                             #
     #-------------------------------------------------------------------------#
-    getPath = function() private$..path,
+    getName = function() private$..name,
     getFileName = function() private$..fileName,
-    getDocType = function() private$..docType,
-
-    readDocument = function() {stop("This method is not implemented for the Document class.")},
-    writeDocument = function(content) {stop("This method is not implemented for the Document class.")},
+    getPath = function() private$..path,
 
     #-------------------------------------------------------------------------#
-    #                            Log Method                                   #
+    #                            IO Methods                                   #
     #-------------------------------------------------------------------------#
-    logIt = function(level = 'Info', fieldName = NA) {
+    readDocument = function() {
 
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- match.call()[[1]]
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
+      r <- VReader$new()
+
+    },
+    writeDocument = function(content) {},
+    #-------------------------------------------------------------------------#
+    #                           Visitor Methods                               #
+    #-------------------------------------------------------------------------#
+    accept = function(visitor)  {
+      visitor$documentText(self)
     },
 
+    #-------------------------------------------------------------------------#
+    #                           Expose Object                                 #
+    #-------------------------------------------------------------------------#
     exposeObject = function() {
 
-      document = list(
-        className = private$..className,
-        docType = private$..docType,
-        name = private$..name,
-        desc = private$..desc,
-        parent = private$..parent,
-        path = private$..path,
-        fileName = private$..fileName,
-        content = private$..content,
-        size = private$..size,
-        state = private$..state,
-        created = private$..created,
-        modified = private$..modified,
-        accessed = private$..accessed
+      o <- list(
+        className	 =  private$..className ,
+        docType	 = 	  private$..docType ,
+        name	 = 	    private$..name ,
+        fileName	 =  private$..fileName ,
+        desc	 = 	    private$..desc ,
+        korpus	 = 	  private$..korpus ,
+        path	 = 	    private$..path ,
+        state	 = 	    private$..state ,
+        logs	 = 	    private$..logs ,
+        size	 = 	    private$..size ,
+        modified	 = 	private$..modified ,
+        created	 = 	  private$..created ,
+        accessed	 = 	private$..accessed
       )
-      return(document)
+      return(o)
     }
+
   )
 )
