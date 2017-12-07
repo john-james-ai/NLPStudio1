@@ -105,12 +105,12 @@ VValidatorRemoveChild <- R6::R6Class(
     },
 
     lab = function(object) {
-      classes <- "Korpus"
+      classes <- "Corpus"
       return(private$validate(classes, object))
     },
 
-    korpus = function(object) {
-      classes <- c("Korpus", "DocumentText", "DocumentCsv",
+    corpus = function(object) {
+      classes <- c("Corpus", "DocumentText", "DocumentCsv",
                    "DocumentRdata", "DocumentXlsx")
       return(private$validate(classes, object))
     },

@@ -3,81 +3,61 @@
 \docType{class}
 \name{DocumentText}
 \alias{DocumentText}
-\title{Document}
+\title{DocumentText}
 \format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 DocumentText
 }
 \arguments{
-\item{name}{Character string indicating the name of the document or file. Required for all objects.}
+\item{filePath}{Character string indicating the file path for a document}
 
-\item{desc}{Character string containing the description of the document.}
+\item{parent}{Object of the Corpus or Set classes to which this document belongs}
 
-\item{korpus}{Korpus object to which the document belongs}
+\item{io}{An object of one of the IO classes used for reading and writing.}
 
-\item{content}{Nested list of content to be written to files.}
+\item{repairs}{A list of key value pairs of strings to be replaced in the repair step}
 
-\item{fileName}{Character string indicating File object's file name.}
+\item{norms}{A list of key value pairs of strings to be replaced in the normalization step}
 
-\item{korpus}{A Korpus object}
+\item{corrections}{A list of key value pairs of strings to be replaced in the corrections step}
 
-\item{reference}{A list of data frames containing reference information used in the cleaning methods}
-
-\item{nGrams}{Numeric indicator of the number of nGrams to produce}
+\item{profanity}{Character vector of profane words to be extracted from the text}
 }
 \description{
-\code{Document} An abstract class that defines the interfaces for the document sub-classes
+\code{DocumentText} Class that contains document meta data and text content.
 }
 \details{
-The Document family of classes is an implementation of the strategy
-pattern documented in the book "Design Patterns: Elements of Reusable
-Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
-and John Vlissides (hence Gang of Four). This pattern allows behavior
-of a class to be defined at runtime.
+This class contains the data and methods for creating, reading, manipulating,
+processing, and transforming text documents.
 }
-\section{Document family of classes participants}{
+\section{Document Family Participants}{
 
-The participants of the Document class are:
-\itemize{
- \item Document: This "abstract" class defines the interface for document sub-classes.
- \item DocumentText: Document class for text documents.
- \item DocumentNGram: Document class for NGrams
- \item DocumentPOS: Document class for POS tagged documents.
+ \itemize{
+  \item{Document0}{This abstract class defines the interface for the other classes.}
+  \item{DocumentText}{Class for text documents.}
+  \item{DocumentNGrams}{Class for NGrams.}
+  \item{DocumentPOSTags}{Class for POS tags.}
  }
 }
 
-\section{Document class collaborators}{
+\section{Document core methods}{
 
-The collaborators of the Document family  are:
  \itemize{
-  \item Korpus: Class containing one or more documents
-  \item Reader: Class responsible for initiating the document read operation.
-  \item Writer: Class responsible for initiating the document write operation.
-  \item FileManager: Class responsible for managing and repairing files
-  \item VReader: Visitor class responsible for performing read operations through the Document hierarchy.
-  \item VWriter: Visitor class responsible for performing write operations through the Document hierarchy.
-  \item NGrams: Class responsible for creating nGram representations of the documents
-  \item POSTags: Class responsible for creating POS tagged representations of the documents
- }
-
- @section Document methods:
- \itemize{
-  \item{\code{new(name, fileName, desc)}}{Method for instantiating a document}
-  \item{\code{getName()}}{Method for obtaining the document name.}
-  \item{\code{desc()}}{Method for retrieving and setting the document description.}
-  \item{\code{korpus()}}{Method for retrieving and setting the korpus for the document.}
-  \item{\code{readDocument()}}{Method for initiating the read operation for a document.}
-  \item{\code{writeDocument(content)}}{Method for initiating the write operation for a document.}
-  \item{\code{repairDocument()}}{Method for initiating the repair operation on a document.}
-  \item{\code{cleanDocument(reference)}}{Method for cleaning the document.}
-  \item{\code{nGramDocument(nGrams)}}{Method for creating an nGram representation of the document.}
-  \item{\code{posTagDocument(nGrams)}}{Method for creating an POS tagged representation of the document.}
+  \item{\code{new(filePath, desc = NULL)}}{Method for instantiating a document.}
+  \item{\code{getName()}}{Method that returns the name of the Document object.}
+  \item{\code{getFileName()}}{Method for obtaining the document file name.}
+  \item{\code{getPath()}}{Method for obtaining the document path.}
+  \item{\code{readDocument(io)}}{Method for initiating the read operation for a document.}
+  \item{\code{writeDocument(io)}}{Method for initiating the write operation for a document.}#'
+  \item{\code{repairDocument(repairs)}}{Method for repairing a document.}
+  \item{\code{normalizeDocument(norms)}}{Method for normalizing text in a document.}
+  \item{\code{sanitizeDocument(profanity)}}{Method for removing profanity from a text document.}
  }
 }
 
 \seealso{
-Other Document classes: \code{\link{DocumentCsv}},
-  \code{\link{DocumentXlsx}}, \code{\link{Document}}
+Other Document classes: \code{\link{Document0}},
+  \code{\link{Preprocess}}
 }
 \author{
 John James, \email{jjames@datasciencesalon.org}

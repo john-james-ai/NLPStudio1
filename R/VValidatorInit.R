@@ -176,13 +176,13 @@ VValidatorInit <- R6::R6Class(
       return(private$validateName(object))
     },
 
-    korpus = function(object) {
+    corpus = function(object) {
       return(private$validateName(object))
     },
 
-    korpusDirector = function(object) {
+    corpusDirector = function(object) {
       builder <- object$getBuilder()
-      return(private$validateClass(object, builder, className = "KorpusBuilder"))
+      return(private$validateClass(object, builder, className = "CorpusBuilder"))
     },
 
     documentText = function(object) {

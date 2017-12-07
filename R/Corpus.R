@@ -1,64 +1,52 @@
 #==============================================================================#
-#                                 Korpus                                       #
+#                                 Corpus                                       #
 #==============================================================================#
-#' Korpus
+#' Corpus
 #'
-#' \code{Korpus} Class that defines a corpus or collection of documents
+#' \code{Corpus} Class that defines a corpus or collection of documents
 #'
 #' The class one or several documents in text form, as well as various
 #' transformations such as nGrams and POS tags
 #'
-#' @section Korpus Core Methods:
+#' @section Corpus Core Methods:
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Korpus Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Korpus description variable.}
-#'   \item{\code{lab}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Korpus object belongs.}
-#'   \item{\code{getName()}}{Returns the name of the Korpus object.}
-#'   \item{\code{getPath()}}{Returns the path of the Korpus object.}
+#'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Corpus Class}
+#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Corpus description variable.}
+#'   \item{\code{lab}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
+#'   \item{\code{getName()}}{Returns the name of the Corpus object.}
+#'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
 #'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#' @section Korpus Processing Methods:
+#' @section Corpus Processing Methods:
 #'  \describe{
-#'   \item{\code{obtainKorpus()}}{Method for initiating the repair operation on a document.}
-#'   \item{\code{repairKorpus()}}{Method for initiating the repair operation on a document.}
+#'   \item{\code{obtainCorpus()}}{Method for initiating the repair operation on a document.}
+#'   \item{\code{repairCorpus()}}{Method for initiating the repair operation on a document.}
 #'   \item{\code{splitCorpus()}}{Method for initiating the repair operation on a document.}
 #' }
 #'
-#' @param name A character string containing the name of the Korpus object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Korpus.
+#' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
+#' @param desc A chararacter string containing the description of the Corpus.
 #' @param document An object of one of the Document sub-classes.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-Korpus <- R6::R6Class(
-  classname = "Korpus",
+Corpus <- R6::R6Class(
+  classname = "Corpus",
   lock_objects = FALSE,
   lock_class = FALSE,
   private = list(
-    ..className = 'Korpus',
+    ..className = 'Corpus',
     ..methodName = character(),
     ..name = character(),
     ..desc = character(),
     ..parent = character(),
     ..path = character(),
-    ..url = character(),
-    ..files = character(),
-    ..dirs = list(),
     ..extDocs = list(),
     ..rawDocs = list(),
-    ..repairs = list(),
-    ..splits = numeric(),
-    ..normalize = list(),
-    ..corrections = list(),
-    ..profanity = list(),
-    ..nGrams = numeric(),
-    ..sets = list(),
-    ..logs = character(),
-    ..reports = list(),
     ..state = character(),
     ..modified = "None",
     ..created = "None"
@@ -111,14 +99,30 @@ Korpus <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         Korpus Instantiation                            #
+    #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(object) {
+    initialize = function(name, desc = NULL, extDocs = NULL, rawDocs = NULL,
+                          preDocs = NULL) {
+
+      # Instantiate variables
+      private$..className <- 'Corpus'
+      private$..methodName <- 'initialize'
+      private$..name <- name
+      private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
+      private$..parent <- NLPStudio$new()$getInstance()
+      private$..path <- file.path(NLPStudio$new()$getInstance()$getDirs()$korpora, private$..name)
+      private$..state <- "Corpus instantiated."
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..logs <- LogR$new(NLPStudio$new()$getInstance()$getDirs()$logs)
+      private$..extDocs <- extDocs
+      private$..rawDocs <- rawDocs
+      private$..preDocs <- preDocs
 
     },
 
     #-------------------------------------------------------------------------#
-    #                         Korpus Initialization                           #
+    #                         Corpus Initialization                           #
     #-------------------------------------------------------------------------#
 
 
@@ -126,7 +130,7 @@ Korpus <- R6::R6Class(
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$korpus(self)
+      visitor$corpus(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -151,7 +155,7 @@ Korpus <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      Korpus = list(
+      Corpus = list(
         className = private$..className,
         methodName = private$..methodName,
         name = private$..name,
@@ -168,7 +172,7 @@ Korpus <- R6::R6Class(
         created = private$..created
       )
 
-      return(Korpus)
+      return(Corpus)
     }
   )
 )

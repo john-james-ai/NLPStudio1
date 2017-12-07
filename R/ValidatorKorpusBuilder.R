@@ -1,13 +1,13 @@
 #==============================================================================#
-#                           VValidatorKorpusBuilder                            #
+#                           VValidatorBuilder                            #
 #==============================================================================#
-#' VValidatorKorpusBuilder
+#' VValidatorBuilder
 #'
 #'
-#' \code{VValidatorKorpusBuilder} Visitor class responsible for validating the initialization objects of all classes
+#' \code{VValidatorBuilder} Visitor class responsible for validating the initialization objects of all classes
 #'
-#' \strong{VValidatorKorpusBuilder Methods:}
-#' The VValidatorKorpusBuilder methods are as follows:
+#' \strong{VValidatorBuilder Methods:}
+#' The VValidatorBuilder methods are as follows:
 #'  \itemize{
 #'   \item{\code{nlpStudio(object)}}{Method for validating the instantiation of the NLPStudio object}
 #'   \item{\code{lab(object)}}{Method for validating the instantiation of the Lab object}
@@ -25,15 +25,15 @@
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Validation Classes
 #' @export
-ValidatorKorpusBuilder <- R6::R6Class(
-  classname = "ValidatorKorpusBuilder",
+ValidatorBuilder <- R6::R6Class(
+  classname = "ValidatorBuilder",
   inherit = Validator0,
   lock_objects = FALSE,
   lock_class = FALSE,
 
   private = list(
 
-    ..name = "ValidatorKorpusBuilder",
+    ..name = "ValidatorBuilder",
 
     validateName = function(object) {
 

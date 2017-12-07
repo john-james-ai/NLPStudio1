@@ -105,11 +105,11 @@ VValidatorAddChild <- R6::R6Class(
     },
 
     lab = function(object) {
-      classes <- "Korpus"
+      classes <- "Corpus"
       return(private$validate(classes, object))
     },
 
-    korpus = function(object) {
+    corpus = function(object) {
       classes <- c("DocumentText", "DocumentCsv",
                    "DocumentRdata", "DocumentXlsx")
       return(private$validate(classes, object))

@@ -105,33 +105,33 @@ VValidatorSetParent <- R6::R6Class(
       return(private$validate(classes, object))
     },
 
-    korpus = function(object) {
+    corpus = function(object) {
       classes <- c("Lab")
       return(private$validate(classes, object))
     },
 
     cvSet = function(object) {
-      classes <- c('Korpus')
+      classes <- c('Corpus')
       return(private$validate(classes, object))
     },
 
     documentText = function(object) {
-      classes <- c("Korpus", "CVSet")
+      classes <- c("Corpus", "CVSet")
       return(private$validate(classes, object))
     },
 
     documentCsv = function(object) {
-      classes <- c("Korpus", "CVSet")
+      classes <- c("Corpus", "CVSet")
       return(private$validate(classes, object))
     },
 
     documentRdata = function(object) {
-      classes <- c("Korpus", "CVSet")
+      classes <- c("Corpus", "CVSet")
       return(private$validate(classes, object))
     },
 
     documentXlsx = function(object) {
-      classes <- c("Korpus", "CVSet")
+      classes <- c("Corpus", "CVSet")
       return(private$validate(classes, object))
     }
   )

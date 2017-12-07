@@ -35,7 +35,7 @@
 #'   \item{\code{desc()}}{Method for setting or retrieving the Document object description.}
 #'
 #' @param filePath Character string indicating the file path for a document
-#' @param parent Object of the Korpus or Set classes to which this document belongs
+#' @param parent Object of the Corpus or Set classes to which this document belongs
 #' @param io An object of one of the IO classes used for reading and writing.
 #' @param repairs A list of key value pairs of strings to be replaced in the repair step
 #' @param norms A list of key value pairs of strings to be replaced in the normalization step
@@ -51,12 +51,6 @@ DocumentText <- R6::R6Class(
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Document0,
-
-  private = list(
-  ..repaired = FALSE,
-  ..normalized = FALSE,
-  ..sanitized = FALSE
-  ),
 
   public = list(
 
@@ -91,6 +85,14 @@ DocumentText <- R6::R6Class(
         stop()
       }
 
+      # Repair File
+      io <- IOBin$new()
+      content <- self$read(io)
+      content[content == as.raw(0)] = as.raw(0x20)
+      content[content == as.raw(26)] = as.raw(0x20)
+      private$..content <-  content
+      self$write(io)
+
       # Create log entry
       self$logIt()
 
@@ -106,11 +108,13 @@ DocumentText <- R6::R6Class(
     getName = function() private$..name,
     getFileName = function() private$..fileName,
     getPath = function() private$..path,
+    getContent = function() private$..content,
+
 
     #-------------------------------------------------------------------------#
     #                            IO Methods                                   #
     #-------------------------------------------------------------------------#
-    readDocument = function(io = NULL) {
+    read = function(io = NULL) {
 
       if (is.null(io)) {
         io <- IOText$new()
@@ -125,7 +129,8 @@ DocumentText <- R6::R6Class(
         private$..content <- status[['data']]
       }
     },
-    writeDocument = function(io = NULL) {
+
+    write = function(io = NULL) {
 
       if (is.null(io)) {
         io <- IOText$new()
@@ -171,7 +176,7 @@ DocumentText <- R6::R6Class(
         name	 = 	    private$..name ,
         fileName	 =  private$..fileName ,
         desc	 = 	    private$..desc ,
-        korpus	 = 	  private$..korpus ,
+        parent	 = 	  private$..corpus ,
         path	 = 	    private$..path ,
         state	 = 	    private$..state ,
         logs	 = 	    private$..logs ,

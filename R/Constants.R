@@ -27,7 +27,7 @@ Constants <- R6::R6Class(
       labs = "./NLPStudio/labs",
       logs = "./NLPStudio/logs"
     ),
-    ..korpusPaths = list(
+    ..corpusPaths = list(
       data = "data",
       external = 'data/external',
       raw = 'data/raw',
@@ -41,6 +41,6 @@ Constants <- R6::R6Class(
 
     # Constants
     getStudioPaths = function() private$..studioPaths,
-    getKorpusPaths = function() private$..korpusPaths
+    getCorpusPaths = function() private$..corpusPaths
   )
 )

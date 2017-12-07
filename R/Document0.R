@@ -90,10 +90,10 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Basic Get / Set Methods                       #
     #-------------------------------------------------------------------------#
-    getName = function() private$..name,
-    getFileName = function() private$..fileName,
-    getPath = function() private$..path,
-    setContent = function(content) private$..content <- content,
+    getName = function() stop("This method is not implemented for this abstract class."),
+    getFileName = function() stop("This method is not implemented for this abstract class."),
+    getPath = function() stop("This method is not implemented for this abstract class."),
+    setContent = function(content) stop("This method is not implemented for this abstract class."),
 
     #-------------------------------------------------------------------------#
     #                            IO Methods                                   #

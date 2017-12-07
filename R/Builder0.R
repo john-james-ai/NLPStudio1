@@ -1,9 +1,9 @@
 #==============================================================================#
-#                             KorpusBuilder0                                   #
+#                             Builder0                                   #
 #==============================================================================#
-#' KorpusBuilder0
+#' Builder0
 #'
-#' \code{KorpusBuilder0} Abstract class for the Korpus builder classes
+#' \code{Builder0} Abstract class for the Corpus builder classes
 #'
 #' The Document family of classes is an implementation of the builder
 #' pattern documented in the book "Design Patterns: Elements of Reusable
@@ -11,16 +11,16 @@
 #' and John Vlissides (hence Gang of Four). This pattern allows the
 #' construction process to be defined at runtime.
 #'
-#' @section Korpus Builder Participants:
+#' @section Corpus Builder Participants:
 #'  \describe{
-#'   \item{KorpusBuilder0}{This abstract builder interface. Defines the interface for concrete corpus builder sub-classes. }
-#'   \item{KorpusBuilder}{Concrete builder sub-class that produces the Korpus object. }
-#'   \item{KorpusSetBuilder}{Concrete builder sub-class that produces the Korpus training, validation and test set objects. }
-#'   \item{KorpusDirector}{Class that builds the corpus through the concrete builder interfaces.}
-#'   \item{Korpus}{The corpus or corpus set product.}
+#'   \item{Builder0}{This abstract builder interface. Defines the interface for concrete corpus builder sub-classes. }
+#'   \item{Builder}{Concrete builder sub-class that produces the Corpus object. }
+#'   \item{CorpusSetBuilder}{Concrete builder sub-class that produces the Corpus training, validation and test set objects. }
+#'   \item{CorpusDirector}{Class that builds the corpus through the concrete builder interfaces.}
+#'   \item{Corpus}{The corpus or corpus set product.}
 #'   }
 #'
-#' @section Korpus Builder0 Methods:
+#' @section Corpus Builder0 Methods:
 #'  \describe{
 #'   \item{\code{new()}}{Instantiates the builder object}
 #'   \item{\code{getData()}}{Obtains the corpus data from an external source.}
@@ -30,11 +30,11 @@
 #'  }
 #'
 #'
-#' @param name Character string indicating the name of the Korpus object
+#' @param name Character string indicating the name of the Corpus object
 #' @param desc Character string containing the description for the corpus object
-#' @param parent Object of the Korpus or Lab classes
-#' @param path Character string indicating the path to the Korpus object
-#' @param dirs Directory structure for a Korpus object
+#' @param parent Object of the Corpus or Lab classes
+#' @param path Character string indicating the path to the Corpus object
+#' @param dirs Directory structure for a Corpus object
 #' @param state Character string indicating last state of object
 #' @param url Character string indicating URL for downloading data
 #' @param files Character vector containing names of files to be extracted from zipped archive.
@@ -46,31 +46,19 @@
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family Corpus build family
 #' @export
-KorpusBuilder0 <- R6::R6Class(
-  classname = "KorpusBuilder0",
+Builder0 <- R6::R6Class(
+  classname = "Builder0",
   lock_objects = FALSE,
   lock_class = FALSE,
 
   private = list(
-    ..className = 'KorpusBuilder0',
+    ..className = 'Builder0',
     ..methodName = character(),
     ..name = character(),
     ..desc = character(),
     ..parent = character(),
     ..path = character(),
-    ..dirs = character(),
     ..state = character(),
-    ..url = character(),
-    ..files = character(),
-    ..repairs = list(),
-    ..splits = numeric(),
-    ..samples = list(),
-    ..normalize = list(),
-    ..corrections = list(),
-    ..profanity = list(),
-    ..rawDocs = list(),
-    ..preDocs = list(),
-    ..sets = list(),
     ..logs = character(),
     ..modified = character(),
     ..created = character()
@@ -95,80 +83,6 @@ KorpusBuilder0 <- R6::R6Class(
       } else {
         private$..desc <- value
       }
-    },
-
-    path = function(value) {
-      if (missing(value)) {
-        private$..path
-      } else {
-        private$..path <- value
-      }
-    },
-    #--------------------------------#
-    #          Parameters            #
-    #--------------------------------#
-    url = function(value) {
-      if (missing(value)) {
-        private$..url
-      } else {
-        private$..url <- value
-      }
-    },
-
-    files = function(value) {
-      if (missing(value)) {
-        private$..files
-      } else {
-        private$..files <- value
-      }
-    },
-
-    repairs = function(value) {
-      if (missing(value)) {
-        private$..repairs
-      } else {
-        private$..repairs <- value
-      }
-    },
-
-    splits = function(value) {
-      if (missing(value)) {
-        private$..splits
-      } else {
-        private$..splits <- value
-      }
-    },
-
-    samples = function(value) {
-      if (missing(value)) {
-        private$..samples
-      } else {
-        private$..samples <- value
-      }
-    },
-
-    normalize = function(value) {
-      if (missing(value)) {
-        private$..normalize
-      } else {
-        private$..normalize <- value
-      }
-    },
-
-    corrections = function(value) {
-      if (missing(value)) {
-        private$..corrections
-      } else {
-        private$..corrections <- value
-      }
-    },
-
-    profanity = function(value) {
-      if (missing(value)) {
-        private$..profanity
-      } else {
-        private$..profanity <- value
-      }
     }
   ),
 
@@ -178,23 +92,22 @@ KorpusBuilder0 <- R6::R6Class(
     #                            Build Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function() stop("This method is not implemented in this abstract class."),
-    getData = function() stop("This method is not implemented in this abstract class."),
-    buildDocuments = function() stop("This method is not implemented in this abstract class."),
-    repairDocuments = function() stop("This method is not implemented in this abstract class."),
-    splitDocuments = function() stop("This method is not implemented in this abstract class."),
-    sampleDocuments = function() stop("This method is not implemented in this abstract class."),
-    normalizeDocuments = function() stop("This method is not implemented in this abstract class."),
-    correctDocuments = function() stop("This method is not implemented in this abstract class."),
-    removeProfanity = function() stop("This method is not implemented in this abstract class."),
-    createNGrams = function() stop("This method is not implemented in this abstract class."),
-    createPOSTags = function() stop("This method is not implemented in this abstract class."),
+
+    #-------------------------------------------------------------------------#
+    #                            Getter Methods                               #
+    #-------------------------------------------------------------------------#
+    getName = function() private$..name,
+    getPath = function() private$..path,
+
+    #-------------------------------------------------------------------------#
+    #                           Deliver Product                               #
+    #-------------------------------------------------------------------------#
+    deliver = function() stop("This method is not implemented in this abstract class."),
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
-    accept = function(visitor)  {
-      visitor$korpusBuilder(self)
-    },
+    accept = function(visitor) stop("This method is not implemented in this abstract class."),
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #

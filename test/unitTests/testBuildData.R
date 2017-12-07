@@ -1,4 +1,4 @@
-testKorpusBuilder <- function() {
+testBuildData <- function() {
 
   init <- function() {
 
@@ -11,33 +11,32 @@ testKorpusBuilder <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: Korpus Builder: instantiation"
+    test <- "test0: Corpus Builder: instantiation"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Obtain NLPStudio object
     nlpStudio <- NLPStudio$new()$getInstance()
 
     # Instantiate builder
-    #b <- KorpusBuilder$new() # should fail, non name success
-    b <- KorpusBuilder$new(name = "sfc")
+    #b <- CorpusBuilder$new() # should fail, non name success
+    b <- BuildData$new(name = "sfc")
 
     # Check product
     p <- b$exposeObject()
-    stopifnot(p$metaData$name == 'sfc')
-    stopifnot(p$metaData$desc == 'sfc corpus')
-    stopifnot(p$metaData$parent$getName() == 'nlpStudio')
-    stopifnot(p$metaData$path == './NLPStudio/corpora/sfc')
-    stopifnot(isTRUE(all.equal(p$metaData$dirs, Constants$new()$getKorpusPaths())))
+    stopifnot(p$name == 'sfc')
+    stopifnot(p$desc == 'sfc corpus')
+    stopifnot(p$parent$getName() == 'nlpStudio')
+    stopifnot(p$path == './NLPStudio/corpora/sfc')
 
     # Logit
-    KorpusBuilderTests$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))
+    buildDataTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(b)
   }
 
   test1 <- function(builder) {
-    test <- "test1: Korpus Builder: getData"
+    test <- "test1: Corpus Builder: getData"
     cat(paste0("\n",test, " Commencing\n"))
 
 
@@ -46,22 +45,22 @@ testKorpusBuilder <- function() {
     status <- builder$getData()
 
     # Logit
-    KorpusBuilderTests$logs(className = className, methodName = "addKorpus", msg = paste("Successfully downloaded and unzipped data"))
+    buildDataTest$logs(className = className, methodName = "addCorpus", msg = paste("Successfully downloaded and unzipped data"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(status)
   }
 
   test2 <- function(builder) {
-    test <- "test2: Korpus Builder: buildDocuments"
+    test <- "test2: Corpus Builder: buildDocuments"
     cat(paste0("\n",test, " Commencing\n"))
 
     builder$buildDocuments()
     p <- builder$exposeObject()
-    stopifnot(length(p$documents$rawDocs) == 3)
+    stopifnot(length(p$rawDocs) == 3)
 
     # Logit
-    KorpusBuilderTests$logs(className = className, methodName = "addKorpus", msg = paste("Successfully built documents."))
+    buildDataTest$logs(className = className, methodName = "addCorpus", msg = paste("Successfully built documents."))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(status)
@@ -69,10 +68,10 @@ testKorpusBuilder <- function() {
 
 init()
 builder <- test0()
-#builder <- test1(builder)
+builder <- test1(builder)
 builder <- test2(builder)
 }
-className <- "KorpusBuilder"
-KorpusBuilderTests <- LogTest$new()
+className <- "BuildData"
+buildDataTest <- LogTest$new()
 #source('./test/unitTests/testLab.R')
-testKorpusBuilder()
+testBuildData()

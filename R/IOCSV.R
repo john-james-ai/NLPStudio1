@@ -41,7 +41,7 @@ IOCSV <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- document$getFilePath()
+      filePath <- document$getPath()
       fileName <- basename(filePath)
 
       if (file.exists(filePath)) {
@@ -61,7 +61,7 @@ IOCSV <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- document$getFilePath()
+      filePath <- document$getPath()
       fileName <- basename(filePath)
       content <- document$getContent()
 

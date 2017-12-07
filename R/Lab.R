@@ -23,8 +23,8 @@
 #' \strong{Lab Aggregate Methods:}
 #'  \describe{
 #'   \item{\code{getKorpora()}}{Retrieves the list of corpora for the lab.}
-#'   \item{\code{addKorpus(document)}}{Adds a corpus to the Lab object.}
-#'   \item{\code{removeKorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
+#'   \item{\code{addCorpus(document)}}{Adds a corpus to the Lab object.}
+#'   \item{\code{removeCorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
 #' }
 #'
 #'
@@ -35,7 +35,7 @@
 #'
 #' @param name A character string containing the name of the Lab object. This variable is used in the instantiation and remove methods.
 #' @param desc A chararacter string containing the description of the Lab
-#' @param korpus An object of the Korpus class
+#' @param corpus An object of the Corpus class
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -127,14 +127,14 @@ Lab <- R6::R6Class(
     #-------------------------------------------------------------------------#
     getKorpora = function() { private$..korpora },
 
-    addKorpus = function(korpus) {
+    addCorpus = function(corpus) {
 
       # Update current method
-      private$..methodName <- 'addKorpus'
+      private$..methodName <- 'addCorpus'
 
       # Validation
       v <- Validator$new()
-      status <- v$addChild(self, korpus)
+      status <- v$addChild(self, corpus)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -142,14 +142,14 @@ Lab <- R6::R6Class(
       }
 
       # Get collection information
-      korpusName <- korpus$getName()
+      corpusName <- corpus$getName()
 
       # Add collection to lab's list of korpora
-      private$..korpora[[korpusName]] <- korpus
+      private$..korpora[[corpusName]] <- corpus
 
       # Move files to lab
-      from <- korpus$getPath()
-      to <- file.path(private$..path, korpus$getName())
+      from <- corpus$getPath()
+      to <- file.path(private$..path, corpus$getName())
       f <- FileManager$new()
       status <- f$moveFile(from, to)
       if (status[['code']] == FALSE) {
@@ -159,14 +159,14 @@ Lab <- R6::R6Class(
       }
 
       # Set parent to document collection object
-      korpus$lab <- self
+      corpus$lab <- self
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", korpusName, "added to Lab", private$..name, "at", Sys.time())
+        paste("Corpus", corpusName, "added to Lab", private$..name, "at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
@@ -176,14 +176,14 @@ Lab <- R6::R6Class(
 
     },
 
-    removeKorpus = function(korpus) {
+    removeCorpus = function(corpus) {
 
       # Update current method
-      private$..methodName <- 'removeKorpus'
+      private$..methodName <- 'removeCorpus'
 
       # Validation
       v <- Validator$new()
-      status <- v$removeChild(self, korpus)
+      status <- v$removeChild(self, corpus)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -191,16 +191,16 @@ Lab <- R6::R6Class(
       }
 
       # Obtain collection information
-      korpusName <- korpus$getName()
+      corpusName <- corpus$getName()
 
       # Remove collection from lab and update modified time
-      private$..korpora[[korpusName]] <- NULL
+      private$..korpora[[corpusName]] <- NULL
 
       # Change parent of removed object to null
-      korpus$lab <- NULL
+      corpus$lab <- NULL
 
-      # Move files back to korpus directory
-      from <- file.path(private$..dirs$korpora, korpusName)
+      # Move files back to corpus directory
+      from <- file.path(private$..dirs$korpora, corpusName)
       to <- NLPStudio$new()$getInstance()$getDirs()$korpora
       f <- FileManager$new()
       status <- f$moveFile(from, to)
@@ -215,7 +215,7 @@ Lab <- R6::R6Class(
 
       # Save state and log Event
       private$..state <-
-        paste("Korpus", korpusName, "removed from Lab", private$..name, "at", Sys.time())
+        paste("Corpus", corpusName, "removed from Lab", private$..name, "at", Sys.time())
       self$logIt()
 
       invisible(self)

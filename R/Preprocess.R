@@ -54,27 +54,7 @@ Preprocess <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Encode Method                                 #
     #-------------------------------------------------------------------------#
-    encode = function(document) {
-
-      # Read binary format data
-      io <- IOBin$new()
-      content <- self$read(document, io)
-
-      # Correct encodings
-      content[content == as.raw(0)] = as.raw(0x20)
-      content[content == as.raw(26)] = as.raw(0x20)
-      document$setContent(content)
-
-      # Write binary format data
-      self$write(document, io)
-
-      # Logit
-      private$..state <- paste0("Binary encoding corrected in ", document$getName, ". ")
-      self$logIt()
-
-      # Read and process ASCII conversions
-      io <- IOText$new()
-      content <- self$read(document, io)
+    encode = function(content) {
 
       # Perform encoding changes
       Encoding(content) <- "latin1"
@@ -84,38 +64,48 @@ Preprocess <- R6::R6Class(
       content <- gsub("â€¦", "", content)
       content <- gsub("â€", "-", content)
       content <- iconv(content, "UTF-8", "ASCII", sub = "")
-      document$setContent(content)
 
-      # Write data to disc
-      self$write(document, io)
+      return(content)
+    },
 
-      # Logit
-      private$..state <- paste0("ASCII encoding corrected in ", document$getName, ". ")
-      self$logIt()
 
-      return(document)
+    #-------------------------------------------------------------------------#
+    #                     Tokenization and Lower Casing                       #
+    #-------------------------------------------------------------------------#
+    tokenize = function(content, what = 'sentence', lower = TRUE) {
+
+      content <- unlist(parallelizeTask(quanteda::tokenize, content, what = what))
+      if (lower == TRUE) content <- tolower(content)
+
+      return(content)
     },
 
     #-------------------------------------------------------------------------#
-    #                      Tokenization and Casing                            #
+    #                                Parsing                                  #
     #-------------------------------------------------------------------------#
-    tokenization = function(document, what = 'sentence') {
+    parse = function(content, emails = TRUE, urls = TRUE, twitter = TRUE,
+                     controls = TRUE, punct = TRUE,  hyphens = TRUE,
+                     symbols = TRUE, apostrophe = FALSE,  digits = TRUE,
+                     repeatChars = TRUE, longWords = TRUE) {
 
-      # Read, tokenize into sentences and convert to lower case.
-      io <- IOText$new()
-      content <- self$read(document, io)
+      if (emails == TRUE) content <- gsub(regexPatterns$emails, ' ', content, perl = TRUE)
+      if (urls == TRUE)   content <- gsub(regexPatterns$urls, ' ', content, perl = TRUE)
+      if (twitter == TRUE) content <- gsub(regexPatterns$twitter, ' ', content, perl = TRUE)
+      if (controls == TRUE) content <- gsub(regexPatterns$control, ' ', content, perl = TRUE)
+      if (hyphens == TRUE) content <- gsub(regexPatterns$hyphens, ' ', content, perl = TRUE)
+      if (apostrophe == TRUE) content <- gsub(regexPatterns$apostrophe, ' ', content, perl = TRUE)
+      if (punct == TRUE) content <- gsub(regexPatterns$punctSansApos, ' ', content, perl = TRUE)
+      if (symbols == TRUE) content <- gsub(regexPatterns$symbols, ' ', content, perl = TRUE)
+      if (digits == TRUE) content <- gsub(regexPatterns$digits, ' ', content, perl = TRUE)
+      if (repeatChars == TRUE) content <- gsub(regexPatterns$repeatedChars, '\\2', content, perl = TRUE)
+      if (longWords == TRUE) content <- gsub(regexPatterns$longWords, '', content, perl = TRUE)
 
-      content <- unlist(parallelizeTask(quanteda::tokenize, content, what = what))
+      # Cleanup
+      content <- content[content != ""]
+      content <- content[content != "'"]
+      content <- str_replace(gsub(regexPatterns$whiteSpace, " ", str_trim(content)), "B", "b")
 
-      # Write data
-      document$setContent(tolower(content))
-      self$write(document, io)
 
-      # Logit
-      private$..state <- paste0("Lower case and sentence tokenized ", document$getName, ". ")
-      self$logIt()
-
-      return(document)
     },
 
     #-------------------------------------------------------------------------#
@@ -185,44 +175,6 @@ Preprocess <- R6::R6Class(
 
       return(document)
     },
-
-    #-------------------------------------------------------------------------#
-    #                              IO Methods                                 #
-    #-------------------------------------------------------------------------#
-    read = function(document, io = NULL) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      status <- io$read(document)
-
-      if (status[['code']] == FALSE) {
-        status[['code']] <- FALSE
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      } else {
-        content <- status[['data']]
-      }
-      return(content)
-    },
-
-    write = function(document, io = NULL) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      status <- io$write(document)
-
-      if (status[['code']] == FALSE) {
-        status[['code']] <- FALSE
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-    },
-
-
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #

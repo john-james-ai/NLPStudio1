@@ -25,10 +25,10 @@ Abstract class for the Validator classes
 }
 
 \seealso{
-Other Validation Classes: \code{\link{ValidatorClass}},
+Other Validation Classes: \code{\link{ValidatorBuilder}},
+  \code{\link{ValidatorClass}},
   \code{\link{ValidatorDate}},
   \code{\link{ValidatorExists}},
-  \code{\link{ValidatorKorpusBuilder}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNoSpaces}},
   \code{\link{ValidatorNotEmpty}},

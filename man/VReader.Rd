@@ -32,9 +32,6 @@ The VReader class supports csv, Rdata, and text files through the following meth
   \item{\code{text(document)}}{Method for reading text files.}
 }
 }
-\seealso{
-Other Read/Write Classes: \code{\link{IO}}
-}
 \author{
 John James, \email{jjames@DataScienceSalon.org}
 }

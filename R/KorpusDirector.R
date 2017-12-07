@@ -1,9 +1,9 @@
 #==============================================================================#
-#                             KorpusDirector                                   #
+#                             CorpusDirector                                   #
 #==============================================================================#
-#' KorpusDirector
+#' CorpusDirector
 #'
-#' \code{KorpusDirector} Class that directs the building of Korpus objects
+#' \code{CorpusDirector} Class that directs the building of Corpus objects
 #'
 #' The Document family of classes is an implementation of the builder
 #' pattern documented in the book "Design Patterns: Elements of Reusable
@@ -11,9 +11,9 @@
 #' and John Vlissides (hence Gang of Four). This pattern allows the
 #' construction process to be defined at runtime.
 #'
-#' @section Korpus Director Methods:
+#' @section Corpus Director Methods:
 #'  \describe{
-#'   \item{\code{new(builder)}}{Creates an object of Korpus Class}
+#'   \item{\code{new(builder)}}{Creates an object of Corpus Class}
 #'   }
 #'
 #' @param builder Corpus builder object
@@ -22,12 +22,12 @@
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family Corpus build family
 #' @export
-KorpusDirector <- R6::R6Class(
-  classname = "KorpusDirector",
+CorpusDirector <- R6::R6Class(
+  classname = "CorpusDirector",
   lock_objects = FALSE,
   lock_class = FALSE,
   private = list(
-    ..className = 'KorpusDirector',
+    ..className = 'CorpusDirector',
     ..methodName = character(),
     ..builder = character(),
     ..state = character(),
@@ -39,19 +39,19 @@ KorpusDirector <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         Korpus Instantiation                            #
+    #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
     initialize = function(builder) {
 
       # Instantiate variables
-      private$..className <- 'KorpusDirector'
+      private$..className <- 'CorpusDirector'
       private$..methodName <- 'initialize'
-      private$..name <- 'korpusDirector'
+      private$..name <- 'corpusDirector'
       private$..state <- "Instantiated the corpus build director."
       private$..builder <- builder
       private$..logs <- NLPStudio$new()$getInstance()$getDirs()$logs
 
-      # Validate Korpus
+      # Validate Corpus
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -72,7 +72,7 @@ KorpusDirector <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                          Construct Methods                              #
     #-------------------------------------------------------------------------#
-    constructKorpus = function() {
+    constructCorpus = function() {
 
 
 
@@ -83,7 +83,7 @@ KorpusDirector <- R6::R6Class(
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$korpus(self)
+      visitor$corpus(self)
     },
 
     #-------------------------------------------------------------------------#
