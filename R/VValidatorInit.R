@@ -185,6 +185,10 @@ VValidatorInit <- R6::R6Class(
       return(private$validateClass(object, builder, className = "CorpusBuilder"))
     },
 
+    set = function(object) {
+      return(private$validateName(object))
+    },
+
     documentText = function(object) {
 
       if (private$validateName(object)[['code']] == FALSE)

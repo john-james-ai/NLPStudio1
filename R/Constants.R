@@ -23,7 +23,7 @@ Constants <- R6::R6Class(
     ..studioPaths = list(
       archives = "./NLPStudio/archives",
       config = "./NLPStudio/config",
-      korpora = './NLPStudio/corpora',
+      corpora = './NLPStudio/corpora',
       labs = "./NLPStudio/labs",
       logs = "./NLPStudio/logs"
     ),

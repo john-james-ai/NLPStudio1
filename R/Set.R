@@ -1,62 +1,52 @@
 #==============================================================================#
-#                                 Lab                                          #
+#                                 Set                                          #
 #==============================================================================#
-#' Lab
+#' Set
 #'
-#' \code{Lab} Class that contains document corpora and the environment in which NLP happens.
+#' \code{Set} Class that defines a set or collection of documents
 #'
-#' The environment in which NLP happens. There are two groups of methods. The
-#' first group allows clients to instantiate, retrieve, print, enter, leave,
-#' and archive a Lab object.  The second set of methods allow clients to retrieve
-#' the contained documents, add a document, and remove a document.
+#' Class contains a collection of documents of various types, including text
+#' documents, nGrams, and pos tagged documents.
 #'
-#' \strong{Lab Core Methods:}
+#' @section Set Core Methods:
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL)}}{Creates an object of Lab Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Lab description variable.}
-#'   \item{\code{getName()}}{Returns the name of the Lab object.}
-#'   \item{\code{getPath()}}{Returns the path of the Lab object.}
-#'   \item{\code{getLogs()}}{Returns the LogR object for the Lab object.}
+#'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Set Class}
+#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Set description variable.}
+#'   \item{\code{parent}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Set object belongs.}
+#'   \item{\code{getName()}}{Returns the name of the Set object.}
+#'   \item{\code{getPath()}}{Returns the path of the Set object.}
+#'   \item{\code{getDocuments()}}{Returns the list of Document class objects.}
+#'   \item{\code{addDocument(document)}}{Adds a Document object to the set.}
+#'   \item{\code{removeDocument(document)}}{Removes a Document object from the set.}
 #'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
+#'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#' \strong{Lab Aggregate Methods:}
-#'  \describe{
-#'   \item{\code{getCorpora()}}{Retrieves the list of corpora for the lab.}
-#'   \item{\code{addCorpus(document)}}{Adds a corpus to the Lab object.}
-#'   \item{\code{removeCorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
-#' }
-#'
-#'
-#' \strong{Lab Visitor Methods:}
-#'  \describe{
-#'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
-#' }
-#'
-#' @param name A character string containing the name of the Lab object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Lab
-#' @param corpus An object of the Corpus class
+#' @param name A character string containing the name of the Set object. This variable is used in the instantiation and remove methods.
+#' @param desc A chararacter string containing the description of the Set.
+#' @param document An object of one of the Document sub-classes.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-Lab <- R6::R6Class(
-  classname = "Lab",
+Set <- R6::R6Class(
+  classname = "Set",
   lock_objects = FALSE,
   lock_class = FALSE,
+
   private = list(
-    ..className = 'Lab',
+    ..className = 'Set',
     ..methodName = character(),
     ..name = character(),
     ..desc = character(),
-    ..path = character(),
     ..parent = character(),
-    ..corpora = list(),
+    ..path = character(),
+    ..documents = list(),
     ..state = character(),
     ..logs = character(),
-    ..modified = "None",
-    ..created = "None"
+    ..modified = character(),
+    ..created = character()
   ),
 
   active = list(
@@ -68,8 +58,8 @@ Lab <- R6::R6Class(
         private$..desc <- value
         private$..modified <- Sys.time()
         private$..state <- paste(private$..name,
-                                     "Lab description changed at",
-                                     Sys.time())
+                                 "set description changed at",
+                                 Sys.time())
         self$logIt()
       }
     }
@@ -78,23 +68,23 @@ Lab <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         Lab Core Methods                                #
+    #                         Set Instantiation                               #
     #-------------------------------------------------------------------------#
     initialize = function(name, desc = NULL) {
 
       # Instantiate variables
-      private$..className <- 'Lab'
+      private$..className <- 'Set'
       private$..methodName <- 'initialize'
       private$..name <- name
-      private$..desc <- ifelse(is.null(desc), paste(name, "lab"), desc)
-      private$..path <- file.path("./NLPStudio/labs", name)
+      private$..desc <- ifelse(is.null(desc), paste(name, "set"), desc)
       private$..parent <- NLPStudio$new()$getInstance()
-      private$..state <- paste("Lab", name, "instantiated at", Sys.time())
-      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getPath(), 'logs'))
+      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'sets', private$..name)
+      private$..state <- "Set instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getPath(), 'logs'))
 
-      # Validate Lab
+      # Validate Set
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -104,7 +94,7 @@ Lab <- R6::R6Class(
       }
 
       # Create directory
-      dir.create(private$..path, recursive = TRUE)
+      dir.create(private$..path, showWarnings = FALSE,  recursive = TRUE)
 
       # Create log entry
       self$logIt()
@@ -115,23 +105,26 @@ Lab <- R6::R6Class(
       invisible(self)
     },
 
+    #-------------------------------------------------------------------------#
+    #                         Basic Get Methods                               #
+    #-------------------------------------------------------------------------#
     getName = function() private$..name,
-    getPath = function() private$..path,
     getClassName = function() private$..className,
+    getPath = function() private$..path,
 
     #-------------------------------------------------------------------------#
-    #                         Lab Aggregate Methods                           #
+    #                         Composite Methods                               #
     #-------------------------------------------------------------------------#
-    getCorpora = function() { private$..corpora },
+    getDocuments = function() private$..documents,
 
-    addCorpus = function(corpus) {
+    addDocument = function(document) {
 
       # Update current method
-      private$..methodName <- 'addCorpus'
+      private$..methodName <- 'addDocument'
 
       # Validation
       v <- Validator$new()
-      status <- v$addChild(self, corpus)
+      status <- v$addChild(self, document)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -139,40 +132,38 @@ Lab <- R6::R6Class(
       }
 
       # Get collection information
-      corpusName <- corpus$getName()
+      documentName <- document$getName()
 
-      # Add collection to lab's list of corpora
-      private$..corpora[[corpusName]] <- corpus
+      # Add document to list of documents
+      private$..documents[[documentName]] <- document
 
-      #TODO: Move corpora to lab directory
-      corpus$move(self)
+      #TODO: Move document to set directory
 
-      # Set parent to document collection object
-      corpus$lab <- self
+      # Document parent to document collection object
+      document$parent <- self
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", corpusName, "added to Lab", private$..name, "at", Sys.time())
+        paste("Document", documentName, "added to set,", private$..name, "at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
       assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
-
     },
 
-    removeCorpus = function(corpus) {
+    removeDocument = function(document) {
 
       # Update current method
-      private$..methodName <- 'removeCorpus'
+      private$..methodName <- 'removeDocument'
 
       # Validation
       v <- Validator$new()
-      status <- v$removeChild(self, corpus)
+      status <- v$removeChild(self, document)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -180,34 +171,61 @@ Lab <- R6::R6Class(
       }
 
       # Obtain collection information
-      corpusName <- corpus$getName()
+      documentName <- document$getName()
 
       # Remove collection from lab and update modified time
-      private$..corpora[[corpusName]] <- NULL
+      private$..documents[[documentName]] <- NULL
 
-      # Change parent of removed object to null
-      corpus$lab <- NULL
-
-      #TODO: Move corpora to main corpora directory
+      # Move document back to main document directory
+      document$move(NLPStudio$new()$getInstance())
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", corpusName, "removed from Lab", private$..name, "at", Sys.time())
+        paste("Document", documentName, "removed from ", private$..name, "at", Sys.time())
       self$logIt()
 
       invisible(self)
+    },
 
+    move = function(parent) {
+
+      v <- Validator$new()
+      status <- v$setParent(self, parent)
+
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      } else {
+        private$..parent <- parent
+
+        # Move Documents
+        lapply(private$..documents, function(d) {
+          d$move(self)
+        })
+
+        private$..path <- file.path(parent$getPath(),
+                                    private$..name)
+        private$..modified <- Sys.time()
+        private$..state <- paste(private$..className, private$..name, 'moved to ',
+                                 parent$getClassName(), parent$getName())
+        self$logIt()
+
+        # Assign its name in the global environment
+        assign(private$..name, self, envir = .GlobalEnv)
+
+        invisible(self)
+      }
     },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      name <- visitor$getName()
-      visitor$lab(self)
+      visitor$set(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -232,20 +250,21 @@ Lab <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      lab = list(
+      set = list(
+        className = private$..className,
+        methodName = private$..methodName,
         name = private$..name,
         desc = private$..desc,
         path = private$..path,
-        dirs = private$..dirs,
         parent = private$..parent,
-        corpora = private$..corpora,
-        logs <- private$..logs,
+        documents = private$..documents,
+        logs = private$..logs,
         state = private$..state,
         modified = private$..modified,
         created = private$..created
       )
 
-      return(lab)
+      return(set)
     }
   )
 )

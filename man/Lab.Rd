@@ -38,7 +38,7 @@ the contained documents, add a document, and remove a document.
 
 \strong{Lab Aggregate Methods:}
  \describe{
-  \item{\code{getKorpora()}}{Retrieves the list of corpora for the lab.}
+  \item{\code{getCorpora()}}{Retrieves the list of corpora for the lab.}
   \item{\code{addCorpus(document)}}{Adds a corpus to the Lab object.}
   \item{\code{removeCorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
 }

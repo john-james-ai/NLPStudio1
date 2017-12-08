@@ -44,6 +44,7 @@ LogR <- R6::R6Class(
 
     initialize = function(logPath) {
 
+      dir.create(logPath, showWarnings = FALSE, recursive = TRUE)
       futile.logger::flog.threshold(INFO)
       futile.logger::flog.logger("green", INFO, appender=appender.file(file.path(logPath, "green.log")))
       futile.logger::flog.logger("yellow", WARN, appender=appender.tee(file.path(logPath, "yellow.log")))

@@ -13,37 +13,31 @@ Corpus
 
 \item{desc}{A chararacter string containing the description of the Corpus.}
 
-\item{document}{An object of one of the Document sub-classes.}
+\item{set}{An object of the Set class.}
 
 \item{visitor}{An object of one of the visitor classes.}
 }
 \description{
-\code{Corpus} Class that defines a corpus or collection of documents
+\code{Corpus} Class that defines a corpus or collection of data sets
 }
 \details{
-The class one or several documents in text form, as well as various
-transformations such as nGrams and POS tags
+Class defines the Corpus object as a collection of data sets or Set objects.
 }
 \section{Corpus Core Methods}{
 
  \describe{
   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Corpus Class}
   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Corpus description variable.}
-  \item{\code{lab}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
+  \item{\code{parent}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
   \item{\code{getName()}}{Returns the name of the Corpus object.}
   \item{\code{getPath()}}{Returns the path of the Corpus object.}
+  \item{\code{move(parent)}}{Moves the Corpus object to the new parent.}
+  \item{\code{getSets()}}{Returns list of set objects.}
+  \item{\code{addSet(set)}}{Adds a Set object to the Corpus object.}
+  \item{\code{removeSet(set)}}{Removes a Set object from the Corpus object.}
   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
  }
-}
-
-\section{Corpus Processing Methods}{
-
- \describe{
-  \item{\code{obtainCorpus()}}{Method for initiating the repair operation on a document.}
-  \item{\code{repairCorpus()}}{Method for initiating the repair operation on a document.}
-  \item{\code{splitCorpus()}}{Method for initiating the repair operation on a document.}
-}
 }
 
 \author{

@@ -125,7 +125,7 @@ FileManager <- R6::R6Class(
       }
 
       todir <- dirname(to)
-      if (!isTRUE(file.info(todir)$isdir))  dir.create(todir, recursive=TRUE)
+      dir.create(todir, showWarnings = FALSE, recursive=TRUE)
       file.rename(from = from,  to = to)
       status[['msg']] <-
         paste0("Successfully moved file(s) ", from, "to ", to )

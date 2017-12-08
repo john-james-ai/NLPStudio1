@@ -3,32 +3,29 @@
 #==============================================================================#
 #' Corpus
 #'
-#' \code{Corpus} Class that defines a corpus or collection of documents
+#' \code{Corpus} Class that defines a corpus or collection of data sets
 #'
-#' The class one or several documents in text form, as well as various
-#' transformations such as nGrams and POS tags
+#' Class defines the Corpus object as a collection of data sets or Set objects.
 #'
 #' @section Corpus Core Methods:
 #'  \describe{
 #'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Corpus Class}
 #'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Corpus description variable.}
-#'   \item{\code{lab}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
+#'   \item{\code{parent}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
 #'   \item{\code{getName()}}{Returns the name of the Corpus object.}
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
+#'   \item{\code{move(parent)}}{Moves the Corpus object to the new parent.}
+#'   \item{\code{getSets()}}{Returns list of set objects.}
+#'   \item{\code{addSet(set)}}{Adds a Set object to the Corpus object.}
+#'   \item{\code{removeSet(set)}}{Removes a Set object from the Corpus object.}
 #'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#' @section Corpus Processing Methods:
-#'  \describe{
-#'   \item{\code{obtainCorpus()}}{Method for initiating the repair operation on a document.}
-#'   \item{\code{repairCorpus()}}{Method for initiating the repair operation on a document.}
-#'   \item{\code{splitCorpus()}}{Method for initiating the repair operation on a document.}
-#' }
 #'
 #' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
 #' @param desc A chararacter string containing the description of the Corpus.
-#' @param document An object of one of the Document sub-classes.
+#' @param set An object of the Set class.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -38,6 +35,7 @@ Corpus <- R6::R6Class(
   classname = "Corpus",
   lock_objects = FALSE,
   lock_class = FALSE,
+
   private = list(
     ..className = 'Corpus',
     ..methodName = character(),
@@ -45,11 +43,11 @@ Corpus <- R6::R6Class(
     ..desc = character(),
     ..parent = character(),
     ..path = character(),
-    ..extDocs = list(),
-    ..rawDocs = list(),
+    ..sets = character(),
     ..state = character(),
-    ..modified = "None",
-    ..created = "None"
+    ..logs = character(),
+    ..modified = character(),
+    ..created = character()
   ),
 
   active = list(
@@ -61,37 +59,9 @@ Corpus <- R6::R6Class(
         private$..desc <- value
         private$..modified <- Sys.time()
         private$..state <- paste(private$..name,
-                                     "Corpus description changed at",
-                                     Sys.time())
+                                 "corpus description changed at",
+                                 Sys.time())
         self$logIt()
-      }
-    },
-
-    parent = function(value) {
-      if (missing(value)) {
-        private$..parent
-      } else {
-        v <- Validator$new()
-        status <- v$setParent(self, value)
-        if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
-          self$logIt(level = 'Error')
-          stop()
-        } else {
-          private$..parent <- value
-          private$..path <- file.path(value$getPath(),
-                                      private$..name)
-          private$..modified <- Sys.time()
-          private$..state <- paste0('Corpus ', private$..name, 'added to ',
-                                    value$getName(), ' lab. ')
-          self$logIt()
-
-          # Assign its name in the global environment
-          assign(private$..name, self, envir = .GlobalEnv)
-
-          invisible(self)
-
-        }
       }
     }
   ),
@@ -101,8 +71,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, desc = NULL, extDocs = NULL, rawDocs = NULL,
-                          preDocs = NULL) {
+    initialize = function(name, desc = NULL) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
@@ -110,21 +79,162 @@ Corpus <- R6::R6Class(
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
       private$..parent <- NLPStudio$new()$getInstance()
-      private$..path <- file.path(NLPStudio$new()$getInstance()$getDirs()$korpora, private$..name)
+      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath, 'corpora', private$..name)
       private$..state <- "Corpus instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
       private$..logs <- LogR$new(NLPStudio$new()$getInstance()$getDirs()$logs)
-      private$..extDocs <- extDocs
-      private$..rawDocs <- rawDocs
-      private$..preDocs <- preDocs
 
+      # Validate Lab
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Create directory
+      dir.create(private$..path, recursive = TRUE)
+
+      # Create log entry
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(name, self, envir = .GlobalEnv)
+
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
-    #                         Corpus Initialization                           #
+    #                         Composite Methods                               #
     #-------------------------------------------------------------------------#
+    getSets = function() private$..sets,
 
+    addSet = function(set) {
+
+      # Update current method
+      private$..methodName <- 'addSet'
+
+      # Validation
+      v <- Validator$new()
+      status <- v$addChild(self, set)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Get collection information
+      setName <- set$getName()
+
+      # Add set to list of sets
+      private$..sets[[setName]] <- set
+
+      # Move files to lab
+      from <- set$getPath()
+      to <- file.path(private$..path, setName)
+      f <- FileManager$new()
+      status <- f$moveFile(from, to)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Set parent to document collection object
+      set$parent <- self
+
+      # Update modified time
+      private$..modified <- Sys.time()
+
+      # Save state and log Event
+      private$..state <-
+        paste("Set", setName, "added to corpus", private$..name, "at", Sys.time())
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    removeSet = function(set) {
+
+      # Update current method
+      private$..methodName <- 'removeSet'
+
+      # Validation
+      v <- Validator$new()
+      status <- v$removeChild(self, set)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Obtain collection information
+      setName <- set$getName()
+
+      # Remove collection from lab and update modified time
+      private$..corpora[[setName]] <- NULL
+
+      # Change parent of removed object to null
+      set$parent <- NULL
+
+      # Move files back to set directory
+      from <- file.path(private$..path, setName)
+      to <- file.path(NLPStudio$new()$getInstance()$getPath(), 'sets')
+      f <- FileManager$new()
+      status <- f$moveFile(from, to)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Update modified time
+      private$..modified <- Sys.time()
+
+      # Save state and log Event
+      private$..state <-
+        paste("Set", setName, "removed from ", private$..name, "at", Sys.time())
+      self$logIt()
+
+      invisible(self)
+
+    },
+
+    move = function(parent) {
+
+      v <- Validator$new()
+      status <- v$setParent(self, parent)
+
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      } else {
+        private$..parent <- parent
+
+        # Move Sets
+        lapply(private$..sets, function(s) {
+          s$move(self)
+        })
+
+        private$..path <- file.path(parent$getPath(),
+                                    private$..name)
+        private$..modified <- Sys.time()
+        private$..state <- paste(private$..className, private$..name, 'moved to ',
+                                 parent$getClassName(), parent$getName())
+        self$logIt()
+
+        # Assign its name in the global environment
+        assign(private$..name, self, envir = .GlobalEnv)
+
+        invisible(self)
+      }
+    },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
@@ -155,24 +265,21 @@ Corpus <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      Corpus = list(
+      corpus = list(
         className = private$..className,
         methodName = private$..methodName,
         name = private$..name,
         desc = private$..desc,
         path = private$..path,
         parent = private$..parent,
-        external = private$..external,
-        raw = private$..raw,
         sets = private$..sets,
         logs = private$..logs,
-        reports = private$..reports,
         state = private$..state,
         modified = private$..modified,
         created = private$..created
       )
 
-      return(Corpus)
+      return(corpus)
     }
   )
 )

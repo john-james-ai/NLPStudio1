@@ -30,9 +30,6 @@ testNLPStudio <- function() {
     stopifnot(length(studio$labs) == 0)
     stopifnot((Sys.time() - studio$created) < 1)
     stopifnot((Sys.time() - studio$modified) < 1)
-    stopifnot(dir.exists("./NLPStudio/config"))
-    stopifnot(dir.exists("./NLPStudio/labs"))
-    stopifnot(dir.exists("./NLPStudio/logs"))
 
     # Logit
     nlpStudioTests$logs(className = 'NLPStudio', methodName = "initialize", msg = "Successfully created nlpStudio")
@@ -76,31 +73,9 @@ testNLPStudio <- function() {
     return(nlpStudio)
   }
 
-  # Test2: Set lab current
-  test2 <- function(nlpStudio) {
-    test <- "Test2: Set lab current"
-    cat(paste(test, " Commencing\n"))
-
-    # Set lab current
-    #nlpStudio$currentLab <- badsa  # should error
-    nlpStudio$currentLab <- blue
-
-    # Confirm object status
-    stopifnot(isTRUE(all.equal(nlpStudio$currentLab, blue)))
-
-    # Logit
-    nlpStudioTests$logs(className = 'NLPStudio', methodName = "currentLab",
-                        msg = paste('Current lab set to', blue$getName()))
-
-    cat(paste(test, " Completed: Success!\n"))
-    return(nlpStudio)
-  }
-
-
   init()
   nlpStudio <- test0(nlpStudio)
   nlpStudio <- test1(nlpStudio)
-  nlpStudio <- test2(nlpStudio)
   return(nlpStudio)
 
 }

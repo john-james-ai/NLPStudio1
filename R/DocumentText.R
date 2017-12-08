@@ -23,10 +23,7 @@
 #'   \item{\code{getFileName()}}{Method for obtaining the document file name.}
 #'   \item{\code{getPath()}}{Method for obtaining the document path.}
 #'   \item{\code{readDocument(io)}}{Method for initiating the read operation for a document.}
-#'   \item{\code{writeDocument(io)}}{Method for initiating the write operation for a document.}#'
-#'   \item{\code{repairDocument(repairs)}}{Method for repairing a document.}
-#'   \item{\code{normalizeDocument(norms)}}{Method for normalizing text in a document.}
-#'   \item{\code{sanitizeDocument(profanity)}}{Method for removing profanity from a text document.}
+#'   \item{\code{writeDocument(io)}}{Method for initiating the write operation for a document.}
 #'  }
 #'
 #' @section Document getter/setter methods:
@@ -59,24 +56,26 @@ DocumentText <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(filePath, desc = NULL) {
 
+      private$..methodName <- 'initialize'
+
       # Instantiate variables
       private$..className <- 'DocumentText'
       private$..name <- basename(filePath)
       private$..fileName <- basename(filePath)
       private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
       private$..parent <- NULL
-      private$..path <- file.path(dirname(filePath), private$..name)
+      private$..path <- filePath
       private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
-      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getPath(), 'logs'))
       private$..size <- file.info(filePath)$size
       private$..modified <- file.info(filePath)$mtime
       private$..created <- file.info(filePath)$ctime
       private$..accessed <- file.info(filePath)$atime
 
       # Initiate Log
-      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getDirs()$logs))
+      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getPath(), 'logs'))
 
-      # Validate Lab
+      # Validate Document
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -91,6 +90,18 @@ DocumentText <- R6::R6Class(
       content[content == as.raw(0)] = as.raw(0x20)
       content[content == as.raw(26)] = as.raw(0x20)
       private$..content <-  content
+      self$write(io)
+
+      io <- IOText$new()
+      content <- self$read(io)
+      Encoding(content) <- "latin1"
+      content <- enc2utf8(content)
+      content <- gsub("â€™", "'", content)
+      content <- gsub("â€˜", "'", content)
+      content <- gsub("â€¦", "", content)
+      content <- gsub("â€", "-", content)
+      content <- iconv(content, "UTF-8", "ASCII", sub = "")
+      private$..content <- content
       self$write(io)
 
       # Create log entry
@@ -110,11 +121,53 @@ DocumentText <- R6::R6Class(
     getPath = function() private$..path,
     getContent = function() private$..content,
 
+    #-------------------------------------------------------------------------#
+    #                         Aggregate Methods                               #
+    #-------------------------------------------------------------------------#
+    move = function(parent) {
+
+      private$..methodName <- 'move'
+
+      v <- Validator$new()
+      status <- v$setParent(self, parent)
+
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      } else {
+        private$..parent <- parent
+
+        # Move File
+        from <- private$..path
+        to <- file.path(private$..parent$getPath(), 'documents/text', private$..fileName)
+        f <- FileManager$new()
+        status <- f$moveFile(from, to)
+        if (status[['code']] == FALSE) {
+          private$..state <- status[['msg']]
+          self$logIt(level = 'Error')
+          stop()
+        }
+
+        private$..path <- to
+        private$..modified <- Sys.time()
+        private$..state <- paste(private$..className, private$..name, 'moved to ',
+                                 parent$getClassName(), parent$getName())
+        self$logIt()
+
+        # Assign its name in the global environment
+        assign(private$..name, self, envir = .GlobalEnv)
+
+        invisible(self)
+      }
+    },
 
     #-------------------------------------------------------------------------#
     #                            IO Methods                                   #
     #-------------------------------------------------------------------------#
     read = function(io = NULL) {
+
+      private$..methodName <- 'read'
 
       if (is.null(io)) {
         io <- IOText$new()
@@ -131,6 +184,8 @@ DocumentText <- R6::R6Class(
     },
 
     write = function(io = NULL) {
+
+      private$..methodName <- 'write'
 
       if (is.null(io)) {
         io <- IOText$new()
@@ -172,12 +227,12 @@ DocumentText <- R6::R6Class(
 
       o <- list(
         className	 =  private$..className ,
-        docType	 = 	  private$..docType ,
         name	 = 	    private$..name ,
         fileName	 =  private$..fileName ,
         desc	 = 	    private$..desc ,
-        parent	 = 	  private$..corpus ,
+        parent	 = 	  private$..parent ,
         path	 = 	    private$..path ,
+        content =     private$..content,
         state	 = 	    private$..state ,
         logs	 = 	    private$..logs ,
         size	 = 	    private$..size ,

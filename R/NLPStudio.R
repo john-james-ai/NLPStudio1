@@ -44,38 +44,11 @@ NLPStudio <- R6::R6Class(
           ..name = character(),
           ..desc = character(),
           ..path = character(),
-          ..dirs = list(),
-          ..korporaPath = character(),
           ..labs = list(),
-          ..archives = list(),
-          ..currentLab = NULL,
           ..logs = character(),
           ..state = character(),
           ..created = "None",
           ..modified = "None"
-        ),
-
-        active = list(
-
-          currentLab = function(value) {
-            if (missing(value)) {
-              private$..currentLab
-            } else {
-              name <- value$getName()
-              if (!is.null(private$..labs[[name]])) {
-                private$..currentLab <- value
-                private$..modified <- Sys.time()
-                private$..state <-
-                  paste0("Current lab changed to ", name, ". ")
-                self$logIt()
-              } else {
-                private$..state <-
-                  paste0("Unable to change current lab; ", name, ", does not exist.")
-                self$logIt(level = 'Error')
-                stop()
-              }
-            }
-          }
         ),
 
         public = list(
@@ -93,16 +66,11 @@ NLPStudio <- R6::R6Class(
             private$..modified <- Sys.time()
             private$..created <- Sys.time()
 
-            # Create Directories
+            # Create NLPStudio home directory
             if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
-            constants <- Constants$new()
-            private$..dirs  <- constants$getStudioPaths()
-            lapply(private$..dirs, function(dir) {
-              if (!dir.exists(dir))  dir.create(dir, recursive = TRUE)
-            })
 
             # # Create logger and initialization log entry
-            private$..logs <- LogR$new(file.path(private$..dirs$logs))
+            private$..logs <- LogR$new(file.path(private$..path, 'logs'))
             private$..state <- paste0("Initialized NLPStudio.")
             self$logIt()
 
@@ -117,7 +85,7 @@ NLPStudio <- R6::R6Class(
 
           getName = function() private$..name,
           getPath = function() private$..path,
-          getDirs = function() private$..dirs,
+          getClassName = function() private$..className,
 
           #-------------------------------------------------------------------------#
           #                           Composite Methods                             #
@@ -219,7 +187,8 @@ NLPStudio <- R6::R6Class(
               desc = private$..desc,
               path = private$..path,
               labs = private$..labs,
-              log = private$..log,
+              logs = private$..logs,
+              state = private$..state,
               created = private$..created,
               modified = private$..modified
             )

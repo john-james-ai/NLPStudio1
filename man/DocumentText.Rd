@@ -48,10 +48,7 @@ processing, and transforming text documents.
   \item{\code{getFileName()}}{Method for obtaining the document file name.}
   \item{\code{getPath()}}{Method for obtaining the document path.}
   \item{\code{readDocument(io)}}{Method for initiating the read operation for a document.}
-  \item{\code{writeDocument(io)}}{Method for initiating the write operation for a document.}#'
-  \item{\code{repairDocument(repairs)}}{Method for repairing a document.}
-  \item{\code{normalizeDocument(norms)}}{Method for normalizing text in a document.}
-  \item{\code{sanitizeDocument(profanity)}}{Method for removing profanity from a text document.}
+  \item{\code{writeDocument(io)}}{Method for initiating the write operation for a document.}
  }
 }
 
