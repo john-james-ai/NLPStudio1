@@ -3,14 +3,13 @@ testNLPStudio <- function() {
   init <- function() {
 
     devtools::load_all()
-    c <- Constants$new()
-    dirs <- c$getStudioPaths()
-    lapply(dirs, function(d) {base::unlink(d, recursive = TRUE)})
+    base::unlink('./NLPStudio', recursive = TRUE)
+    rm(list = ls(), envir = .GlobalEnv)
+    source('./test/testFunctions/LogTest.R')
 
     # Initialize logger and NLPStudio objects
-    rm("nlpStudio", envir = .GlobalEnv)
     nlpStudio <- NLPStudio$new()$getInstance()
-    nlpStudioTests <- LogTest$new()
+    nlpStudioTests <<- LogTest$new()
 
     # Clean up
     if (exists("blue", envir = .GlobalEnv))  rm("blue", envir = .GlobalEnv)

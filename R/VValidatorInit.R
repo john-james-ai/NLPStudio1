@@ -12,7 +12,7 @@
 #'   \item{\code{nlpStudio(object)}}{Method for validating the instantiation of the NLPStudio object}
 #'   \item{\code{lab(object)}}{Method for validating the instantiation of the Lab object}
 #'   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
-#'   \item{\code{documentText(object)}}{Method for validating the instantiation of the DocumentText object.}
+#'   \item{\code{documentText(object)}}{Method for validating the instantiation of the Document object.}
 #'   \item{\code{documentCsv(object)}}{Method for validating the instantiation of the DocumentCsv object.}
 #'   \item{\code{documentRdata(object)}}{Method for validating the instantiation of the DocumentRdata object.}
 #'   \item{\code{documentXlsx(object)}}{Method for validating the instantiation of the DocumentXlsx object.}
@@ -183,10 +183,6 @@ VValidatorInit <- R6::R6Class(
     corpusDirector = function(object) {
       builder <- object$getBuilder()
       return(private$validateClass(object, builder, className = "CorpusBuilder"))
-    },
-
-    set = function(object) {
-      return(private$validateName(object))
     },
 
     documentText = function(object) {

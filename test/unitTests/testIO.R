@@ -11,7 +11,7 @@ testIO <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Create document
-    news <- DocumentText$new("./NLPStudio/corpora/sfc/data/raw/en_US.news.txt", desc = 'News')
+    news <- Document$new("./NLPStudio/corpora/sfc/data/raw/en_US.news.txt", desc = 'News')
     d <- news$exposeObject()
     stopifnot(d$name == "en_US.news.txt")
 

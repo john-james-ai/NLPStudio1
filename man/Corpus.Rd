@@ -13,28 +13,28 @@ Corpus
 
 \item{desc}{A chararacter string containing the description of the Corpus.}
 
-\item{set}{An object of the Set class.}
+\item{document}{An object of one of the Document sub-classes.}
 
 \item{visitor}{An object of one of the visitor classes.}
 }
 \description{
-\code{Corpus} Class that defines a corpus or collection of data sets
+\code{Corpus} Class that defines a corpus or collection of documents
 }
 \details{
-Class defines the Corpus object as a collection of data sets or Set objects.
+Class contains a collection of text documents along with document
+transformations such as NGrams, and POS tagged documents.
 }
 \section{Corpus Core Methods}{
 
  \describe{
   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Corpus Class}
-  \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Corpus description variable.}
-  \item{\code{parent}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
+  \item{\code{desc}}{A getter/corpuster method allowing clients to retrieve and corpus the Corpus description variable.}
+  \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Lab object to which the Corpus object belongs.}
   \item{\code{getName()}}{Returns the name of the Corpus object.}
   \item{\code{getPath()}}{Returns the path of the Corpus object.}
-  \item{\code{move(parent)}}{Moves the Corpus object to the new parent.}
-  \item{\code{getSets()}}{Returns list of set objects.}
-  \item{\code{addSet(set)}}{Adds a Set object to the Corpus object.}
-  \item{\code{removeSet(set)}}{Removes a Set object from the Corpus object.}
+  \item{\code{getDocuments()}}{Returns the list of Document class objects.}
+  \item{\code{addDocument(document)}}{Adds a Document object to the corpus.}
+  \item{\code{removeDocument(document)}}{Removes a Document object from the corpus.}
   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
  }

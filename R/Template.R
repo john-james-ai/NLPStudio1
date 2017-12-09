@@ -106,7 +106,7 @@ Template <- R6::R6Class(
     initialize = function() {
 
       # Create logger and initialization log entry
-      private$..log <- LogR$new(private$..path)
+      private$..log <- LogR$new()
       private$..log$entry$owner <- private$..name
       private$..log$entry$className <- "Lab"
       private$..log$entry$methodName <- "initialize"

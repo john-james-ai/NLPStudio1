@@ -82,27 +82,15 @@ Validator <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                           Corpus Builder                                #
+    #                           Corpus Source                                 #
     #-------------------------------------------------------------------------#
-    getData = function(object) {
-      visitor <- VValidatorBuilder$new()$getData(object)
+    webSource = function(object, source) {
+      visitor <- VValidatorCorpusWebSource$new(object, source)
       object$accept(visitor)
     },
-
-    documents = function(object) {
-      visitor <- VValidatorBuilder$new()$documents(object)
-      object$accept(visitor)
-    },
-
-    nGram = function(object) {
-      visitor <- VValidatorBuilder$new()$nGram(object)
-      object$accept(visitor)
-    },
-
-    posTag = function(object) {
-      visitor <- VValidatorBuilder$new()$posTag(object)
+    inSource = function(object, source) {
+      visitor <- VValidatorCorpusInSource$new(object, source)
       object$accept(visitor)
     }
-
   )
 )

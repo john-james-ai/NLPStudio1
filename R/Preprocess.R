@@ -16,7 +16,7 @@
 #'   \item{\code{extract()}}{Method for extracting words or sentences including select words from the text.}
 #'  }
 #'
-#' @param document Object of the DocumentText class.
+#' @param document Object of the Document class.
 #' @param malContent Data frame of words to be extracted from the text
 #' @param normalizations Data frame of key value pairs of patterns and replacements
 #'
@@ -46,7 +46,7 @@ Preprocess <- R6::R6Class(
     initialize = function() {
       private$..methodName <- 'initialize'
       private$..state <- "Object of the Preprocess class initialized"
-      private$..logs <- LogR$new(NLPStudio$new()$getInstance()$getDirs()$logs)
+      private$..logs <- LogR$new()
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
       invisible(self)

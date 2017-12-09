@@ -110,16 +110,10 @@ VValidatorRemoveChild <- R6::R6Class(
     },
 
     corpus = function(object) {
-      classes <- c("Set")
-      return(private$validate(classes, object))
-    },
-
-    set = function(object) {
-      classes <- c("DocumentText", "DocumentNGrams",
+      classes <- c("Document", "DocumentNGrams",
                    "DocumentPOS")
       return(private$validate(classes, object))
     },
-
 
     documentText = function(object) {
       return(private$validateDocument(object))

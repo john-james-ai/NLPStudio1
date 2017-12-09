@@ -1,4 +1,4 @@
-testDocumentText <- function() {
+testDocument <- function() {
 
   init <- function() {
     if (exists("en_US.twitter.txt", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("en_US.twitter.txt", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
@@ -8,13 +8,13 @@ testDocumentText <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: DocumentText: Instantiate and Read Document"
+    test <- "test0: Document: Instantiate and Read Document"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Instantiate
-    blogs <- DocumentText$new('./test/testData/hc/en_US.blogs.txt', desc = 'Blogs Register')
+    blogs <- Document$new('./test/testData/hc/en_US.blogs.txt', desc = 'Blogs Register')
     d <- blogs$exposeObject()
-    stopifnot(d$className == 'DocumentText')
+    stopifnot(d$className == 'Document')
     stopifnot(d$name == 'en_US.blogs.txt')
     stopifnot(d$fileName == 'en_US.blogs.txt')
     stopifnot(d$desc == 'Blogs Register')
@@ -22,18 +22,18 @@ testDocumentText <- function() {
     stopifnot(length(d$content) > 1000)
 
     # Logit
-    DocumentTextTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))
+    DocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(blogs)
   }
 
   test1 <- function(blogs) {
-    test <- "test1: DocumentText: Move document"
+    test <- "test1: Document: Move document"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Logit
-    DocumentTextTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))
+    DocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(blogs)
@@ -43,7 +43,7 @@ init()
 blogs <- test0()
 blogs <- test1(blogs)
 }
-className <- "DocumentText"
-DocumentTextTest <- LogTest$new()
+className <- "Document"
+DocumentTest <- LogTest$new()
 #source('./test/unitTests/testCorpusBuilder.R')
-testDocumentText()
+testDocument()

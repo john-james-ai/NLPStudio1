@@ -3,12 +3,12 @@
 #==============================================================================#
 #' Lab
 #'
-#' \code{Lab} Class that contains document corpora and the environment in which NLP happens.
+#' \code{Lab} Class in which models are created, executed and evaluated.
 #'
 #' The environment in which NLP happens. There are two groups of methods. The
-#' first group allows clients to instantiate, retrieve, print, enter, leave,
-#' and archive a Lab object.  The second set of methods allow clients to retrieve
-#' the contained documents, add a document, and remove a document.
+#' core methods allow clients to instantiate labs and to obtain their basic
+#' information.  Aggregate methods enable clients to add, retrieve and remove
+#' models from the lab.
 #'
 #' \strong{Lab Core Methods:}
 #'  \describe{
@@ -22,9 +22,9 @@
 #'
 #' \strong{Lab Aggregate Methods:}
 #'  \describe{
-#'   \item{\code{getCorpora()}}{Retrieves the list of corpora for the lab.}
-#'   \item{\code{addCorpus(document)}}{Adds a corpus to the Lab object.}
-#'   \item{\code{removeCorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
+#'   \item{\code{getModels()}}{Retrieves the list of models for the lab.}
+#'   \item{\code{addModel(model)}}{Adds a model to the Lab object.}
+#'   \item{\code{removeModel(model)}}{Removes a model from the Lab object. The model is archived in the NLPStudio archives.}
 #' }
 #'
 #'
@@ -35,7 +35,7 @@
 #'
 #' @param name A character string containing the name of the Lab object. This variable is used in the instantiation and remove methods.
 #' @param desc A chararacter string containing the description of the Lab
-#' @param corpus An object of the Corpus class
+#' @param model An object of the Model class
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -45,34 +45,10 @@ Lab <- R6::R6Class(
   classname = "Lab",
   lock_objects = FALSE,
   lock_class = FALSE,
+  inherit = Entity,
+
   private = list(
-    ..className = 'Lab',
-    ..methodName = character(),
-    ..name = character(),
-    ..desc = character(),
-    ..path = character(),
-    ..parent = character(),
-    ..corpora = list(),
-    ..state = character(),
-    ..logs = character(),
-    ..modified = "None",
-    ..created = "None"
-  ),
-
-  active = list(
-
-    desc = function(value) {
-      if (missing(value)) {
-        private$..desc
-      } else {
-        private$..desc <- value
-        private$..modified <- Sys.time()
-        private$..state <- paste(private$..name,
-                                     "Lab description changed at",
-                                     Sys.time())
-        self$logIt()
-      }
-    }
+    ..models = list()
   ),
 
   public = list(
@@ -90,7 +66,7 @@ Lab <- R6::R6Class(
       private$..path <- file.path("./NLPStudio/labs", name)
       private$..parent <- NLPStudio$new()$getInstance()
       private$..state <- paste("Lab", name, "instantiated at", Sys.time())
-      private$..logs <- LogR$new(file.path(NLPStudio$new()$getInstance()$getPath(), 'logs'))
+      private$..logs <- LogR$new()
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
 
@@ -115,23 +91,19 @@ Lab <- R6::R6Class(
       invisible(self)
     },
 
-    getName = function() private$..name,
-    getPath = function() private$..path,
-    getClassName = function() private$..className,
-
     #-------------------------------------------------------------------------#
     #                         Lab Aggregate Methods                           #
     #-------------------------------------------------------------------------#
-    getCorpora = function() { private$..corpora },
+    getModels = function() { private$..models },
 
-    addCorpus = function(corpus) {
+    addModel = function(model) {
 
       # Update current method
-      private$..methodName <- 'addCorpus'
+      private$..methodName <- 'addModel'
 
       # Validation
       v <- Validator$new()
-      status <- v$addChild(self, corpus)
+      status <- v$addChild(self, model)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -139,23 +111,20 @@ Lab <- R6::R6Class(
       }
 
       # Get collection information
-      corpusName <- corpus$getName()
+      modelName <- model$getName()
 
-      # Add collection to lab's list of corpora
-      private$..corpora[[corpusName]] <- corpus
+      # Add collection to lab's list of models
+      private$..models[[modelName]] <- model
 
-      #TODO: Move corpora to lab directory
-      corpus$move(self)
-
-      # Set parent to document collection object
-      corpus$lab <- self
+      # Move models to lab directory
+      model$move(self)
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", corpusName, "added to Lab", private$..name, "at", Sys.time())
+        paste("Model", modelName, "added to Lab", private$..name, "at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
@@ -165,14 +134,14 @@ Lab <- R6::R6Class(
 
     },
 
-    removeCorpus = function(corpus) {
+    removeModel = function(model) {
 
       # Update current method
-      private$..methodName <- 'removeCorpus'
+      private$..methodName <- 'removeModel'
 
       # Validation
       v <- Validator$new()
-      status <- v$removeChild(self, corpus)
+      status <- v$removeChild(self, model)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -180,22 +149,20 @@ Lab <- R6::R6Class(
       }
 
       # Obtain collection information
-      corpusName <- corpus$getName()
+      modelName <- model$getName()
 
       # Remove collection from lab and update modified time
-      private$..corpora[[corpusName]] <- NULL
+      private$..models[[modelName]] <- NULL
 
-      # Change parent of removed object to null
-      corpus$lab <- NULL
-
-      #TODO: Move corpora to main corpora directory
+      # Move models to main models directory
+      model$move(NLPStudio$new()$getInstance())
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", corpusName, "removed from Lab", private$..name, "at", Sys.time())
+        paste("Model", modelName, "removed from Lab", private$..name, "at", Sys.time())
       self$logIt()
 
       invisible(self)
@@ -211,21 +178,6 @@ Lab <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                            Log Method                                   #
-    #-------------------------------------------------------------------------#
-    logIt = function(level = 'Info', fieldName = NA) {
-
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- private$..methodName
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
-    },
-
-    #-------------------------------------------------------------------------#
     #                           Test Methods                                  #
     #-------------------------------------------------------------------------#
     exposeObject = function() {
@@ -236,9 +188,8 @@ Lab <- R6::R6Class(
         name = private$..name,
         desc = private$..desc,
         path = private$..path,
-        dirs = private$..dirs,
         parent = private$..parent,
-        corpora = private$..corpora,
+        models = private$..models,
         logs <- private$..logs,
         state = private$..state,
         modified = private$..modified,

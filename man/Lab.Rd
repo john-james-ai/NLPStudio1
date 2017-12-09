@@ -13,18 +13,18 @@ Lab
 
 \item{desc}{A chararacter string containing the description of the Lab}
 
-\item{corpus}{An object of the Corpus class}
+\item{model}{An object of the Model class}
 
 \item{visitor}{An object of one of the visitor classes.}
 }
 \description{
-\code{Lab} Class that contains document corpora and the environment in which NLP happens.
+\code{Lab} Class in which models are created, executed and evaluated.
 }
 \details{
 The environment in which NLP happens. There are two groups of methods. The
-first group allows clients to instantiate, retrieve, print, enter, leave,
-and archive a Lab object.  The second set of methods allow clients to retrieve
-the contained documents, add a document, and remove a document.
+core methods allow clients to instantiate labs and to obtain their basic
+information.  Aggregate methods enable clients to add, retrieve and remove
+models from the lab.
 
 \strong{Lab Core Methods:}
  \describe{
@@ -38,9 +38,9 @@ the contained documents, add a document, and remove a document.
 
 \strong{Lab Aggregate Methods:}
  \describe{
-  \item{\code{getCorpora()}}{Retrieves the list of corpora for the lab.}
-  \item{\code{addCorpus(document)}}{Adds a corpus to the Lab object.}
-  \item{\code{removeCorpus(document)}}{Removes a corpus from the Lab object. The corpus is archived in the NLPStudio archives.}
+  \item{\code{getModels()}}{Retrieves the list of models for the lab.}
+  \item{\code{addModel(model)}}{Adds a model to the Lab object.}
+  \item{\code{removeModel(model)}}{Removes a model from the Lab object. The model is archived in the NLPStudio archives.}
 }
 
 \strong{Lab Visitor Methods:}

@@ -33,6 +33,7 @@ ValidatorNoSpaces <- R6::R6Class(
     ..name = 'ValidatorNoSpaces'
   ),
   public = list(
+    initialize = function() invisible(self),
     validate = function(value, expect = NULL) {
 
       if (exists('value')) {

@@ -28,7 +28,7 @@ ValidatorPath <- R6::R6Class(
     ..name = 'ValidatorPath'
   ),
   public = list(
-
+    initialize = function() invisible(self),
     validate = function(value, expect = NULL) {
 
       if (length(value) == 0) {

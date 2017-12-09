@@ -34,6 +34,7 @@ ValidatorDate <- R6::R6Class(
     ..name = 'ValidatorDate'
   ),
   public = list(
+    initialize = function() invisible(self),
     validate = function(value, expect = NULL) {
 
       date <- parsedate::parse_date(value, approx = TRUE)

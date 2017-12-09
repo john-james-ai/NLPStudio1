@@ -1,9 +1,9 @@
 testLab <- function(nlpStudio) {
   init <- function(nlpStudio) {
-
     # Clean up
     if (exists("predictifyR", envir = .GlobalEnv)) rm(list = ls(envir = .GlobalEnv)[grep("predictifyR", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (!is.null(nlpStudio$getLabs()[['predictifyR']])) nlpStudio$removeLab(predictifyR)
+    labTests <<- LogTest$new()
     return(nlpStudio)
   }
 

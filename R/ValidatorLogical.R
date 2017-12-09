@@ -32,6 +32,7 @@ ValidatorLogical <- R6::R6Class(
     ..name = 'ValidatorLogical'
   ),
   public = list(
+    initialize = function() invisible(self),
     validate = function(value, expect = NULL) {
         if (is.logical(value) | value == "TRUE" | value == "FALSE") {
           return(TRUE)

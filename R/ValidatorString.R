@@ -32,6 +32,7 @@ ValidatorString <- R6::R6Class(
     ..name = 'ValidatorString'
   ),
   public = list(
+    initialize = function() invisible(self),
     validate = function(value, expect = NULL) {
 
       if (exists('value') & length(value) != 0) {

@@ -70,7 +70,7 @@ NLPStudio <- R6::R6Class(
             if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
 
             # # Create logger and initialization log entry
-            private$..logs <- LogR$new(file.path(private$..path, 'logs'))
+            private$..logs <- LogR$new()
             private$..state <- paste0("Initialized NLPStudio.")
             self$logIt()
 
@@ -83,9 +83,12 @@ NLPStudio <- R6::R6Class(
             invisible(self)
           },
 
+          #-------------------------------------------------------------------------#
+          #                             Basic Getters                               #
+          #-------------------------------------------------------------------------#
           getName = function() private$..name,
-          getPath = function() private$..path,
           getClassName = function() private$..className,
+          getPath = function() private$..path,
 
           #-------------------------------------------------------------------------#
           #                           Composite Methods                             #
@@ -155,13 +158,6 @@ NLPStudio <- R6::R6Class(
           },
 
           #-------------------------------------------------------------------------#
-          #                           Visitor Method                                #
-          #-------------------------------------------------------------------------#
-          accept = function(visitor)  {
-            visitor$nlpStudio(self)
-          },
-
-          #-------------------------------------------------------------------------#
           #                            Log Method                                   #
           #-------------------------------------------------------------------------#
           logIt = function(level = 'Info', fieldName = NA) {
@@ -174,6 +170,13 @@ NLPStudio <- R6::R6Class(
             private$..logs$entry$fieldName <- fieldName
             private$..logs$created <- Sys.time()
             private$..logs$writeLog()
+          },
+
+          #-------------------------------------------------------------------------#
+          #                           Visitor Method                                #
+          #-------------------------------------------------------------------------#
+          accept = function(visitor)  {
+            visitor$nlpStudio(self)
           },
 
           #-------------------------------------------------------------------------#

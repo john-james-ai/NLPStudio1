@@ -9,7 +9,7 @@
 Preprocess
 }
 \arguments{
-\item{document}{Object of the DocumentText class.}
+\item{document}{Object of the Document class.}
 
 \item{malContent}{Data frame of words to be extracted from the text}
 
@@ -33,8 +33,7 @@ normalization, sanitization, and tokenization of text.
 }
 
 \seealso{
-Other Document classes: \code{\link{Document0}},
-  \code{\link{DocumentText}}
+Other Document classes: \code{\link{Document}}
 }
 \author{
 John James, \email{jjames@datasciencesalon.org}

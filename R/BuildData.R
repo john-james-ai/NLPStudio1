@@ -95,7 +95,7 @@ BuildData <- R6::R6Class(
       private$..state <- "Instantiated the Corpus Builder."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
-      private$..logs <- LogR$new(NLPStudio$new()$getInstance()$getDirs()$logs)
+      private$..logs <- LogR$new()
 
       # Log it
       self$logIt()
@@ -168,7 +168,7 @@ BuildData <- R6::R6Class(
       files <- list.files(path = file.path(private$..path, private$..dirs$raw),
                           full.names = TRUE)
       documents <- lapply(files, function(f) {
-        DocumentText$new(f)
+        Document$new(f)
       })
       private$..rawDocs <- documents
     },

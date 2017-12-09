@@ -3,29 +3,28 @@
 #==============================================================================#
 #' Corpus
 #'
-#' \code{Corpus} Class that defines a corpus or collection of data sets
+#' \code{Corpus} Class that defines a corpus or collection of documents
 #'
-#' Class defines the Corpus object as a collection of data sets or Set objects.
+#' Class contains a collection of text documents along with document
+#' transformations such as NGrams, and POS tagged documents.
 #'
 #' @section Corpus Core Methods:
 #'  \describe{
 #'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Corpus Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Corpus description variable.}
-#'   \item{\code{parent}}{A getter/setter method allowing clients to retrieve and set the Lab object to which the Corpus object belongs.}
+#'   \item{\code{desc}}{A getter/corpuster method allowing clients to retrieve and corpus the Corpus description variable.}
+#'   \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Lab object to which the Corpus object belongs.}
 #'   \item{\code{getName()}}{Returns the name of the Corpus object.}
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
-#'   \item{\code{move(parent)}}{Moves the Corpus object to the new parent.}
-#'   \item{\code{getSets()}}{Returns list of set objects.}
-#'   \item{\code{addSet(set)}}{Adds a Set object to the Corpus object.}
-#'   \item{\code{removeSet(set)}}{Removes a Set object from the Corpus object.}
+#'   \item{\code{getDocuments()}}{Returns the list of Document class objects.}
+#'   \item{\code{addDocument(document)}}{Adds a Document object to the corpus.}
+#'   \item{\code{removeDocument(document)}}{Removes a Document object from the corpus.}
 #'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#'
 #' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
 #' @param desc A chararacter string containing the description of the Corpus.
-#' @param set An object of the Set class.
+#' @param document An object of one of the Document sub-classes.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -37,33 +36,14 @@ Corpus <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
-    ..className = 'Corpus',
-    ..methodName = character(),
-    ..name = character(),
-    ..desc = character(),
-    ..parent = character(),
-    ..path = character(),
-    ..sets = character(),
-    ..state = character(),
-    ..logs = character(),
-    ..modified = character(),
-    ..created = character()
-  ),
-
-  active = list(
-
-    desc = function(value) {
-      if (missing(value)) {
-        private$..desc
-      } else {
-        private$..desc <- value
-        private$..modified <- Sys.time()
-        private$..state <- paste(private$..name,
-                                 "corpus description changed at",
-                                 Sys.time())
-        self$logIt()
-      }
-    }
+    ..documents = list(),
+    ..ioIn = character(),
+    ..ioOut = character(),
+    ..extDir = 'external',
+    ..rawDir = 'raw',
+    ..refinedDir = 'refined',
+    ..reshapedDir = 'reshaped',
+    ..cvDir = 'cv'
   ),
 
   public = list(
@@ -71,7 +51,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, desc = NULL) {
+    initialize = function(name, ioIn, ioOut, desc = NULL) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
@@ -79,13 +59,15 @@ Corpus <- R6::R6Class(
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
       private$..parent <- NLPStudio$new()$getInstance()
-      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath, 'corpora', private$..name)
+      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'data', private$..name)
+      private$..ioIn <- ioIn
+      private$..ioOut <- ioOut
       private$..state <- "Corpus instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
-      private$..logs <- LogR$new(NLPStudio$new()$getInstance()$getDirs()$logs)
+      private$..logs <- LogR$new()
 
-      # Validate Lab
+      # Validate Corpus
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -95,7 +77,7 @@ Corpus <- R6::R6Class(
       }
 
       # Create directory
-      dir.create(private$..path, recursive = TRUE)
+      dir.create(private$..path, showWarnings = FALSE,  recursive = TRUE)
 
       # Create log entry
       self$logIt()
@@ -109,16 +91,16 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Composite Methods                               #
     #-------------------------------------------------------------------------#
-    getSets = function() private$..sets,
+    getDocuments = function() private$..documents,
 
-    addSet = function(set) {
+    addDocument = function(document) {
 
       # Update current method
-      private$..methodName <- 'addSet'
+      private$..methodName <- 'addDocument'
 
       # Validation
       v <- Validator$new()
-      status <- v$addChild(self, set)
+      status <- v$addChild(self, document)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -126,31 +108,20 @@ Corpus <- R6::R6Class(
       }
 
       # Get collection information
-      setName <- set$getName()
+      documentName <- document$getName()
 
-      # Add set to list of sets
-      private$..sets[[setName]] <- set
+      # Add document to list of documents
+      private$..documents[[documentName]] <- document
 
-      # Move files to lab
-      from <- set$getPath()
-      to <- file.path(private$..path, setName)
-      f <- FileManager$new()
-      status <- f$moveFile(from, to)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
-      # Set parent to document collection object
-      set$parent <- self
+      # Move document to Corpus
+      document$move(self)
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Set", setName, "added to corpus", private$..name, "at", Sys.time())
+        paste("Document", documentName, "added to corpus,", private$..name, "at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
@@ -159,14 +130,14 @@ Corpus <- R6::R6Class(
       invisible(self)
     },
 
-    removeSet = function(set) {
+    removeDocument = function(document) {
 
       # Update current method
-      private$..methodName <- 'removeSet'
+      private$..methodName <- 'removeDocument'
 
       # Validation
       v <- Validator$new()
-      status <- v$removeChild(self, set)
+      status <- v$removeChild(self, document)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
         self$logIt(level = 'Error')
@@ -174,41 +145,29 @@ Corpus <- R6::R6Class(
       }
 
       # Obtain collection information
-      setName <- set$getName()
+      documentName <- document$getName()
 
       # Remove collection from lab and update modified time
-      private$..corpora[[setName]] <- NULL
+      private$..documents[[documentName]] <- NULL
 
-      # Change parent of removed object to null
-      set$parent <- NULL
-
-      # Move files back to set directory
-      from <- file.path(private$..path, setName)
-      to <- file.path(NLPStudio$new()$getInstance()$getPath(), 'sets')
-      f <- FileManager$new()
-      status <- f$moveFile(from, to)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
+      # Move document back to main document directory
+      document$move(NLPStudio$new()$getInstance())
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Set", setName, "removed from ", private$..name, "at", Sys.time())
+        paste("Document", documentName, "removed from ", private$..name, "at", Sys.time())
       self$logIt()
 
       invisible(self)
-
     },
 
     move = function(parent) {
 
       v <- Validator$new()
-      status <- v$setParent(self, parent)
+      status <- v$corpusParent(self, parent)
 
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
@@ -217,9 +176,9 @@ Corpus <- R6::R6Class(
       } else {
         private$..parent <- parent
 
-        # Move Sets
-        lapply(private$..sets, function(s) {
-          s$move(self)
+        # Move Documents
+        lapply(private$..documents, function(d) {
+          d$move(self)
         })
 
         private$..path <- file.path(parent$getPath(),
@@ -237,25 +196,140 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
+    #                        Source Command Methods                           #
+    #-------------------------------------------------------------------------#
+    webSource = function(corpusSource, files, compressed = TRUE, format = 'zip') {
+
+      # Validation
+      private$..methodName <- 'webSource'
+      v <- Validator$new()
+      status <- v$webSource(self, corpusSource)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = "Error")
+        stop()
+      }
+
+      # Format download and unzip paths, and file name.
+      downloadPath <- file.path(private$..path, private$..extDir)
+      unZipPath <- file.path(private$..path, private$..rawDir)
+      fileName <- installr::file.name.from.url(corpusSource)
+      dir.create(downloadPath,  showWarnings = FALSE, recursive = TRUE)
+
+      if (length(list.files(file.path(private$..path, private$..extDir))) < 1) {
+
+        # Download data
+        f <- FileManager$new()
+        status <- f$download(corpusSource, downloadPath)
+        if (status[['code']] == FALSE) {
+          private$..state <- status[['msg']]
+          self$logIt(level = 'Error')
+          stop()
+        }
+      }
+
+      # Unzip data
+      f <- FileManager$new()
+      if (compressed == TRUE) {
+        if (format == 'zip') {
+          oldw <- getOption("warn")
+          options(warn = -1)
+          status[['data']] <- f$unZipFile(zipFilePath = file.path(downloadPath,
+                                                                  fileName),
+                                          exDir = file.path(unZipPath),
+                                          files = files, list = FALSE,
+                                          overwrite = FALSE)
+          options(warn = oldw)
+
+          if (status[['code']] == FALSE) {
+            private$..state <- status[['msg']]
+            self$logIt(level = 'Error')
+            stop()
+          }
+        } else {
+          private$..state <- paste("Only 'zip' compressed formats are supported. ",
+                                   "See ?", private$..className, " for further ",
+                                   "assistance. ")
+          self$logIt(level = 'Error')
+          stop()
+        }
+      } else {
+        private$..state <- paste("Only compressed web sources are supported. ",
+                                 "See ?", private$..className, " for further ",
+                                 "assistance. ")
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      # Create documents
+      files <- list.files(path = unZipPath, full.names = TRUE)
+      documents <- lapply(files, function(f) {
+        doc <- Document$new(f, ioOut)
+        doc$read()
+      })
+
+      # Add documents
+      lapply(documents, function(d) {
+        self$addDocument(d)
+        d$move(self)
+      })
+
+      # LogIt
+      private$..state <- paste("Sourced Corpus object", private$..name, "from the web.")
+      private$..modified <- Sys.time()
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    inSource = function(corpusSource) {
+
+      # Validation
+      private$..methodName <- 'inSource'
+      v <- Validator$new()
+      status <- v$inSource(self, corpusSource)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = "Error")
+        stop()
+      }
+
+      # Create documents
+      path <- dirname(private$..path)
+      documents <- corpusSource$getDocuments()
+      documents <- lapply(documents, function(d) {
+        fileName <- d$getFileName()
+        filePath <- file.path(path, fileName)
+        doc <- Document$new(filePath, ioOut)
+        doc$cloneContent(d)
+      })
+
+      # Add documents
+      lapply(documents, function(d) {
+        self$addDocument(d)
+        d$move(self)
+      })
+
+      # LogIt
+      private$..state <- paste0("Sourced Corpus object ", private$..name,
+                               " from ", corpusSource$getName(), ". ")
+      private$..modified <- Sys.time()
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       visitor$corpus(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                            Log Method                                   #
-    #-------------------------------------------------------------------------#
-    logIt = function(level = 'Info', fieldName = NA) {
-
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- private$..methodName
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
     },
 
     #-------------------------------------------------------------------------#
@@ -272,7 +346,7 @@ Corpus <- R6::R6Class(
         desc = private$..desc,
         path = private$..path,
         parent = private$..parent,
-        sets = private$..sets,
+        documents = private$..documents,
         logs = private$..logs,
         state = private$..state,
         modified = private$..modified,

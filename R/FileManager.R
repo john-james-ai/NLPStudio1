@@ -147,7 +147,7 @@ FileManager <- R6::R6Class(
       }
       todir <- dirname(to)
       if (!isTRUE(file.info(todir)$isdir))  dir.create(todir, recursive=TRUE)
-      file.copy(from = from,  to = to)
+      file.copy(from = from,  to = to, overwrite = TRUE)
       status[['msg']] <-
         paste0("Successfully copied file ", from, "to ", to )
       return(status)

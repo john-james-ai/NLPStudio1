@@ -33,7 +33,8 @@ ValidatorExists <- R6::R6Class(
     ..name = 'ValidatorExists'
   ),
   public = list(
-    validate = function( value, expect = NULL) {
+    initialize = function() invisible(self),
+    validate = function( value, expect = TRUE) {
       if (length(value) != 0 & !is.null(value)) {
         if (exists(value) & (expect == TRUE | expect == "TRUE")) {
           return(TRUE)
