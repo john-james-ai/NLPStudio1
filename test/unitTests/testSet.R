@@ -55,7 +55,7 @@ testSet <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Instantiate new document
-    news <- DocumentText$new("./NLPStudio/documents/text/en_US.news.txt", desc = 'News Register')
+    news <- Document$new("./NLPStudio/documents/text/en_US.news.txt", desc = 'News Register')
 
     # Add document to training set
     train <- train$addDocument(news)
@@ -87,7 +87,7 @@ testSet <- function() {
 
     # Verify Document
     d <- news$exposeObject()
-    stopifnot(d$className == 'DocumentText')
+    stopifnot(d$className == 'Document')
     stopifnot(d$name == 'en_US.news.txt')
     stopifnot(d$desc == 'News Register')
     stopifnot(d$parent$getName() == 'train')

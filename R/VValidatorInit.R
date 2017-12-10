@@ -12,7 +12,7 @@
 #'   \item{\code{nlpStudio(object)}}{Method for validating the instantiation of the NLPStudio object}
 #'   \item{\code{lab(object)}}{Method for validating the instantiation of the Lab object}
 #'   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
-#'   \item{\code{documentText(object)}}{Method for validating the instantiation of the Document object.}
+#'   \item{\code{document(object)}}{Method for validating the instantiation of the Document object.}
 #'   \item{\code{documentCsv(object)}}{Method for validating the instantiation of the DocumentCsv object.}
 #'   \item{\code{documentRdata(object)}}{Method for validating the instantiation of the DocumentRdata object.}
 #'   \item{\code{documentXlsx(object)}}{Method for validating the instantiation of the DocumentXlsx object.}
@@ -110,13 +110,14 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-    validateClass = function(object, builder, className) {
+    validateBuilder = function(object, builder, className) {
 
       status <- list()
       status[['code']] <- TRUE
 
       name <- object$getName()
 
+      v <- ValidatorClass$new()
       if (v$validate(value = builder, expect = className) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
@@ -144,9 +145,10 @@ VValidatorInit <- R6::R6Class(
         return(status)
       }
 
-      if (!(tools::file_ext(fileName) == ext)) {
+      if (!(tools::file_ext(fileName) %in% ext)) {
         status[['code']] <- FALSE
-        status[['msg']] <- paste0("File type must be ", ext,
+        status[['msg']] <- paste0("File type must be in ",
+                                  paste0("(",paste(ext,collapse = ','), "). "),
                                   "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
@@ -156,6 +158,24 @@ VValidatorInit <- R6::R6Class(
         status[['code']] <- FALSE
         status[['msg']] <- paste0("File does not exist. ",
                                   "See ?", class(object)[1], " for further assistance.")
+        return(status)
+      }
+      return(status)
+    },
+
+    validateIO = function(object) {
+
+      status <- list()
+      status[['code']] <- TRUE
+
+      v <- ValidatorIO$new()
+      if (v$validate(value = object) == FALSE) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot create ", class(object)[1],
+                                  " object, ", object$getName(), ". The io ",
+                                  "parameter does not match the file type. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
         return(status)
       }
       return(status)
@@ -182,14 +202,18 @@ VValidatorInit <- R6::R6Class(
 
     corpusDirector = function(object) {
       builder <- object$getBuilder()
-      return(private$validateClass(object, builder, className = "CorpusBuilder"))
+      className <- c("CorpusBuilderCv","CorpusBuilderKFoldCv")
+      return(private$validateBuilder(object, builder, className = className))
     },
 
-    documentText = function(object) {
+    document = function(object) {
 
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      return(private$validateFileName(object, "txt"))
+      ext <- c("txt", "Rdata", "RData", "Rds")
+      if (private$validateFileName(object, ext)[['code']] == FALSE)
+        return(private$validateFileName(object, ext))
+      return(private$validateIO(object))
     },
 
     documentCsv = function(object) {

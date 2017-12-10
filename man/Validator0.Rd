@@ -28,7 +28,7 @@ Abstract class for the Validator classes
 Other Validation Classes: \code{\link{VValidatorCorpusBuilder}},
   \code{\link{ValidatorClass}},
   \code{\link{ValidatorDate}},
-  \code{\link{ValidatorExists}},
+  \code{\link{ValidatorExists}}, \code{\link{ValidatorIO}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNoSpaces}},
   \code{\link{ValidatorNotEmpty}},

@@ -52,7 +52,6 @@ construction process to be defined at runtime.
   \item{\code{buildCV()}}{Builds the cross validation sets.}
   \item{\code{buildParsed()}}{Builds the parsed data sets.}
   \item{\code{buildNormalized()}}{Builds the normalized data sets.}
-  \item{\code{buildFiltered()}}{Builds the filtered data sets.}
  }
 }
 

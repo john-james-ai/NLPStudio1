@@ -23,7 +23,7 @@ The VValidatorInit methods are as follows:
   \item{\code{nlpStudio(object)}}{Method for validating the instantiation of the NLPStudio object}
   \item{\code{lab(object)}}{Method for validating the instantiation of the Lab object}
   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
-  \item{\code{documentText(object)}}{Method for validating the instantiation of the Document object.}
+  \item{\code{document(object)}}{Method for validating the instantiation of the Document object.}
   \item{\code{documentCsv(object)}}{Method for validating the instantiation of the DocumentCsv object.}
   \item{\code{documentRdata(object)}}{Method for validating the instantiation of the DocumentRdata object.}
   \item{\code{documentXlsx(object)}}{Method for validating the instantiation of the DocumentXlsx object.}

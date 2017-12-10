@@ -50,7 +50,7 @@
 #'   \item{\code{cleanUp()}}{Removes extra white-space, stray hyphens an empty sentences.}
 #'  }
 #'
-#' @section Other method:
+#' @section Other methods:
 #'  \itemize{
 #'   \item{\code{accept(visitor)}}{Accepts a visitor object.}
 #'   \item{\code{logIt(level = 'Info')}}{Logs events relating to the document.}
@@ -60,8 +60,6 @@
 #' @param filePath Character string indicating the file path for a document
 #' @param parent Object of the Corpus or Set classes to which this document belongs
 #' @param io An object of one of the IO classes used for reading and writing.
-#' @param norms A list of key value pairs of strings to be replaced in the normalization step
-#' @param profanity Character vector of profane words to be normalized or extracted from the text
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -71,13 +69,7 @@ Document <- R6::R6Class(
   classname = "Document",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
-
-  private = list(
-    ..io = character(),
-    ..content = character(),
-    ..size = numeric()
-  ),
+  inherit = Document0,
 
   public = list(
 
@@ -96,6 +88,7 @@ Document <- R6::R6Class(
       private$..parent <- NULL
       private$..path <- filePath
       private$..io <- io
+      private$..content <- NULL
       private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
       private$..logs <- LogR$new()
       private$..size <- file.info(filePath)$size
@@ -121,110 +114,6 @@ Document <- R6::R6Class(
 
     },
 
-    getFileName = function() private$..fileName,
-    getContent = function() {
-      self$read()
-      private$..content
-    },
-
-    #-------------------------------------------------------------------------#
-    #                            IO Methods                                   #
-    #-------------------------------------------------------------------------#
-    cloneContent = function(document) {
-      private$..content <- document$getContent()
-    },
-
-    read = function() {
-
-      private$..methodName <- 'read'
-
-      status <- private$..io()$read(self)
-
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      } else {
-        private$..content <- status[['data']]
-      }
-
-      # LogIt
-      private$..state <- paste0("Read ", private$..fileName, ". ")
-      private$..accessed <- Sys.time()
-      self$logIt()
-
-      # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
-
-      invisible(self)
-
-    },
-
-    write = function() {
-
-      private$..methodName <- 'write'
-
-      status <- private$..io()$write(self)
-
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
-      # LogIt
-      private$..state <- paste0("Wrote ", private$..fileName, ". ")
-      private$..modified <- Sys.time()
-      self$logIt()
-
-      # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
-
-      invisible(self)
-    },
-
-
-    #-------------------------------------------------------------------------#
-    #                         Aggregate Methods                               #
-    #-------------------------------------------------------------------------#
-    move = function(parent) {
-
-      private$..methodName <- 'move'
-
-      v <- Validator$new()
-      status <- v$setParent(self, parent)
-
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      } else {
-        private$..parent <- parent
-
-        # Move File
-        from <- private$..path
-        to <- file.path(private$..parent$getPath(), 'documents/text', private$..fileName)
-        f <- FileManager$new()
-        status <- f$moveFile(from, to)
-        if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
-          self$logIt(level = 'Error')
-          stop()
-        }
-
-        private$..path <- to
-        private$..modified <- Sys.time()
-        private$..state <- paste(private$..className, private$..name, 'moved to ',
-                                 parent$getClassName(), parent$getName())
-        self$logIt()
-
-        # Assign its name in the global environment
-        assign(private$..name, self, envir = .GlobalEnv)
-
-        invisible(self)
-      }
-    },
-
     #-------------------------------------------------------------------------#
     #                     Refinement / Repair Method                          #
     #-------------------------------------------------------------------------#
@@ -241,6 +130,7 @@ Document <- R6::R6Class(
       private$..content <-  content
       self$write(io)
 
+      # Remove non-ASCII quotes and hyphens
       io <- IOText$new()
       self$read(io)
       content <- private$..content
@@ -252,11 +142,24 @@ Document <- R6::R6Class(
       content <- gsub("â€", "-", content)
       content <- iconv(content, "UTF-8", "ASCII", sub = "")
       private$..content <- content
-      self$write(io)
+
+      # Reshape into sentences
+      private$..content <- parallelizeTask(quanteda::tokens,
+                                           private$..content,
+                                           what = 'sentence')
+
+      # Convert to lower case
+      private$..content <- tolower(private$..content)
+
+      # Rename file, change IO class, and write file in new rdata format
+      private$..fileName <- paste0(private$..name, '.Rdata')
+      private$..path <- file.path(dirname(private$..path), private$..fileName)
+      private$..io <- IORdata$new()
+      self$write()
 
       # Logit
       private$..modified <- Sys.time()
-      private$..state <- paste("Repaired/refined", private$..name, "document.")
+      private$..state <- paste("Refined", private$..name, "document.")
       self$logIt()
 
       # Assign its name in the global environment
@@ -266,70 +169,108 @@ Document <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                           Start Processing                              #
-    #-------------------------------------------------------------------------#
-    start = function() {
-      io <- IORdata$new()
-      self$read()
-    },
-
-
-    #-------------------------------------------------------------------------#
-    #                   Reshape into (lower case) Sentences                   #
-    #-------------------------------------------------------------------------#
-    reshapeSent = function(what = 'sentence', lower = TRUE) {
-
-      private$..methodName <- 'tokenize'
-
-      private$..content <- unlist(parallelizeTask(quanteda::tokenize,
-                                                  private$..content,
-                                                  what = what))
-      if (lower == TRUE) private$..content <- tolower(private$..content)
-    },
-
-
-    #-------------------------------------------------------------------------#
     #                       Text Parsing Methods                              #
     #-------------------------------------------------------------------------#
-    parseFast = function(what = 'sentence', numbers = FALSE, punct = FALSE,
-                         symbols = FALSE,  twitter = FALSE, hyphens = FALSE,
-                         url = FALSE) {
-      private$..content <- unlist(parallelizeTask(quanteda::tokenize,
-                                                  private$..content,
-                                                  remove_numbers = numbers,
-                                                  remove_punct = punct,
-                                                  remove_symbols = symbols,
-                                                  remove_twitter = twitter,
-                                                  remove_hyphens = hyphens,
-                                                  remove_url = url,
-                                                  what = what))
+    parseFast = function(numbers = FALSE, punct = FALSE, symbols = FALSE,
+                         twitter = FALSE, hyphens = FALSE, url = FALSE) {
 
+      private$..methodName <- 'parseFast'
+
+      private$..content <- parallelizeTask(quanteda::tokens,
+                                           private$..content,
+                                           remove_numbers = numbers,
+                                           remove_punct = punct,
+                                           remove_symbols = symbols,
+                                           remove_twitter = twitter,
+                                           remove_hyphens = hyphens,
+                                           remove_url = url)
+
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Parsed", private$..name, "using parseFast method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
     },
 
-    parseEmail = function() {private$..content <- gsub(regexPatterns$emails, ' ',
-                                                       private$..content, perl = TRUE)},
+    parseFull = function(numbers = FALSE, punct = FALSE,
+                         symbols = FALSE,  twitter = FALSE, hyphens = FALSE,
+                         url = FALSE, email = FALSE, control = FALSE,
+                         repeatChars = FALSE, longWords = FALSE) {
 
-    parseControl = function() {private$..content <- gsub(regexPatterns$control, ' ',
-                                                         private$..content, perl = TRUE)},
+      private$..methodName <- 'parseFull'
 
-    parseRepeatChars = function() {private$..content <- gsub(regexPatterns$repeatedChars, ' ',
-                                                             private$..content, perl = TRUE)},
+      private$..content <- parallelizeTask(quanteda::tokens,
+                                           private$..content,
+                                           remove_numbers = numbers,
+                                           remove_punct = punct,
+                                           remove_symbols = symbols,
+                                           remove_twitter = twitter,
+                                           remove_hyphens = hyphens,
+                                           remove_url = url)
 
-    parseLongWords = function() {private$..content <- gsub(regexPatterns$longWords, ' ',
-                                                           private$..content, perl = TRUE)},
+
+      if (email == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudio:::regexPatterns$emails, ' ', x, perl = TRUE)
+        })
+      }
+
+      if (control == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudio:::regexPatterns$control, ' ', x, perl = TRUE)
+        })
+      }
+
+      if (repeatChars == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudio:::regexPatterns$repeatedChars, ' ', x, perl = TRUE)
+        })
+      }
+
+      if (longWords == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudio:::regexPatterns$longWords, ' ', x, perl = TRUE)
+        })
+      }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Parsed", private$..name, "using parseFull method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                     Text Normalization Methods                          #
     #-------------------------------------------------------------------------#
     normalize = function() {
 
+      private$..methodName <- 'normalize'
+
       key <- paste0("\\b", norms$key, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], norms$value[i], private$..content,
                         ignore.case = TRUE, perl = TRUE)
       }
-      # Clean up
-      self$cleanUp()
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste0("Normalized ", private$..name, ".")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -337,33 +278,72 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     sanitizeWord = function() {
 
+      private$..methodName <- 'sanitizeWord'
+
       key <- paste0("\\b", profanity, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], ' ', private$..content,
                                   ignore.case = TRUE, perl = TRUE)
       }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Sanitized", private$..name, "using sanitizeWord method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
     },
 
     sanitizeSent = function() {
 
+      private$..methodName <- 'sanitizeSent'
+
       stringsRegex <- paste0("\\b",profanity, "\\b", collapse = '|')
       xidx <- unique(grep(stringsRegex, private$..content, ignore.case = TRUE))
       private$..content <- private$..content[-xidx]
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Sanitized", private$..name, "using sanitizeSent method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
     },
 
     sanitizeTag = function() {
+
+      private$..methodName <- 'sanitizeTag'
 
       key <- paste0("\\b", profanity, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], '<EXPLETIVE>', private$..content,
                                   ignore.case = TRUE, perl = TRUE)
       }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Sanitized", private$..name, "using sanitizeTag method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+
     },
 
     #-------------------------------------------------------------------------#
-    #                          Clean Up Method                                #
+    #                           Commit Changes                                #
     #-------------------------------------------------------------------------#
-    cleanUp = function() {
+    commit = function() {
+
+      private$..methodName <- 'commit'
 
       # Remove extra white-space
       private$..content <-
@@ -371,61 +351,30 @@ Document <- R6::R6Class(
                                   stringr::str_trim(private$..content)), "B", "b")
       private$..content <- private$..content[private$..content != ""]
       private$..content <- private$..content[private$..content != "'"]
-    },
 
-    #-------------------------------------------------------------------------#
-    #                          Complete Processing                            #
-    #-------------------------------------------------------------------------#
-    complete = function() {
-      io <- IORdata$new()
-      self$write(io)
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Commited preprocessing of", private$..name, "at", Sys.time())
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      # Write to file
+      self$write()
+
+      # Clear memory
       private$..content <- NULL
+
+      invisible(self)
+
     },
 
-
-    #-------------------------------------------------------------------------#
-    #                            Log Method                                   #
-    #-------------------------------------------------------------------------#
-    logIt = function(level = 'Info', fieldName = NA) {
-
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- private$..methodName
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
-    },
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$documentText(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                           Expose Object                                 #
-    #-------------------------------------------------------------------------#
-    exposeObject = function() {
-
-      o <- list(
-        className	 =  private$..className ,
-        name	 = 	    private$..name ,
-        fileName	 =  private$..fileName ,
-        desc	 = 	    private$..desc ,
-        parent	 = 	  private$..parent ,
-        path	 = 	    private$..path ,
-        content =     private$..content,
-        state	 = 	    private$..state ,
-        logs	 = 	    private$..logs ,
-        size	 = 	    private$..size ,
-        modified	 = 	private$..modified ,
-        created	 = 	  private$..created ,
-        accessed	 = 	private$..accessed
-      )
-      return(o)
+      visitor$document(self)
     }
-
   )
 )

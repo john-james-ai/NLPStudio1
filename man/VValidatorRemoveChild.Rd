@@ -24,7 +24,7 @@ The VValidatorRemoveChild methods are as follows:
   \item{\code{nlpStudio(object, child)}}{Method for validating the removeChild method parameters of the NLPStudio object}
   \item{\code{lab(object, child)}}{Method for validating the removeChild method parameters of the Lab object}
   \item{\code{documentCollection(object, child)}}{Method for validating the removeChild method parameters of the DocumentCollection object.}
-  \item{\code{documentText(object, child)}}{Not implemented for this class.}
+  \item{\code{document(object, child)}}{Not implemented for this class.}
   \item{\code{documentCsv(object, child)}}{Not implemented for this class.}
   \item{\code{documentRdata(object, child)}}{Not implemented for this class.}
   \item{\code{documentXlsx(object, child)}}{Not implemented for this class.}

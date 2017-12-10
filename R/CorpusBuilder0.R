@@ -25,11 +25,9 @@
 #'   \item{\code{new(name, desc, sourceCmd, parseCmd, cvCmd)}}{Instantiates the builder object}
 #'   \item{\code{buildRaw()}}{Obtains and stores the raw data.}
 #'   \item{\code{buildRefined()}}{Builds the refined data sets with encoding errors corrected.}
-#'   \item{\code{buildReshaped()}}{Builds a corpus reshaped into sentences.}
 #'   \item{\code{buildCV()}}{Builds the cross validation sets.}
 #'   \item{\code{buildParsed()}}{Builds the parsed data sets.}
 #'   \item{\code{buildNormalized()}}{Builds the normalized data sets.}
-#'   \item{\code{buildFiltered()}}{Builds the filtered data sets.}
 #'  }
 #'
 #' @param name Character string indicating the name of the Corpus object

@@ -23,7 +23,7 @@ The VValidatorSetParent methods are as follows:
  \itemize{
   \item{\code{lab(object, parent)}}{Method for validating the SetParent method parameters of the Lab object}
   \item{\code{documentCollection(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCollection object.}
-  \item{\code{documentText(object, parent)}}{Method for validating the SetParent method parameters of the Document object.}
+  \item{\code{document(object, parent)}}{Method for validating the SetParent method parameters of the Document object.}
   \item{\code{documentCsv(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCsv object.}
   \item{\code{documentRdata(object, parent)}}{Method for validating the SetParent method parameters of the DocumentRdata object.}
   \item{\code{documentXlsx(object, parent)}}{Method for validating the SetParent method parameters of the DocumentXlsx object.}

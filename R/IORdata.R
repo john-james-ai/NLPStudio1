@@ -45,8 +45,7 @@ IORdata <- R6::R6Class(
       fileName <- basename(filePath)
 
       if (file.exists(filePath)) {
-        env <- new.env()
-        status[['data']] <- load(file = filePath, envir = env)
+        status[['data']] <- readRDS(file = filePath)
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to read ', fileName, '. ',

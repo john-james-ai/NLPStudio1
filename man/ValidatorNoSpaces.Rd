@@ -37,7 +37,7 @@ This class provide a methods for validating character string has no spaces
 Other Validation Classes: \code{\link{VValidatorCorpusBuilder}},
   \code{\link{Validator0}}, \code{\link{ValidatorClass}},
   \code{\link{ValidatorDate}},
-  \code{\link{ValidatorExists}},
+  \code{\link{ValidatorExists}}, \code{\link{ValidatorIO}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNotEmpty}},
   \code{\link{ValidatorNumeric}},

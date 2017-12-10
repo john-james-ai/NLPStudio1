@@ -72,7 +72,7 @@ LogR <- R6::R6Class(
         level <- gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2",
                       self$entry$level, perl = TRUE)
 
-        note <- paste0(level, " for ", self$entry$owner, " in class '",
+        note <- paste0(level, " in class '",
                        self$entry$className, "', method '", self$entry$methodName, ". ",
                        ifelse(is.na(self$entry$fieldName), "",
                               paste0("with variable '",
