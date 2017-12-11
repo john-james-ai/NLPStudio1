@@ -13,7 +13,7 @@ Entity
 }
 \details{
 This base class defines members and methods common across all entity related
-classes, including Lab, Corpus, Set, and Document classes.
+classes, including Studio, Corpus, Set, and Document classes.
 }
 \section{Document methods}{
 

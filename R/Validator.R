@@ -84,12 +84,8 @@ Validator <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Corpus Source                                 #
     #-------------------------------------------------------------------------#
-    webSource = function(object, source) {
-      visitor <- VValidatorCorpusWebSource$new(object, source)
-      object$accept(visitor)
-    },
-    inSource = function(object, source) {
-      visitor <- VValidatorCorpusInSource$new(object, source)
+    corpusSourceWeb = function(object, source) {
+      visitor <- VValidatorCorpusSourceWeb$new(object, source)
       object$accept(visitor)
     }
   )

@@ -10,7 +10,7 @@
 #' \strong{VValidatorSetParent Methods:}
 #' The VValidatorSetParent methods are as follows:
 #'  \itemize{
-#'   \item{\code{lab(object, parent)}}{Method for validating the SetParent method parameters of the Lab object}
+#'   \item{\code{studio(object, parent)}}{Method for validating the SetParent method parameters of the Studio object}
 #'   \item{\code{documentCollection(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCollection object.}
 #'   \item{\code{document(object, parent)}}{Method for validating the SetParent method parameters of the Document object.}
 #'   \item{\code{documentCsv(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCsv object.}
@@ -93,35 +93,40 @@ VValidatorSetParent <- R6::R6Class(
       invisible(self)
     },
 
-    nlpStudio = function(object) {
+    nlpStudios = function(object) {
       status <- list()
       status[['code']] <- FALSE
-      status[['msg']] <-  "Unable to set parent to an NLPStudio object"
+      status[['msg']] <-  "Unable to set parent to an NLPStudios object"
       return(status)
     },
 
-    lab = function(object) {
-      classes <- "NLPStudio"
+    studio = function(object) {
+      classes <- "NLPStudios"
+      return(private$validate(classes, object))
+    },
+
+    data = function(object) {
+      classes <- c("Data", "NLPStudios")
       return(private$validate(classes, object))
     },
 
     corpus = function(object) {
-      classes <- c("Lab", "NLPStudio")
+      classes <- c("Data", "NLPStudios")
       return(private$validate(classes, object))
     },
 
     document = function(object) {
-      classes <- c("NLPStudio", "Corpus")
+      classes <- c("NLPStudios", "Corpus")
       return(private$validate(classes, object))
     },
 
     documentNGram = function(object) {
-      classes <- c("NLPStudio", "Corpus")
+      classes <- c("NLPStudios", "Corpus")
       return(private$validate(classes, object))
     },
 
     documentPOS = function(object) {
-      classes <- c("NLPStudio", "Corpus")
+      classes <- c("NLPStudios", "Corpus")
       return(private$validate(classes, object))
     }
   )

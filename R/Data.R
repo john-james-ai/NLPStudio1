@@ -1,74 +1,59 @@
 #==============================================================================#
-#                                 Model                                        #
+#                                 Data                                         #
 #==============================================================================#
-#' Model
+#' Data
 #'
-#' \code{Model} Class in which corpora are created, processed, and transformed.
+#' \code{Data} Class which contains all corpora and cross validation sets.
 #'
-#' There are two groups of methods. The core methods allow clients to
-#' instantiate models and to obtain their basic information.  Aggregate methods
-#' enable clients to add, retrieve and remove corpora from the model.
+#' Class containing the raw, refined, cross-validation and preprocessed corpora.
+#' The cross-validation sets contain a single training, validation, and
+#' test set.
 #'
-#' \strong{Model Core Methods:}
+#' @section Data Methods:
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL)}}{Creates an object of Model Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Model description variable.}
-#'   \item{\code{getName()}}{Returns the name of the Model object.}
-#'   \item{\code{getPath()}}{Returns the path of the Model object.}
-#'   \item{\code{getLogs()}}{Returns the LogR object for the Model object.}
-#'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
+#'   \item{\code{new(train, val, test)}}{Instantiates the Data object}
+#'   \item{\code{getCorpora()}}{Retrieves the list of corpora from the data set.}
+#'   \item{\code{addCorpus(corpus)}}{Adds a corpus to the data set.}
+#'   \item{\code{removeCorpus(corpus))}}{Removes a corpus from the data set.}
+#'   \item{\code{move(parent))}}{Moves the data set to the new parent object.}
 #'  }
 #'
-#' \strong{Model Aggregate Methods:}
-#'  \describe{
-#'   \item{\code{getCorpora()}}{Retrieves the list of corpora for the model.}
-#'   \item{\code{addCorpus(corpus)}}{Adds a model to the Model object.}
-#'   \item{\code{removeCorpus(corpus)}}{Removes a model from the Model object. The model is archived in the NLPStudios archives.}
-#' }
-#'
-#' \strong{Model Visitor Methods:}
-#'  \describe{
-#'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
-#' }
-#'
-#' @param name A character string containing the name of the Model object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Model
-#' @param corpus An object of the Corpus class
-#' @param visitor An object of one of the visitor classes.
+#' @param corpus Corpus object.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
+#' @family Data builder classes
 #' @export
-Model <- R6::R6Class(
-  classname = "Model",
+Data <- R6::R6Class(
+  classname = "Data",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
 
   private = list(
-    ..corpora = list()
+    corpora = list()
   ),
 
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         Model Core Methods                              #
+    #                             Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function(name, desc = NULL) {
 
       # Instantiate variables
-      private$..className <- 'Model'
+      private$..className <- 'Data'
       private$..methodName <- 'initialize'
       private$..name <- name
-      private$..desc <- ifelse(is.null(desc), paste(name, "model"), desc)
-      private$..path <- file.path("./NLPStudios/models", name)
+      private$..desc <- ifelse(is.null(desc), paste(name, "data set"), desc)
       private$..parent <- NLPStudios$new()$getInstance()
-      private$..state <- paste("Model", name, "instantiated at", Sys.time())
-      private$..logs <- LogR$new()
+      private$..path <- file.path(NLPStudios$new()$getInstance()$getPath(), 'data')
+      private$..state <- "Data object instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
+      private$..logs <- LogR$new()
 
-      # Validate Model
+      # Validate Corpus
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -78,7 +63,7 @@ Model <- R6::R6Class(
       }
 
       # Create directory
-      dir.create(private$..path, recursive = TRUE)
+      dir.create(private$..path, showWarnings = FALSE,  recursive = TRUE)
 
       # Create log entry
       self$logIt()
@@ -87,12 +72,8 @@ Model <- R6::R6Class(
       assign(name, self, envir = .GlobalEnv)
 
       invisible(self)
-    },
 
-    #-------------------------------------------------------------------------#
-    #                         Model Aggregate Methods                           #
-    #-------------------------------------------------------------------------#
-    getCorpora = function() { private$..corpora },
+    },
 
     addCorpus = function(corpus) {
 
@@ -108,13 +89,13 @@ Model <- R6::R6Class(
         stop()
       }
 
-      # Get collection information
+      # Get corpus information
       corpusName <- corpus$getName()
 
-      # Add collection to corpus's list of corpora
+      # Add corpus to list of corpora
       private$..corpora[[corpusName]] <- corpus
 
-      # Move corpora to corpus directory
+      # Move corpus to Corpus
       corpus$move(self)
 
       # Update modified time
@@ -122,14 +103,13 @@ Model <- R6::R6Class(
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", corpusName, "added to Model", private$..name, "at", Sys.time())
+        paste("Corpus", corpusName, "added to the data set at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
       assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
-
     },
 
     removeCorpus = function(corpus) {
@@ -149,10 +129,10 @@ Model <- R6::R6Class(
       # Obtain collection information
       corpusName <- corpus$getName()
 
-      # Remove collection from corpus and update modified time
+      # Remove collection from studio and update modified time
       private$..corpora[[corpusName]] <- NULL
 
-      # Move corpora to main corpora directory
+      # Move corpus back to main corpus directory
       corpus$move(NLPStudios$new()$getInstance())
 
       # Update modified time
@@ -160,19 +140,46 @@ Model <- R6::R6Class(
 
       # Save state and log Event
       private$..state <-
-        paste("Corpus", corpusName, "removed from Model", private$..name, "at", Sys.time())
+        paste("Corpus", corpusName, "removed from the data set at", Sys.time())
       self$logIt()
 
       invisible(self)
-
     },
+
+    move = function(parent) {
+
+      private$..methodName <- 'move'
+
+      v <- Validator$new()
+      status <- v$setParent(self, parent)
+
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      } else {
+        private$..parent <- parent
+
+        private$..path <- file.path(parent$getPath(),
+                                    private$..name)
+        private$..modified <- Sys.time()
+        private$..state <- paste(private$..className, private$..name, 'moved to ',
+                                 parent$getClassName(), parent$getName())
+        self$logIt()
+
+        # Assign its name in the global environment
+        assign(private$..name, self, envir = .GlobalEnv)
+
+        invisible(self)
+      }
+    },
+
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      name <- visitor$getName()
-      visitor$model(self)
+      visitor$data(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -182,19 +189,22 @@ Model <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      model = list(
+      data = list(
+        className = private$..className,
+        methodName = private$..methodName,
         name = private$..name,
         desc = private$..desc,
         path = private$..path,
         parent = private$..parent,
         corpora = private$..corpora,
-        logs <- private$..logs,
+        logs = private$..logs,
         state = private$..state,
         modified = private$..modified,
         created = private$..created
       )
 
-      return(model)
+      return(corpus)
     }
+
   )
 )

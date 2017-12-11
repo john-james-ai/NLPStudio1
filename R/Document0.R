@@ -3,7 +3,7 @@
 #==============================================================================#
 #' Document0
 #'
-#' \code{Document0} Abstract clas for the Document Strategy Classes
+#' \code{Document0} Abstract clasS for the Document Strategy Classes
 #'
 #' Defines the base methods for the two document sub-classes, the corpus
 #' document and the cross validation set document.

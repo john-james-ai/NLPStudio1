@@ -14,7 +14,7 @@ Template
 \details{
 More descriptive text
 }
-\section{Class participants and collaborators}{
+\section{Class participants and colstudioorators}{
 
 
 \strong{Family of Classes Participants:}
@@ -24,10 +24,10 @@ The participants of the ...  class are:
  for all leaf and composite document classes.
  }
 
-\strong{Family of Classes Collaborators:}
-The collaborators of the .... family  are:
+\strong{Family of Classes Colstudioorators:}
+The colstudioorators of the .... family  are:
  \itemize{
-  \item Lab: Class responsible for document collections.
+  \item Studio: Class responsible for document collections.
  }
 }
 

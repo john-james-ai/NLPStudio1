@@ -21,8 +21,8 @@ of aggregate and composite classes.
 \strong{VValidatorAddChild Methods:}
 The VValidatorAddChild methods are as follows:
  \itemize{
-  \item{\code{nlpStudio(object, child)}}{Method for validating the addChild method parameters of the NLPStudio object}
-  \item{\code{lab(object, child)}}{Method for validating the addChild method parameters of the Lab object}
+  \item{\code{nlpStudios(object, child)}}{Method for validating the addChild method parameters of the NLPStudios object}
+  \item{\code{studio(object, child)}}{Method for validating the addChild method parameters of the Studio object}
   \item{\code{documentCollection(object, child)}}{Method for validating the addChild method parameters of the DocumentCollection object.}
   \item{\code{document(object, child)}}{Method for validating the addChild method parameters of the Document object.}
   \item{\code{documentCsv(object, child)}}{Method for validating the addChild method parameters of the DocumentCsv object.}

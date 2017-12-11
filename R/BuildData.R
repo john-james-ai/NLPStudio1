@@ -90,8 +90,8 @@ BuildData <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
-      private$..parent <- NLPStudio$new()$getInstance()
-      private$..path <- file.path(NLPStudio$new()$getInstance()$getDirs()$corpora, private$..name)
+      private$..parent <- NLPStudios$new()$getInstance()
+      private$..path <- file.path(NLPStudios$new()$getInstance()$getDirs()$corpora, private$..name)
       private$..state <- "Instantiated the Corpus Builder."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()

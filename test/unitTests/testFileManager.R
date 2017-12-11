@@ -14,7 +14,7 @@ testFileManager <- function() {
 
     fileManagerTests <<- LogTest$new()
     fm <<- FileManager$new()
-    stopifnot(fm$download(lab = blue, url = url)[[1]] == TRUE)
+    stopifnot(fm$download(studio = blue, url = url)[[1]] == TRUE)
     stopifnot(file.exists(downloadPath))
 
     # Logit

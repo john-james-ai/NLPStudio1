@@ -14,10 +14,6 @@ Document
 \item{parent}{Object of the Corpus or Set classes to which this document belongs}
 
 \item{io}{An object of one of the IO classes used for reading and writing.}
-
-\item{norms}{A list of key value pairs of strings to be replaced in the normalization step}
-
-\item{profanity}{Character vector of profane words to be normalized or extracted from the text}
 }
 \description{
 \code{Document} Class that contains document meta data and text content.
@@ -74,7 +70,7 @@ and processing text documents.
  }
 }
 
-\section{Other method}{
+\section{Other methods}{
 
  \itemize{
   \item{\code{accept(visitor)}}{Accepts a visitor object.}

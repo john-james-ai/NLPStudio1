@@ -1,48 +1,48 @@
 #==============================================================================#
-#                                 Lab                                          #
+#                                 Studio                                          #
 #==============================================================================#
-#' Lab
+#' Studio
 #'
-#' \code{Lab} Class in which models are created, executed and evaluated.
+#' \code{Studio} Class in which models are created, executed and evaluated.
 #'
 #' The environment in which NLP happens. There are two groups of methods. The
-#' core methods allow clients to instantiate labs and to obtain their basic
+#' core methods allow clients to instantiate studios and to obtain their basic
 #' information.  Aggregate methods enable clients to add, retrieve and remove
-#' models from the lab.
+#' models from the studio.
 #'
-#' \strong{Lab Core Methods:}
+#' \strong{Studio Core Methods:}
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL)}}{Creates an object of Lab Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Lab description variable.}
-#'   \item{\code{getName()}}{Returns the name of the Lab object.}
-#'   \item{\code{getPath()}}{Returns the path of the Lab object.}
-#'   \item{\code{getLogs()}}{Returns the LogR object for the Lab object.}
+#'   \item{\code{new(name, desc = NULL)}}{Creates an object of Studio Class}
+#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Studio description variable.}
+#'   \item{\code{getName()}}{Returns the name of the Studio object.}
+#'   \item{\code{getPath()}}{Returns the path of the Studio object.}
+#'   \item{\code{getLogs()}}{Returns the LogR object for the Studio object.}
 #'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
 #'  }
 #'
-#' \strong{Lab Aggregate Methods:}
+#' \strong{Studio Aggregate Methods:}
 #'  \describe{
-#'   \item{\code{getModels()}}{Retrieves the list of models for the lab.}
-#'   \item{\code{addModel(model)}}{Adds a model to the Lab object.}
-#'   \item{\code{removeModel(model)}}{Removes a model from the Lab object. The model is archived in the NLPStudio archives.}
+#'   \item{\code{getModels()}}{Retrieves the list of models for the studio.}
+#'   \item{\code{addModel(model)}}{Adds a model to the Studio object.}
+#'   \item{\code{removeModel(model)}}{Removes a model from the Studio object. The model is archived in the NLPStudios archives.}
 #' }
 #'
 #'
-#' \strong{Lab Visitor Methods:}
+#' \strong{Studio Visitor Methods:}
 #'  \describe{
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #' }
 #'
-#' @param name A character string containing the name of the Lab object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Lab
+#' @param name A character string containing the name of the Studio object. This variable is used in the instantiation and remove methods.
+#' @param desc A chararacter string containing the description of the Studio
 #' @param model An object of the Model class
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-Lab <- R6::R6Class(
-  classname = "Lab",
+Studio <- R6::R6Class(
+  classname = "Studio",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
@@ -54,23 +54,23 @@ Lab <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         Lab Core Methods                                #
+    #                         Studio Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function(name, desc = NULL) {
 
       # Instantiate variables
-      private$..className <- 'Lab'
+      private$..className <- 'Studio'
       private$..methodName <- 'initialize'
       private$..name <- name
-      private$..desc <- ifelse(is.null(desc), paste(name, "lab"), desc)
-      private$..path <- file.path("./NLPStudio/labs", name)
-      private$..parent <- NLPStudio$new()$getInstance()
-      private$..state <- paste("Lab", name, "instantiated at", Sys.time())
+      private$..desc <- ifelse(is.null(desc), paste(name, "studio"), desc)
+      private$..path <- file.path("./NLPStudios/studios", name)
+      private$..parent <- NLPStudios$new()$getInstance()
+      private$..state <- paste("Studio", name, "instantiated at", Sys.time())
       private$..logs <- LogR$new()
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
 
-      # Validate Lab
+      # Validate Studio
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -92,7 +92,7 @@ Lab <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                         Lab Aggregate Methods                           #
+    #                         Studio Aggregate Methods                           #
     #-------------------------------------------------------------------------#
     getModels = function() { private$..models },
 
@@ -113,10 +113,10 @@ Lab <- R6::R6Class(
       # Get collection information
       modelName <- model$getName()
 
-      # Add collection to lab's list of models
+      # Add collection to studio's list of models
       private$..models[[modelName]] <- model
 
-      # Move models to lab directory
+      # Move models to studio directory
       model$move(self)
 
       # Update modified time
@@ -124,7 +124,7 @@ Lab <- R6::R6Class(
 
       # Save state and log Event
       private$..state <-
-        paste("Model", modelName, "added to Lab", private$..name, "at", Sys.time())
+        paste("Model", modelName, "added to Studio", private$..name, "at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
@@ -151,18 +151,18 @@ Lab <- R6::R6Class(
       # Obtain collection information
       modelName <- model$getName()
 
-      # Remove collection from lab and update modified time
+      # Remove collection from studio and update modified time
       private$..models[[modelName]] <- NULL
 
       # Move models to main models directory
-      model$move(NLPStudio$new()$getInstance())
+      model$move(NLPStudios$new()$getInstance())
 
       # Update modified time
       private$..modified <- Sys.time()
 
       # Save state and log Event
       private$..state <-
-        paste("Model", modelName, "removed from Lab", private$..name, "at", Sys.time())
+        paste("Model", modelName, "removed from Studio", private$..name, "at", Sys.time())
       self$logIt()
 
       invisible(self)
@@ -174,7 +174,7 @@ Lab <- R6::R6Class(
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       name <- visitor$getName()
-      visitor$lab(self)
+      visitor$studio(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -184,7 +184,7 @@ Lab <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      lab = list(
+      studio = list(
         name = private$..name,
         desc = private$..desc,
         path = private$..path,
@@ -196,7 +196,7 @@ Lab <- R6::R6Class(
         created = private$..created
       )
 
-      return(lab)
+      return(studio)
     }
   )
 )

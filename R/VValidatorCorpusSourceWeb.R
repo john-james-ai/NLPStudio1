@@ -1,11 +1,11 @@
 #==============================================================================#
-#                         VValidatorCorpusWebSource                            #
+#                         VValidatorCorpusSourceWeb                            #
 #==============================================================================#
-#' VValidatorCorpusWebSource
+#' VValidatorCorpusSourceWeb
 #'
 #'
-#' \code{VValidatorCorpusWebSource} Visitor class responsible for validating the
-#' parameters for the CorpusWebSource method in the Corpus Object.
+#' \code{VValidatorCorpusSourceWeb} Visitor class responsible for validating the
+#' parameters for the CorpusSourceWeb method in the Corpus Object.
 #'
 #' @section Corpus Core Methods:
 #'  \describe{
@@ -20,8 +20,8 @@
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Validation Visitor Classes
 #' @export
-VValidatorCorpusWebSource <- R6::R6Class(
-  classname = "VValidatorCorpusWebSource",
+VValidatorCorpusSourceWeb <- R6::R6Class(
+  classname = "VValidatorCorpusSourceWeb",
   inherit = VValidator,
   lock_objects = FALSE,
   lock_class = FALSE,
@@ -45,7 +45,7 @@ VValidatorCorpusWebSource <- R6::R6Class(
 
       # Confirm class of object
       v <- ValidatorClass$new()
-      if (v$validate(value = object, expect = 'Corpus') == FALSE) {
+      if (v$validate(value = object, expect = c('Corpus', 'CorpusSourceWeb')) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Unable to source ", class(object)[1],
                                   " class object. See ?", class(object)[1],
@@ -104,7 +104,7 @@ VValidatorCorpusWebSource <- R6::R6Class(
       invisible(self)
     },
 
-    corpus = function(object) {
+    corpusSourceWeb = function(object) {
       return(private$validate(object))
     }
   )

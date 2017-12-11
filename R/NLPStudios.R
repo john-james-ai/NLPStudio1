@@ -1,25 +1,25 @@
-## ---- NLPStudio
+## ---- NLPStudios
 #==============================================================================#
-#                                 NLPStudio                                    #
+#                                 NLPStudios                                    #
 #==============================================================================#
-#' NLPStudio
+#' NLPStudios
 #'
-#' \code{NLPStudio} Class the creates and manages labs.
+#' \code{NLPStudios} Class the creates and manages studios.
 #'
-#' This class creates and manages data labs  A data lab is essentially a
-#' directory in which project data reside.  Multiple data labs can be created
+#' This class creates and manages data studios  A data studio is essentially a
+#' directory in which project data reside.  Multiple data studios can be created
 #' to house separate versions of the data for analysis. Note: This class is a
-#' singleton pattern. An NLPStudio object called nlpStudio is instantiated at
-#' load time.  Any subsequent initializations will return the single nlpStudio
+#' singleton pattern. An NLPStudios object called nlpStudios is instantiated at
+#' load time.  Any subsequent initializations will return the single nlpStudios
 #' instance. There are two sets of methods.  The first set enables clients to
-#' retrieve information about the NLPStudio object.  The second set allows
-#' clients to add, remove, enter, and leave labs.
+#' retrieve information about the NLPStudios object.  The second set allows
+#' clients to add, remove, enter, and leave studios.
 #'
-#' \strong{NLPStudio Core Methods:}
+#' \strong{NLPStudios Core Methods:}
 #' \describe{
-#'  \item{\code{new()}}{Initializes the NLPStudio as s singleton object at load time.}
+#'  \item{\code{new()}}{Initializes the NLPStudios as s singleton object at load time.}
 #'
-#'  \item{\code{getInstance()}}{Returns the current NLPStudio instance object. This will be the only instantiation called "nlpStudio.},
+#'  \item{\code{getInstance()}}{Returns the current NLPStudios instance object. This will be the only instantiation called "nlpStudios.},
 #' }
 #'
 #'
@@ -28,7 +28,7 @@
 #'
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-NLPStudio <- R6::R6Class(
+NLPStudios <- R6::R6Class(
   "SingletonContainer",
   portable = FALSE,
   lock_objects = FALSE,
@@ -37,14 +37,14 @@ NLPStudio <- R6::R6Class(
   public = list(
     initialize = function(...) {
       Class <<- R6::R6Class(
-        classname = "NLPStudio",
+        classname = "NLPStudios",
         private = list(
-          ..className = 'NLPStudio',
+          ..className = 'NLPStudios',
           ..methodName = character(),
           ..name = character(),
           ..desc = character(),
           ..path = character(),
-          ..labs = list(),
+          ..studios = list(),
           ..logs = character(),
           ..state = character(),
           ..created = "None",
@@ -53,25 +53,25 @@ NLPStudio <- R6::R6Class(
 
         public = list(
           #-------------------------------------------------------------------#
-          #                       NLPStudio Methods                           #
+          #                       NLPStudios Methods                           #
           #-------------------------------------------------------------------#
           initialize = function() {
 
-            # Create single instance of NLPStudio object
-            private$..className <- 'NLPStudio'
+            # Create single instance of NLPStudios object
+            private$..className <- 'NLPStudios'
             private$..methodName <- 'initialize'
-            private$..name <- "nlpStudio"
-            private$..desc <- "NLPStudio: Natural Language Processing Environment"
-            private$..path <- "./NLPStudio"
+            private$..name <- "nlpStudios"
+            private$..desc <- "NLPStudios: Natural Language Processing Environment"
+            private$..path <- "./NLPStudios"
             private$..modified <- Sys.time()
             private$..created <- Sys.time()
 
-            # Create NLPStudio home directory
+            # Create NLPStudios home directory
             if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
 
             # # Create logger and initialization log entry
             private$..logs <- LogR$new()
-            private$..state <- paste0("Initialized NLPStudio.")
+            private$..state <- paste0("Initialized NLPStudios.")
             self$logIt()
 
             # Assign its name in the global environment
@@ -94,36 +94,36 @@ NLPStudio <- R6::R6Class(
           #                           Composite Methods                             #
           #-------------------------------------------------------------------------#
 
-          getLabs = function() private$..labs,
+          getStudios = function() private$..studios,
 
-          addLab = function(lab) {
+          addStudio = function(studio) {
 
             # Update current method
-            private$..methodName <- 'addLab'
+            private$..methodName <- 'addStudio'
 
             # Validation
             v <- Validator$new()
-            status <- v$addChild(self, lab)
+            status <- v$addChild(self, studio)
             if (status[['code']] == FALSE) {
               private$..state <- status[['msg']]
               self$logIt(level = 'Error')
               stop()
             }
-            # Get lab name
-            labName <- lab$getName()
+            # Get studio name
+            studioName <- studio$getName()
 
-            # Add lab to list of labs
-            private$..labs[[labName]] <- lab
+            # Add studio to list of studios
+            private$..studios[[studioName]] <- studio
 
-            # Set parent to nlpstudio
-            lab$parent <- self
+            # Set parent to nlpstudios
+            studio$parent <- self
 
             # Update modified time
             private$..modified <- Sys.time()
 
             # Save state and log Event
             private$..state <-
-              paste("Lab", labName, "added to nlpStudio at", Sys.time())
+              paste("Studio", studioName, "added to nlpStudios at", Sys.time())
             self$logIt()
 
             # Assign its name in the global environment
@@ -132,12 +132,12 @@ NLPStudio <- R6::R6Class(
 
           },
 
-          removeLab = function(lab) {
+          removeStudio = function(studio) {
             #TODO: Archive to archive folder then remove
-            #TODO: Don't allow current lab to be removed.
+            #TODO: Don't allow current studio to be removed.
 
             # Update current method
-            private$..methodName <- 'removeLab'
+            private$..methodName <- 'removeStudio'
 
             # Validation
             v <- Validator$new()
@@ -148,8 +148,8 @@ NLPStudio <- R6::R6Class(
               stop()
             }
 
-            name <- lab$getName()
-            if (!is.null(private$..labs[[name]]))  private..labs[[name]] <- NULL
+            name <- studio$getName()
+            if (!is.null(private$..studios[[name]]))  private..studios[[name]] <- NULL
 
             # Assign its name in the global environment
             assign(private$..name, self, envir = .GlobalEnv)
@@ -176,7 +176,7 @@ NLPStudio <- R6::R6Class(
           #                           Visitor Method                                #
           #-------------------------------------------------------------------------#
           accept = function(visitor)  {
-            visitor$nlpStudio(self)
+            visitor$nlpStudios(self)
           },
 
           #-------------------------------------------------------------------------#
@@ -189,7 +189,7 @@ NLPStudio <- R6::R6Class(
               name = private$..name,
               desc = private$..desc,
               path = private$..path,
-              labs = private$..labs,
+              studios = private$..studios,
               logs = private$..logs,
               state = private$..state,
               created = private$..created,

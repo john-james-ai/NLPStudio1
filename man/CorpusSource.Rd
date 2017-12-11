@@ -38,6 +38,10 @@ class of the method or the method parameters.
  }
 }
 
+\seealso{
+Other CorpusSource classes: \code{\link{CorpusSource0}},
+  \code{\link{CorpusSourceWeb}}
+}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

@@ -8,7 +8,7 @@ testDocument <- function() {
     DocumentTest <<- LogTest$new()
     file.copy('./test/testData/hc/en_US.blogs.txt', 'test/testData/en_US.blogs.txt')
     textData <- readLines(con = 'test/testData/en_US.blogs.txt')
-    writeLines(textData[1:2000], con = 'test/testData/en_US.blogs.txt')
+    writeLines(textData, con = 'test/testData/en_US.blogs.txt')
     rm(textData)
   }
 
@@ -139,13 +139,53 @@ testDocument <- function() {
   }
 
 
-
-  testn <- function(blogs) {
-    test <- "testn: Document: IO"
+  test4 <- function(blogs) {
+    test <- "test4: Document: Normalize"
     cat(paste0("\n",test, " Commencing\n"))
 
-        # Logit
-    DocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully read the document in txt format"))
+    # Normalize
+    blogs <- blogs$normalize()
+
+    # Logit
+    DocumentTest$logs(className = className, methodName = "normalize", msg = paste("Successfully normalized", blogs$getName()))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(blogs)
+  }
+
+
+  test5 <- function(blogs) {
+    test <- "test5: Document: Sanitize"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    # Sanitize Word
+    #blogs <- blogs$sanitizeWord()
+
+    # Sanitize Sentence
+    blogs <- blogs$sanitizeSent()
+
+    # Sanitize tag
+    #blogs <- blogs$sanitizeTag()
+
+    # Logit
+    DocumentTest$logs(className = className, methodName = "sanitizeWord", msg = paste("Successfully sanitized", blogs$getName()))
+    DocumentTest$logs(className = className, methodName = "sanitizeSent", msg = paste("Successfully sanitized", blogs$getName()))
+    DocumentTest$logs(className = className, methodName = "sanitizeTag", msg = paste("Successfully sanitized", blogs$getName()))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(blogs)
+  }
+
+  test6 <- function(blogs) {
+    test <- "test6: Document: Commit Preprocessing"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    blogs <- blogs$commit()
+
+    # Logit
+    DocumentTest$logs(className = className, methodName = "commit", msg = paste("Successfully committed preprocessing."))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -157,6 +197,10 @@ blogs <<- test0()
 blogs <<- test1(blogs)
 blogs <<- test2(blogs)
 blogs <<- test3(blogs)
+#blogs <<- test4(blogs)
+blogs <<- test5(blogs)
+blogs <<- test6(blogs)
+
 }
 className <- "Document"
 #source('./test/unitTests/testCorpusBuilder.R')

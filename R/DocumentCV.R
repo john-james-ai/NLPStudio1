@@ -1,14 +1,14 @@
 #==============================================================================#
-#                               Document0                                      #
+#                               DocumentCV                                     #
 #==============================================================================#
-#' Document0
+#' DocumentCV
 #'
-#' \code{Document0} Abstract clas for the Document Strategy Classes
+#' \code{DocumentCV} Concrete class for the cross validation documents
 #'
-#' Defines the base methods for the two document sub-classes, the corpus
-#' document and the cross validation set document.
+#' Class conitains the documents used for training and cross-validation
+#' purposes.
 #'
-#' @section Document0 core methods:
+#' @section DocumentCV core methods:
 #'  \itemize{
 #'   \item{\code{new()}}{Method for instantiating a document. Not implemented for the abstract class.}
 #'   \item{\code{getName()}}{Method that returns the name of the Document object. }
@@ -17,19 +17,19 @@
 #'   \item{\code{getContent()}}{Method for obtaining the document content.}
 #'  }
 #'
-#' @section Document0 getter/setter methods:
+#' @section DocumentCV getter/setter methods:
 #'  \itemize{
-#'   \item{\code{desc()}}{Method for setting or retrieving the Document0 object description.}
+#'   \item{\code{desc()}}{Method for setting or retrieving the DocumentCV object description.}
 #'  }
 #'
-#'  @section Document0 IO methods:
+#'  @section DocumentCV IO methods:
 #'  \itemize{
 #'   \item{\code{addContent(content)}}{Method for adding content to a document.}
 #'   \item{\code{read(io)}}{Method for reading a document. }
 #'   \item{\code{write(io)}}{Method for writing a document. }
 #'  }
 #'
-#' @section Document0 aggregation method:
+#' @section DocumentCV aggregation method:
 #'  \itemize{
 #'   \item{\code{move(parent)}}{Moves a document to the designated parent corpus. }
 #'  }
@@ -48,13 +48,13 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
-#' @family Document0 classes
+#' @family DocumentCV classes
 #' @export
-Document0 <- R6::R6Class(
-  classname = "Document0",
+DocumentCV <- R6::R6Class(
+  classname = "DocumentCV",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = DocumentCV,
 
   private = list(
     ..io = character(),
@@ -67,7 +67,45 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function() { stop("This method is not implemented for this strategy abstract class.") },
+    initialize = function(filePath, io, desc = NULL) {
+
+      private$..methodName <- 'initialize'
+
+      # Instantiate variables
+      private$..className <- 'Document'
+      private$..name <- tools::file_path_sans_ext(basename(filePath))
+      private$..fileName <- basename(filePath)
+      private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
+      private$..parent <- NULL
+      private$..path <- filePath
+      private$..io <- io
+      private$..content <- NULL
+      private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
+      private$..logs <- LogR$new()
+      private$..size <- file.info(filePath)$size
+      private$..modified <- file.info(filePath)$mtime
+      private$..created <- file.info(filePath)$ctime
+      private$..accessed <- file.info(filePath)$atime
+
+      # Validate Document
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+      # Create log entry
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+
+    },
+
+
     getFileName = function() private$..fileName,
     getIO = function() private$..io,
     getContent = function() {
@@ -180,7 +218,9 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
-    accept = function(visitor) stop("This method is not implemented for this abstract class."),
+    accept = function(visitor)  {
+      visitor$documentCV(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                           Expose Object                                 #

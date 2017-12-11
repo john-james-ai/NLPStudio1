@@ -4,7 +4,7 @@ testSet <- function() {
     if (exists("train", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("train", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("val", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("val", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("en_US.news.txt", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("en_US.news.txt", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    file.copy('./test/testData/hc/en_US.news.txt', './NLPStudio/documents/text/en_US.news.txt')
+    file.copy('./test/testData/hc/en_US.news.txt', './NLPStudios/documents/text/en_US.news.txt')
 
   }
 
@@ -18,8 +18,8 @@ testSet <- function() {
     stopifnot(s$className == 'Set')
     stopifnot(s$name == 'train')
     stopifnot(s$desc == 'Train Set')
-    stopifnot(s$parent$getName() == 'nlpStudio')
-    stopifnot(s$path == './NLPStudio/sets/train')
+    stopifnot(s$parent$getName() == 'nlpStudios')
+    stopifnot(s$path == './NLPStudios/sets/train')
     stopifnot(length(s$documents) == 0)
 
     # Logit
@@ -39,8 +39,8 @@ testSet <- function() {
     stopifnot(s$className == 'Set')
     stopifnot(s$name == 'val')
     stopifnot(s$desc == 'val Set')
-    stopifnot(s$parent$getName() == 'nlpStudio')
-    stopifnot(s$path == './NLPStudio/sets/val')
+    stopifnot(s$parent$getName() == 'nlpStudios')
+    stopifnot(s$path == './NLPStudios/sets/val')
     stopifnot(length(s$documents) == 0)
 
     # Logit
@@ -55,7 +55,7 @@ testSet <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Instantiate new document
-    news <- Document$new("./NLPStudio/documents/text/en_US.news.txt", desc = 'News Register')
+    news <- Document$new("./NLPStudios/documents/text/en_US.news.txt", desc = 'News Register')
 
     # Add document to training set
     train <- train$addDocument(news)
@@ -63,8 +63,8 @@ testSet <- function() {
     stopifnot(s$className == 'Set')
     stopifnot(s$name == 'train')
     stopifnot(s$desc == 'Train Set')
-    stopifnot(s$parent$getName() == 'nlpStudio')
-    stopifnot(s$path == './NLPStudio/sets/train')
+    stopifnot(s$parent$getName() == 'nlpStudios')
+    stopifnot(s$path == './NLPStudios/sets/train')
     stopifnot(length(s$documents) == 1)
     stopifnot(s$documents$en_US.news.txt$getName() == 'en_US.news.txt')
 
@@ -91,8 +91,8 @@ testSet <- function() {
     stopifnot(d$name == 'en_US.news.txt')
     stopifnot(d$desc == 'News Register')
     stopifnot(d$parent$getName() == 'train')
-    stopifnot(d$path == './NLPStudio/sets/train/documents/text/en_US.news.txt')
-    stopifnot(file.exists('./NLPStudio/sets/train/documents/text/en_US.news.txt'))
+    stopifnot(d$path == './NLPStudios/sets/train/documents/text/en_US.news.txt')
+    stopifnot(file.exists('./NLPStudios/sets/train/documents/text/en_US.news.txt'))
 
     # Logit
     SetTest$logs(className = className, methodName = "addDocument", msg = paste("Successfully moved", d$name, "to", d$parent$getName()))
@@ -113,10 +113,10 @@ testSet <- function() {
     stopifnot(s$className == 'Set')
     stopifnot(s$name == 'train')
     stopifnot(s$desc == 'Train Set')
-    stopifnot(s$parent$getName() == 'nlpStudio')
-    stopifnot(s$path == './NLPStudio/sets/train')
+    stopifnot(s$parent$getName() == 'nlpStudios')
+    stopifnot(s$path == './NLPStudios/sets/train')
     stopifnot(length(s$documents) == 0)
-    stopifnot(file.exists('./NLPStudio/documents/text/en_US.news.txt'))
+    stopifnot(file.exists('./NLPStudios/documents/text/en_US.news.txt'))
 
     # Logit
     SetTest$logs(className = className, methodName = "addDocument", msg = paste("Successfully removed", en_US.news.txt$getName(), "to", train$getName()))

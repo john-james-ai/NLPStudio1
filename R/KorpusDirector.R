@@ -49,7 +49,7 @@ CorpusDirector <- R6::R6Class(
       private$..name <- 'corpusDirector'
       private$..state <- "Instantiated the corpus build director."
       private$..builder <- builder
-      private$..logs <- NLPStudio$new()$getInstance()$getDirs()$logs
+      private$..logs <- NLPStudios$new()$getInstance()$getDirs()$logs
 
       # Validate Corpus
       v <- Validator$new()

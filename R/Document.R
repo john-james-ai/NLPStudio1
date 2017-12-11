@@ -216,25 +216,25 @@ Document <- R6::R6Class(
 
       if (email == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudio:::regexPatterns$emails, ' ', x, perl = TRUE)
+          gsub(NLPStudios:::regexPatterns$emails, ' ', x, perl = TRUE)
         })
       }
 
       if (control == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudio:::regexPatterns$control, ' ', x, perl = TRUE)
+          gsub(NLPStudios:::regexPatterns$control, ' ', x, perl = TRUE)
         })
       }
 
       if (repeatChars == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudio:::regexPatterns$repeatedChars, ' ', x, perl = TRUE)
+          gsub(NLPStudios:::regexPatterns$repeatedChars, ' ', x, perl = TRUE)
         })
       }
 
       if (longWords == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudio:::regexPatterns$longWords, ' ', x, perl = TRUE)
+          gsub(NLPStudios:::regexPatterns$longWords, ' ', x, perl = TRUE)
         })
       }
 
@@ -256,10 +256,11 @@ Document <- R6::R6Class(
 
       private$..methodName <- 'normalize'
 
-      key <- paste0("\\b", norms$key, "\\b")
+      key <- paste0("\\b", NLPStudios:::norms$key, "\\b")
       for (i in 1:length(key)) {
-        private$..content <- gsub(key[i], norms$value[i], private$..content,
-                        ignore.case = TRUE, perl = TRUE)
+        private$..content <- gsub(key[i], NLPStudios::norms$value[i],
+                                  private$..content,
+                                  ignore.case = TRUE, perl = TRUE)
       }
 
       # Logit
@@ -274,13 +275,13 @@ Document <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                     Text Sanitazation Methods                           #
+    #                     Text Sanitization Methods                           #
     #-------------------------------------------------------------------------#
     sanitizeWord = function() {
 
       private$..methodName <- 'sanitizeWord'
 
-      key <- paste0("\\b", profanity, "\\b")
+      key <- paste0("\\b", NLPStudios:::profanity, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], ' ', private$..content,
                                   ignore.case = TRUE, perl = TRUE)
@@ -301,7 +302,7 @@ Document <- R6::R6Class(
 
       private$..methodName <- 'sanitizeSent'
 
-      stringsRegex <- paste0("\\b",profanity, "\\b", collapse = '|')
+      stringsRegex <- paste0("\\b",NLPStudios:::profanity, "\\b", collapse = '|')
       xidx <- unique(grep(stringsRegex, private$..content, ignore.case = TRUE))
       private$..content <- private$..content[-xidx]
 
@@ -320,7 +321,7 @@ Document <- R6::R6Class(
 
       private$..methodName <- 'sanitizeTag'
 
-      key <- paste0("\\b", profanity, "\\b")
+      key <- paste0("\\b", NLPStudios:::profanity, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], '<EXPLETIVE>', private$..content,
                                   ignore.case = TRUE, perl = TRUE)
@@ -347,7 +348,7 @@ Document <- R6::R6Class(
 
       # Remove extra white-space
       private$..content <-
-        stringr::str_replace(gsub(regexPatterns$whiteSpace, " ",
+        stringr::str_replace(gsub(NLPStudios:::regexPatterns$whiteSpace, " ",
                                   stringr::str_trim(private$..content)), "B", "b")
       private$..content <- private$..content[private$..content != ""]
       private$..content <- private$..content[private$..content != "'"]

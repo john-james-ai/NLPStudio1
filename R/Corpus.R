@@ -10,9 +10,9 @@
 #'
 #' @section Corpus Core Methods:
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL, lab = NULL)}}{Creates an object of Corpus Class}
+#'   \item{\code{new(name, desc = NULL, studio = NULL)}}{Creates an object of Corpus Class}
 #'   \item{\code{desc}}{A getter/corpuster method allowing clients to retrieve and corpus the Corpus description variable.}
-#'   \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Lab object to which the Corpus object belongs.}
+#'   \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Studio object to which the Corpus object belongs.}
 #'   \item{\code{getName()}}{Returns the name of the Corpus object.}
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
 #'   \item{\code{getDocuments()}}{Returns the list of Document class objects.}
@@ -42,7 +42,6 @@ Corpus <- R6::R6Class(
     ..extDir = 'external',
     ..rawDir = 'raw',
     ..refinedDir = 'refined',
-    ..reshapedDir = 'reshaped',
     ..cvDir = 'cv'
   ),
 
@@ -58,8 +57,8 @@ Corpus <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
-      private$..parent <- NLPStudio$new()$getInstance()
-      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'data', private$..name)
+      private$..parent <- NLPStudios$new()$getInstance()
+      private$..path <- file.path(NLPStudios$new()$getInstance()$getPath(), 'data', private$..name)
       private$..ioIn <- ioIn
       private$..ioOut <- ioOut
       private$..state <- "Corpus instantiated."
@@ -147,11 +146,11 @@ Corpus <- R6::R6Class(
       # Obtain collection information
       documentName <- document$getName()
 
-      # Remove collection from lab and update modified time
+      # Remove collection from studio and update modified time
       private$..documents[[documentName]] <- NULL
 
       # Move document back to main document directory
-      document$move(NLPStudio$new()$getInstance())
+      document$move(NLPStudios$new()$getInstance())
 
       # Update modified time
       private$..modified <- Sys.time()
@@ -166,6 +165,8 @@ Corpus <- R6::R6Class(
 
     move = function(parent) {
 
+      private$..methodName <- 'move'
+
       v <- Validator$new()
       status <- v$corpusParent(self, parent)
 
@@ -175,11 +176,6 @@ Corpus <- R6::R6Class(
         stop()
       } else {
         private$..parent <- parent
-
-        # Move Documents
-        lapply(private$..documents, function(d) {
-          d$move(self)
-        })
 
         private$..path <- file.path(parent$getPath(),
                                     private$..name)
@@ -200,8 +196,9 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     webSource = function(corpusSource, files, compressed = TRUE, format = 'zip') {
 
-      # Validation
       private$..methodName <- 'webSource'
+
+      # Validation
       v <- Validator$new()
       status <- v$webSource(self, corpusSource)
       if (status[['code']] == FALSE) {
@@ -287,8 +284,9 @@ Corpus <- R6::R6Class(
 
     inSource = function(corpusSource) {
 
-      # Validation
       private$..methodName <- 'inSource'
+
+      # Validation
       v <- Validator$new()
       status <- v$inSource(self, corpusSource)
       if (status[['code']] == FALSE) {

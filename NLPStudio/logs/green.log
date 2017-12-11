@@ -1115,3 +1115,289 @@ INFO [2017-12-10 02:34:50] Info in class 'Document', method 'parseFast. Parsed e
 INFO [2017-12-10 02:34:54] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
 INFO [2017-12-10 02:34:54] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
 INFO [2017-12-10 02:34:54] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 02:51:01
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:01] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:51:02] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:04] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 02:51:04] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 02:51:04] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 02:51:06] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 02:51:10] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 02:51:10] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 02:51:10] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 02:51:49
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:51:49] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:51:51] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 02:51:51] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 02:51:52] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 02:51:54] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 02:51:58] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 02:51:58] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 02:51:58] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 02:53:20
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:53:21] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:53:23] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 02:53:23] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 02:53:23] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 02:53:26] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 02:53:30] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 02:53:30] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 02:53:30] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 02:57:33
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:57:33] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:57:34] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:57:36] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 02:57:36] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 02:57:36] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 02:57:38] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 02:57:42] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 02:57:42] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 02:57:42] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 02:59:55
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 02:59:55] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 02:59:58] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 02:59:58] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 02:59:58] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 03:00:00] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 03:00:04] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 03:00:04] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 03:00:04] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 03:04:57
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:04:57] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:04:59] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:04:59] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 03:04:59] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 03:05:02] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 03:05:06] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 03:05:06] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 03:05:06] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 03:06:45
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 03:06:45] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:06:46] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:06:46] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:06:48] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:06:48] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 03:06:48] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 03:06:51] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 03:06:54] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 03:06:54] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 03:06:54] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 03:06:54] Info in class 'Document', method 'sanitizeWord. Sanitized en_US.blogs using sanitizeWord method.
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 03:07:07
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 03:07:07] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'read. Read en_US.blogs.Rdata. 
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'read. Read en_US.blogs.Rdata. 
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:07:08] Info in class 'Document', method 'read. Read en_US.blogs.Rdata. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 03:12:46
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:12:46] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:12:49] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:12:49] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 03:12:49] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 03:12:51] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'sanitizeWord. Sanitized en_US.blogs using sanitizeWord method.
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'sanitizeWord. Successfully sanitized en_US.blogs
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'sanitizeSent. Successfully sanitized en_US.blogs
+INFO [2017-12-10 03:12:54] Info in class 'Document', method 'sanitizeTag. Successfully sanitized en_US.blogs
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 03:14:11
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:14:11] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:14:14] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:14:14] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 03:14:14] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 03:14:16] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'sanitizeWord. Sanitized en_US.blogs using sanitizeWord method.
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'sanitizeWord. Successfully sanitized en_US.blogs
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'sanitizeSent. Successfully sanitized en_US.blogs
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'sanitizeTag. Successfully sanitized en_US.blogs
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'commit. Commited preprocessing of en_US.blogs at 2017-12-10 03:14:20
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:14:20] Info in class 'Document', method 'commit. Successfully committed preprocessing.
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'initialize. Document en_US.blogs instantiated at 2017-12-10 03:15:50
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'getClassName. Successfully obtained class name
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'getName. Successfully obtained name
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'getFileName. Successfully obtained file name
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'getPath. Successfully obtained path
+INFO [2017-12-10 03:15:57] Info in class 'Document', method 'getIO. Successfully obtained IO
+INFO [2017-12-10 03:16:06] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:16:15] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:16:23] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:16:27] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:16:27] Info in class 'Document', method 'read. Successfully read the document in txt format
+INFO [2017-12-10 03:16:27] Info in class 'Document', method 'read. Successfully read the document in bin format
+INFO [2017-12-10 03:16:27] Info in class 'Document', method 'write. Successfully wrote the document in txt format
+INFO [2017-12-10 03:16:27] Info in class 'Document', method 'write. Successfully wrote the document in bin format
+INFO [2017-12-10 03:16:29] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:16:33] Info in class 'Document', method 'write. Wrote en_US.blogs.txt. 
+INFO [2017-12-10 03:16:42] Info in class 'Document', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-10 03:23:51] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 03:23:51] Info in class 'Document', method 'write. Refined en_US.blogs document.
+INFO [2017-12-10 03:23:51] Info in class 'Document', method 'refine. Successfully refined data and stored in rdata format.
+INFO [2017-12-10 03:27:04] Info in class 'Document', method 'parseFast. Parsed en_US.blogs using parseFast method.
+INFO [2017-12-10 11:10:42] Info in class 'Document', method 'parseFull. Parsed en_US.blogs using parseFull method.
+INFO [2017-12-10 11:10:42] Info in class 'Document', method 'parseFast. Successfully parsed en_US.blogs with parseFast.
+INFO [2017-12-10 11:10:42] Info in class 'Document', method 'parseFull. Successfully parsed en_US.blogs with parseFull.
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'sanitizeSent. Sanitized en_US.blogs using sanitizeSent method.
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'sanitizeWord. Successfully sanitized en_US.blogs
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'sanitizeSent. Successfully sanitized en_US.blogs
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'sanitizeTag. Successfully sanitized en_US.blogs
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'commit. Commited preprocessing of en_US.blogs at 2017-12-10 11:12:19
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'write. Wrote en_US.blogs.Rdata. 
+INFO [2017-12-10 11:12:19] Info in class 'Document', method 'commit. Successfully committed preprocessing.

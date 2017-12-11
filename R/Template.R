@@ -7,7 +7,7 @@
 #'
 #' More descriptive text
 #'
-#' @section Class participants and collaborators:
+#' @section Class participants and colstudioorators:
 #'
 #' \strong{Family of Classes Participants:}
 #' The participants of the ...  class are:
@@ -16,10 +16,10 @@
 #'  for all leaf and composite document classes.
 #'  }
 #'
-#' \strong{Family of Classes Collaborators:}
-#' The collaborators of the .... family  are:
+#' \strong{Family of Classes Colstudioorators:}
+#' The colstudioorators of the .... family  are:
 #'  \itemize{
-#'   \item Lab: Class responsible for document collections.
+#'   \item Studio: Class responsible for document collections.
 #'  }
 #'
 #' @section Class methods:
@@ -108,11 +108,11 @@ Template <- R6::R6Class(
       # Create logger and initialization log entry
       private$..log <- LogR$new()
       private$..log$entry$owner <- private$..name
-      private$..log$entry$className <- "Lab"
+      private$..log$entry$className <- "Studio"
       private$..log$entry$methodName <- "initialize"
       private$..log$entry$path <- private$..path
       private$..log$entry$level <- "Info"
-      private$..log$entry$msg <- paste("Initialized", private$..name, "lab.")
+      private$..log$entry$msg <- paste("Initialized", private$..name, "studio.")
       private$..log$entry$fieldName <- private$..name
       private$..log$entry$created <- Sys.time()
       private$..log$writeLog()
@@ -134,7 +134,7 @@ Template <- R6::R6Class(
     logIt = function(level = 'Info', fieldName = NA) {
 
       private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- "Lab"
+      private$..logs$entry$className <- "Studio"
       private$..logs$entry$methodName <- match.call()[[1]]
       private$..logs$entry$level <- level
       private$..logs$entry$msg <- private$..state

@@ -21,5 +21,5 @@ r - return from task
 This generic function used to parallelize a task (when possible)
 }
 \author{
-John James, \email{jjames@datasciencestudio.org}
+John James, \email{jjames@datasciencestudios.org}
 }

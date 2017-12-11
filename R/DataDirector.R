@@ -15,25 +15,21 @@
 #'
 #' @section Corpus Builder Participants:
 #'  \describe{
-#'   \item{CorpusBuilder0}{The abstract builder interface. Defines the interface for concrete corpus builder sub-classes. }
-#'   \item{CorpusBuilderRawWeb}{Concrete builder subclass that produces the Raw Corpus object. }
-#'   \item{CorpusBuilderRefined}{Concrete builder subclass that produces the Refined Corpus object. }
-#'   \item{CorpusBuilderReshaped}{Concrete builder subclass that produces the Reshaped Corpus object. }
-#'   \item{CorpusBuilderProcessed}{Concrete builder subclass that produces the Processed Corpus object. }
-#'   \item{CorpusDirector}{Class that builds the corpus through the concrete builder interfaces.}
+#'   \item{CorpusBuilder0}{This abstract builder interface. Defines the methods for concrete corpus builder sub-classes. }
+#'   \item{CorpusBuilderCv}{Concrete builder sub-class that produces the a single training, validation, and test corpora. }
+#'   \item{CorpusBuilderKFoldCv}{Concrete builder sub-class that produces the K-Fold cross validation corpora. }
+#'   \item{CorpusDirector}{Class that builds the corpus through the concrete builder classes..}
 #'   \item{Corpus}{The corpus product.}
 #'   }
 #'
 #' @section CorpusDirector Methods:
 #'  \describe{
-#'   \item{\code{new(builder, parserCmd = NULL)}}{Instantiates the director object}
+#'   \item{\code{new(builder)}}{Instantiates the director object}
 #'   \item{\code{construct()}}{Initiates the construction process for the builder object.}
 #'  }
 #'
 #'
 #' @param builder Builder object for the Corpus object
-#' @param size Numeric proportion of total object size to retain for training. Validation and test sets retain 20 percent of the corpus each.
-#' @param parserCmd Parser command object for parsing the data during Processing
 #'
 #'
 #' @docType class
