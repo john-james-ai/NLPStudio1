@@ -31,8 +31,9 @@ The IOXlsx class supports csv, Rdata, and text files through the following metho
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOBin}}, \code{\link{IOCSV}},
-  \code{\link{IORdata}}, \code{\link{IOText}}
+  \code{\link{IOArchive}}, \code{\link{IOBin}},
+  \code{\link{IOCSV}}, \code{\link{IORdata}},
+  \code{\link{IOText}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

@@ -31,8 +31,9 @@ The IOText class supports csv, Rdata, and text files through the following metho
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOBin}}, \code{\link{IOCSV}},
-  \code{\link{IORdata}}, \code{\link{IOXlsx}}
+  \code{\link{IOArchive}}, \code{\link{IOBin}},
+  \code{\link{IOCSV}}, \code{\link{IORdata}},
+  \code{\link{IOXlsx}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

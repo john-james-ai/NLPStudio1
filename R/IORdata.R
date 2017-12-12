@@ -59,9 +59,16 @@ IORdata <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
+      # Format directory names
       filePath <- document$getPath()
+      dirName <- dirname(filePath)
       fileName <- basename(filePath)
+
+      # Obtain content
       content <- document$getContent()
+
+      # Create directory if necessary
+      dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
       if (!is.null(content)) {
         saveRDS(object = content, file = filePath)

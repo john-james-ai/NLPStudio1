@@ -32,8 +32,8 @@ VValidatorInit <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
-
     ..name = "VValidatorInit",
+
     validateName = function(object) {
 
       status <- list()
@@ -179,6 +179,26 @@ VValidatorInit <- R6::R6Class(
         return(status)
       }
       return(status)
+    },
+
+    validateArchive = function(object) {
+      status <- list()
+      status[['code']] <- TRUE
+
+      name <- object$getName()
+      archiveClasses <- c('Studio', 'Data', 'Corpus', 'Document')
+
+      v <- ValidatorClass$new()
+      if (v$validate(value = object, expect = archiveClasses) == FALSE) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot create archive for ", class(object)[1],
+                                  " object, ", name, ". Objects of class ",
+                                  class(object)[1], " are not archivable. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
+        return(status)
+      }
+      return(status)
     }
   ),
 
@@ -190,6 +210,12 @@ VValidatorInit <- R6::R6Class(
 
     nlpStudios = function(object) {
       return(status[['code']] <- TRUE)
+    },
+
+    archive = function(object) {
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      return(private$validateArchive(object))
     },
 
     data = function(object) {

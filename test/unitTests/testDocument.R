@@ -8,6 +8,7 @@ testDocument <- function() {
     DocumentTest <<- LogTest$new()
     file.copy('./test/testData/hc/en_US.blogs.txt', 'test/testData/en_US.blogs.txt')
     textData <- readLines(con = 'test/testData/en_US.blogs.txt')
+    textData <- textData[1:2000]
     writeLines(textData, con = 'test/testData/en_US.blogs.txt')
     rm(textData)
   }
@@ -66,126 +67,31 @@ testDocument <- function() {
     # ReadBin
     blogs <- blogs$read(IOBin$new())
     content <- blogs$getContent()
+    stopifnot(length(content) > 1000)
 
     # WriteBin
     blogs$write(IOBin$new())
     b <- blogs$exposeObject()
     stopifnot((Sys.time() -  b$modified) < 1)
 
+    # Write Archive
+    blogs$write(IOArchive$new())
+    b <- blogs$exposeObject()
+    stopifnot((Sys.time() -  b$modified) < 1)
+
+    # Read archive
+    blogs <- blogs$read(IOArchive$new())
+    content <- blogs$getContent()
+    stopifnot(length(content) > 1000)
+
 
     # Logit
     DocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully read the document in txt format"))
     DocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully read the document in bin format"))
+    DocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully read the document in archive (bzip2) format"))
     DocumentTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the document in txt format"))
     DocumentTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the document in bin format"))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-  test2 <- function(blogs) {
-    test <- "test2: Document: Refine"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    blogs <- blogs$refine()
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$modified) < 1)
-    stopifnot(b$name == 'en_US.blogs')
-    stopifnot(b$fileName == 'en_US.blogs.Rdata')
-    stopifnot(b$path == './test/testData/en_US.blogs.Rdata')
-    file.remove('./test/testData/en_US.blogs.txt')
-
-    content <- blogs$getContent()
-    stopifnot(length(content) > 1000)
-
-    # Logit
-    DocumentTest$logs(className = className, methodName = "refine", msg = paste("Successfully refined data and stored in rdata format."))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-
-  test3 <- function(blogs) {
-    test <- "test3: Document: Parse"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    # Run fast parser
-    blogs <- blogs$parseFast(numbers = TRUE, punct = TRUE,
-                    symbols = TRUE,  twitter = TRUE, hyphens = TRUE,
-                    url = TRUE)
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$modified) < 1)
-
-
-    # Run full parser
-    blogs <- blogs$parseFull(numbers = TRUE, punct = TRUE,
-                    symbols = TRUE,  twitter = TRUE, hyphens = TRUE,
-                      url = TRUE, email = TRUE, control = FALSE,
-                    repeatChars = TRUE, longWords = TRUE)
-
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$modified) < 1)
-
-    # Logit
-    DocumentTest$logs(className = className, methodName = "parseFast", msg = paste("Successfully parsed", blogs$getName(), "with parseFast."))
-    DocumentTest$logs(className = className, methodName = "parseFull", msg = paste("Successfully parsed", blogs$getName(), "with parseFull."))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-
-  test4 <- function(blogs) {
-    test <- "test4: Document: Normalize"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    # Normalize
-    blogs <- blogs$normalize()
-
-    # Logit
-    DocumentTest$logs(className = className, methodName = "normalize", msg = paste("Successfully normalized", blogs$getName()))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-
-  test5 <- function(blogs) {
-    test <- "test5: Document: Sanitize"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    # Sanitize Word
-    #blogs <- blogs$sanitizeWord()
-
-    # Sanitize Sentence
-    blogs <- blogs$sanitizeSent()
-
-    # Sanitize tag
-    #blogs <- blogs$sanitizeTag()
-
-    # Logit
-    DocumentTest$logs(className = className, methodName = "sanitizeWord", msg = paste("Successfully sanitized", blogs$getName()))
-    DocumentTest$logs(className = className, methodName = "sanitizeSent", msg = paste("Successfully sanitized", blogs$getName()))
-    DocumentTest$logs(className = className, methodName = "sanitizeTag", msg = paste("Successfully sanitized", blogs$getName()))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-  test6 <- function(blogs) {
-    test <- "test6: Document: Commit Preprocessing"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    blogs <- blogs$commit()
-
-    # Logit
-    DocumentTest$logs(className = className, methodName = "commit", msg = paste("Successfully committed preprocessing."))
+    DocumentTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the document in archive (bzip2) format"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -195,11 +101,7 @@ testDocument <- function() {
 init()
 blogs <<- test0()
 blogs <<- test1(blogs)
-blogs <<- test2(blogs)
-blogs <<- test3(blogs)
-#blogs <<- test4(blogs)
-blogs <<- test5(blogs)
-blogs <<- test6(blogs)
+
 
 }
 className <- "Document"

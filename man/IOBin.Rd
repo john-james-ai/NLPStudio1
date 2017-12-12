@@ -31,8 +31,9 @@ The IOBin class supports csv, Rdata, and text files through the following method
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOCSV}}, \code{\link{IORdata}},
-  \code{\link{IOText}}, \code{\link{IOXlsx}}
+  \code{\link{IOArchive}}, \code{\link{IOCSV}},
+  \code{\link{IORdata}}, \code{\link{IOText}},
+  \code{\link{IOXlsx}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

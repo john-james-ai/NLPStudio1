@@ -1,21 +1,21 @@
-## ---- IOCSV
+## ---- IOArchive
 #==============================================================================#
-#                                      IOCSV                                   #
+#                                 IOArchive                                    #
 #==============================================================================#
-#' IOCSV
+#' IOArchive
 #'
 #'
-#' \code{IOCSV} Class responsible for reading and writing csv documents.
+#' \code{IOArchive} Class responsible for reading and writing Archive documents.
 #'
 #' \strong{IO Class Overview:}
-#' The IOCSV class is an implementation of the strategy design pattern,
+#' The IOArchive class is an implementation of the strategy design pattern,
 #' as described in the book "Design Patterns: Elements of Reusable
 #' Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
 #' and John Vlissides (hence Gang of Four). This strategy pattern accommodates
 #' various formats and allows the behavior to be defined / selected at run time.
 #'
-#' \strong{IOCSV Methods:}
-#' The IOCSV class supports csv, Rdata, and text files through the following methods:
+#' \strong{IOArchive Methods:}
+#' The IOArchive class supports csv, Archive, and text files through the following methods:
 #'  \itemize{
 #'   \item{\code{read(document)}}{Read method.}
 #'   \item{\code{write(document)}}{Write method.}
@@ -26,8 +26,8 @@
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Input / Output Classes
 #' @export
-IOCSV <- R6::R6Class(
-  classname = "IOCSV",
+IOArchive <- R6::R6Class(
+  classname = "IOArchive",
   lock_objects = TRUE,
   lock_class = FALSE,
   private = list(),
@@ -45,9 +45,9 @@ IOCSV <- R6::R6Class(
       fileName <- basename(filePath)
 
       if (file.exists(filePath)) {
-        status[['data']] <- read.csv(file = filePath, header = header,
-                                     stringsAsFactors = FALSE,
-                                     sep = ",", quote = "\"'")
+        env <- new.env()
+        content <- load(filePath, envir = env)
+        status[['data']] <- env[[content]]
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to read ', fileName, '. ',
@@ -73,7 +73,7 @@ IOCSV <- R6::R6Class(
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
       if (!is.null(content)) {
-        write.csv(content, file = filePath, row.names = FALSE)
+        save(object = content, file = filePath, compression_level = 9)
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to write ', fileName, '. ',

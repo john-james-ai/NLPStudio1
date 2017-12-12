@@ -110,7 +110,7 @@ FileManager <- R6::R6Class(
 
 
     #-------------------------------------------------------------------------#
-    #                         Move/Copy Methods                               #
+    #                         Move/Copy/Remove Methods                        #
     #-------------------------------------------------------------------------#
     moveFile = function(from, to)  {
       status <- list()
@@ -151,6 +151,22 @@ FileManager <- R6::R6Class(
       status[['msg']] <-
         paste0("Successfully copied file ", from, "to ", to )
       return(status)
+    },
+
+    removeFile = function(from) {
+
+      status <- list()
+      status[['code']] <- TRUE
+
+
+      if (missing(from)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste('Missing parameters with no default. Usage is',
+                                 'removeFile(from).  See ?FileManager for',
+                                 'further assistance.')
+        return(status)
+      }
+      file.remove(from)
     }
   )
 )

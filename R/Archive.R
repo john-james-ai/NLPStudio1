@@ -1,0 +1,312 @@
+#==============================================================================#
+#                               Archive                                        #
+#==============================================================================#
+#' Archive
+#'
+#' \code{Archive} Class responsible for archival and restore of NLPStudios objects.
+#'
+#' Class archives NLPStudios objects, including Studio, Data, Corpus & Document
+#' objects. A list of archives is retained and a restoral method enables clients
+#' to restore objects the object to its prior state.
+#'
+#' @section Archive core methods:
+#'  \itemize{
+#'   \item{\code{new(name, object, desc = NULL)}}{Method for instantiating a Archive.}
+#'   \item{\code{getArchives()}}{Method that returns the name of the Archive object.}
+#'   \item{\code{archive()}}{Method for obtaining the Archive file name.}
+#'   \item{\code{restore(archive)}}{Method for obtaining the Archive path.}
+#'  }
+#'
+#' @section Archive getter/setter methods:
+#'  \itemize{
+#'   \item{\code{desc()}}{Method for setting or retrieving the Archive object description.}
+#'  }
+#'
+#' @section Other methods:
+#'  \itemize{
+#'   \item{\code{accept(visitor)}}{Accepts a visitor object.}
+#'   \item{\code{logIt(level = 'Info')}}{Logs events relating to the Archive.}
+#'  }
+#'
+#'
+#' @param object Object to archived
+#' @param name Character string containing the name of the archive
+#' @param desc Character string containing the description of the archive
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datasciencesalon.org}
+#' @family Archive classes
+#' @export
+Archive <- R6::R6Class(
+  classname = "Archive",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = Entity,
+
+  public = list(
+
+    #-------------------------------------------------------------------------#
+    #                           Core Methods                                  #
+    #-------------------------------------------------------------------------#
+    initialize = function(name, object, desc = NULL) {
+
+      private$..methodName <- 'initialize'
+
+      # Instantiate variables
+      private$..className <- 'Archive'
+      private$..name <- name
+      private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
+      private$..parent <- NLPStudios$new()$getInstance()
+      private$..homeDir <- file.path(private$..parent()$getPath(), 'archive')
+      private$..path <- file.path(private$..homeDir, name)
+      private$..state <- paste("Archive", private$..name, "instantiated at", Sys.time())
+      private$..logs <- LogR$new()
+
+      # Validate Archive
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+      # Create log entry
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+
+    },
+
+    #-------------------------------------------------------------------------#
+    #                        Archive / Restore Methods                        #
+    #-------------------------------------------------------------------------#
+    archive = function() {
+
+      private$..methodName <- 'archive'
+
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Refined", private$..name, "Archive.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                       Text Parsing Methods                              #
+    #-------------------------------------------------------------------------#
+    parseFast = function(numbers = FALSE, punct = FALSE, symbols = FALSE,
+                         twitter = FALSE, hyphens = FALSE, url = FALSE) {
+
+      private$..methodName <- 'parseFast'
+
+      private$..content <- parallelizeTask(quanteda::tokens,
+                                           private$..content,
+                                           remove_numbers = numbers,
+                                           remove_punct = punct,
+                                           remove_symbols = symbols,
+                                           remove_twitter = twitter,
+                                           remove_hyphens = hyphens,
+                                           remove_url = url)
+
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Parsed", private$..name, "using parseFast method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    parseFull = function(numbers = FALSE, punct = FALSE,
+                         symbols = FALSE,  twitter = FALSE, hyphens = FALSE,
+                         url = FALSE, email = FALSE, control = FALSE,
+                         repeatChars = FALSE, longWords = FALSE) {
+
+      private$..methodName <- 'parseFull'
+
+      private$..content <- parallelizeTask(quanteda::tokens,
+                                           private$..content,
+                                           remove_numbers = numbers,
+                                           remove_punct = punct,
+                                           remove_symbols = symbols,
+                                           remove_twitter = twitter,
+                                           remove_hyphens = hyphens,
+                                           remove_url = url)
+
+
+      if (email == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudios:::regexPatterns$emails, ' ', x, perl = TRUE)
+        })
+      }
+
+      if (control == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudios:::regexPatterns$control, ' ', x, perl = TRUE)
+        })
+      }
+
+      if (repeatChars == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudios:::regexPatterns$repeatedChars, ' ', x, perl = TRUE)
+        })
+      }
+
+      if (longWords == TRUE) {
+        private$..content <- lapply(private$..content, function(x) {
+          gsub(NLPStudios:::regexPatterns$longWords, ' ', x, perl = TRUE)
+        })
+      }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Parsed", private$..name, "using parseFull method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                     Text Normalization Methods                          #
+    #-------------------------------------------------------------------------#
+    normalize = function() {
+
+      private$..methodName <- 'normalize'
+
+      key <- paste0("\\b", NLPStudios:::norms$key, "\\b")
+      for (i in 1:length(key)) {
+        private$..content <- gsub(key[i], NLPStudios::norms$value[i],
+                                  private$..content,
+                                  ignore.case = TRUE, perl = TRUE)
+      }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste0("Normalized ", private$..name, ".")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                     Text Sanitization Methods                           #
+    #-------------------------------------------------------------------------#
+    sanitizeWord = function() {
+
+      private$..methodName <- 'sanitizeWord'
+
+      key <- paste0("\\b", NLPStudios:::profanity, "\\b")
+      for (i in 1:length(key)) {
+        private$..content <- gsub(key[i], ' ', private$..content,
+                                  ignore.case = TRUE, perl = TRUE)
+      }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Sanitized", private$..name, "using sanitizeWord method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    sanitizeSent = function() {
+
+      private$..methodName <- 'sanitizeSent'
+
+      stringsRegex <- paste0("\\b",NLPStudios:::profanity, "\\b", collapse = '|')
+      xidx <- unique(grep(stringsRegex, private$..content, ignore.case = TRUE))
+      private$..content <- private$..content[-xidx]
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Sanitized", private$..name, "using sanitizeSent method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+    },
+
+    sanitizeTag = function() {
+
+      private$..methodName <- 'sanitizeTag'
+
+      key <- paste0("\\b", NLPStudios:::profanity, "\\b")
+      for (i in 1:length(key)) {
+        private$..content <- gsub(key[i], '<EXPLETIVE>', private$..content,
+                                  ignore.case = TRUE, perl = TRUE)
+      }
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Sanitized", private$..name, "using sanitizeTag method.")
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      invisible(self)
+
+    },
+
+    #-------------------------------------------------------------------------#
+    #                           Commit Changes                                #
+    #-------------------------------------------------------------------------#
+    commit = function() {
+
+      private$..methodName <- 'commit'
+
+      # Remove extra white-space
+      private$..content <-
+        stringr::str_replace(gsub(NLPStudios:::regexPatterns$whiteSpace, " ",
+                                  stringr::str_trim(private$..content)), "B", "b")
+      private$..content <- private$..content[private$..content != ""]
+      private$..content <- private$..content[private$..content != "'"]
+
+      # Logit
+      private$..modified <- Sys.time()
+      private$..state <- paste("Commited preprocessing of", private$..name, "at", Sys.time())
+      self$logIt()
+
+      # Assign its name in the global environment
+      assign(private$..name, self, envir = .GlobalEnv)
+
+      # Write to file
+      self$write()
+
+      # Clear memory
+      private$..content <- NULL
+
+      invisible(self)
+
+    },
+
+    #-------------------------------------------------------------------------#
+    #                           Visitor Methods                               #
+    #-------------------------------------------------------------------------#
+    accept = function(visitor)  {
+      visitor$archive(self)
+    }
+  )
+)

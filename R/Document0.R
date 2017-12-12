@@ -78,10 +78,6 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                            IO Methods                                   #
     #-------------------------------------------------------------------------#
-    cloneContent = function(document) {
-      private$..content <- document$getContent()
-    },
-
     read = function(io = NULL) {
 
       private$..methodName <- 'read'
@@ -135,9 +131,8 @@ Document0 <- R6::R6Class(
       invisible(self)
     },
 
-
     #-------------------------------------------------------------------------#
-    #                         Aggregate Methods                               #
+    #                          Aggregate Method                               #
     #-------------------------------------------------------------------------#
     move = function(parent) {
 
@@ -151,20 +146,29 @@ Document0 <- R6::R6Class(
         self$logIt(level = 'Error')
         stop()
       } else {
-        private$..parent <- parent
 
-        # Move File
-        from <- private$..path
-        to <- file.path(private$..parent$getPath(), 'documents/text', private$..fileName)
+        # Load / read data
+        self$read()
+
+        # Remove file
         f <- FileManager$new()
-        status <- f$moveFile(from, to)
-        if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
-          self$logIt(level = 'Error')
-          stop()
+        f$removeFile(private$..path)
+
+        # Reset parent and path
+        private$..parent <- parent
+        private$..path <- file.path(parent$getPath(), private$..fileName)
+
+        # If new location is the archive, change file io and file type to Rdata.
+        if (class(parent)[1] == "Archive") {
+          private$..io <- IOArchive$new()
+          fileName <- paste0(tools::file_path_sans_ext(basename(private$..path)), ".Rdata")
+
         }
 
-        private$..path <- to
+        # Save file
+        self$write()
+
+        # Log it
         private$..modified <- Sys.time()
         private$..state <- paste(private$..className, private$..name, 'moved to ',
                                  parent$getClassName(), parent$getName())

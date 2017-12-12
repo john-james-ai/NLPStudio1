@@ -30,9 +30,10 @@ The IO0 class supports csv, Rdata, and text files through the following methods:
 }
 }
 \seealso{
-Other Input / Output Classes: \code{\link{IOBin}},
-  \code{\link{IOCSV}}, \code{\link{IORdata}},
-  \code{\link{IOText}}, \code{\link{IOXlsx}}
+Other Input / Output Classes: \code{\link{IOArchive}},
+  \code{\link{IOBin}}, \code{\link{IOCSV}},
+  \code{\link{IORdata}}, \code{\link{IOText}},
+  \code{\link{IOXlsx}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

@@ -101,32 +101,47 @@ VValidatorSetParent <- R6::R6Class(
     },
 
     studio = function(object) {
-      classes <- "NLPStudios"
+      classes <- c("NLPStudios", "Archive")
+      return(private$validate(classes, object))
+    },
+
+    pipeline = function(object) {
+      classes <- c("Studio", "Archive")
       return(private$validate(classes, object))
     },
 
     data = function(object) {
-      classes <- c("Data", "NLPStudios")
+      classes <- c("Pipeline", "Archive")
+      return(private$validate(classes, object))
+    },
+
+    feature = function(object) {
+      classes <- c("Pipeline", "Archive")
+      return(private$validate(classes, object))
+    },
+
+    model = function(object) {
+      classes <- c("Pipeline", "Archive")
       return(private$validate(classes, object))
     },
 
     corpus = function(object) {
-      classes <- c("Data", "NLPStudios")
+      classes <- c("Data", "Archive")
       return(private$validate(classes, object))
     },
 
     document = function(object) {
-      classes <- c("NLPStudios", "Corpus")
+      classes <- c("Corpus", "Archive")
       return(private$validate(classes, object))
     },
 
-    documentNGram = function(object) {
-      classes <- c("NLPStudios", "Corpus")
+    featureNGram = function(object) {
+      classes <- c("Pipeline", "Archive")
       return(private$validate(classes, object))
     },
 
-    documentPOS = function(object) {
-      classes <- c("NLPStudios", "Corpus")
+    featurePOS = function(object) {
+      classes <- c("Pipeline", "Archive")
       return(private$validate(classes, object))
     }
   )

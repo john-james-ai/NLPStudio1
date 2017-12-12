@@ -34,15 +34,11 @@ Corpus <- R6::R6Class(
   classname = "Corpus",
   lock_objects = FALSE,
   lock_class = FALSE,
+  inherit = Entity,
 
   private = list(
     ..documents = list(),
-    ..ioIn = character(),
-    ..ioOut = character(),
-    ..extDir = 'external',
-    ..rawDir = 'raw',
-    ..refinedDir = 'refined',
-    ..cvDir = 'cv'
+    ..io = character()
   ),
 
   public = list(
@@ -50,7 +46,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, ioIn, ioOut, desc = NULL) {
+    initialize = function(name, io, desc = NULL) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
@@ -58,7 +54,7 @@ Corpus <- R6::R6Class(
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
       private$..parent <- NLPStudios$new()$getInstance()
-      private$..path <- file.path(NLPStudios$new()$getInstance()$getPath(), 'data', private$..name)
+      private$..path <- file.path(NLPStudios$new()$getInstance()$getPath(), 'corpora', private$..name)
       private$..ioIn <- ioIn
       private$..ioOut <- ioOut
       private$..state <- "Corpus instantiated."
@@ -168,7 +164,7 @@ Corpus <- R6::R6Class(
       private$..methodName <- 'move'
 
       v <- Validator$new()
-      status <- v$corpusParent(self, parent)
+      status <- v$setParent(self, parent)
 
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
@@ -179,6 +175,13 @@ Corpus <- R6::R6Class(
 
         private$..path <- file.path(parent$getPath(),
                                     private$..name)
+
+        # Move documents
+        private$..documents <- lapply(private$..documents, function(d) {
+          d$move(self)
+        })
+
+        # Log it
         private$..modified <- Sys.time()
         private$..state <- paste(private$..className, private$..name, 'moved to ',
                                  parent$getClassName(), parent$getName())
