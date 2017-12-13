@@ -5,7 +5,7 @@
 #' Singleton
 #'
 #'
-#' \code{Singleton} Singleton class for NLPStudios subclass
+#' \code{Singleton} Singleton class for NLPStudio subclass
 #'
 #' This class ...
 #'

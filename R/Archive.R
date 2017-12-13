@@ -3,9 +3,9 @@
 #==============================================================================#
 #' Archive
 #'
-#' \code{Archive} Class responsible for archival and restore of NLPStudios objects.
+#' \code{Archive} Class responsible for archival and restore of NLPStudio objects.
 #'
-#' Class archives NLPStudios objects, including Studio, Data, Corpus & Document
+#' Class archives NLPStudio objects, including Studio, Data, Corpus & Document
 #' objects. A list of archives is retained and a restoral method enables clients
 #' to restore objects the object to its prior state.
 #'
@@ -56,7 +56,7 @@ Archive <- R6::R6Class(
       private$..className <- 'Archive'
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
-      private$..parent <- NLPStudios$new()$getInstance()
+      private$..parent <- NLPStudio$new()$getInstance()
       private$..homeDir <- file.path(private$..parent()$getPath(), 'archive')
       private$..path <- file.path(private$..homeDir, name)
       private$..state <- paste("Archive", private$..name, "instantiated at", Sys.time())
@@ -147,25 +147,25 @@ Archive <- R6::R6Class(
 
       if (email == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudios:::regexPatterns$emails, ' ', x, perl = TRUE)
+          gsub(NLPStudio:::regexPatterns$emails, ' ', x, perl = TRUE)
         })
       }
 
       if (control == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudios:::regexPatterns$control, ' ', x, perl = TRUE)
+          gsub(NLPStudio:::regexPatterns$control, ' ', x, perl = TRUE)
         })
       }
 
       if (repeatChars == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudios:::regexPatterns$repeatedChars, ' ', x, perl = TRUE)
+          gsub(NLPStudio:::regexPatterns$repeatedChars, ' ', x, perl = TRUE)
         })
       }
 
       if (longWords == TRUE) {
         private$..content <- lapply(private$..content, function(x) {
-          gsub(NLPStudios:::regexPatterns$longWords, ' ', x, perl = TRUE)
+          gsub(NLPStudio:::regexPatterns$longWords, ' ', x, perl = TRUE)
         })
       }
 
@@ -187,9 +187,9 @@ Archive <- R6::R6Class(
 
       private$..methodName <- 'normalize'
 
-      key <- paste0("\\b", NLPStudios:::norms$key, "\\b")
+      key <- paste0("\\b", NLPStudio:::norms$key, "\\b")
       for (i in 1:length(key)) {
-        private$..content <- gsub(key[i], NLPStudios::norms$value[i],
+        private$..content <- gsub(key[i], NLPStudio::norms$value[i],
                                   private$..content,
                                   ignore.case = TRUE, perl = TRUE)
       }
@@ -212,7 +212,7 @@ Archive <- R6::R6Class(
 
       private$..methodName <- 'sanitizeWord'
 
-      key <- paste0("\\b", NLPStudios:::profanity, "\\b")
+      key <- paste0("\\b", NLPStudio:::profanity, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], ' ', private$..content,
                                   ignore.case = TRUE, perl = TRUE)
@@ -233,7 +233,7 @@ Archive <- R6::R6Class(
 
       private$..methodName <- 'sanitizeSent'
 
-      stringsRegex <- paste0("\\b",NLPStudios:::profanity, "\\b", collapse = '|')
+      stringsRegex <- paste0("\\b",NLPStudio:::profanity, "\\b", collapse = '|')
       xidx <- unique(grep(stringsRegex, private$..content, ignore.case = TRUE))
       private$..content <- private$..content[-xidx]
 
@@ -252,7 +252,7 @@ Archive <- R6::R6Class(
 
       private$..methodName <- 'sanitizeTag'
 
-      key <- paste0("\\b", NLPStudios:::profanity, "\\b")
+      key <- paste0("\\b", NLPStudio:::profanity, "\\b")
       for (i in 1:length(key)) {
         private$..content <- gsub(key[i], '<EXPLETIVE>', private$..content,
                                   ignore.case = TRUE, perl = TRUE)
@@ -279,7 +279,7 @@ Archive <- R6::R6Class(
 
       # Remove extra white-space
       private$..content <-
-        stringr::str_replace(gsub(NLPStudios:::regexPatterns$whiteSpace, " ",
+        stringr::str_replace(gsub(NLPStudio:::regexPatterns$whiteSpace, " ",
                                   stringr::str_trim(private$..content)), "B", "b")
       private$..content <- private$..content[private$..content != ""]
       private$..content <- private$..content[private$..content != "'"]

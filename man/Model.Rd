@@ -39,7 +39,7 @@ enable clients to add, retrieve and remove corpora from the model.
  \describe{
   \item{\code{getCorpora()}}{Retrieves the list of corpora for the model.}
   \item{\code{addCorpus(corpus)}}{Adds a model to the Model object.}
-  \item{\code{removeCorpus(corpus)}}{Removes a model from the Model object. The model is archived in the NLPStudios archives.}
+  \item{\code{removeCorpus(corpus)}}{Removes a model from the Model object. The model is archived in the NLPStudio archives.}
 }
 
 \strong{Model Visitor Methods:}

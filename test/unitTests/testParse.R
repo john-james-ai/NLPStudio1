@@ -4,7 +4,7 @@ testParse <- function() {
     if (exists("train", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("train", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("val", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("val", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("en_US.news.txt", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("en_US.news.txt", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    file.copy('./test/testData/en_US.news.txt', './NLPStudios/documents/text/en_US.news.txt', overwrite = TRUE)
+    file.copy('./test/testData/en_US.news.txt', './NLPStudio/documents/text/en_US.news.txt', overwrite = TRUE)
 
   }
 
@@ -14,7 +14,7 @@ testParse <- function() {
 
     # Instantiate Set
     train <- Set$new(name = 'train', desc = 'Train Set')
-    news <- Document$new("./NLPStudios/documents/text/en_US.news.txt", desc = 'News Register')
+    news <- Document$new("./NLPStudio/documents/text/en_US.news.txt", desc = 'News Register')
     train <- train$addDocument(news)
     news <- news$move(train)
 

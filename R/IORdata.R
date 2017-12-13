@@ -1,11 +1,11 @@
 ## ---- IORdata
 #==============================================================================#
-#                                      IORdata                                 #
+#                                 IORdata                                      #
 #==============================================================================#
 #' IORdata
 #'
 #'
-#' \code{IORdata} Class responsible for reading and writing rdata documents.
+#' \code{IORdata} Class responsible for reading and writing Rdata documents.
 #'
 #' \strong{IO Class Overview:}
 #' The IORdata class is an implementation of the strategy design pattern,
@@ -45,7 +45,9 @@ IORdata <- R6::R6Class(
       fileName <- basename(filePath)
 
       if (file.exists(filePath)) {
-        status[['data']] <- readRDS(file = filePath)
+        env <- new.env()
+        content <- load(filePath, envir = env)
+        status[['data']] <- env[[content]]
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to read ', fileName, '. ',
@@ -71,7 +73,7 @@ IORdata <- R6::R6Class(
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
       if (!is.null(content)) {
-        saveRDS(object = content, file = filePath)
+        save(object = content, file = filePath, compression_level = 9)
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to write ', fileName, '. ',

@@ -30,8 +30,6 @@ Entity <- R6::R6Class(
     ..name = character(),
     ..desc = character(),
     ..parent = character(),
-    ..homeDir = character(),
-    ..path = character(),
     ..state = character(),
     ..logs = character(),
     ..created = character(),

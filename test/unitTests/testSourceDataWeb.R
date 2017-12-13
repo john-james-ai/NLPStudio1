@@ -1,11 +1,12 @@
-testCorpusSourceWeb <- function() {
+testSourceDataWeb <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
+    if (exists("rawData", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("rawData", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
   }
 
   test0 <- function() {
-    test <- "test0: CorpusSourceWeb"
+    test <- "test0: SourceDataWeb"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Parameters
@@ -14,17 +15,22 @@ testCorpusSourceWeb <- function() {
                    "final/en_US/en_US.twitter.txt")
 
     # Validation
-    #csw <- CorpusSourceWeb$new()# should fail -success
-    #csw <- CorpusSourceWeb$new(url = 'url', fileNames = fileNames) # should fail
+    # csw <- SourceDataWeb$new()# should fail -success
+    # csw <- SourceDataWeb$new(url = 'www.data.com') # should fail, bad url
+    # csw <- SourceDataWeb$new(url = url) # should fail, no name
 
     # Instantiate
-    csw <- CorpusSourceWeb$new(url = url, fileNames = fileNames)
+    csw <- SourceDataWeb$new(name = 'rawData', url = url, desc = 'Raw Corpus')
     csw$sourceData()
-    d <- csw$exposeObject()
+
+    # Check files
+    s <- csw$exposeObject()
+
+
     stopifnot(length(d$files) == 3)
 
     # Logit
-    DocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized CorpusSourceWeb"))
+    DocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized SourceDataWeb"))
     DocumentTest$logs(className = className, methodName = "sourceData", msg = paste("Successfully sourced the data"))
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -34,6 +40,6 @@ testCorpusSourceWeb <- function() {
 init()
 csw <<- test0()
 }
-className <- "CorpusSourceWeb"
+className <- "SourceDataWeb"
 #source('./test/unitTests/testCorpusBuilder.R')
-testCorpusSourceWeb()
+testSourceDataWeb()

@@ -15,7 +15,7 @@ as directories structures.
 \section{Constants Methods}{
 
 \describe{
- \item{\code{getPaths()}}{Returns the NLPStudios directory and file paths as a list.}
+ \item{\code{getPaths()}}{Returns the NLPStudio directory and file paths as a list.}
 }
 }
 

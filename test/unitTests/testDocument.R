@@ -14,17 +14,19 @@ testDocument <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: Document: Instantiation and Core Methods"
+    test <- "test0: Document: Instantiation from file without corpus"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Validation
-    #blogs <- Document$new()# should fail -success
-    #blogs <- Document$new('./test/usd.txxxt', io = 'hat') # should fail, file does not exist
-    #blogs <- Document$new('./test/testData/hc/en_US.blogs.txt', io = 'car') # io Mismatch
-    #blogs <- Document$new('./test/testData/hc/en_US.blogs.txt', io = IORdata$new) # io Mismatch
+    blogs <- Document$new()# should fail -success
+    blogs <- Document$new(name = 'blogs')# should fail -success, no filename
+    blogs <- Document$new(name = 'blogs', fileName = './test/usd.txxxt', io = 'hat') # should fail, wrong file extention
+    blogs <- Document$new(name = 'blogs', fileName = './test/testData/en_US.blogs.txt', io = 'hat') # should fail, io is invalid
+    blogs <- Document$new(name = 'blogs', fileName = './test/testData/en_US.blogs.txt', io = IORdata$new()) # should fail, io mismatch
+
 
     # Instantiate
-    blogs <- Document$new('./test/testData/en_US.blogs.txt', io = IOText$new(), desc = 'Blogs Register')
+    blogs <- Document$new(name = 'blogs', fileName = './test/testData/en_US.blogs.txt', io = IOText$new(), desc = 'Blogs Register')
     d <- blogs$exposeObject()
     stopifnot(d$className == 'Document')
     stopifnot(d$name == 'en_US.blogs')

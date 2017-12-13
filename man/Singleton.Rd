@@ -9,7 +9,7 @@
 Singleton
 }
 \description{
-\code{Singleton} Singleton class for NLPStudios subclass
+\code{Singleton} Singleton class for NLPStudio subclass
 }
 \details{
 This class ...

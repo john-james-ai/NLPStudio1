@@ -10,7 +10,7 @@
 #' \strong{VValidatorAddChild Methods:}
 #' The VValidatorAddChild methods are as follows:
 #'  \itemize{
-#'   \item{\code{nlpStudios(object, child)}}{Method for validating the addChild method parameters of the NLPStudios object}
+#'   \item{\code{nlpStudio(object, child)}}{Method for validating the addChild method parameters of the NLPStudio object}
 #'   \item{\code{studio(object, child)}}{Method for validating the addChild method parameters of the Studio object}
 #'   \item{\code{documentCollection(object, child)}}{Method for validating the addChild method parameters of the DocumentCollection object.}
 #'   \item{\code{document(object, child)}}{Method for validating the addChild method parameters of the Document object.}
@@ -99,24 +99,18 @@ VValidatorAddChild <- R6::R6Class(
       invisible(self)
     },
 
-    nlpStudios = function(object) {
-      classes <- "Studio"
+    nlpStudio = function(object) {
+      classes <- "Pipeline"
       return(private$validate(classes, object))
     },
 
-    studio = function(object) {
-      classes <- "Corpus"
-      return(private$validate(classes, object))
-    },
-
-    data = function(object) {
+    pipeline = function(object) {
       classes <- c("Corpus", "CVSets")
       return(private$validate(classes, object))
     },
 
     corpus = function(object) {
-      classes <- c("Document", "DocumentNGrams",
-                   "DocumentPOS")
+      classes <- c("DocumentTxt", "DocumentRds")
       return(private$validate(classes, object))
     },
 

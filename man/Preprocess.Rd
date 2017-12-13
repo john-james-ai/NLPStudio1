@@ -32,9 +32,6 @@ normalization, sanitization, and tokenization of text.
  }
 }
 
-\seealso{
-Other Document classes: \code{\link{Document}}
-}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

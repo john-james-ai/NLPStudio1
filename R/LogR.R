@@ -26,7 +26,7 @@ LogR <- R6::R6Class(
 
   private = list(
     ..entries = list(),
-    ..logPath = './NLPStudios/logs',
+    ..logPath = './NLPStudio/logs',
     notifyInfo  = function(note) futile.logger::flog.info(note, name = "green"),
     notifyWarn  = function(note) futile.logger::flog.warn(note, name = "yellow"),
     notifyError = function(note)  futile.logger::flog.error(note, name = "red")

@@ -23,7 +23,7 @@
 #'  \describe{
 #'   \item{\code{getCorpora()}}{Retrieves the list of corpora for the model.}
 #'   \item{\code{addCorpus(corpus)}}{Adds a model to the Model object.}
-#'   \item{\code{removeCorpus(corpus)}}{Removes a model from the Model object. The model is archived in the NLPStudios archives.}
+#'   \item{\code{removeCorpus(corpus)}}{Removes a model from the Model object. The model is archived in the NLPStudio archives.}
 #' }
 #'
 #' \strong{Model Visitor Methods:}
@@ -61,8 +61,8 @@ Model <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "model"), desc)
-      private$..path <- file.path("./NLPStudios/models", name)
-      private$..parent <- NLPStudios$new()$getInstance()
+      private$..path <- file.path("./NLPStudio/models", name)
+      private$..parent <- NLPStudio$new()$getInstance()
       private$..state <- paste("Model", name, "instantiated at", Sys.time())
       private$..logs <- LogR$new()
       private$..modified <- Sys.time()
@@ -153,7 +153,7 @@ Model <- R6::R6Class(
       private$..corpora[[corpusName]] <- NULL
 
       # Move corpora to main corpora directory
-      corpus$move(NLPStudios$new()$getInstance())
+      corpus$move(NLPStudio$new()$getInstance())
 
       # Update modified time
       private$..modified <- Sys.time()

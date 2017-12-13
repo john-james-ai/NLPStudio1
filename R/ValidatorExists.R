@@ -36,9 +36,9 @@ ValidatorExists <- R6::R6Class(
     initialize = function() invisible(self),
     validate = function( value, expect = TRUE) {
       if (length(value) != 0 & !is.null(value)) {
-        if (exists(value) & (expect == TRUE | expect == "TRUE")) {
+        if (exists(value, envir=parent.frame()) & (expect == TRUE | expect == "TRUE")) {
           return(TRUE)
-        } else if (!exists(value) & (expect == FALSE | expect == "FALSE")){
+        } else if (!exists(value, envir=parent.frame()) & (expect == FALSE | expect == "FALSE")){
           return(TRUE)
         } else {
           return(FALSE)

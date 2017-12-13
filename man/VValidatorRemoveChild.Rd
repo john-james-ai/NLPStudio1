@@ -21,7 +21,7 @@ of aggregate and composite classes.
 \strong{VValidatorRemoveChild Methods:}
 The VValidatorRemoveChild methods are as follows:
  \itemize{
-  \item{\code{nlpStudios(object, child)}}{Method for validating the removeChild method parameters of the NLPStudios object}
+  \item{\code{nlpStudio(object, child)}}{Method for validating the removeChild method parameters of the NLPStudio object}
   \item{\code{studio(object, child)}}{Method for validating the removeChild method parameters of the Studio object}
   \item{\code{documentCollection(object, child)}}{Method for validating the removeChild method parameters of the DocumentCollection object.}
   \item{\code{document(object, child)}}{Not implemented for this class.}
@@ -32,8 +32,6 @@ The VValidatorRemoveChild methods are as follows:
 }
 \seealso{
 Other Validation Visitor Classes: \code{\link{VValidatorAddChild}},
-  \code{\link{VValidatorCorpusInSource}},
-  \code{\link{VValidatorCorpusSourceWeb}},
   \code{\link{VValidatorInit}},
   \code{\link{VValidatorSetParent}},
   \code{\link{VValidator}}

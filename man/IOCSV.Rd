@@ -31,8 +31,8 @@ The IOCSV class supports csv, Rdata, and text files through the following method
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOArchive}}, \code{\link{IOBin}},
-  \code{\link{IORdata}}, \code{\link{IOText}},
+  \code{\link{IOBin}}, \code{\link{IORdata}},
+  \code{\link{IORds}}, \code{\link{IOText}},
   \code{\link{IOXlsx}}
 }
 \author{

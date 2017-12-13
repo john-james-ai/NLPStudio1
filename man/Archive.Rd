@@ -16,10 +16,10 @@ Archive
 \item{desc}{Character string containing the description of the archive}
 }
 \description{
-\code{Archive} Class responsible for archival and restore of NLPStudios objects.
+\code{Archive} Class responsible for archival and restore of NLPStudio objects.
 }
 \details{
-Class archives NLPStudios objects, including Studio, Data, Corpus & Document
+Class archives NLPStudio objects, including Studio, Data, Corpus & Document
 objects. A list of archives is retained and a restoral method enables clients
 to restore objects the object to its prior state.
 }

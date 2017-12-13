@@ -14,8 +14,8 @@ testBuildData <- function() {
     test <- "test0: Corpus Builder: instantiation"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Obtain NLPStudios object
-    nlpStudios <- NLPStudios$new()$getInstance()
+    # Obtain NLPStudio object
+    nlpStudio <- NLPStudio$new()$getInstance()
 
     # Instantiate builder
     #b <- CorpusBuilder$new() # should fail, non name success
@@ -25,8 +25,8 @@ testBuildData <- function() {
     p <- b$exposeObject()
     stopifnot(p$name == 'sfc')
     stopifnot(p$desc == 'sfc corpus')
-    stopifnot(p$parent$getName() == 'nlpStudios')
-    stopifnot(p$path == './NLPStudios/corpora/sfc')
+    stopifnot(p$parent$getName() == 'nlpStudio')
+    stopifnot(p$path == './NLPStudio/corpora/sfc')
 
     # Logit
     buildDataTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized corpus"))

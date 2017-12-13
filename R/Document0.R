@@ -59,7 +59,10 @@ Document0 <- R6::R6Class(
   private = list(
     ..io = character(),
     ..content = character(),
-    ..size = numeric()
+
+    validateParent = function() {
+
+    }
   ),
 
   public = list(
@@ -67,23 +70,29 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function() { stop("This method is not implemented for this strategy abstract class.") },
+    initialize = function(name, path, desc = NULL) { stop("This method is not implemented for this strategy abstract class.") },
     getFileName = function() private$..fileName,
-    getIO = function() private$..io,
+
+    #-------------------------------------------------------------------------#
+    #                         Content Methods                                 #
+    #-------------------------------------------------------------------------#
     getContent = function() {
       if (is.null(private$..content))  self$read()
       private$..content
     },
 
+    addContent = function(content) {
+      private$..content <- content
+    },
+
     #-------------------------------------------------------------------------#
     #                            IO Methods                                   #
     #-------------------------------------------------------------------------#
-    read = function(io = NULL) {
+    read = function() {
 
       private$..methodName <- 'read'
 
-      if (is.null(io)) io <- private$..io
-
+      io <- VIO$new()
       status <- io$read(self)
 
       if (status[['code']] == FALSE) {
@@ -106,12 +115,11 @@ Document0 <- R6::R6Class(
 
     },
 
-    write = function(io = NULL) {
+    write = function() {
 
       private$..methodName <- 'write'
 
-      if (is.null(io)) io <- private$..io
-
+      io <- VIO$new()
       status <- io$write(self)
 
       if (status[['code']] == FALSE) {
@@ -122,6 +130,7 @@ Document0 <- R6::R6Class(
 
       # LogIt
       private$..state <- paste0("Wrote ", private$..fileName, ". ")
+      private$..accessed <- Sys.time()
       private$..modified <- Sys.time()
       self$logIt()
 
@@ -134,9 +143,9 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                          Aggregate Method                               #
     #-------------------------------------------------------------------------#
-    move = function(parent) {
+    setParent = function(parent) {
 
-      private$..methodName <- 'move'
+      private$..methodName <- 'setParent'
 
       v <- Validator$new()
       status <- v$setParent(self, parent)
@@ -147,30 +156,12 @@ Document0 <- R6::R6Class(
         stop()
       } else {
 
-        # Load / read data
-        self$read()
-
-        # Remove file
-        f <- FileManager$new()
-        f$removeFile(private$..path)
-
-        # Reset parent and path
         private$..parent <- parent
-        private$..path <- file.path(parent$getPath(), private$..fileName)
-
-        # If new location is the archive, change file io and file type to Rdata.
-        if (class(parent)[1] == "Archive") {
-          private$..io <- IOArchive$new()
-          fileName <- paste0(tools::file_path_sans_ext(basename(private$..path)), ".Rdata")
-
-        }
-
-        # Save file
-        self$write()
 
         # Log it
+        private$..accessed <- Sys.time()
         private$..modified <- Sys.time()
-        private$..state <- paste(private$..className, private$..name, 'moved to ',
+        private$..state <- paste(private$..className, private$..name, 'parent set to ',
                                  parent$getClassName(), parent$getName())
         self$logIt()
 
@@ -198,7 +189,6 @@ Document0 <- R6::R6Class(
         desc	 = 	    private$..desc ,
         parent	 = 	  private$..parent ,
         path	 = 	    private$..path ,
-        io = private$..io,
         content =     private$..content,
         state	 = 	    private$..state ,
         logs	 = 	    private$..logs ,

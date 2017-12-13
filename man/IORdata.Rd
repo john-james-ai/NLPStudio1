@@ -12,7 +12,7 @@ IORdata
 \item{document}{Object of the Document family of classes}
 }
 \description{
-\code{IORdata} Class responsible for reading and writing rdata documents.
+\code{IORdata} Class responsible for reading and writing Rdata documents.
 }
 \details{
 \strong{IO Class Overview:}
@@ -31,8 +31,8 @@ The IORdata class supports csv, Rdata, and text files through the following meth
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOArchive}}, \code{\link{IOBin}},
-  \code{\link{IOCSV}}, \code{\link{IOText}},
+  \code{\link{IOBin}}, \code{\link{IOCSV}},
+  \code{\link{IORds}}, \code{\link{IOText}},
   \code{\link{IOXlsx}}
 }
 \author{

@@ -10,7 +10,7 @@
 #' \strong{VValidatorRemoveChild Methods:}
 #' The VValidatorRemoveChild methods are as follows:
 #'  \itemize{
-#'   \item{\code{nlpStudios(object, child)}}{Method for validating the removeChild method parameters of the NLPStudios object}
+#'   \item{\code{nlpStudio(object, child)}}{Method for validating the removeChild method parameters of the NLPStudio object}
 #'   \item{\code{studio(object, child)}}{Method for validating the removeChild method parameters of the Studio object}
 #'   \item{\code{documentCollection(object, child)}}{Method for validating the removeChild method parameters of the DocumentCollection object.}
 #'   \item{\code{document(object, child)}}{Not implemented for this class.}
@@ -99,31 +99,30 @@ VValidatorRemoveChild <- R6::R6Class(
       invisible(self)
     },
 
-    nlpStudios = function(object) {
+    nlpStudio = function(object) {
       classes <- "Studio"
       return(private$validate(classes, object))
     },
 
-    studio = function(object) {
+    pipeline = function(object) {
       classes <- "Corpus"
       return(private$validate(classes, object))
     },
 
     corpus = function(object) {
-      classes <- c("Document", "DocumentNGrams",
-                   "DocumentPOS")
+      classes <- c("DocumentTxt", "DocumentRds")
       return(private$validate(classes, object))
     },
 
-    document = function(object) {
+    documentTxt = function(object) {
+      return(private$validateDocument(object))
+    },
+
+    documentRds = function(object) {
       return(private$validateDocument(object))
     },
 
     documentCsv = function(object) {
-      return(private$validateDocument(object))
-    },
-
-    documentRdata = function(object) {
       return(private$validateDocument(object))
     },
 

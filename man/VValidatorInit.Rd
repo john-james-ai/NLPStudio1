@@ -20,7 +20,7 @@ VValidatorInit
 \strong{VValidatorInit Methods:}
 The VValidatorInit methods are as follows:
  \itemize{
-  \item{\code{nlpStudios(object)}}{Method for validating the instantiation of the NLPStudios object}
+  \item{\code{nlpStudio(object)}}{Method for validating the instantiation of the NLPStudio object}
   \item{\code{studio(object)}}{Method for validating the instantiation of the Studio object}
   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
   \item{\code{document(object)}}{Method for validating the instantiation of the Document object.}
@@ -31,8 +31,6 @@ The VValidatorInit methods are as follows:
 }
 \seealso{
 Other Validation Visitor Classes: \code{\link{VValidatorAddChild}},
-  \code{\link{VValidatorCorpusInSource}},
-  \code{\link{VValidatorCorpusSourceWeb}},
   \code{\link{VValidatorRemoveChild}},
   \code{\link{VValidatorSetParent}},
   \code{\link{VValidator}}

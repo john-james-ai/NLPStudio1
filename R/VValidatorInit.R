@@ -9,7 +9,7 @@
 #' \strong{VValidatorInit Methods:}
 #' The VValidatorInit methods are as follows:
 #'  \itemize{
-#'   \item{\code{nlpStudios(object)}}{Method for validating the instantiation of the NLPStudios object}
+#'   \item{\code{nlpStudio(object)}}{Method for validating the instantiation of the NLPStudio object}
 #'   \item{\code{studio(object)}}{Method for validating the instantiation of the Studio object}
 #'   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
 #'   \item{\code{document(object)}}{Method for validating the instantiation of the Document object.}
@@ -33,6 +33,8 @@ VValidatorInit <- R6::R6Class(
 
   private = list(
     ..name = "VValidatorInit",
+    ..object = character(),
+    ..parent = character(),
 
     validateName = function(object) {
 
@@ -78,23 +80,21 @@ VValidatorInit <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      parent <- object$getParent()
       name <- object$getName()
+      parent <- private$..parent
 
+      # Confirm parent is not missing
       if (is.null(parent)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object, ", name, ". If current ",
-                                  parentClass, " is not set, an object ",
-                                  "of the ", parentClass, " class must be ",
-                                  "passed as a parameter to the instantiation ",
-                                  "of the ", class(object)[1], " object. ",
+                                  " object, ", name, ". Parent parameter is ",
+                                  "missing with no default. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
         return(status)
       }
 
-
+      # Confirm parent is valid class
       v <- ValidatorClass$new()
       if (v$validate(value = parent, expect = parentClass) == FALSE) {
         status[['code']] <- FALSE
@@ -110,70 +110,30 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-    validateBuilder = function(object, builder, className) {
+    validateUrl = function(object) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      name <- object$getName()
+      url <- object$getURL()
 
-      v <- ValidatorClass$new()
-      if (v$validate(value = builder, expect = className) == FALSE) {
+      # Confirm URL is not missing
+      if (is.null(url)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object, ", name, ". Object of  ",
-                                  class(object)[1], " requires an ",
-                                  "object of class ", className,
-                                  " as a parameter. ",
+                                  " object, ", name, ". URL is missing",
+                                  "with no default. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
-      }
-      return(status)
-    },
-
-    validateFileName = function(object, ext) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      fileName <- object$getFileName()
-
-      if (is.null(fileName) | is.na(fileName) | length(fileName) == 0) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("File name parameter is missing with no default. ",
-                                  "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
 
-      if (!(tools::file_ext(fileName) %in% ext)) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("File type must be in ",
-                                  paste0("(",paste(ext,collapse = ','), "). "),
-                                  "See ?", class(object)[1], " for further assistance.")
-        return(status)
-      }
-
-      filePath <- file.path(object$getPath())
-      if (!file.exists(filePath)) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("File does not exist. ",
-                                  "See ?", class(object)[1], " for further assistance.")
-        return(status)
-      }
-      return(status)
-    },
-
-    validateIO = function(object) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      v <- ValidatorIO$new()
-      if (v$validate(value = object) == FALSE) {
+      # Confirm URL is valid class
+      v <- ValidatorUrl$new()
+      if (v$validate(value = url, expect = NULL) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object, ", object$getName(), ". The io ",
-                                  "parameter does not match the file type. ",
+                                  " object, ", name, ". URL is invalid. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
         return(status)
@@ -186,7 +146,8 @@ VValidatorInit <- R6::R6Class(
       status[['code']] <- TRUE
 
       name <- object$getName()
-      archiveClasses <- c('Studio', 'Data', 'Corpus', 'Document')
+      archiveClasses <- c('Studio', 'Pipeline', 'Feature', 'Model',  'Data',
+                          'Corpus', 'Document')
 
       v <- ValidatorClass$new()
       if (v$validate(value = object, expect = archiveClasses) == FALSE) {
@@ -204,11 +165,14 @@ VValidatorInit <- R6::R6Class(
 
   public = list(
 
-    initialize = function() {
+    initialize = function(object, parent = NULL) {
+
+      private$..object <- object
+      private$..parent <- parent
       invisible(self)
     },
 
-    nlpStudios = function(object) {
+    nlpStudio = function(object) {
       return(status[['code']] <- TRUE)
     },
 
@@ -218,53 +182,56 @@ VValidatorInit <- R6::R6Class(
       return(private$validateArchive(object))
     },
 
-    data = function(object) {
+    pipeline = function(object) {
       return(private$validateName(object))
     },
 
     corpus = function(object) {
-      return(private$validateName(object))
-    },
-
-    corpusSourceWeb = function(object) {
-      return(private$validateName(object))
-    },
-
-    corpusDirector = function(object) {
-      builder <- object$getBuilder()
-      className <- c("CorpusBuilderCv","CorpusBuilderKFoldCv")
-      return(private$validateBuilder(object, builder, className = className))
-    },
-
-    document = function(object) {
-
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      ext <- c("txt", "Rdata", "RData", "Rds")
-      if (private$validateFileName(object, ext)[['code']] == FALSE)
-        return(private$validateFileName(object, ext))
-      return(private$validateIO(object))
+      parentClass <- 'Pipeline'
+      return(private$validateParent(object, parentClass))
+    },
+
+    sourceDataWeb = function(object) {
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      return(private$validateUrl(object))
+    },
+
+    documentTxt = function(object) {
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      parentClass <- 'Corpus'
+      return(private$validateParent(object, parentClass))
     },
 
     documentCsv = function(object) {
-
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      return(private$validateFileName(object, "csv"))
+      parentClass <- 'Corpus'
+      return(private$validateParent(object, parentClass))
+    },
+
+    documentRds = function(object) {
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      parentClass <- 'Corpus'
+      return(private$validateParent(object, parentClass))
     },
 
     documentRdata = function(object) {
-
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      return(private$validateFileName(object, c("Rdata", "RData", "Rda")))
+      parentClass <- 'Corpus'
+      return(private$validateParent(object, parentClass))
     },
 
     documentXlsx = function(object) {
-
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      return(private$validateFileName(object, c("xlsx", "xls")))
+      parentClass <- 'Corpus'
+      return(private$validateParent(object, parentClass))
     }
   )
 )

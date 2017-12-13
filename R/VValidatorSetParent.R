@@ -93,16 +93,11 @@ VValidatorSetParent <- R6::R6Class(
       invisible(self)
     },
 
-    nlpStudios = function(object) {
+    nlpStudio = function(object) {
       status <- list()
       status[['code']] <- FALSE
-      status[['msg']] <-  "Unable to set parent to an NLPStudios object"
+      status[['msg']] <-  "Unable to set parent to an NLPStudio object"
       return(status)
-    },
-
-    studio = function(object) {
-      classes <- c("NLPStudios", "Archive")
-      return(private$validate(classes, object))
     },
 
     pipeline = function(object) {

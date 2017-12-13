@@ -56,12 +56,8 @@ Validator <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                      Object Creation and Read                           #
     #-------------------------------------------------------------------------#
-    init = function(object) {
-      visitor <- VValidatorInit$new()
-      object$accept(visitor)
-    },
-    exposeObject = function(object) {
-      visitor <- VValidatorexposeObject$new()
+    init = function(object, ...) {
+      visitor <- VValidatorInit$new(object, ...)
       object$accept(visitor)
     },
 
@@ -79,14 +75,7 @@ Validator <- R6::R6Class(
     setParent = function(object, parent) {
       visitor <- VValidatorSetParent$new(object, parent)
       object$accept(visitor)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                           Corpus Source                                 #
-    #-------------------------------------------------------------------------#
-    corpusSourceWeb = function(object, source) {
-      visitor <- VValidatorCorpusSourceWeb$new(object, source)
-      object$accept(visitor)
     }
+
   )
 )

@@ -43,3 +43,4 @@ INFO [2017-12-11 22:35:27] Info in class 'Document', method 'read. Successfully 
 INFO [2017-12-11 22:35:27] Info in class 'Document', method 'write. Successfully wrote the document in txt format
 INFO [2017-12-11 22:35:27] Info in class 'Document', method 'write. Successfully wrote the document in bin format
 INFO [2017-12-11 22:35:27] Info in class 'Document', method 'write. Successfully wrote the document in archive (bzip2) format
+INFO [2017-12-11 23:37:06] Info in class 'NLPStudios', method 'initialize. Initialized NLPStudios.

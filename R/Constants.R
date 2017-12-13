@@ -8,7 +8,7 @@
 #'
 #' @section Constants Methods:
 #' \describe{
-#'  \item{\code{getPaths()}}{Returns the NLPStudios directory and file paths as a list.}
+#'  \item{\code{getPaths()}}{Returns the NLPStudio directory and file paths as a list.}
 #' }
 #'
 #' @docType class
@@ -20,12 +20,12 @@ Constants <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
-    ..studiosPaths = list(
-      archives = "./NLPStudios/archives",
-      config = "./NLPStudios/config",
-      corpora = './NLPStudios/corpora',
-      studios = "./NLPStudios/studios",
-      logs = "./NLPStudios/logs"
+    ..studioPaths = list(
+      archives = "./NLPStudio/archives",
+      config = "./NLPStudio/config",
+      corpora = './NLPStudio/corpora',
+      studio = "./NLPStudio/studio",
+      logs = "./NLPStudio/logs"
     ),
     ..corpusPaths = list(
       data = "data",
@@ -40,7 +40,7 @@ Constants <- R6::R6Class(
   public = list(
 
     # Constants
-    getStudiosPaths = function() private$..studiosPaths,
+    getStudioPaths = function() private$..studioPaths,
     getCorpusPaths = function() private$..corpusPaths
   )
 )
