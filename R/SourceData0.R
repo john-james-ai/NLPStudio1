@@ -14,12 +14,12 @@
 #' @section SourceData Family Participants:
 #'  \itemize{
 #'   \item{SourceData0}{Abstract class that defines core methods.}
-#'   \item{SourceDataTxt}{Class responsible for obtaining corpus data from text files.}
-#'   \item{SourceDataCsv}{Class responsible for obtaining corpus data from csv files.}
+#'   \item{SourceDataTXT}{Class responsible for obtaining corpus data from text files.}
+#'   \item{SourceDataCSV}{Class responsible for obtaining corpus data from csv files.}
 #'   \item{SourceDataRdata}{Class responsible for obtaining corpus data from Rdata files.}
-#'   \item{SourceDataRds}{Class responsible for obtaining corpus data from Rds files.}
-#'   \item{SourceDataJson}{Class responsible for obtaining corpus data from JSON files.}
-#'   \item{SourceDataXml}{Class responsible for obtaining corpus data from XML files.}
+#'   \item{SourceDataRDS}{Class responsible for obtaining corpus data from RDS files.}
+#'   \item{SourceDataJSON}{Class responsible for obtaining corpus data from JSON files.}
+#'   \item{SourceDataXML}{Class responsible for obtaining corpus data from XML files.}
 #'  }
 #'
 #' @section SourceData0 methods:

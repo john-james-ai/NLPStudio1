@@ -4,20 +4,20 @@
 #' VIOWrite
 #'
 #'
-#' \code{VIOWrite} Visitor class responsible for writing Document object content to file.
+#' \code{VIOWrite} Visitor class responsible for writing File object to disc.
 #'
 #' @section VIOWrite Methods:
 #'  \describe{
-#'   \item{\code{documentTxt(document)}}{Method for writing a text file.}
-#'   \item{\code{documentCsv(document)}}{Method for writing a csv file.}
-#'   \item{\code{documentBin(document)}}{Method for writing a binary file.}
-#'   \item{\code{documentRdata(document)}}{Method for writing an Rdata file.}
-#'   \item{\code{documentRds(document)}}{Method for writing an Rds file.}
-#'   \item{\code{documentXML(document)}}{Method for writing an XML file.}
-#'   \item{\code{documentJSON(document)}}{Method for writing an JSON file.}
+#'   \item{\code{fileTXT(file)}}{Method for writing a text file.}
+#'   \item{\code{fileCSV(file)}}{Method for writing a csv file.}
+#'   \item{\code{fileBin(file)}}{Method for writing a binary file.}
+#'   \item{\code{fileRdata(file)}}{Method for writing an Rdata file.}
+#'   \item{\code{fileRDS(file)}}{Method for writing an RDS file.}
+#'   \item{\code{fileXML(file)}}{Method for writing an XML file.}
+#'   \item{\code{fileJSON(file)}}{Method for writing an JSON file.}
 #' }
 #'
-#' @param document Document object
+#' @param file Document object
 #'
 #' @docType class
 #' @author John James, \email{jjames@@DataScienceSalon.org}
@@ -34,42 +34,42 @@ VIOWrite <- R6::R6Class(
       invisible(self)
     },
 
-    documentTxt = function(document) {
+    fileTXT = function(file) {
       io <- IOText$new()
-      return(io$write(document))
+      return(io$write(file))
     },
 
-    documentCsv = function(document) {
+    fileCSV = function(file) {
       io <- IOCSV$new()
-      return(io$write(document))
+      return(io$write(file))
     },
 
-    documentBin = function(document) {
+    fileBin = function(file) {
       io <- IOBin$new()
-      return(io$write(document))
+      return(io$write(file))
     },
 
-    documentRds = function(document) {
-      io <- IORds$new()
-      return(io$write(document))
+    fileRDS = function(file) {
+      io <- IORDS$new()
+      return(io$write(file))
     },
 
-    documentRdata = function(document) {
+    fileRdata = function(file) {
       io <- IORdata$new()
-      return(io$write(document))
+      return(io$write(file))
     },
 
-    documentXML = function(document) {
+    fileXML = function(file) {
       status = list()
       status[['code']]  <- FALSE
-      status[['msg']] <- 'documentXML method not implemented.'
+      status[['msg']] <- 'fileXML method not implemented.'
       return(status)
     },
 
-    documentJSON = function(object) {
+    fileJSON = function(object) {
       status = list()
       status[['code']]  <- FALSE
-      status[['msg']] <- 'documentJSON method not implemented.'
+      status[['msg']] <- 'fileJSON method not implemented.'
       return(status)
     }
   )

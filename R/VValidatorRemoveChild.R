@@ -14,7 +14,7 @@
 #'   \item{\code{studio(object, child)}}{Method for validating the removeChild method parameters of the Studio object}
 #'   \item{\code{documentCollection(object, child)}}{Method for validating the removeChild method parameters of the DocumentCollection object.}
 #'   \item{\code{document(object, child)}}{Not implemented for this class.}
-#'   \item{\code{documentCsv(object, child)}}{Not implemented for this class.}
+#'   \item{\code{documentCSV(object, child)}}{Not implemented for this class.}
 #'   \item{\code{documentRdata(object, child)}}{Not implemented for this class.}
 #'   \item{\code{documentXlsx(object, child)}}{Not implemented for this class.}
 #' }
@@ -110,19 +110,19 @@ VValidatorRemoveChild <- R6::R6Class(
     },
 
     corpus = function(object) {
-      classes <- c("DocumentTxt", "DocumentRds")
+      classes <- c("DocumentTXT", "DocumentRDS")
       return(private$validate(classes, object))
     },
 
-    documentTxt = function(object) {
+    documentTXT = function(object) {
       return(private$validateDocument(object))
     },
 
-    documentRds = function(object) {
+    documentRDS = function(object) {
       return(private$validateDocument(object))
     },
 
-    documentCsv = function(object) {
+    documentCSV = function(object) {
       return(private$validateDocument(object))
     },
 

@@ -5,7 +5,7 @@
 #' IOCSV
 #'
 #'
-#' \code{IOCSV} Class responsible for reading and writing csv documents.
+#' \code{IOCSV} Class responsible for reading and writing csv files.
 #'
 #' \strong{IO Class Overview:}
 #' The IOCSV class is an implementation of the strategy design pattern,
@@ -17,11 +17,11 @@
 #' \strong{IOCSV Methods:}
 #' The IOCSV class supports csv, Rdata, and text files through the following methods:
 #'  \itemize{
-#'   \item{\code{read(document)}}{Read method.}
-#'   \item{\code{write(document)}}{Write method.}
+#'   \item{\code{read(file)}}{Read method.}
+#'   \item{\code{write(file)}}{Write method.}
 #' }
 #'
-#' @param document Object of the Document family of classes
+#' @param file Object of the File family of classes
 #' @docType class
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Input / Output Classes
@@ -36,12 +36,12 @@ IOCSV <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(document, header = TRUE) {
+    read = function(file, header = TRUE) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- document$getPath()
+      filePath <- file$getPath()
       fileName <- basename(filePath)
 
       if (file.exists(filePath)) {
@@ -56,18 +56,18 @@ IOCSV <- R6::R6Class(
       return(status)
     },
 
-    write = function(document) {
+    write = function(file) {
 
       status <- list()
       status[['code']] <- TRUE
 
       # Format directory names
-      filePath <- document$getPath()
+      filePath <- file$getPath()
       dirName <- dirname(filePath)
       fileName <- basename(filePath)
 
       # Obtain content
-      content <- document$getContent()
+      content <- file$getContent()
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
@@ -77,7 +77,7 @@ IOCSV <- R6::R6Class(
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to write ', fileName, '. ',
-                                  'Document content is NULL.')
+                                  'File content is NULL.')
       }
       return(status)
     }

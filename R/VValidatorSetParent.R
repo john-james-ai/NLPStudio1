@@ -13,7 +13,7 @@
 #'   \item{\code{studio(object, parent)}}{Method for validating the SetParent method parameters of the Studio object}
 #'   \item{\code{documentCollection(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCollection object.}
 #'   \item{\code{document(object, parent)}}{Method for validating the SetParent method parameters of the Document object.}
-#'   \item{\code{documentCsv(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCsv object.}
+#'   \item{\code{documentCSV(object, parent)}}{Method for validating the SetParent method parameters of the DocumentCSV object.}
 #'   \item{\code{documentRdata(object, parent)}}{Method for validating the SetParent method parameters of the DocumentRdata object.}
 #'   \item{\code{documentXlsx(object, parent)}}{Method for validating the SetParent method parameters of the DocumentXlsx object.}
 #' }
@@ -101,42 +101,62 @@ VValidatorSetParent <- R6::R6Class(
     },
 
     pipeline = function(object) {
-      classes <- c("Studio", "Archive")
-      return(private$validate(classes, object))
-    },
-
-    data = function(object) {
-      classes <- c("Pipeline", "Archive")
-      return(private$validate(classes, object))
-    },
-
-    feature = function(object) {
-      classes <- c("Pipeline", "Archive")
-      return(private$validate(classes, object))
-    },
-
-    model = function(object) {
-      classes <- c("Pipeline", "Archive")
+      classes <- c("NLPStudio")
       return(private$validate(classes, object))
     },
 
     corpus = function(object) {
-      classes <- c("Data", "Archive")
+      classes <- c("Pipeline")
       return(private$validate(classes, object))
     },
 
     document = function(object) {
-      classes <- c("Corpus", "Archive")
+      classes <- c("Corpus")
+      return(private$validate(classes, object))
+    },
+
+    fileTXT = function(object) {
+      classes <- c("Document")
+      return(private$validate(classes, object))
+    },
+
+    fileRdata = function(object) {
+      classes <- c("Document")
+      return(private$validate(classes, object))
+    },
+
+    fileRDS = function(object) {
+      classes <- c("Document")
+      return(private$validate(classes, object))
+    },
+
+    fileCSV = function(object) {
+      classes <- c("Document")
+      return(private$validate(classes, object))
+    },
+
+    fileJSON = function(object) {
+      classes <- c("Document")
+      return(private$validate(classes, object))
+    },
+
+    cvSet = function(object) {
+      classes <- c("Pipeline")
       return(private$validate(classes, object))
     },
 
     featureNGram = function(object) {
-      classes <- c("Pipeline", "Archive")
+      classes <- c("CVSset")
       return(private$validate(classes, object))
     },
 
     featurePOS = function(object) {
-      classes <- c("Pipeline", "Archive")
+      classes <- c("CVSet")
+      return(private$validate(classes, object))
+    },
+
+    model = function(object) {
+      classes <- c("Pipeline")
       return(private$validate(classes, object))
     }
   )

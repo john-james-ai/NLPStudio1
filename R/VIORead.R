@@ -4,20 +4,20 @@
 #' VIORead
 #'
 #'
-#' \code{VIORead} Visitor class responsible for reading Document object content from file.
+#' \code{VIORead} Visitor class responsible for reading File object content from file.
 #'
 #' @section VIORead Methods:
 #'  \describe{
-#'   \item{\code{documentTxt(document)}}{Method for reading a text file.}
-#'   \item{\code{documentCsv(document)}}{Method for reading a csv file.}
-#'   \item{\code{documentBin(document)}}{Method for reading a binary file.}
-#'   \item{\code{documentRdata(document)}}{Method for reading an Rdata file.}
-#'   \item{\code{documentRds(document)}}{Method for reading an Rds file.}
-#'   \item{\code{documentXML(document)}}{Method for reading an XML file.}
-#'   \item{\code{documentJSON(document)}}{Method for reading an JSON file.}
+#'   \item{\code{fileTXT(file)}}{Method for reading a text file.}
+#'   \item{\code{fileCSV(file)}}{Method for reading a csv file.}
+#'   \item{\code{fileBin(file)}}{Method for reading a binary file.}
+#'   \item{\code{fileRdata(file)}}{Method for reading an Rdata file.}
+#'   \item{\code{fileRDS(file)}}{Method for reading an RDS file.}
+#'   \item{\code{fileXML(file)}}{Method for reading an XML file.}
+#'   \item{\code{fileJSON(file)}}{Method for reading an JSON file.}
 #' }
 #'
-#' @param document Document object
+#' @param file Document object
 #'
 #' @docType class
 #' @author John James, \email{jjames@@DataScienceSalon.org}
@@ -34,42 +34,42 @@ VIORead <- R6::R6Class(
       invisible(self)
     },
 
-    documentTxt = function(document) {
+    fileTXT = function(file) {
       io <- IOText$new()
-      return(io$read(document))
+      return(io$read(file))
     },
 
-    documentCsv = function(document) {
+    fileCSV = function(file) {
       io <- IOCSV$new()
-      return(io$read(document))
+      return(io$read(file))
     },
 
-    documentBin = function(document) {
+    fileBin = function(file) {
       io <- IOBin$new()
-      return(io$read(document))
+      return(io$read(file))
     },
 
-    documentRds = function(document) {
-      io <- IORds$new()
-      return(io$read(document))
+    fileRDS = function(file) {
+      io <- IORDS$new()
+      return(io$read(file))
     },
 
-    documentRdata = function(document) {
+    fileRdata = function(file) {
       io <- IORdata$new()
-      return(io$read(document))
+      return(io$read(file))
     },
 
-    documentXML = function(document) {
+    fileXML = function(file) {
       status = list()
       status[['code']]  <- FALSE
-      status[['msg']] <- 'documentXML method not implemented.'
+      status[['msg']] <- 'fileXML method not implemented.'
       return(status)
     },
 
-    documentJSON = function(object) {
+    fileJSON = function(object) {
       status = list()
       status[['code']]  <- FALSE
-      status[['msg']] <- 'documentJSON method not implemented.'
+      status[['msg']] <- 'fileJSON method not implemented.'
       return(status)
     }
   )

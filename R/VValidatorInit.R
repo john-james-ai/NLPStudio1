@@ -13,7 +13,7 @@
 #'   \item{\code{studio(object)}}{Method for validating the instantiation of the Studio object}
 #'   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
 #'   \item{\code{document(object)}}{Method for validating the instantiation of the Document object.}
-#'   \item{\code{documentCsv(object)}}{Method for validating the instantiation of the DocumentCsv object.}
+#'   \item{\code{documentCSV(object)}}{Method for validating the instantiation of the DocumentCSV object.}
 #'   \item{\code{documentRdata(object)}}{Method for validating the instantiation of the DocumentRdata object.}
 #'   \item{\code{documentXlsx(object)}}{Method for validating the instantiation of the DocumentXlsx object.}
 #' }
@@ -176,12 +176,6 @@ VValidatorInit <- R6::R6Class(
       return(status[['code']] <- TRUE)
     },
 
-    archive = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      return(private$validateArchive(object))
-    },
-
     pipeline = function(object) {
       return(private$validateName(object))
     },
@@ -193,45 +187,28 @@ VValidatorInit <- R6::R6Class(
       return(private$validateParent(object, parentClass))
     },
 
-    sourceDataWeb = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      return(private$validateUrl(object))
+    fileTXT = function(object) {
+      return(private$validateName(object))
     },
 
-    documentTxt = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      parentClass <- 'Corpus'
-      return(private$validateParent(object, parentClass))
+    fileCSV = function(object) {
+      return(private$validateName(object))
     },
 
-    documentCsv = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      parentClass <- 'Corpus'
-      return(private$validateParent(object, parentClass))
+    fileRDS = function(object) {
+      return(private$validateName(object))
     },
 
-    documentRds = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      parentClass <- 'Corpus'
-      return(private$validateParent(object, parentClass))
+    fileRdata = function(object) {
+      return(private$validateName(object))
     },
 
-    documentRdata = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      parentClass <- 'Corpus'
-      return(private$validateParent(object, parentClass))
+    fileXML = function(object) {
+      return(private$validateName(object))
     },
 
-    documentXlsx = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      parentClass <- 'Corpus'
-      return(private$validateParent(object, parentClass))
+    fileJSON = function(object) {
+      return(private$validateName(object))
     }
   )
 )
