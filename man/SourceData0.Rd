@@ -8,23 +8,49 @@
 \usage{
 SourceData0
 }
-\value{
-Character string indicating the name of the Validator class.
+\arguments{
+\item{name}{Character string indicating the name of the SourceData0 object.}
+
+\item{desc}{Character string containing the description of the corpus.}
+
+\item{path}{Character string indicating the directory}
 }
 \description{
-\code{SourceData0} Abstract class for the SourceData family of classes
+\code{SourceData0} Abstract class defining methods for SourceData family of classes.
 }
 \details{
-Abstract class for the SourceData classes
+The SourceData0 family of classes is an implementation of the strategy
+pattern documented in the book "Design Patterns: Elements of Reusable
+Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
+and John Vlissides (hence Gang of Four). This pattern allows corpus
+sourcing behavior to be defined at run time.
 }
-\section{Methods}{
+\section{SourceData Family Participants}{
 
-\describe{
- \item{\code{initialize()}}{Not implemented for this abstract class.}
- \item{\code{logIt()}}{Not implemented for this abstract class.}
-}
+ \itemize{
+  \item{SourceData0}{Abstract class that defines core methods.}
+  \item{SourceDataTXT}{Class responsible for obtaining corpus data from text files.}
+  \item{SourceDataCSV}{Class responsible for obtaining corpus data from csv files.}
+  \item{SourceDataRdata}{Class responsible for obtaining corpus data from Rdata files.}
+  \item{SourceDataRDS}{Class responsible for obtaining corpus data from RDS files.}
+  \item{SourceDataJSON}{Class responsible for obtaining corpus data from JSON files.}
+  \item{SourceDataXML}{Class responsible for obtaining corpus data from XML files.}
+ }
 }
 
+\section{SourceData0 methods}{
+
+ \itemize{
+  \item{\code{new(...)}}{Instantiates a SourceData object. Method not implemented for this abstract class.}
+  \item{\code{sourceData()}}{Sources the data and creates a Corpus object. Method not implemented for this abstract class.}
+  \item{\code{accept()}}{Accepts a Visitor object. Method not implemented for this abstract class. }
+  \item{\code{logIt()}}{Method used for logging purposes. Method not implemented for this abstract class. }
+ }
+}
+
+\seealso{
+Other CorpusSource classes: \code{\link{SourceDataWeb}}
+}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

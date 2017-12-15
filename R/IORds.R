@@ -1,52 +1,50 @@
-## ---- IOXlsx
+## ---- IORDS
 #==============================================================================#
-#                                      IOXlsx                                   #
+#                                      IORDS                                   #
 #==============================================================================#
-#' IOXlsx
+#' IORDS
 #'
 #'
-#' \code{IOXlsx} Class responsible for reading and writing xlsx documents.
+#' \code{IORDS} Class responsible for reading and writing rdata files.
 #'
 #' \strong{IO Class Overview:}
-#' The IOXlsx class is an implementation of the strategy design pattern,
+#' The IORDS class is an implementation of the strategy design pattern,
 #' as described in the book "Design Patterns: Elements of Reusable
 #' Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
 #' and John Vlissides (hence Gang of Four). This strategy pattern accommodates
 #' various formats and allows the behavior to be defined / selected at run time.
 #'
-#' \strong{IOXlsx Methods:}
-#' The IOXlsx class supports csv, Rdata, and text files through the following methods:
+#' \strong{IORDS Methods:}
+#' The IORDS class supports csv, RDS, and text files through the following methods:
 #'  \itemize{
-#'   \item{\code{read(document)}}{Read method.}
-#'   \item{\code{write(document)}}{Write method.}
+#'   \item{\code{read(file)}}{Read method.}
+#'   \item{\code{write(file)}}{Write method.}
 #' }
 #'
-#' @param document Object of the Document family of classes
+#' @param file Object of the File family of classes
 #' @docType class
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Input / Output Classes
 #' @export
-IOXlsx <- R6::R6Class(
-  classname = "IOXlsx",
+IORDS <- R6::R6Class(
+  classname = "IORDS",
   lock_objects = TRUE,
   lock_class = FALSE,
-  private = list(),
+  inherit = IO0,
   public = list(
 
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(document, header = TRUE) {
+    read = function(path, header = TRUE) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- document$getPath()
-      fileName <- basename(filePath)
+      fileName <- basename(path)
 
-      if (file.exists(filePath)) {
-        status[['data']] <- openxlsx::readWorkbook(file = filePath,
-                                                   colNames = header)
+      if (file.exists(path)) {
+        status[['data']] <- readRDS(file = path)
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to read ', fileName, '. ',
@@ -55,29 +53,20 @@ IOXlsx <- R6::R6Class(
       return(status)
     },
 
-    write = function(document) {
+    write = function(content, path) {
 
       status <- list()
       status[['code']] <- TRUE
 
       # Format directory names
-      filePath <- document$getPath()
-      dirName <- dirname(filePath)
-      fileName <- basename(filePath)
-
-      # Obtain content
-      content <- document$getContent()
+      dirName <- dirname(path)
+      fileName <- basename(path)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
-      if (!is.null(content)) {
-        openxlsx::write.xlsx(content, file = filePath)
-      } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to write ', fileName, '. ',
-                                  'Document content is NULL.')
-      }
+      saveRDS(object = content, file = path)
+
       return(status)
     }
   )

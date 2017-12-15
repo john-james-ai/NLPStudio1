@@ -48,6 +48,9 @@ sourcing behavior to be defined at run time.
  }
 }
 
+\seealso{
+Other CorpusSource classes: \code{\link{SourceData0}}
+}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

@@ -24,7 +24,7 @@ The VValidatorInit methods are as follows:
   \item{\code{studio(object)}}{Method for validating the instantiation of the Studio object}
   \item{\code{documentCollection(object)}}{Method for validating the instantiation of the DocumentCollection object.}
   \item{\code{document(object)}}{Method for validating the instantiation of the Document object.}
-  \item{\code{documentCsv(object)}}{Method for validating the instantiation of the DocumentCsv object.}
+  \item{\code{documentCSV(object)}}{Method for validating the instantiation of the DocumentCSV object.}
   \item{\code{documentRdata(object)}}{Method for validating the instantiation of the DocumentRdata object.}
   \item{\code{documentXlsx(object)}}{Method for validating the instantiation of the DocumentXlsx object.}
 }

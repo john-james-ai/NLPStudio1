@@ -30,23 +30,22 @@ IORdata <- R6::R6Class(
   classname = "IORdata",
   lock_objects = TRUE,
   lock_class = FALSE,
-  private = list(),
+  inherit = IO0,
   public = list(
 
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(file, header = TRUE) {
+    read = function(path, header = TRUE) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- file$getPath()
-      fileName <- basename(filePath)
+      fileName <- basename(path)
 
-      if (file.exists(filePath)) {
+      if (file.exists(path)) {
         env <- new.env()
-        content <- load(filePath, envir = env)
+        content <- load(path, envir = env)
         status[['data']] <- env[[content]]
       } else {
         status[['code']] <- FALSE
@@ -56,29 +55,20 @@ IORdata <- R6::R6Class(
       return(status)
     },
 
-    write = function(file) {
+    write = function(content, path) {
 
       status <- list()
       status[['code']] <- TRUE
 
       # Format directory names
-      filePath <- file$getPath()
-      dirName <- dirname(filePath)
-      fileName <- basename(filePath)
-
-      # Obtain content
-      content <- file$getContent()
+      dirName <- dirname(path)
+      fileName <- basename(path)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
-      if (!is.null(content)) {
-        save(object = content, file = filePath, compression_level = 9)
-      } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to write ', fileName, '. ',
-                                  'File content is NULL.')
-      }
+      save(object = content, file = path, compression_level = 9)
+
       return(status)
     }
   )

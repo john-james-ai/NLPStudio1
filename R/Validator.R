@@ -56,8 +56,8 @@ Validator <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                      Object Creation and Read                           #
     #-------------------------------------------------------------------------#
-    init = function(object, ...) {
-      visitor <- VValidatorInit$new(object, ...)
+    init = function(object) {
+      visitor <- VValidatorInit$new(object)
       object$accept(visitor)
     },
 

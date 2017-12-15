@@ -1,37 +1,37 @@
 #==============================================================================#
-#                               Document0                                      #
+#                               Document                                       #
 #==============================================================================#
-#' Document0
+#' Document
 #'
-#' \code{Document0} Abstract clasS for the Document Strategy Classes
+#' \code{Document} Class containing the data and methods for corpus documents
 #'
-#' Defines the base methods for the two document sub-classes, the corpus
-#' document and the cross validation set document.
+#' Defines the object and behavior of the Document object, a composite of
+#' the Corpus class.
 #'
-#' @section Document0 core methods:
+#' @section Document core methods:
 #'  \itemize{
 #'   \item{\code{new()}}{Method for instantiating a document. Not implemented for the abstract class.}
 #'   \item{\code{getName()}}{Method that returns the name of the Document object. }
 #'   \item{\code{getFileName()}}{Method for obtaining the document file name. .}
 #'   \item{\code{getPath()}}{Method for obtaining the document path. }
+#'  }
+#'
+#' @section Document getter/setter methods:
+#'  \itemize{
+#'   \item{\code{desc()}}{Method for setting or retrieving the Document object description.}
+#'  }
+#'
+#'  @section Document IO methods:
+#'  \itemize{
 #'   \item{\code{getContent()}}{Method for obtaining the document content.}
-#'  }
-#'
-#' @section Document0 getter/setter methods:
-#'  \itemize{
-#'   \item{\code{desc()}}{Method for setting or retrieving the Document0 object description.}
-#'  }
-#'
-#'  @section Document0 IO methods:
-#'  \itemize{
 #'   \item{\code{addContent(content)}}{Method for adding content to a document.}
 #'   \item{\code{read(io)}}{Method for reading a document. }
 #'   \item{\code{write(io)}}{Method for writing a document. }
 #'  }
 #'
-#' @section Document0 aggregation method:
+#' @section Document aggregation method:
 #'  \itemize{
-#'   \item{\code{move(parent)}}{Moves a document to the designated parent corpus. }
+#'   \item{\code{setParent(parent)}}{Sets the parent Corpus object. }
 #'  }
 #'
 #'
@@ -48,21 +48,16 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
-#' @family Document0 classes
+#' @family Document classes
 #' @export
-Document0 <- R6::R6Class(
-  classname = "Document0",
+Document <- R6::R6Class(
+  classname = "Document",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
 
   private = list(
-    ..io = character(),
-    ..content = character(),
-
-    validateParent = function() {
-
-    }
+    ..content = character()
   ),
 
   public = list(
@@ -70,19 +65,70 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path, desc = NULL) { stop("This method is not implemented for this strategy abstract class.") },
-    getFileName = function() private$..fileName,
+    initialize = function(name, path = NULL) {
+
+      # Instantiate variables
+      private$..className <- 'Document'
+      private$..methodName <- 'initialize'
+      private$..name <- name
+      private$..path <- path
+      private$..content <- NULL
+      private$..parent <- NULL
+      private$..state <- paste("Document", private$..name, "instantiated at", Sys.time())
+      private$..logs <- LogR$new()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
+
+      # Validate Document
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      if (is.null(path)) {
+        private$..io <- NULL
+      } else {
+        private$..io <- IOFactory$new()$getIOStrategy(path = path)
+      }
+
+      # Create log entry
+      self$logIt()
+
+      invisible(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                         Content Methods                                 #
     #-------------------------------------------------------------------------#
     getContent = function() {
-      if (is.null(private$..content))  self$read()
-      private$..content
+
+      private$..methodName <- 'getContent'
+
+      private$..accessed <- Sys.time()
+
+      if (is.null(private$..content)) {
+        if (is.null(private$..path)) {
+          content <- NULL
+        } else {
+          content <- self$read()
+          }
+        } else {
+        content <- private$..content
+        }
+      return(content)
     },
 
     addContent = function(content) {
+
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..content <- content
+
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -92,26 +138,22 @@ Document0 <- R6::R6Class(
 
       private$..methodName <- 'read'
 
-      io <- VIO$new()
-      status <- io$read(self)
+      status <- private$..io$read(path = private$..path)
 
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
+        self$logIt('Error')
         stop()
       } else {
         private$..content <- status[['data']]
       }
 
       # LogIt
-      private$..state <- paste0("Read ", private$..fileName, ". ")
+      private$..state <- paste0("Read ", private$..name, ". ")
       private$..accessed <- Sys.time()
       self$logIt()
 
-      # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
-
-      invisible(self)
+      return(private$..content)
 
     },
 
@@ -119,63 +161,51 @@ Document0 <- R6::R6Class(
 
       private$..methodName <- 'write'
 
-      io <- VIO$new()
-      status <- io$write(self)
+      status <- private$..io$write(content = private$..content,
+                                   path = private$..path)
 
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
+        self$logIt('Error')
         stop()
       }
 
       # LogIt
-      private$..state <- paste0("Wrote ", private$..fileName, ". ")
+      private$..state <- paste0("Wrote ", private$..name, ". ")
       private$..accessed <- Sys.time()
       private$..modified <- Sys.time()
       self$logIt()
 
-      # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
-
-      invisible(self)
+      return(TRUE)
     },
 
     #-------------------------------------------------------------------------#
-    #                          Aggregate Method                               #
+    #                           Aggregatw Methods                             #
     #-------------------------------------------------------------------------#
     setParent = function(parent) {
 
       private$..methodName <- 'setParent'
 
-      v <- Validator$new()
+      v <- Validator$new(self)
       status <- v$setParent(self, parent)
-
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
+        self$logIt('Error')
         stop()
-      } else {
-
-        private$..parent <- parent
-
-        # Log it
-        private$..accessed <- Sys.time()
-        private$..modified <- Sys.time()
-        private$..state <- paste(private$..className, private$..name, 'parent set to ',
-                                 parent$getClassName(), parent$getName())
-        self$logIt()
-
-        # Assign its name in the global environment
-        assign(private$..name, self, envir = .GlobalEnv)
-
-        invisible(self)
       }
+
+      private$..parent <- parent
+      private$..modified <- Sys.time()
+      invisible(self)
+
     },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
-    accept = function(visitor) stop("This method is not implemented for this abstract class."),
+    accept = function(visitor)  {
+      visitor$document(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                           Expose Object                                 #
@@ -185,7 +215,6 @@ Document0 <- R6::R6Class(
       o <- list(
         className	 =  private$..className ,
         name	 = 	    private$..name ,
-        fileName	 =  private$..fileName ,
         desc	 = 	    private$..desc ,
         parent	 = 	  private$..parent ,
         path	 = 	    private$..path ,

@@ -38,16 +38,15 @@ Corpus <- R6::R6Class(
 
   private = list(
     ..documents = list(),
-    ..pattern = character(),
 
     getFiles = function() {
 
-      if (isDirectory(private$..pattern)) {
-        files <- list.files(private$..pattern, full.names = TRUE)
+      if (isDirectory(private$..path)) {
+        files <- list.files(private$..path, full.names = TRUE)
       } else {
-        dirName <- dirname(private$..pattern)
-        wildcard <- basename(private$..pattern)
-        files <- list.files(dirName, pattern = glob2rx(wildcard), full.names = TRUE)
+        dirName <- dirname(private$..path)
+        wildcard <- basename(private$..path)
+        files <- list.files(dirName, path = glob2rx(wildcard), full.names = TRUE)
       }
       return(files)
     }
@@ -58,16 +57,12 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, desc = NULL, pattern = NULL) {
+    initialize = function(pattern = NULL) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
-      private$..name <- name
-      private$..desc <- ifelse(is.null(desc), paste(name, "corpus"), desc)
       private$..parent <- NULL
-      private$..pattern <- pattern
-      private$..path <- ifelse(isDirectory(pattern), pattern, dirname(pattern))
       private$..state <- "Corpus instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
@@ -85,9 +80,6 @@ Corpus <- R6::R6Class(
 
       # Create log entry
       self$logIt()
-
-      # Assign its name in the global environment
-      assign(name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -210,7 +202,6 @@ Corpus <- R6::R6Class(
         name = private$..name,
         desc = private$..desc,
         path = private$..path,
-        pattern = private$..pattern,
         parent = private$..parent,
         documents = private$..documents,
         logs = private$..logs,

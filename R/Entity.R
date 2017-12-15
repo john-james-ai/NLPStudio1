@@ -27,33 +27,12 @@ Entity <- R6::R6Class(
   private = list(
     ..className = character(),
     ..methodName = character(),
-    ..name = character(),
-    ..desc = character(),
     ..parent = character(),
     ..state = character(),
     ..logs = character(),
     ..created = character(),
     ..modified = character(),
     ..accessed = character()
-  ),
-
-  #-------------------------------------------------------------------------#
-  #                           Active Bindings                               #
-  #-------------------------------------------------------------------------#
-  active = list(
-
-    desc = function(value) {
-      if (missing(value)) {
-        private$..desc
-      } else {
-        private$..desc <- value
-        private$..modified <- Sys.time()
-        private$..state <- paste(private$..name,
-                                 "description changed at",
-                                 Sys.time())
-        self$logIt()
-      }
-    }
   ),
 
   public = list(
@@ -63,7 +42,6 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     getName = function() private$..name,
     getClassName = function() private$..className,
-    getPath = function() private$..path,
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #

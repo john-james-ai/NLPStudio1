@@ -160,15 +160,32 @@ VValidatorInit <- R6::R6Class(
         return(status)
       }
       return(status)
+    },
+
+    validateFileType = function(object) {
+
+      status <- list()
+      status[['code']] <- TRUE
+
+      path <- object$getPath()
+      type <- tolower(tools::file_ext(path))
+
+      if (!(type %in% c('txt', 'csv', 'rdata', 'rds'))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot create File Strategy for ", class(object)[1],
+                                  " object, ", name, ". File type, ", type,
+                                  " is not supported. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
+        return(status)
+      }
+      return(status)
     }
   ),
 
   public = list(
 
-    initialize = function(object, parent = NULL) {
-
-      private$..object <- object
-      private$..parent <- parent
+    initialize = function(object) {
       invisible(self)
     },
 
@@ -181,33 +198,10 @@ VValidatorInit <- R6::R6Class(
     },
 
     corpus = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      parentClass <- 'Pipeline'
-      return(private$validateParent(object, parentClass))
-    },
-
-    fileTXT = function(object) {
       return(private$validateName(object))
     },
 
-    fileCSV = function(object) {
-      return(private$validateName(object))
-    },
-
-    fileRDS = function(object) {
-      return(private$validateName(object))
-    },
-
-    fileRdata = function(object) {
-      return(private$validateName(object))
-    },
-
-    fileXML = function(object) {
-      return(private$validateName(object))
-    },
-
-    fileJSON = function(object) {
+    document = function(object) {
       return(private$validateName(object))
     }
   )

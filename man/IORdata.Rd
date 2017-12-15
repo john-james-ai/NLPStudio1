@@ -9,10 +9,10 @@
 IORdata
 }
 \arguments{
-\item{document}{Object of the Document family of classes}
+\item{file}{Object of the File family of classes}
 }
 \description{
-\code{IORdata} Class responsible for reading and writing Rdata documents.
+\code{IORdata} Class responsible for reading and writing Rdata files.
 }
 \details{
 \strong{IO Class Overview:}
@@ -25,15 +25,14 @@ various formats and allows the behavior to be defined / selected at run time.
 \strong{IORdata Methods:}
 The IORdata class supports csv, Rdata, and text files through the following methods:
  \itemize{
-  \item{\code{read(document)}}{Read method.}
-  \item{\code{write(document)}}{Write method.}
+  \item{\code{read(file)}}{Read method.}
+  \item{\code{write(file)}}{Write method.}
 }
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
   \code{\link{IOBin}}, \code{\link{IOCSV}},
-  \code{\link{IORds}}, \code{\link{IOText}},
-  \code{\link{IOXlsx}}
+  \code{\link{IORDS}}, \code{\link{IOText}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

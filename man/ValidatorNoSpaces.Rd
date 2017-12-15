@@ -34,10 +34,10 @@ This class provide a methods for validating character string has no spaces
 }
 
 \seealso{
-Other Validation Classes: \code{\link{Validator0}},
-  \code{\link{ValidatorClass}},
+Other Validation Classes: \code{\link{IOFactory}},
+  \code{\link{Validator0}}, \code{\link{ValidatorClass}},
   \code{\link{ValidatorDate}},
-  \code{\link{ValidatorExists}}, \code{\link{ValidatorIO}},
+  \code{\link{ValidatorExists}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNotEmpty}},
   \code{\link{ValidatorNumeric}},

@@ -25,7 +25,7 @@ The VValidatorAddChild methods are as follows:
   \item{\code{studio(object, child)}}{Method for validating the addChild method parameters of the Studio object}
   \item{\code{documentCollection(object, child)}}{Method for validating the addChild method parameters of the DocumentCollection object.}
   \item{\code{document(object, child)}}{Method for validating the addChild method parameters of the Document object.}
-  \item{\code{documentCsv(object, child)}}{Method for validating the addChild method parameters of the DocumentCsv object.}
+  \item{\code{documentCSV(object, child)}}{Method for validating the addChild method parameters of the DocumentCSV object.}
   \item{\code{documentRdata(object, child)}}{Method for validating the addChild method parameters of the DocumentRdata object.}
   \item{\code{documentXlsx(object, child)}}{Method for validating the addChild method parameters of the DocumentXlsx object.}
 }

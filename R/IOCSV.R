@@ -30,22 +30,21 @@ IOCSV <- R6::R6Class(
   classname = "IOCSV",
   lock_objects = TRUE,
   lock_class = FALSE,
-  private = list(),
+  inherit = IO0,
   public = list(
 
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(file, header = TRUE) {
+    read = function(path, header = TRUE) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- file$getPath()
-      fileName <- basename(filePath)
+      fileName <- basename(path)
 
-      if (file.exists(filePath)) {
-        status[['data']] <- read.csv(file = filePath, header = header,
+      if (file.exists(path)) {
+        status[['data']] <- read.csv(file = path, header = header,
                                      stringsAsFactors = FALSE,
                                      sep = ",", quote = "\"'")
       } else {
@@ -56,29 +55,20 @@ IOCSV <- R6::R6Class(
       return(status)
     },
 
-    write = function(file) {
+    write = function(content, path) {
 
       status <- list()
       status[['code']] <- TRUE
 
       # Format directory names
-      filePath <- file$getPath()
-      dirName <- dirname(filePath)
-      fileName <- basename(filePath)
-
-      # Obtain content
-      content <- file$getContent()
+      dirName <- dirname(path)
+      fileName <- basename(path)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
-      if (!is.null(content)) {
-        write.csv(content, file = filePath, row.names = FALSE)
-      } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to write ', fileName, '. ',
-                                  'File content is NULL.')
-      }
+      write.csv(content, file = path, row.names = FALSE)
+
       return(status)
     }
   )

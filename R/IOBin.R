@@ -30,22 +30,22 @@ IOBin <- R6::R6Class(
   classname = "IOBin",
   lock_objects = TRUE,
   lock_class = FALSE,
-  private = list(),
+  inherit =  IO0,
+
   public = list(
 
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(file) {
+    read = function(path) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- file$getPath()
-      fileName <- basename(filePath)
+      fileName <- basename(path)
 
-      if (file.exists(filePath)) {
-        status[['data']] <- readBin(filePath, raw(), file.info(filePath)$size)
+      if (file.exists(path)) {
+        status[['data']] <- readBin(path, raw(), file.info(path)$size)
       } else {
         status[['code']] <- FALSE
         status[['msg']] <- paste0('Unable to read ', fileName, '. ',
@@ -54,29 +54,19 @@ IOBin <- R6::R6Class(
       return(status)
     },
 
-    write = function(file) {
+    write = function(content, path) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      # Format directory names
-      filePath <- file$getPath()
-      dirName <- dirname(filePath)
       fileName <- basename(filePath)
-
-      # Obtain content
-      content <- file$getContent()
+      dirName <- dirname(filePath)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
-      if (!is.null(content)) {
-        writeBin(content, filePath)
-      } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to write ', fileName, '. ',
-                                  'File content is NULL.')
-      }
+      writeBin(content, filePath)
+
       return(status)
     }
   )

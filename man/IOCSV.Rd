@@ -9,10 +9,10 @@
 IOCSV
 }
 \arguments{
-\item{document}{Object of the Document family of classes}
+\item{file}{Object of the File family of classes}
 }
 \description{
-\code{IOCSV} Class responsible for reading and writing csv documents.
+\code{IOCSV} Class responsible for reading and writing csv files.
 }
 \details{
 \strong{IO Class Overview:}
@@ -25,15 +25,14 @@ various formats and allows the behavior to be defined / selected at run time.
 \strong{IOCSV Methods:}
 The IOCSV class supports csv, Rdata, and text files through the following methods:
  \itemize{
-  \item{\code{read(document)}}{Read method.}
-  \item{\code{write(document)}}{Write method.}
+  \item{\code{read(file)}}{Read method.}
+  \item{\code{write(file)}}{Write method.}
 }
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOBin}}, \code{\link{IORdata}},
-  \code{\link{IORds}}, \code{\link{IOText}},
-  \code{\link{IOXlsx}}
+  \code{\link{IOBin}}, \code{\link{IORDS}},
+  \code{\link{IORdata}}, \code{\link{IOText}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

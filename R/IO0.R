@@ -33,7 +33,6 @@ IO0 <- R6::R6Class(
   private = list(),
   public = list(
 
-    initialize = function() stop("This method is not implemented for this abstract class."),
     read = function(document) stop("This method is not implemented for this abstract class."),
     write = function(document) stop("This method is not implemented for this abstract class.")
   )

@@ -9,7 +9,7 @@
 IOBin
 }
 \arguments{
-\item{document}{Object of the Document family of classes}
+\item{file}{Object of the File family of classes}
 }
 \description{
 \code{IOBin} Class responsible for reading and writing binary files.
@@ -25,15 +25,14 @@ various formats and allows the behavior to be defined / selected at run time.
 \strong{IOBin Methods:}
 The IOBin class supports csv, Rdata, and text files through the following methods:
  \itemize{
-  \item{\code{read(document)}}{Read method.}
-  \item{\code{write(document)}}{Write method.}
+  \item{\code{read(file)}}{Read method.}
+  \item{\code{write(file)}}{Write method.}
 }
 }
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
-  \code{\link{IOCSV}}, \code{\link{IORdata}},
-  \code{\link{IORds}}, \code{\link{IOText}},
-  \code{\link{IOXlsx}}
+  \code{\link{IOCSV}}, \code{\link{IORDS}},
+  \code{\link{IORdata}}, \code{\link{IOText}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

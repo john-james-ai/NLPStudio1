@@ -35,9 +35,9 @@ the global environment.
 }
 
 \seealso{
-Other Validation Classes: \code{\link{Validator0}},
-  \code{\link{ValidatorClass}},
-  \code{\link{ValidatorDate}}, \code{\link{ValidatorIO}},
+Other Validation Classes: \code{\link{IOFactory}},
+  \code{\link{Validator0}}, \code{\link{ValidatorClass}},
+  \code{\link{ValidatorDate}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNoSpaces}},
   \code{\link{ValidatorNotEmpty}},

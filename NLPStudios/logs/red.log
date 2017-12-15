@@ -1,3 +1,0 @@
-ERROR [2017-12-11 06:27:42] Error in class 'CorpusSourceWeb', method 'initialize. Unable to source CorpusSourceWeb class object. See ?CorpusSourceWeb for further assistance.
-ERROR [2017-12-11 06:30:40] Error in class 'CorpusSourceWeb', method 'initialize. Unable to source CorpusSourceWeb object, corpusSourceWeb. The URL is invalid. See ?CorpusSourceWeb for further assistance. 
-ERROR [2017-12-11 06:32:49] Error in class 'CorpusSourceWeb', method 'initialize. Unable to source CorpusSourceWeb object, corpusSourceWeb. The URL is invalid. See ?CorpusSourceWeb for further assistance. 

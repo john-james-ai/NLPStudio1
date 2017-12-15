@@ -30,22 +30,21 @@ IOText <- R6::R6Class(
   classname = "IOText",
   lock_objects = TRUE,
   lock_class = FALSE,
-  private = list(),
+  inherit = IO0,
   public = list(
 
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(file) {
+    read = function(path) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      filePath <- file$getPath()
-      fileName <- basename(filePath)
+      fileName <- basename(path)
 
-      if (file.exists(filePath)) {
-        con <- file(filePath)
+      if (file.exists(path)) {
+        con <- file(path)
         on.exit(close(con))
         status[['data']] <- readLines(con)
       } else {
@@ -56,31 +55,22 @@ IOText <- R6::R6Class(
       return(status)
     },
 
-    write = function(file) {
+    write = function(content, path) {
 
       status <- list()
       status[['code']] <- TRUE
 
       # Format directory names
-      filePath <- file$getPath()
-      dirName <- dirname(filePath)
-      fileName <- basename(filePath)
-
-      # Obtain content
-      content <- file$getContent()
+      dirName <- dirname(path)
+      fileName <- basename(path)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
-      if (!is.null(content)) {
-        con <- file(filePath)
-        on.exit(close(con))
-        writeLines(content, con)
-      } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to write ', fileName, '. ',
-                                  'File content is NULL.')
-      }
+      con <- file(path)
+      on.exit(close(con))
+      writeLines(content, con)
+
       return(status)
     }
   )
