@@ -27,6 +27,7 @@ Entity <- R6::R6Class(
   private = list(
     ..className = character(),
     ..methodName = character(),
+    ..name = character(),
     ..parent = character(),
     ..state = character(),
     ..logs = character(),
@@ -40,15 +41,14 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Basic Get  Methods                            #
     #-------------------------------------------------------------------------#
-    getName = function() private$..name,
     getClassName = function() private$..className,
+    getName = function() private$..name,
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..logs$entry$owner <- private$..name
       private$..logs$entry$className <- private$..className
       private$..logs$entry$methodName <- private$..methodName
       private$..logs$entry$level <- level

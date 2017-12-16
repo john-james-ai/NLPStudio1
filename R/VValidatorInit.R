@@ -47,7 +47,7 @@ VValidatorInit <- R6::R6Class(
       if (is.null(name) | is.na(name)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Name parameter is missing with no default. ",
-                              "See ?", class(object)[1], " for further assistance.")
+                                  "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
 
@@ -56,9 +56,9 @@ VValidatorInit <- R6::R6Class(
       if (v$validate(value = name, expect = FALSE) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                 " object. ", name, " already exists. ",
-                                 "See ?", class(object)[1],
-                                 " for further assistance")
+                                  " object. ", name, " already exists. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
         return(status)
       }
 
@@ -99,7 +99,7 @@ VValidatorInit <- R6::R6Class(
       if (v$validate(value = parent, expect = parentClass) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object, ", name, ". Object of class ",
+                                  " object. Object of class ",
                                   class(object)[1], " can not have an ",
                                   "object of class ", class(parent)[1],
                                   " as a parent. ",
@@ -121,7 +121,7 @@ VValidatorInit <- R6::R6Class(
       if (is.null(url)) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object, ", name, ". URL is missing",
+                                  " object. URL is missing",
                                   "with no default. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
@@ -133,28 +133,7 @@ VValidatorInit <- R6::R6Class(
       if (v$validate(value = url, expect = NULL) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object, ", name, ". URL is invalid. ",
-                                  "See ?", class(object)[1],
-                                  " for further assistance")
-        return(status)
-      }
-      return(status)
-    },
-
-    validateArchive = function(object) {
-      status <- list()
-      status[['code']] <- TRUE
-
-      name <- object$getName()
-      archiveClasses <- c('Studio', 'Pipeline', 'Feature', 'Model',  'Data',
-                          'Corpus', 'Document')
-
-      v <- ValidatorClass$new()
-      if (v$validate(value = object, expect = archiveClasses) == FALSE) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Cannot create archive for ", class(object)[1],
-                                  " object, ", name, ". Objects of class ",
-                                  class(object)[1], " are not archivable. ",
+                                  " object. URL is invalid. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
         return(status)
@@ -168,24 +147,34 @@ VValidatorInit <- R6::R6Class(
       status[['code']] <- TRUE
 
       path <- object$getPath()
-      type <- tolower(tools::file_ext(path))
 
-      if (!(type %in% c('txt', 'csv', 'rdata', 'rds'))) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Cannot create File Strategy for ", class(object)[1],
-                                  " object, ", name, ". File type, ", type,
-                                  " is not supported. ",
-                                  "See ?", class(object)[1],
-                                  " for further assistance")
-        return(status)
+      if (!is.null(path)) {
+
+        type <- tolower(tools::file_ext(path))
+
+        if (!(type %in% c('txt', 'csv', 'rdata', 'rds'))) {
+          status[['code']] <- FALSE
+          status[['msg']] <- paste0("Cannot create File Strategy for ", class(object)[1],
+                                    " object. File type, ", type,
+                                    " is not supported. ",
+                                    "See ?", class(object)[1],
+                                    " for further assistance")
+          return(status)
+        }
       }
+      return(status)
+    },
+
+    validateStub = function(object) {
+      status <- list()
+      status[['code']] <- TRUE
       return(status)
     }
   ),
 
   public = list(
 
-    initialize = function(object) {
+    initialize = function() {
       invisible(self)
     },
 
@@ -194,7 +183,7 @@ VValidatorInit <- R6::R6Class(
     },
 
     pipeline = function(object) {
-      return(private$validateName(object))
+      return(private$validateStub(object))
     },
 
     corpus = function(object) {
@@ -202,7 +191,9 @@ VValidatorInit <- R6::R6Class(
     },
 
     document = function(object) {
-      return(private$validateName(object))
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      return(private$validateFileType(object))
     }
   )
 )

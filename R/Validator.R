@@ -54,10 +54,15 @@ Validator <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                      Object Creation and Read                           #
+    #                     Object Initiation and Creation                      #
     #-------------------------------------------------------------------------#
     init = function(object) {
-      visitor <- VValidatorInit$new(object)
+      visitor <- VValidatorInit$new()
+      object$accept(visitor)
+    },
+
+    build = function(object) {
+      visitor <- VValidatorBuild$new()
       object$accept(visitor)
     },
 
@@ -74,6 +79,14 @@ Validator <- R6::R6Class(
     },
     setParent = function(object, parent) {
       visitor <- VValidatorSetParent$new(object, parent)
+      object$accept(visitor)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                            Administration                               #
+    #-------------------------------------------------------------------------#
+    meta = function(object, request) {
+      visitor <- VValidatorMeta$new()
       object$accept(visitor)
     }
 

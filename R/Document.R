@@ -42,9 +42,10 @@
 #'  }
 #'
 #'
-#' @param filePath Character string indicating the file path for a document
-#' @param parent Object of the Corpus or Set classes to which this document belongs
-#' @param io An object of one of the IO classes used for reading and writing.
+#' @param name Character string indicating the file path for a document
+#' @param path Character string indicating the path to the docment file.
+#' @param parent Corpus object to which the document is composed.
+#' @param content List containing character vectors of text.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -57,6 +58,7 @@ Document <- R6::R6Class(
   inherit = Entity,
 
   private = list(
+    ..path = character(),
     ..content = character()
   ),
 
@@ -101,6 +103,8 @@ Document <- R6::R6Class(
       invisible(self)
     },
 
+    getPath = function() private$..path,
+
     #-------------------------------------------------------------------------#
     #                         Content Methods                                 #
     #-------------------------------------------------------------------------#
@@ -134,11 +138,15 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                            IO Methods                                   #
     #-------------------------------------------------------------------------#
-    read = function() {
+    read = function(io = NULL) {
 
       private$..methodName <- 'read'
 
-      status <- private$..io$read(path = private$..path)
+      if (is.null(io)) {
+        status <- private$..io$read(path = private$..path)
+      } else {
+        status <- io$read(path = private$..path)
+      }
 
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
@@ -157,12 +165,16 @@ Document <- R6::R6Class(
 
     },
 
-    write = function() {
+    write = function(io = NULL) {
 
       private$..methodName <- 'write'
 
-      status <- private$..io$write(content = private$..content,
-                                   path = private$..path)
+      if (is.null(io)) {
+        status <- private$..io$write(content = private$..content,
+                                     path = private$..path)
+      } else {
+        status <- io$write(content = private$..content, path = private$..path)
+      }
 
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
@@ -186,7 +198,7 @@ Document <- R6::R6Class(
 
       private$..methodName <- 'setParent'
 
-      v <- Validator$new(self)
+      v <- Validator$new()
       status <- v$setParent(self, parent)
       if (status[['code']] == FALSE) {
         private$..state <- status[['msg']]
@@ -199,6 +211,31 @@ Document <- R6::R6Class(
       invisible(self)
 
     },
+
+    #-------------------------------------------------------------------------#
+    #                           Meta Data Methods                             #
+    #-------------------------------------------------------------------------#
+    docMeta = function(field, className = 'character', value = NULL)  {
+
+      request = list(
+        field = field,
+        className = className
+      )
+
+      # Validate Document
+      v <- Validator$new()
+      status <- v$meta(self, request)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      Document$set("public", field, className, value)
+
+      invisible(self)
+    },
+
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #

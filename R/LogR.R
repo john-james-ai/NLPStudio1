@@ -34,7 +34,6 @@ LogR <- R6::R6Class(
 
   public = list(
     entry = list(
-      owner = character(),
       className = character(),
       methodName = character(),
       level = character(),
@@ -60,12 +59,11 @@ LogR <- R6::R6Class(
 
     writeLog  = function() {
 
-      if (is.null(self$entry$owner) | is.null(self$entry$className) |
-          is.null(self$entry$methodName) | is.null(self$entry$level) |
-          is.null(self$entry$msg)) {
+      if (is.null(self$entry$className) | is.null(self$entry$methodName) |
+          is.null(self$entry$level) | is.null(self$entry$msg)) {
 
         note <- paste("The usage for the LogR class is",
-                      "writeLog(owner, className, methodName,
+                      "writeLog(className, methodName,
                       path, level, msg, fieldName = NULL)")
         private$notifyError(note)
       } else {

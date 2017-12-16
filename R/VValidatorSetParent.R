@@ -47,14 +47,6 @@ VValidatorSetParent <- R6::R6Class(
         return(status)
       }
 
-      # Confirm object and acceptor are a match
-      if (private$..object$getName() != object$getName()) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Object and visitor acceptor mismatch. ",
-                              "See ?", class(self)[1], " for further assistance.")
-        return(status)
-      }
-
       # Confirm class of parent
       v <- ValidatorClass$new()
       if (v$validate(value = private$..parent, expect = classes) == FALSE) {

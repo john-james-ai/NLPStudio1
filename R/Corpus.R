@@ -15,16 +15,45 @@
 #'   \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Studio object to which the Corpus object belongs.}
 #'   \item{\code{getName()}}{Returns the name of the Corpus object.}
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
+#'  }
+#'
+#' @section IO Methods:
+#'  \describe{
+#'   \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus object.}
+#'   \item{\code{write(io = NULL)}}{Writes a Corpus object to file.}
+#'  }
+#'
+#' @section Composite Methods:
+#'  \describe{
 #'   \item{\code{getDocuments()}}{Returns the list of Document class objects.}
 #'   \item{\code{addDocument(document)}}{Adds a Document object to the corpus.}
 #'   \item{\code{removeDocument(document)}}{Removes a Document object from the corpus.}
+#'  }
+#'
+#' @section Analysis Methods:
+#'  \describe{
+#'   \item{\code{stats()}}{Produces a data frame with basic descriptive statistics for the corpus. }
+#'   \item{\code{diversity}}{Produces a data frame of lexical diversity measures for the corpus.}
+#'   \item{\code{readability}}{Produces a data frame of readability measures for the corpus.}
+#'  }
+#'
+#' @section Meta Data Methods:
+#'  \describe{
+#'   \item{\code{docMeta(field)}}{Creates a document meta data field.}
+#'   \item{\code{corpusMeta(field)}}{Creates a corpus meta data field.}
+#'  }
+#'
+#' @section Other Methods:
+#'  \describe{
 #'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
+#'
 #' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
 #' @param desc A chararacter string containing the description of the Corpus.
 #' @param document An object of one of the Document sub-classes.
+#' @param field Character string name for a field to be added to the Document or Corpus object meta data.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -41,12 +70,12 @@ Corpus <- R6::R6Class(
 
     getFiles = function() {
 
-      if (isDirectory(private$..path)) {
-        files <- list.files(private$..path, full.names = TRUE)
+      if (isDirectory(private$..pattern)) {
+        files <- list.files(private$..pattern, full.names = TRUE)
       } else {
-        dirName <- dirname(private$..path)
-        wildcard <- basename(private$..path)
-        files <- list.files(dirName, path = glob2rx(wildcard), full.names = TRUE)
+        dirName <- dirname(private$..pattern)
+        wildcard <- basename(private$..pattern)
+        files <- list.files(dirName, pattern = glob2rx(wildcard), full.names = TRUE)
       }
       return(files)
     }
@@ -57,12 +86,14 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(pattern = NULL) {
+    initialize = function(name, pattern = NULL) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
+      private$..name <- name
       private$..parent <- NULL
+      private$..pattern <- pattern
       private$..state <- "Corpus instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
@@ -84,10 +115,38 @@ Corpus <- R6::R6Class(
       invisible(self)
     },
 
+    getPattern = function() private$..pattern,
+
     #-------------------------------------------------------------------------#
     #                         Document Creation                               #
     #-------------------------------------------------------------------------#
-    createDocuments = function() { stop("This method is not implemented for the abstract class.") },
+    build = function() {
+
+      # Validate Corpus prior to build
+      v <- Validator$new()
+      status <- v$build(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      files <- private$getFiles()
+
+      lapply(files, function(f) {
+        name <- tools::file_path_sans_ext(basename(f))
+        doc <- Document$new(name = name, path = f)
+        self$addDocument(doc)
+      })
+
+      private$..state <- paste('Corpus built,', length(private$..documents),
+                               'documents added.')
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+      self$logIt()
+
+      invisible(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                         Composite Methods                               #
@@ -125,9 +184,6 @@ Corpus <- R6::R6Class(
       private$..state <-
         paste("Document", documentName, "added to corpus,", private$..name, "at", Sys.time())
       self$logIt()
-
-      # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -183,6 +239,15 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
+    #                           Analysis Methods                              #
+    #-------------------------------------------------------------------------#
+    stats = function() {
+      a <- Analyzer$new()
+      analysis <- a$stats(self)
+      return(analysis)
+    },
+
+    #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
@@ -199,9 +264,7 @@ Corpus <- R6::R6Class(
       corpus = list(
         className = private$..className,
         methodName = private$..methodName,
-        name = private$..name,
-        desc = private$..desc,
-        path = private$..path,
+        pattern = private$..pattern,
         parent = private$..parent,
         documents = private$..documents,
         logs = private$..logs,

@@ -43,21 +43,13 @@ VValidatorRemoveChild <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      # Confirm parent and visitor acceptor are a match
-      if (private$..parent$getName() != object$getName()) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Parent and visitor acceptor mismatch. ",
-                              "See ?", class(self)[1], " for further assistance.")
-        return(status)
-      }
-
       # Confirm class of child
       v <- ValidatorClass$new()
       if (v$validate(value = private$..child, expect = classes) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Unable to remove ", class(private$..child)[1],
                                   " class object from an object of class ",
-                                  class(private$..parent)[1], ".",
+                                  class(private$..parent)[1], ". ",
                                  "See ?", class(private$..parent)[1],
                                  " for further assistance.")
         return(status)
@@ -69,7 +61,7 @@ VValidatorRemoveChild <- R6::R6Class(
 
       status <- list()
       status[['code']] <- FALSE
-      status[['msg']] <- paste0("Unable to remove children to objects of the ",
+      status[['msg']] <- paste0("Unable to remove children from objects of the ",
                             class(private$..parent)[1], " class. ",
                             "See ?", class(private$..parent)[1], " for further assistance.")
       return(status)
@@ -110,24 +102,8 @@ VValidatorRemoveChild <- R6::R6Class(
     },
 
     corpus = function(object) {
-      classes <- c("DocumentTXT", "DocumentRDS")
+      classes <- c("Document")
       return(private$validate(classes, object))
-    },
-
-    documentTXT = function(object) {
-      return(private$validateDocument(object))
-    },
-
-    documentRDS = function(object) {
-      return(private$validateDocument(object))
-    },
-
-    documentCSV = function(object) {
-      return(private$validateDocument(object))
-    },
-
-    documentXlsx = function(object) {
-      return(private$validateDocument(object))
     }
   )
 )

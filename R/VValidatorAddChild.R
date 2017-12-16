@@ -42,14 +42,6 @@ VValidatorAddChild <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      # Confirm object and parent are a match
-      if (private$..parent$getName() != object$getName()) {
-        status[['code']] <- FALSE
-        status[['msg']] < paste0("Parent and visitor acceptor mismatch. ",
-                                 "See ?", class(self)[1], " for further assistance.")
-        return(status)
-      }
-
       # Confirm class of child
       v <- ValidatorClass$new()
       if (v$validate(value = private$..child, expect = classes) == FALSE) {
@@ -110,7 +102,7 @@ VValidatorAddChild <- R6::R6Class(
     },
 
     corpus = function(object) {
-      classes <- c("DocumentTXT", "DocumentRDS")
+      classes <- c("Document")
       return(private$validate(classes, object))
     },
 
