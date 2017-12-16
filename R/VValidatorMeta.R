@@ -29,10 +29,10 @@ VValidatorMeta <- R6::R6Class(
   private = list(
 
     ..name = 'VValidatorMeta',
-    ..classes = c('character', 'numeric')
+    ..classes = c('character()', 'numeric()'),
     ..request = list(),
 
-    validate = function() {
+    validate = function(object) {
 
       status <- list()
       status[['code']] <- TRUE

@@ -32,7 +32,7 @@ The IORdata class supports csv, Rdata, and text files through the following meth
 \seealso{
 Other Input / Output Classes: \code{\link{IO0}},
   \code{\link{IOBin}}, \code{\link{IOCSV}},
-  \code{\link{IORDS}}, \code{\link{IOText}}
+  \code{\link{IOText}}
 }
 \author{
 John James, \email{jjames@DataScienceSalon.org}

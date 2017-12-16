@@ -36,40 +36,46 @@ IOCSV <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(path, header = TRUE) {
+    read = function(fileObject, header = TRUE) {
 
-      status <- list()
-      status[['code']] <- TRUE
-
+      path <- fileObject$getPath()
       fileName <- basename(path)
 
       if (file.exists(path)) {
-        status[['data']] <- read.csv(file = path, header = header,
-                                     stringsAsFactors = FALSE,
-                                     sep = ",", quote = "\"'")
+        content <- read.csv(file = path, header = header,
+                            stringsAsFactors = FALSE,
+                            sep = ",", quote = "\"'")
+        private$..state <- paste0("Successfully read ", fileName, ".")
+        private$..accessed <- Sys.time()
+        self$logIt()
       } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to read ', fileName, '. ',
+        private$..state <- paste0('Unable to read ', fileName, '. ',
                                   'File does not exist.')
+        self$logIt("Error")
+        stop()
       }
-      return(status)
+      return(content)
     },
 
-    write = function(content, path) {
+    write = function(fileObject, content) {
 
-      status <- list()
-      status[['code']] <- TRUE
-
-      # Format directory names
-      dirName <- dirname(path)
+      path <- fileObject$getPath()
       fileName <- basename(path)
+      dirName <- dirname(path)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
       write.csv(content, file = path, row.names = FALSE)
 
-      return(status)
+      private$..state <- paste0("Successfully wrote ", fileName, ".")
+      self$logIt()
+
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+
+      invisible(self)
     }
   )
 )

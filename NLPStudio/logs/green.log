@@ -1194,3 +1194,578 @@ INFO [2017-12-14 18:54:09] Info in class 'File', method 'write. Successfully wro
 INFO [2017-12-14 18:54:09] Info in class 'File', method 'write. Successfully wrote to rdata document 
 INFO [2017-12-14 18:54:09] Info in class 'File', method 'write. Successfully wrote to rds document 
 INFO [2017-12-14 18:54:09] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:49:45] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:49:45
+INFO [2017-12-15 21:49:45] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:49:45] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:49:45] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:49:45] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:49:45] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:49:45
+INFO [2017-12-15 21:49:45] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:49:45
+INFO [2017-12-15 21:49:45] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:49:45
+INFO [2017-12-15 21:49:45] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:49:45
+INFO [2017-12-15 21:49:45] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:49:45
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:51:30
+INFO [2017-12-15 21:51:30] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:51:30] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:51:30] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:51:30] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:51:30
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:51:30
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:51:30
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:51:30
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:51:30
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:51:30] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:51:31] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:51:31] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:52:16] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:52:16
+INFO [2017-12-15 21:52:16] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:52:16] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:52:16] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:52:16] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:52:16] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:52:16
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:52:16
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:52:17
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:52:17
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:52:17
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:52:17] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:52:17] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:53:11] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:53:11
+INFO [2017-12-15 21:53:11] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:53:11] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:53:11] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:53:11] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:53:12
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:53:12
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:53:12
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:53:12
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:53:12
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:53:12] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:53:12] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:53:13] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:53:13] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:53:13] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:53:13] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:54:07
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:54:07
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:54:07
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:54:07
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:54:07
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:54:07
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:54:07] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:54:07] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:55:40
+INFO [2017-12-15 21:55:40] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:55:40] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:55:40] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:55:40] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:55:40
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:55:40
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:55:40
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:55:40
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:55:40
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:55:40] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:55:41] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:55:41] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:55:41] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:55:41] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:55:41] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:57:41
+INFO [2017-12-15 21:57:41] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:57:41] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:57:41] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:57:41] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:57:41
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:57:41
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:57:41
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:57:41
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:57:41
+INFO [2017-12-15 21:57:41] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:57:42] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:57:42] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:58:17
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:58:17
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:58:17
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:58:17
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:58:17
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:58:17
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:58:17] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:58:17] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:59:09
+INFO [2017-12-15 21:59:09] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:59:09] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:59:09] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:59:09] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:59:09
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:59:09
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:59:09
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:59:09
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:59:09
+INFO [2017-12-15 21:59:09] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:59:10] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:59:10] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:59:11] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 21:59:43] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:59:43
+INFO [2017-12-15 21:59:43] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 21:59:43] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 21:59:43] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 21:59:43] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 21:59:43] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 21:59:43
+INFO [2017-12-15 21:59:43] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 21:59:43
+INFO [2017-12-15 21:59:43] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 21:59:43
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 21:59:44
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 21:59:44
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 21:59:44] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 21:59:44] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:01:35
+INFO [2017-12-15 22:01:35] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:01:35] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:01:35] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:01:35] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:01:35
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:01:35
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:01:35
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:01:35
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:01:35
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:01:35] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:01:36] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:01:36] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:01:36] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:01:36] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:01:36] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:01:36] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:01:36] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:03:00
+INFO [2017-12-15 22:03:00] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:03:00] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:03:00] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:03:00] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:03:00
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:03:00
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:03:00
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:03:00
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:03:00
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:03:00] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:03:01] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:03:01] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:03:01] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:03:01] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:03:01] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:04:38] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:04:38
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:08:57
+INFO [2017-12-15 22:08:57] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:08:57] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:08:57] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:08:57] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:08:57
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:08:57
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:08:57
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:08:57
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:08:57
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:08:57] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:08:58] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:08:58] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:09:34
+INFO [2017-12-15 22:09:34] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:09:34] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:09:34] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:09:34] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:09:34
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:09:34
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:09:34
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:09:34
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:09:34
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:09:34] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:09:35] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:09:35] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:09:35] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:09:35] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:09:35] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:10:11] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:10:11
+INFO [2017-12-15 22:10:11] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:10:11] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:10:11] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:10:11] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:10:11] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:10:11
+INFO [2017-12-15 22:10:11] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:10:11
+INFO [2017-12-15 22:10:11] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:10:11
+INFO [2017-12-15 22:10:11] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:10:11
+INFO [2017-12-15 22:10:11] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:10:11
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:10:12] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:10:12] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:11:03] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:11:03
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:13:11
+INFO [2017-12-15 22:13:11] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:13:11] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:13:11] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:13:11] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:13:11
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:13:11
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:13:11
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:13:11
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:13:11
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:13:11] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:13:12] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:13:12] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:13:12] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:13:12] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:21:53
+INFO [2017-12-15 22:21:53] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:21:53] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:21:53] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:21:53] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:21:53
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:21:53
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:21:53
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:21:53
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:21:53
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:21:53] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'getContent. Added register to blogs's meta data.
+INFO [2017-12-15 22:21:54] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:21:54
+INFO [2017-12-15 22:21:54] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:22:44
+INFO [2017-12-15 22:22:44] Info in class 'File', method 'initialize. Successfully initialized document
+INFO [2017-12-15 22:22:44] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-15 22:22:44] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-15 22:22:44] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:22:44
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'initialize. Document blogsTxt instantiated at 2017-12-15 22:22:44
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'initialize. Document blogsRdata instantiated at 2017-12-15 22:22:44
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'initialize. Document blogsRds instantiated at 2017-12-15 22:22:44
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'initialize. Document blogsCsv instantiated at 2017-12-15 22:22:44
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'read. Read blogs. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'write. Wrote blogsTxt. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'write. Wrote blogsRdata. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'write. Wrote blogsRds. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'write. Wrote blogsCsv. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'read. Read blogsTxt. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'read. Read blogsRdata. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'read. Read blogsRds. 
+INFO [2017-12-15 22:22:44] Info in class 'Document', method 'read. Read blogsCsv. 
+INFO [2017-12-15 22:22:44] Info in class 'File', method 'read. Successfully read txt document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'read. Successfully read rdata document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'read. Successfully read rds document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'read. Successfully read csv document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'addContent. Successfully add content to txt document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'addContent. Successfully add content to rdata document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'addContent. Successfully add content to rds document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'addContent. Successfully add content to csv document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'write. Successfully wrote to txt document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'write. Successfully wrote to rdata document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'write. Successfully wrote to rds document 
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:22:45] Info in class 'Document', method 'getContent. Added register to blogs's meta data.
+INFO [2017-12-15 22:22:45] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:22:45
+INFO [2017-12-15 22:22:45] Info in class 'File', method 'write. Successfully wrote to csv document 
+INFO [2017-12-15 22:24:10] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:24:10
+INFO [2017-12-15 22:24:28] Info in class 'Document', method 'initialize. Added register to blogs's meta data.
+INFO [2017-12-15 22:25:07] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:25:07
+INFO [2017-12-15 22:25:09] Info in class 'Document', method 'initialize. Added register to blogs's meta data.
+INFO [2017-12-15 22:25:58] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:25:58
+INFO [2017-12-15 22:25:58] Info in class 'Document', method 'initialize. Added register to blogs's meta data.
+INFO [2017-12-15 22:26:37] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:26:37
+INFO [2017-12-15 22:27:56] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:27:56
+INFO [2017-12-15 22:27:56] Info in class 'Document', method 'initialize. Added register to blogs's meta data.
+INFO [2017-12-15 22:27:56] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:27:56
+INFO [2017-12-15 22:39:16] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:39:16
+INFO [2017-12-15 22:39:16] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:39:16
+INFO [2017-12-15 22:44:11] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:44:11
+INFO [2017-12-15 22:44:11] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:44:11
+INFO [2017-12-15 22:44:13] Info in class 'Document', method 'initialize. Added register to blogs's meta data.
+INFO [2017-12-15 22:45:54] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:45:54
+INFO [2017-12-15 22:45:54] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:45:54
+INFO [2017-12-15 22:47:12] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:47:12
+INFO [2017-12-15 22:47:36] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:47:36
+INFO [2017-12-15 22:48:36] Info in class 'Document', method 'initialize. Added year to twitter's meta data.
+INFO [2017-12-15 22:49:45] Info in class 'Document', method 'initialize. Added year to twitter's meta data.
+INFO [2017-12-15 22:51:15] Info in class 'Document', method 'initialize. Added year to twitter's meta data.
+INFO [2017-12-15 22:51:36] Info in class 'Document', method 'initialize. Added year to twitter's meta data.
+INFO [2017-12-15 22:53:15] Info in class 'Document', method 'initialize. Added year to twitter's meta data.
+INFO [2017-12-15 22:54:33] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:54:33
+INFO [2017-12-15 22:54:33] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:54:33
+INFO [2017-12-15 22:56:35] Info in class 'Document', method 'initialize. Added register to blogs's meta data.

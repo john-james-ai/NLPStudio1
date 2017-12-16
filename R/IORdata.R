@@ -36,40 +36,46 @@ IORdata <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(path, header = TRUE) {
+    read = function(fileObject) {
 
-      status <- list()
-      status[['code']] <- TRUE
-
+      path <- fileObject$getPath()
       fileName <- basename(path)
 
       if (file.exists(path)) {
         env <- new.env()
         content <- load(path, envir = env)
-        status[['data']] <- env[[content]]
+        content <- env[[content]]
+        private$..state <- paste0("Successfully read ", fileName, ".")
+        private$..accessed <- Sys.time()
+        self$logIt()
       } else {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0('Unable to read ', fileName, '. ',
+        private$..state <- paste0('Unable to read ', fileName, '. ',
                                   'File does not exist.')
+        self$logIt("Error")
+        stop()
       }
-      return(status)
+      return(content)
     },
 
-    write = function(content, path) {
+    write = function(fileObject, content) {
 
-      status <- list()
-      status[['code']] <- TRUE
-
-      # Format directory names
-      dirName <- dirname(path)
+      path <- fileObject$getPath()
       fileName <- basename(path)
+      dirName <- dirname(path)
 
       # Create directory if necessary
       dir.create(dirName, showWarnings = FALSE, recursive = TRUE)
 
       save(object = content, file = path, compression_level = 9)
 
-      return(status)
+      private$..state <- paste0("Successfully wrote ", fileName, ".")
+      self$logIt()
+
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+
+      invisible(self)
     }
   )
 )

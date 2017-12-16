@@ -207,7 +207,15 @@ Document <- R6::R6Class(
       }
 
       private$..parent <- parent
+
+      # LogIt
+      private$..state <- paste0("Set parent of ", private$..name, " to ",
+                                parent$getName(), ".")
+
       private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+      self$logIt()
+
       invisible(self)
 
     },
@@ -215,23 +223,17 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Meta Data Methods                             #
     #-------------------------------------------------------------------------#
-    docMeta = function(field, className = 'character', value = NULL)  {
+    docMeta = function(field, value = 'character()')  {
 
-      request = list(
-        field = field,
-        className = className
-      )
+      Document$set("public", field, value = value, overwrite = TRUE)
 
-      # Validate Document
-      v <- Validator$new()
-      status <- v$meta(self, request)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
+      # LogIt
+      private$..state <- paste0("Added ", field, " to ",
+                                private$..name, "'s meta data.")
 
-      Document$set("public", field, className, value)
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+      self$logIt()
 
       invisible(self)
     },

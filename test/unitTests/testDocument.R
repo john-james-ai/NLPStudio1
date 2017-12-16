@@ -55,7 +55,7 @@ testFile <- function() {
     init()
 
     # Instantiate original and copies
-    blogs <- Document$new(name = 'blogs', './test/testData/en_US.blogs.txt')
+    blogs <- Document$new(name = 'blogs', './test/testData/input/en_US.blogs.txt')
     blogsTxt <- Document$new(name = 'blogsTxt', './test/testData/output/blogs.txt')
     blogsRdata <- Document$new(name = 'blogsRdata', './test/testData/output/blogs.rdata')
     blogsRds <- Document$new(name = 'blogsRds', './test/testData/output/blogs.rds')
@@ -111,10 +111,40 @@ testFile <- function() {
     return(blogCsvContent)
   }
 
+  test2 <- function(blogs) {
+    test <- "test2: Metadata: Add member"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("twitter", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("twitter", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+
+
+    blogs <- Document$new(name = 'blogs', './test/testData/input/en_US.blogs.txt')
+    twitter <- Document$new(name = 'twitter', './test/testData/input/en_US.twitter.txt')
+
+    blogs <- blogs$docMeta('register', value = 'Blogs Category')
+    twitter$register <- 'Twitter Category'
+    twitter <- twitter$docMeta('year', value = '2010')
+    blogs <- blogs$year <- 2011
+
+    stopifnot(blogs$register == 'Blogs Category')
+    stopifnot(twitter$register == 'Twitter Category')
+
+    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote to csv document "))
+
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(blogs)
+  }
+
+
 
 init()
-blogs <<- test0()
-blogCsvContent <<- test1(blogs)
+blogs <- test0()
+blogCsvContent <- test1(blogs)
+blogs <- test2(blogs)
 }
 className <- "File"
 #source('./test/unitTests/testCorpusBuilder.R')
