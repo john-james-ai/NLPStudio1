@@ -38,6 +38,8 @@ IOCSV <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function(fileObject, header = TRUE) {
 
+      private$..logs <- LogR$new()
+
       path <- fileObject$getPath()
       fileName <- basename(path)
 
@@ -58,6 +60,8 @@ IOCSV <- R6::R6Class(
     },
 
     write = function(fileObject, content) {
+
+      private$..logs <- LogR$new()
 
       path <- fileObject$getPath()
       fileName <- basename(path)

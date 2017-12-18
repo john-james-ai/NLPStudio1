@@ -38,6 +38,8 @@ IORdata <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function(fileObject) {
 
+      private$..logs <- LogR$new()
+
       path <- fileObject$getPath()
       fileName <- basename(path)
 
@@ -58,6 +60,8 @@ IORdata <- R6::R6Class(
     },
 
     write = function(fileObject, content) {
+
+      private$..logs <- LogR$new()
 
       path <- fileObject$getPath()
       fileName <- basename(path)

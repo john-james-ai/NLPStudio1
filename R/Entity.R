@@ -28,7 +28,6 @@ Entity <- R6::R6Class(
     ..className = character(),
     ..methodName = character(),
     ..name = character(),
-    ..parent = character(),
     ..state = character(),
     ..logs = character(),
     ..created = character(),

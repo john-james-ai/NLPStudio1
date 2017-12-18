@@ -24,6 +24,8 @@ Imports:
     doParallel,
     dplyr,
     installr,
-    parsedate,
+    parsedate,  
+    quanteda,
+    readtext,
     tools
 RoxygenNote: 6.0.1

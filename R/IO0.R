@@ -31,6 +31,7 @@ IO0 <- R6::R6Class(
   lock_objects = TRUE,
   lock_class = FALSE,
   private = list(),
+  inherit = Entity,
   public = list(
 
     read = function(document) stop("This method is not implemented for this abstract class."),

@@ -2,16 +2,12 @@ testFile <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
-    if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("brdata", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("brdata", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("brdsdata", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("brdsdata", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("bcsvdata", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("bcsvdata", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("txtFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("txtFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("rdataFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("rdataFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("csvFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("csvFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("binFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("binFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     FileTest <<- LogTest$new()
-    file.copy('./test/testData/hc/en_US.blogs.txt', 'test/testData/en_US.blogs.txt')
-    textData <- readLines(con = 'test/testData/en_US.blogs.txt')
-    textData <- textData[1:2000]
-    writeLines(textData, con = 'test/testData/en_US.blogs.txt')
-    rm(textData)
   }
 
   test0 <- function() {
@@ -19,20 +15,20 @@ testFile <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Validation
-    # blogs <- FileTXT$new()# should fail, no name
-    # blogs <- FileTXT$new(name = 'blogs')# should fail -success, no path
+    #news <- File$new()# should fail, no name
+    # news <- File$new(name = 'news')# should fail -success, no path
 
     # Instantiate
-    blogs <- FileTXT$new(name = 'blogs', path = './test/testData/en_US.blogs.txt')
-    d <- blogs$exposeObject()
-    stopifnot(d$className == 'FileTXT')
-    stopifnot(d$name == 'blogs')
-    stopifnot(d$path == './test/testData/en_US.blogs.txt')
+    news <- File$new(name = 'news', path = './test/testData/input/en_US.news.txt')
+    d <- news$exposeObject()
+    stopifnot(d$className == 'File')
+    stopifnot(d$name == 'news')
+    stopifnot(d$path == './test/testData/input/en_US.news.txt')
     stopifnot(!is.null(d$logs))
-    stopifnot(blogs$getClassName() == "FileTXT")
-    stopifnot(blogs$getName() == "blogs")
-    stopifnot(blogs$getFileName() == "en_US.blogs.txt")
-    stopifnot(blogs$getPath() == "./test/testData/en_US.blogs.txt")
+    stopifnot(news$getClassName() == "File")
+    stopifnot(news$getName() == "news")
+    stopifnot(news$getFileName() == "en_US.news.txt")
+    stopifnot(news$getPath() == "./test/testData/input/en_US.news.txt")
 
     # Logit
     FileTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized file"))
@@ -40,165 +36,250 @@ testFile <- function() {
     FileTest$logs(className = className, methodName = "getName", msg = paste("Successfully obtained name"))
     FileTest$logs(className = className, methodName = "getFileName", msg = paste("Successfully obtained file name"))
     FileTest$logs(className = className, methodName = "getPath", msg = paste("Successfully obtained path"))
-    FileTest$logs(className = className, methodName = "getIO", msg = paste("Successfully obtained IO"))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(blogs)
+    return(news)
   }
 
-  test1 <- function(blogs) {
-    test <- "test1: File: Read"
+  test1 <- function(news) {
+    test <- "test1: File: Read / Write Text File"
     cat(paste0("\n",test, " Commencing\n"))
 
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/txtFile.txt"
+
     # Read content
-    blogs <- blogs$read()
-    content <- blogs$getContent()
+    content <- news$read()
     stopifnot(length(content) > 1000)
 
-    # Write Content)
-    blogs <- blogs$write()
-    b <- blogs$exposeObject()
+    # Write Text
+    txtFile <- File$new(name = 'txtFile', path = outpath)
+    txtFile <- txtFile$write(content)
+    b <- txtFile$exposeObject()
+    stopifnot(file.info(inpath)$size == file.info(outpath)$size)
+    stopifnot(b$name == 'txtFile')
+    stopifnot(b$directory == dirname(outpath))
+    stopifnot(b$fileName == basename(outpath))
+    stopifnot(b$path == outpath)
+    stopifnot((Sys.time() -  b$created) < 1)
     stopifnot((Sys.time() -  b$modified) < 1)
-
-    # ReadBin
-    blogs <- blogs$read(IOBin$new())
-    content <- blogs$getContent()
-    stopifnot(length(content) > 1000)
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$accessed) < 1)
-
-    # WriteBin
-    blogs$write(IOBin$new())
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$modified) < 1)
+    stopifnot(txtFile$getName() == 'txtFile')
+    stopifnot(txtFile$getPath() == outpath)
+    stopifnot(file.exists(outpath))
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in txt format"))
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in bin format"))
     FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the file in txt format"))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the file in bin format"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(blogs)
+    return(txtFile)
   }
 
-  test2 <- function(blogs) {
-    test <- "test2: File: Repair"
+  test2 <- function(news) {
+    test <- "test2: File: Read / Write Binary File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Read content
-    blogs <- blogs$repair()
-    content <- blogs$getContent()
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/binFile.txt"
+
+    # ReadBin
+    content <- news$read(IOBin$new())
     stopifnot(length(content) > 1000)
-
-    # Logit
-    FileTest$logs(className = className, methodName = "repair", msg = paste("Successfully repaired the file"))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-  test3 <- function(blogs) {
-    test <- "test3: File: FileRdata"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    # Read content
-    blogs <- blogs$read()
-    content <- blogs$getContent()
-    stopifnot(length(content) > 1000)
-
-    # Write as Rdata file
-    brdata <- FileRdata$new(name = 'brdata', './test/testData/brData.Rdata')
-    brdata <- brdata$addContent(content)
-    brdata$write()
-
-    # Read Rdata
-    brdata$read()
-    content <- brdata$getContent()
-    stopifnot(length(content) > 1000)
-    b <- blogs$exposeObject()
+    b <- news$exposeObject()
     stopifnot((Sys.time() -  b$accessed) < 1)
 
+    # WriteBin
+    binFile <- File$new(name = 'binFile', path = outpath)
+    binFile$write(content = content, io = IOBin$new())
+    b <- binFile$exposeObject()
+    stopifnot(b$name == 'binFile')
+    stopifnot(b$directory == dirname(outpath))
+    stopifnot(b$fileName == basename(outpath))
+    stopifnot(b$path == outpath)
+    stopifnot((Sys.time() -  b$created) < 1)
+    stopifnot((Sys.time() -  b$modified) < 1)
+    stopifnot(binFile$getName() == 'binFile')
+    stopifnot(binFile$getPath() == outpath)
+    stopifnot(file.exists(outpath))
+
     # Logit
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read Rdata format."))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote Rdata format."))
+    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in binary format"))
+    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the file in binary format"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(blogs)
+    return(binFile)
   }
 
-  test4 <- function(blogs) {
-    test <- "test4: File: FileRDS"
+
+  test3 <- function(news) {
+    test <- "test3: File: Read / Write RData File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Read content
-    blogs <- blogs$read()
-    content <- blogs$getContent()
-    stopifnot(length(content) > 1000)
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/rdataFile.rdata"
 
-    # Write as RDS file
-    brdsdata <- FileRDS$new(name = 'brdsdata', './test/testData/brData.RDS')
-    brdsdata <- brdsdata$addContent(content)
-    brdsdata$write()
+    # Get content
+    content <- news$read()
 
-    # Read RDS
-    brdsdata$read()
-    content <- brdsdata$getContent()
+    # Write rdata
+    rdataFile <- File$new(name = 'rdataFile', path = outpath)
+    rdataFile$write(content = content)
+    b <- rdataFile$exposeObject()
+    stopifnot(b$name == 'rdataFile')
+    stopifnot(b$directory == dirname(outpath))
+    stopifnot(b$fileName == basename(outpath))
+    stopifnot(b$path == outpath)
+    stopifnot((Sys.time() -  b$created) < 1)
+    stopifnot((Sys.time() -  b$modified) < 1)
+    stopifnot(rdataFile$getName() == 'rdataFile')
+    stopifnot(rdataFile$getPath() == outpath)
+    stopifnot(file.exists(outpath))
+
+    # Read RData
+    content <- rdataFile$read()
     stopifnot(length(content) > 1000)
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$accessed) < 1)
 
     # Logit
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read RDS format."))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote RDS format."))
+    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in rdata format"))
+    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the file in rdata format"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(brdsdata)
+    return(rdataFile)
   }
 
-
-  test5 <- function(blogs) {
-    test <- "test5: File: FileCSV"
+  test4 <- function(news) {
+    test <- "test4: File: Read / Write CSV File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Read content
-    blogs <- blogs$read()
-    content <- blogs$getContent()
-    stopifnot(nrow(content) > 1000)
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/csvFile.csv"
 
-    # Write as CSV file
-    bcsvdata <- FileCSV$new(name = 'bcsvdata', './test/testData/brData.CSV')
-    bcsvdata <- bcsvdata$addContent(content)
-    bcsvdata$write()
+    # Get content
+    content <- news$read()
+
+    # Write csv
+    csvFile <- File$new(name = 'csvFile', path = outpath)
+    csvFile$write(content = content)
+    b <- csvFile$exposeObject()
+    stopifnot(b$name == 'csvFile')
+    stopifnot(b$directory == dirname(outpath))
+    stopifnot(b$fileName == basename(outpath))
+    stopifnot(b$path == outpath)
+    stopifnot((Sys.time() -  b$created) < 1)
+    stopifnot((Sys.time() -  b$modified) < 1)
+    stopifnot(csvFile$getName() == 'csvFile')
+    stopifnot(csvFile$getPath() == outpath)
+    stopifnot(file.exists(outpath))
 
     # Read CSV
-    bcsvdata$read()
-    content <- bcsvdata$getContent()
+    content <- csvFile$read()
     stopifnot(nrow(content) > 1000)
-    b <- blogs$exposeObject()
-    stopifnot((Sys.time() -  b$accessed) < 1)
 
     # Logit
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read CSV format."))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote CSV format."))
+    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in csv format"))
+    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote the file in csv format"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(bcsvdata)
+    return(csvFile)
+  }
+
+  test5 <- function(news) {
+    test <- "test5: File: Lock / Unlock"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/csvFile.csv"
+
+    # Read content
+    content <- news$read()
+    stopifnot(length(content) > 1000)
+
+    # Write Text
+    csvFile <- File$new(name = 'csvFile', path = outpath)
+    #txtFile <- txtFile$lock()
+    #txtFile <- txtFile$unlock()
+    csvFile <- csvFile$write(content)
+
+    # Logit
+    FileTest$logs(className = className, methodName = "lock", msg = paste("Successfully tested lock and write functionality."))
+    FileTest$logs(className = className, methodName = "unlock", msg = paste("Successfully tested unlock and write functionality."))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(csvFile)
+  }
+
+  test6 <- function(csvFile) {
+    test <- "test6: File: Copy"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/copies/csvFile.csv"
+
+    # Copy File
+    copyFile <- csvFile$copyFile(outpath)
+    b <- copyFile$exposeObject()
+    stopifnot(b$name == 'csvFile')
+    stopifnot(b$directory == dirname(outpath))
+    stopifnot(b$fileName == basename(outpath))
+    stopifnot(b$path == outpath)
+    stopifnot((Sys.time() -  b$created) < 1)
+    stopifnot((Sys.time() -  b$modified) < 1)
+    stopifnot(copyFile$getName() == 'csvFile')
+    stopifnot(copyFile$getPath() == outpath)
+    stopifnot(file.exists(outpath))
+
+    # Logit
+    FileTest$logs(className = className, methodName = "copyFile", msg = paste("Successfully tested copy functionality."))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(copyFile)
+  }
+
+  test7 <- function(copyFile) {
+    test <- "test7: File: Move"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    inpath <- "./test/testData/input/en_US.news.txt"
+    outpath <- "./test/testData/move/csvFile.csv"
+
+    # Move File
+    moveFile <- copyFile$moveFile(outpath)
+    b <- copyFile$exposeObject()
+    stopifnot(b$name == 'csvFile')
+    stopifnot(b$directory == dirname(outpath))
+    stopifnot(b$fileName == basename(outpath))
+    stopifnot(b$path == outpath)
+    stopifnot((Sys.time() -  b$created) < 1)
+    stopifnot((Sys.time() -  b$modified) < 1)
+    stopifnot(copyFile$getName() == 'csvFile')
+    stopifnot(copyFile$getPath() == outpath)
+    stopifnot(file.exists(outpath))
+
+    # Logit
+    FileTest$logs(className = className, methodName = "moveFile", msg = paste("Successfully tested move functionality."))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(moveFile)
   }
 
 
 init()
-blogs <<- test0()
-blogs <<- test1(blogs)
-blogs <<- test2(blogs)
-brdata <<- test3(blogs)
-brdsdata <<- test4(blogs)
-bcsvdata <<- test5(blogs)
+news <- test0()
+txtFile <<- test1(news)
+binFile <<- test2(news)
+rdataFile <<- test3(news)
+csvFile <<- test4(news)
+csvFile <<- test5(news)
+copyFile <<- test6(csvFile)
+moveFile <<- test7(copyFile)
+
 }
 className <- "File"
 #source('./test/unitTests/testCorpusBuilder.R')

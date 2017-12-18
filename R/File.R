@@ -26,7 +26,6 @@
 #' @section Parameters:
 #' @param directory Character string indicating a directory.
 #' @param fileName Character string containing the file name.
-#' @param from Character string indicating the directory of file path from which a file is copied or moved.
 #' @param io IO Object indicating the mode for reading and writing the file.
 #' @param locked Boolean indicating whether a file is locked.
 #' @param name A character string containing the name of the File object. This variable is used in the instantiation and remove methods.
@@ -42,12 +41,10 @@ File <- R6::R6Class(
   classname = "File",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = FileCollection,
 
   private = list(
-    ..io = character(),
-    ..locked = FALSE,
-    ..path = character()
+    ..fileName = character()
   ),
 
   public = list(
@@ -60,10 +57,10 @@ File <- R6::R6Class(
       private$..className <- 'File'
       private$..methodName <- 'initialize'
       private$..name <- name
+      private$..directory <- dirname(path)
       private$..path <- path
       private$..fileName <- basename(path)
       private$..io <- IOFactory$new()$getIOStrategy(path = path)
-      private$..parent <- NULL
       private$..state <- paste("File object", private$..name, "instantiated.")
       private$..logs <- LogR$new()
       private$..modified <- Sys.time()
@@ -73,31 +70,7 @@ File <- R6::R6Class(
       invisible(self)
     },
 
-    getPath = function() private$..path,
-
-    #-------------------------------------------------------------------------#
-    #                          Download Method                                #
-    #-------------------------------------------------------------------------#
-    download = function(url, directory) {
-
-      private$..methodName <- 'download'
-
-      # Format download directory
-      fileName <- installr::file.name.from.url(url)
-
-      if (download.file(url, destfile = file.directory(directory, fileName), mode = 'wb') != 0) {
-        private$..state <- paste0("Unable to download ", fileName, ".")
-        self$logIt('Error')
-        stop()
-      }
-      private$..state <- paste0("Successfully downloaded ", fileName, ". ")
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
-      self$logIt()
-
-      invisible(self)
-    },
+    getFileName = function() private$..fileName,
 
     #-------------------------------------------------------------------------#
     #                            Access Methods                               #
@@ -142,106 +115,98 @@ File <- R6::R6Class(
 
     },
 
-    #-------------------------------------------------------------------------#
-    #                          Zip/Unzip Methods                              #
-    #-------------------------------------------------------------------------#
-    zipFile = function(path, zipFiles) {
+    write = function(content, io = NULL) {
 
-      rc <- zip(zipfile = path, files = zipFiles)
-      if (rc == 0) {
-        private$..state <- paste0('Successfully zipped ', basename(path), ".")
-        private$..created <- Sys.time()
-        private$..modified <- Sys.time()
-        private$..accessed <- Sys.time()
-        self$logIt()
-      } else {
-        private..state <- paste0("Unable to zip ", basename(path), ".")
+      private$..methodName <- 'write'
+
+      if (private$..locked == TRUE) {
+        private$..state <- paste0("Unable to write ", private$..fileName, ". ",
+                                  "The file is locked. See ?", private$..className,
+                                  " for further assistance.")
         self$logIt('Error')
         stop()
       }
-      invisible(self)
-    },
 
-    unZipFile = function(path, to, zipFiles = NULL, listFiles = FALSE,
-                         overwrite = TRUE) {
-
-      if (file.exists(path)) {
-        unzip(zipfile = path, overwrite = overwrite, exdir = to,
-              junkpaths = TRUE, files = zipFiles, list = listFiles)
-        private$..state <-  paste0("Successfully unzipped ", basename(path), ".")
-        private$..created <- Sys.time()
-        private$..modified <- Sys.time()
-        private$..accessed <- Sys.time()
-        self$logIt()
+      if (is.null(io)) {
+        private$..io$write(self, content)
       } else {
-        private$..state <-  paste0("Could not unzip ", basename(path),
-                                   ". File does not exist.")
-        self$logIt('Error')
-        stop()
+        io$write(self, content)
       }
-      invisible(self)
-    },
 
+      # LogIt
+      private$..state <- paste0("Wrote ", private$..name, ". ")
+      private$..accessed <- Sys.time()
+      self$logIt()
+
+      invisible(self)
+
+    },
 
     #-------------------------------------------------------------------------#
     #                         Move/Copy/Remove Methods                        #
     #-------------------------------------------------------------------------#
-    moveFile = function(from, to)  {
+    moveFile = function(to)  {
 
-      if (missing(from) | missing(to)) {
-        private$..state <- paste('Missing parameters with no default. Usage is',
-                                 'moveFile(from, to).  See ?File for',
-                                 'further assistance.')
+      private$..methodName <- 'moveFile'
+
+      if (private$..locked == TRUE) {
+        private$..state <- paste0('File is locked. It cannot be moved. See ?',
+                                  private$..className, " for further assistance.")
+        self$logIt('Error')
+        stop()
+      }
+
+      if (missing(to)) {
+        private$..state <- paste0('Please indicate the directory into which
+                                 the file should be moved. See ?',
+                                  private$..className, " for further assistance.")
         self$logIt('Error')
         stop()
       }
 
       todir <- dirname(to)
       dir.create(todir, showWarnings = FALSE, recursive=TRUE)
-      file.rename(from = from,  to = to)
+      file.rename(from = private$..path,  to = to)
+      private$..path <- to
+      private$..directory <- dirname(to)
 
       private$..state <-
-        paste0("Successfully moved file(s) ", from, " to ", to, "." )
+        paste0("Successfully moved file(s) to ", to, "." )
       self$logIt()
 
       invisible(self)
     },
 
-    copyFile = function(from, to)  {
+    removeFile = function() {
 
-      if (missing(from) | missing(to)) {
-        private$..state <- paste('Missing parameters with no default. Usage is',
-                                 'copyFile(from, to).  See ?File for',
-                                 'further assistance.')
-        self$logIt('Error')
-        stop()
-      }
-      todir <- dirname(to)
-      if (!isTRUE(file.info(todir)$isdir))  dir.create(todir, recursive=TRUE)
-      file.copy(from = from,  to = to, overwrite = TRUE)
+      private$..methodName <- 'removeFile'
 
-      private$..state <-
-        paste0("Successfully copied file ", from, " to ", to, "." )
-      self$logIt()
-
-      invisible(self)
-
-    },
-
-    removeFile = function(from) {
-
-      if (missing(from)) {
-        private$..state <- paste('Missing parameters with no default. Usage is',
-                                 'removeFile(from).  See ?File for',
-                                 'further assistance.')
-        self$logIt("Error")
-        stop()
-      }
-      file.remove(from)
+      file.remove(private$..path)
       private$..state <- paste0("Successfully removed ", basename(from), ".")
       self$logIt()
 
       invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                            Expose Object                                #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+
+      o <- list(
+        className	 =  private$..className ,
+        name	 = 	    private$..name ,
+        directory = private$..directory,
+        path	 = 	    private$..path ,
+        fileName = private$..fileName,
+        io = private$..io,
+        state	 = 	    private$..state ,
+        logs	 = 	    private$..logs ,
+        modified	 = 	private$..modified ,
+        created	 = 	  private$..created ,
+        accessed	 = 	private$..accessed
+      )
+      return(o)
     }
   )
 )

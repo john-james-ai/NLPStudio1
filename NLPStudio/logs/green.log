@@ -1769,3 +1769,1046 @@ INFO [2017-12-15 22:53:15] Info in class 'Document', method 'initialize. Added y
 INFO [2017-12-15 22:54:33] Info in class 'Document', method 'initialize. Document blogs instantiated at 2017-12-15 22:54:33
 INFO [2017-12-15 22:54:33] Info in class 'Document', method 'initialize. Document twitter instantiated at 2017-12-15 22:54:33
 INFO [2017-12-15 22:56:35] Info in class 'Document', method 'initialize. Added register to blogs's meta data.
+INFO [2017-12-16 06:06:41] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:06:41] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:06:41] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:06:41] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:06:41] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:07:50] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:07:50] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:07:50] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:07:50] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:07:50] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:12:37] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:12:37] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:12:37] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:12:37] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:12:37] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:17:03] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:17:03] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:17:03] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:17:03] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:17:03] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:19:20] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:19:20] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:19:20] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:19:20] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:19:20] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:19:20] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:19:20] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:20:12] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:20:12] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:20:12] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:20:12] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:20:12] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:20:12] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:20:12] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:25:38] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:25:38] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:25:38] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:25:38] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:25:38] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:25:38] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:25:38] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:28:00] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:28:00] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:28:24] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-16 06:29:13] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:29:13] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:29:25] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:29:25] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:29:46] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:29:46] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:29:46] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:29:46] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:29:46] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:29:46] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:29:46] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:31:16] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:31:16] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:34:37] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:34:37] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:36:10] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:36:10] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:36:10] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:36:10] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:36:10] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:36:10] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:36:10] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:36:29] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:36:29] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:36:38] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:36:38] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:36:52] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:36:52] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:37:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:37:43] Info in class 'File', method 'read. Read blogs. 
+INFO [2017-12-16 06:40:57] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:43:31] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-16 06:44:04] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:44:04] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:44:04] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:44:04] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:44:04] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:45:47] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:45:47] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'write. Wrote newsTxt. 
+INFO [2017-12-16 06:45:47] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:45:47] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:46:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:46:50] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'write. Wrote newsTxt. 
+INFO [2017-12-16 06:46:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:46:50] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:46:50] Info in class 'File', method 'write. Wrote news. 
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:46:56] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:46:56] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'write. Wrote newsTxt. 
+INFO [2017-12-16 06:46:56] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:46:56] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:46:56] Info in class 'File', method 'write. Wrote news. 
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:48:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:48:23] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'write. Wrote newsTxt. 
+INFO [2017-12-16 06:48:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:48:23] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'write. Wrote news. 
+INFO [2017-12-16 06:48:23] Info in class '', method '. Successfully wrote en_US.news.Rdata.
+INFO [2017-12-16 06:48:23] Info in class 'File', method 'write. Wrote newsRdata. 
+INFO [2017-12-16 06:48:24] Info in class '', method '. Successfully read en_US.news.Rdata.
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'read. Read newsRdata. 
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'read. Successfully read the file in bin format
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'read. Successfully read the file in Rdata format
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'write. Successfully wrote the file in bin format
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'write. Successfully wrote the file in Rdata format
+INFO [2017-12-16 06:48:24] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:48:24] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:48:59] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:48:59] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'write. Wrote newsTxt. 
+INFO [2017-12-16 06:48:59] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:48:59] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:48:59] Info in class 'File', method 'write. Wrote news. 
+INFO [2017-12-16 06:49:00] Info in class '', method '. Successfully wrote en_US.news.Rdata.
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'write. Wrote newsRdata. 
+INFO [2017-12-16 06:49:00] Info in class '', method '. Successfully read en_US.news.Rdata.
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Read newsRdata. 
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Successfully read the file in bin format
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Successfully read the file in Rdata format
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'write. Successfully wrote the file in bin format
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'write. Successfully wrote the file in Rdata format
+INFO [2017-12-16 06:49:00] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:49:00] Info in class '', method '. Successfully wrote bcsvdata.CSV.
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'write. Wrote bcsvdata. 
+INFO [2017-12-16 06:49:00] Info in class '', method '. Successfully read bcsvdata.CSV.
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Read bcsvdata. 
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'read. Successfully read CSV format.
+INFO [2017-12-16 06:49:00] Info in class 'File', method 'write. Successfully wrote CSV format.
+INFO [2017-12-16 06:49:45] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 06:49:45] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 06:49:45] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 06:49:45] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 06:49:45] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Wrote newsTxt. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Wrote news. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully wrote en_US.news.Rdata.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Wrote newsRdata. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully read en_US.news.Rdata.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Read newsRdata. 
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Successfully read the file in bin format
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Successfully read the file in Rdata format
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Successfully wrote the file in bin format
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Successfully wrote the file in Rdata format
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully wrote bcsvdata.CSV.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Wrote bcsvdata. 
+INFO [2017-12-16 06:49:46] Info in class '', method '. Successfully read bcsvdata.CSV.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Read bcsvdata. 
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'read. Successfully read CSV format.
+INFO [2017-12-16 06:49:46] Info in class 'File', method 'write. Successfully wrote CSV format.
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:33:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:33:58] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:33:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:33:58] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:33:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:33:58] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:33:59] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:33:59] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:33:59] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:33:59] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:33:59] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:33:59] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:34:46] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:34:46] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:34:47] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:34:47] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:34:47] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:34:47] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:34:47] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:34:47] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:35:12] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:35:12] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:35:13] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:35:13] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:35:13] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:35:13] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:35:13] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:35:13] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:35:13] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:35:13] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:35:13] Info in class 'File', method 'lock. File object, txtFile, locked.
+INFO [2017-12-16 14:36:16] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:36:16] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:36:16] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:36:16] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:36:16] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:36:16] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:36:16] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:36:17] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:36:17] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:37:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:37:52] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:37:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:37:52] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:37:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:37:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:37:53] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:37:53] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:38:31] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:38:31] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:38:31] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:38:32] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:38:32] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies.
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:39:15] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:39:15] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:39:15] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:39:15] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:39:15] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:39:15] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:39:16] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:39:16] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies.
+INFO [2017-12-16 14:53:51] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:53:51] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:53:51] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:53:51] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:53:51] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:53:51] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:53:51] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:53:52] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:53:52] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies.
+INFO [2017-12-16 14:54:37] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies.
+INFO [2017-12-16 14:56:01] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:56:01] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:56:01] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:56:01] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:56:01] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:56:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:56:01] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:56:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:56:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:56:03] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:56:03] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:56:03] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:56:03] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:56:03] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies.
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:57:21] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:21] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:57:21] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:22] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:57:22] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 14:57:49] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:49] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 14:57:49] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:49] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 14:57:49] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:49] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 14:57:50] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 14:57:50] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 14:59:17] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/en_US.blogs.txt.
+INFO [2017-12-16 15:00:47] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:00:47] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:00:47] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 15:00:47] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 15:00:53] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:00:53] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:00:53] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 15:00:53] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 15:01:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:01:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:01:03] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 15:01:03] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 15:01:03] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 15:01:03] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 15:01:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:01:09] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:01:09] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 15:01:09] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 15:01:10] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 15:01:10] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 15:01:18] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:01:18] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:01:18] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 15:01:18] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 15:06:19] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:06:19] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 15:06:19] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:06:19] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 15:06:19] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 15:06:20] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 15:06:20] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:00:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:00:02] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:00:03] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:00:03] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:00:03] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:00:03] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:00:03] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:01:15] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:01:15] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:03:40] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:03:40] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:03:40] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:03:40] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:03:55] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:05:57] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:05:57] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:05:57] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:05:57] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:06:14] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:06:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:06:43] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:06:44] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:06:44] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:06:44] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:06:44] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:06:44] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:07:25] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:07:25] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:07:26] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:07:26] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:07:26] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:07:26] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:07:26] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:07:26] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:07:26] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:07:26] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:08:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:08:23] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:08:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:08:23] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:08:23] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:08:24] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:08:24] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:09:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:09:42] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:09:43] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:09:43] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:10:30] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:10:30] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:10:30] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:10:30] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:11:08] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:11:08] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:11:08] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:11:08] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:11:09] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:11:09] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:11:45] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:12:38] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:12:38] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:12:38] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:12:38] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:12:38] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:12:39] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:12:39] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:12:54] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:14:01] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:14:01] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:14:02] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:14:02] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:14:02] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:14:21] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'getClassName. Successfully obtained class name
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'getFileName. Successfully obtained file name
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'getPath. Successfully obtained path
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-16 17:15:03] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:15:03] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:15:04] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:15:04] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-16 17:15:04] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'read. Read news. 
+INFO [2017-12-16 17:15:04] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'copyFie. Successfully copied file ./test/testData/csvFile.csv to ./test/testData/copies/csvFile.csv.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
+INFO [2017-12-16 17:15:04] Info in class 'File', method 'moveFile. Successfully tested move functionality.

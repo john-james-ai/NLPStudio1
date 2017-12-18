@@ -1,16 +1,16 @@
 #==============================================================================#
-#                               Preprocess                                     #
+#                               Preprocessor                                   #
 #==============================================================================#
-#' Preprocess
+#' Preprocessor
 #'
-#' \code{Preprocess} Class that performs document preprocessing tasks.
+#' \code{Preprocessor} Class that performs document Preprocessoring tasks.
 #'
-#' Class responsible for document preprocessing tasks,such as encoding,
+#' Class responsible for document Preprocessoring tasks,such as encoding,
 #' normalization, sanitization, and tokenization of text.
 #'
 #' @section Document methods:
 #'  \itemize{
-#'   \item{\code{new()}}{Instantiates an object of the Preprocess class .}
+#'   \item{\code{new()}}{Instantiates an object of the Preprocessor class .}
 #'   \item{\code{encode()}}{Method for repairing and converting document encoding.}
 #'   \item{\code{normalize()}}{Method for normalizing text,e.g. abbrevaitions, common misspellings.}
 #'   \item{\code{extract()}}{Method for extracting words or sentences including select words from the text.}
@@ -24,33 +24,77 @@
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family Document classes
 #' @export
-Preprocess <- R6::R6Class(
-  classname = "Preprocess",
+Preprocessor <- R6::R6Class(
+  classname = "Preprocessor",
   lock_objects = FALSE,
   lock_class = FALSE,
-
-  private = list(
-    ..className = 'Preprocess',
-    ..methodName = character(),
-    ..state = character(),
-    ..logs = character(),
-    ..created = character(),
-    ..modified = character()
-  ),
+  inherit = Entity,
 
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                           Core Methods                                  #
+    #                         Initialize Method                               #
     #-------------------------------------------------------------------------#
-    initialize = function() {
+    initialize = function(name) {
+      private$..className <- 'Preprocessor'
       private$..methodName <- 'initialize'
-      private$..state <- "Object of the Preprocess class initialized"
+      private$..name <- name
+      private$..state <- "Object of the Preprocessor class initialized"
       private$..logs <- LogR$new()
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
+
+      # Log it
+      self$logIt()
       invisible(self)
     },
+
+    #-------------------------------------------------------------------------#
+    #                           Repair Method                                 #
+    #-------------------------------------------------------------------------#
+    repair = function(collection, name, path) {
+
+      # Create new repaired collection (rc)
+      rc <- FileCollection$new(name = name, path = path)
+
+      # Read collection in binary format
+      io <- IOBin$new()
+      inBin <- collection$read(io)
+
+      # Replace NULL and Substitute control characters with space.
+      outBin <- lapply(inBin, function(f) {
+        f[f == as.raw(0)] = as.raw(0x20)
+        f[f == as.raw(26)] = as.raw(0x20)
+      })
+
+      # Create new File objects and add to rc
+      files <- collection$getFiles()
+      lapply(files, function(f) {
+        name <- f$getName()
+        fileName <- f$getFileName()
+        filePath <- file.path(path, fileName)
+        newFile <- File$new(name = name, path = filePath)
+        rc$addFile(file = newFile)
+      })
+
+      # Write data to new file collection
+      rc$write()
+
+
+
+
+
+      document[document == as.raw(0)] = as.raw(0x20)
+      document[document == as.raw(26)] = as.raw(0x20)
+      d <- tempfile(fileext = '.txt')
+      writeBin(document, d)
+      document <- readLines(d)
+      unlink(d)
+
+    },
+
+
     #-------------------------------------------------------------------------#
     #                           Encode Method                                 #
     #-------------------------------------------------------------------------#

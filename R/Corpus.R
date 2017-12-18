@@ -10,9 +10,7 @@
 #'
 #' @section Corpus Core Methods:
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL, studio = NULL)}}{Creates an object of Corpus Class}
-#'   \item{\code{desc}}{A getter/corpuster method allowing clients to retrieve and corpus the Corpus description variable.}
-#'   \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Studio object to which the Corpus object belongs.}
+#'   \item{\code{new(name, path)}}{Creates an object of Corpus Class}
 #'   \item{\code{getName()}}{Returns the name of the Corpus object.}
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
 #'  }
@@ -21,13 +19,6 @@
 #'  \describe{
 #'   \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus object.}
 #'   \item{\code{write(io = NULL)}}{Writes a Corpus object to file.}
-#'  }
-#'
-#' @section Composite Methods:
-#'  \describe{
-#'   \item{\code{getDocuments()}}{Returns the list of Document class objects.}
-#'   \item{\code{addDocument(document)}}{Adds a Document object to the corpus.}
-#'   \item{\code{removeDocument(document)}}{Removes a Document object from the corpus.}
 #'  }
 #'
 #' @section Analysis Methods:
@@ -49,11 +40,9 @@
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#'
-#' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Corpus.
-#' @param document An object of one of the Document sub-classes.
+#' @param collection FileCollection object.
 #' @param field Character string name for a field to be added to the Document or Corpus object meta data.
+#' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -66,19 +55,10 @@ Corpus <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..documents = list(),
-
-    getFiles = function() {
-
-      if (isDirectory(private$..pattern)) {
-        files <- list.files(private$..pattern, full.names = TRUE)
-      } else {
-        dirName <- dirname(private$..pattern)
-        wildcard <- basename(private$..pattern)
-        files <- list.files(dirName, pattern = glob2rx(wildcard), full.names = TRUE)
-      }
-      return(files)
-    }
+    ..io = character(),
+    ..locked = FALSE,
+    ..path = character(),
+    ..content = character()
   ),
 
   public = list(
@@ -86,14 +66,15 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, pattern = NULL) {
+    initialize = function(collection) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..name <- name
+      private$..path <- path
       private$..parent <- NULL
-      private$..pattern <- pattern
+      private$..io <- IORdata$new()
       private$..state <- "Corpus instantiated."
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
@@ -109,115 +90,11 @@ Corpus <- R6::R6Class(
         stop()
       }
 
+      # Create corpus content
+      texts <- collection$getDocuments()
+      private$..content <- quanteda::corpus(texts)
+
       # Create log entry
-      self$logIt()
-
-      invisible(self)
-    },
-
-    getPattern = function() private$..pattern,
-
-    #-------------------------------------------------------------------------#
-    #                         Document Creation                               #
-    #-------------------------------------------------------------------------#
-    build = function() {
-
-      # Validate Corpus prior to build
-      v <- Validator$new()
-      status <- v$build(self)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
-      files <- private$getFiles()
-
-      lapply(files, function(f) {
-        name <- tools::file_path_sans_ext(basename(f))
-        doc <- Document$new(name = name, path = f)
-        self$addDocument(doc)
-      })
-
-      private$..state <- paste('Corpus built,', length(private$..documents),
-                               'documents added.')
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
-      self$logIt()
-
-      invisible(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                         Composite Methods                               #
-    #-------------------------------------------------------------------------#
-    getDocuments = function() private$..documents,
-
-    addDocument = function(document) {
-
-      # Update current method
-      private$..methodName <- 'addDocument'
-
-      # Validation
-      v <- Validator$new()
-      status <- v$addChild(self, document)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
-      # Get document information
-      documentName <- document$getName()
-
-      # Add document to list of documents
-      private$..documents[[documentName]] <- document
-
-      # Set parent reference on document
-      document$setParent(self)
-
-      # Update modified time
-      private$..accessed <- Sys.time()
-      private$..modified <- Sys.time()
-
-      # Save state and log Event
-      private$..state <-
-        paste("Document", documentName, "added to corpus,", private$..name, "at", Sys.time())
-      self$logIt()
-
-      invisible(self)
-    },
-
-    removeDocument = function(document) {
-
-      # Update current method
-      private$..methodName <- 'removeDocument'
-
-      # Validation
-      v <- Validator$new()
-      status <- v$removeChild(self, document)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
-      # Obtain collection information
-      documentName <- document$getName()
-
-      # Remove collection from studio and update modified time
-      private$..documents[[documentName]] <- NULL
-
-      # Set parent of document to NULL
-      document$setParent(NULL)
-
-      # Update modified time
-      private$..accessed <- Sys.time()
-      private$..modified <- Sys.time()
-
-      # Save state and log Event
-      private$..state <-
-        paste("Document", documentName, "removed from ", private$..name, "at", Sys.time())
       self$logIt()
 
       invisible(self)
@@ -239,15 +116,6 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                           Analysis Methods                              #
-    #-------------------------------------------------------------------------#
-    stats = function() {
-      a <- Analyzer$new()
-      analysis <- a$stats(self)
-      return(analysis)
-    },
-
-    #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
@@ -264,9 +132,12 @@ Corpus <- R6::R6Class(
       corpus = list(
         className = private$..className,
         methodName = private$..methodName,
-        pattern = private$..pattern,
+        name = private$..name,
+        path = private$..path,
         parent = private$..parent,
-        documents = private$..documents,
+        content = private$..content,
+        io = private$..io,
+        locked = private$..locked,
         logs = private$..logs,
         state = private$..state,
         modified = private$..modified,
