@@ -3,30 +3,29 @@
 #==============================================================================#
 #' DataBuilder
 #'
-#' \code{DataBuilder} Class responsible for building the data sets for a pipeline.
+#' \code{DataBuilder} Class responsible for building the data sets for the pipeline.
 #'
 #' Class obtains the source data from external sources, creates the raw data,
-#' creates a refined data set with eoncoding errors corrected, splits the data
+#' creates a refined data set with encoding errors corrected, splits the data
 #' into cross validation sets and creates the corpus that will be used to
 #' train the model(s)
 #'
 #' @section DataBuilder Methods:
 #'  \describe{
-#'   \item{\code{new(name, path)}}{Instantiates a DataBuilder object and initiatesa Data object. }
-#'   \item{\code{download(directory, url)}}{Creates a FileCollection object, then downloads file collection from the url into the designated directory.}
-#'   \item{\code{unZip(collection, directory, zipFiles,)}}{Unzips the files from the zipCollection object, then returns an raw FileCollection object.}
-#'   \item{\code{repair(collection, directory)}}{Takes a FileCollection object, repairs the encoding, and returns a the repaired FileCollection object. }
-#'   \item{\code{split(collection, directory)}}{Splits the data sets into training, validation and test sets. }
-#'   \item{\code{construct(collection, directory)}}{Returns the cross validation sets. }
+#'   \item{\code{new(name, path)}}{Instantiates a DataBuilder object and the Data object. }
+#'   \item{\code{download(url name)}}{Downloads the data from the URL, stores the file collection and adds it to the Data object.}
+#'   \item{\code{zipFile(fc, name, zipFilePath)}}{Zips the files in the given FileCollection object, creates a new FileCollection object and stores it the designated zipFilePath.}
+#'   \item{\code{unZipFiles(fc, name, zipFiles)}}{Unzips the file in the designated FileCollection object, creates a new FileCollection object by the given name, extracts the zipFiles, stores them in the new FileCollection, and adds the FileCollection object to the Data object.}
+#'   \item{\code{repair(fc, name)}}{Repairs the FileCollection object and stores it in the new FileCollection object which is added to the Data object.}
+#'   \item{\code{construct()}}{Returns the cross validation sets. }
 #'  }
 #'
 #' @section Parameters:
-#' @param collection FileCollection object.
-#' @param directory Character string indicating a directory name.
+#' @param fc FileCollection object.
 #' @param name A character string containing the name of the DataBuilder object.
 #' @param path Character string indicating the directory location for the File Collection object.
 #' @param url Character string containing the URL from which a file collection will be downloaded.
-#' @param zipFile Character string containing the relative path to the zipFile.
+#' @param zipFilePath Character string containing the relative path to the zipFile.
 #' @param zipFiles Cheracter vector containing the relative paths of the files to be extracted.
 #'
 #' @docType class
@@ -62,6 +61,8 @@ DataBuilder <- R6::R6Class(
 
       invisible(self)
     },
+
+    getData = function() private$..data,
 
     #-------------------------------------------------------------------------#
     #                          Download Method                                #
@@ -169,8 +170,8 @@ DataBuilder <- R6::R6Class(
       path <- private$..data$getPath()
 
       # Create new file collection
-      newFc <- FileCollection$new(name = name,
-                                  path = file.path(path, name))
+      newPath <- file.path(path, name)
+      newFc <- FileCollection$new(name = name, path = newPath)
 
       files <- fc$getFilePaths()
       lapply(files, function(f) {
@@ -187,7 +188,10 @@ DataBuilder <- R6::R6Class(
         unlink(temp)
 
         # Write data to new file collection
-        newFc$write(f, d, io)
+        newFc$write(basename(f), d, io)
+
+        # Add the file to the FileCollection object
+        newFc$addFilePath(file.path(newPath, basename(f)))
       })
 
       private$..state <-  paste0("Successfully repaired ", outFc$getName(), ".")
@@ -209,10 +213,8 @@ DataBuilder <- R6::R6Class(
 
       o <- list(
         className	 =  private$..className ,
-        name	 = 	    private$..name ,
-        path	 = 	    private$..path ,
-        files = private$..files,
-        corpora = private$..corpora,
+        methodName = private$..methodName,
+        data = private$..data,
         state	 = 	    private$..state ,
         logs	 = 	    private$..logs ,
         modified	 = 	private$..modified ,

@@ -76,7 +76,7 @@ FileCollection <- R6::R6Class(
 
     addFilePath = function(filePath) {
       fileName <- basename(filePath)
-      private$..filePaths[[fileName]] <- filepath
+      private$..filePaths[[fileName]] <- filePath
     },
 
     removeFilePath = function(filePath) {

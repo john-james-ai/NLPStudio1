@@ -2856,3 +2856,160 @@ INFO [2017-12-18 18:54:58] Info in class 'File', method 'initiate. Successfully 
 INFO [2017-12-18 18:56:15] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
 INFO [2017-12-18 18:58:33] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
 INFO [2017-12-18 19:01:43] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 23:30:01] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-18 23:32:04] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 23:32:04] Info in class 'DataBuilder', method 'download. Downloaded external file collection.
+INFO [2017-12-18 23:32:04] Info in class 'Data', method 'initialize. Added FileCollection object, external, to the data set.
+INFO [2017-12-18 23:34:42] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-18 23:35:19] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-18 23:37:11] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-18 23:42:07] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 23:42:07] Info in class 'DataBuilder', method 'download. Downloaded external file collection.
+INFO [2017-12-18 23:42:07] Info in class 'Data', method 'initialize. Added FileCollection object, external, to the data set.
+INFO [2017-12-18 23:49:25] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 23:49:25] Info in class 'DataBuilder', method 'download. Downloaded external file collection.
+INFO [2017-12-18 23:49:25] Info in class 'Data', method 'initialize. Added FileCollection object, external, to the data set.
+INFO [2017-12-18 23:55:18] Info in class 'DataBuilder', method 'unZipFile. Successfully unzipped Coursera-SwiftKey.zip.
+INFO [2017-12-18 23:55:18] Info in class 'Data', method 'initialize. Added FileCollection object, raw, to the data set.
+INFO [2017-12-19 00:02:08] Info in class 'DataBuilder', method 'zipFile. Successfully zipped Coursera-SwiftKey.zip.
+INFO [2017-12-19 00:02:08] Info in class 'Data', method 'initialize. Added FileCollection object, zip, to the data set.
+INFO [2017-12-19 00:10:19] Info in class 'DataBuilder', method 'zipFile. Successfully zipped Coursera-SwiftKey.zip.
+INFO [2017-12-19 00:10:19] Info in class 'Data', method 'initialize. Added FileCollection object, zip, to the data set.
+INFO [2017-12-19 00:12:17] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:12:32] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:12:32] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:12:35] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:12:49] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:12:49] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:12:52] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:13:06] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:13:06] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:13:06] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:19:36] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:19:50] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:19:50] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:19:51] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:20:05] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:20:05] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:20:06] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:20:21] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:20:21] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:20:21] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:21:51] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:22:04] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:22:04] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:22:05] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:22:18] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:22:18] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:22:19] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:22:32] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:22:32] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:22:32] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:24:30] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:24:43] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:24:43] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:24:44] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:24:58] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:24:58] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:24:58] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:25:12] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:25:12] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:25:12] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:28:14] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:28:29] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:28:29] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:28:29] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:28:43] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:28:43] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:28:43] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:28:56] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:28:56] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:28:56] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:37:38] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:37:51] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:37:51] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:37:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:38:06] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:38:06] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:38:06] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:38:21] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:38:22] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:38:22] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:43:40] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:43:54] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:43:54] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:43:54] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:44:08] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:44:08] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:44:08] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:44:24] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:44:24] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:44:24] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:50:26] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 00:50:40] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 00:50:40] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:50:40] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 00:50:54] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 00:50:54] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:50:55] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 00:51:07] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 00:51:07] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 00:51:07] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 00:52:48] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-19 00:54:54] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-19 00:54:54] Info in class 'DataBuilder', method 'download. Downloaded external file collection.
+INFO [2017-12-19 00:54:54] Info in class 'Data', method 'initialize. Added FileCollection object, external, to the data set.
+INFO [2017-12-19 00:54:54] Info in class 'File', method 'download. Successfully downloaded file collection. 
+INFO [2017-12-19 01:03:15] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-19 01:05:24] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-19 01:05:24] Info in class 'DataBuilder', method 'download. Downloaded external file collection.
+INFO [2017-12-19 01:05:24] Info in class 'Data', method 'initialize. Added FileCollection object, external, to the data set.
+INFO [2017-12-19 01:05:24] Info in class 'File', method 'download. Successfully downloaded file collection. 
+INFO [2017-12-19 01:05:30] Info in class 'DataBuilder', method 'unZipFile. Successfully unzipped Coursera-SwiftKey.zip.
+INFO [2017-12-19 01:05:30] Info in class 'Data', method 'initialize. Added FileCollection object, raw, to the data set.
+INFO [2017-12-19 01:05:30] Info in class 'File', method 'unZipFile. Successfully unzipped file collection 
+INFO [2017-12-19 01:06:43] Info in class 'DataBuilder', method 'zipFile. Successfully zipped Coursera-SwiftKey.zip.
+INFO [2017-12-19 01:06:43] Info in class 'Data', method 'initialize. Added FileCollection object, zip, to the data set.
+INFO [2017-12-19 01:06:43] Info in class 'File', method 'unZipFile. Successfully unzipped file collection 
+INFO [2017-12-19 01:06:44] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 01:06:59] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 01:06:59] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 01:06:59] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 01:07:13] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 01:07:13] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 01:07:14] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 01:07:27] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 01:07:27] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 01:07:27] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 01:10:00] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-19 01:12:16] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-19 01:12:16] Info in class 'DataBuilder', method 'download. Downloaded external file collection.
+INFO [2017-12-19 01:12:16] Info in class 'Data', method 'initialize. Added FileCollection object, external, to the data set.
+INFO [2017-12-19 01:12:16] Info in class 'File', method 'download. Successfully downloaded file collection. 
+INFO [2017-12-19 01:12:24] Info in class 'DataBuilder', method 'unZipFile. Successfully unzipped Coursera-SwiftKey.zip.
+INFO [2017-12-19 01:12:24] Info in class 'Data', method 'initialize. Added FileCollection object, raw, to the data set.
+INFO [2017-12-19 01:12:24] Info in class 'File', method 'unZipFile. Successfully unzipped file collection 
+INFO [2017-12-19 01:13:27] Info in class 'DataBuilder', method 'zipFile. Successfully zipped Coursera-SwiftKey.zip.
+INFO [2017-12-19 01:13:27] Info in class 'Data', method 'initialize. Added FileCollection object, zip, to the data set.
+INFO [2017-12-19 01:13:27] Info in class 'File', method 'unZipFile. Successfully unzipped file collection 
+INFO [2017-12-19 01:13:27] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 01:13:42] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 01:13:42] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 01:13:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 01:13:56] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 01:13:56] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 01:13:56] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 01:14:10] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 01:14:10] Info in class 'FileCollection', method 'write. Wrote refined. 
+INFO [2017-12-19 01:14:10] Info in class 'Data', method 'initialize. Added FileCollection object, refined, to the data set.
+INFO [2017-12-19 01:25:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-19 01:25:57] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-19 01:25:57] Info in class 'FileCollection', method 'write. Wrote foo. 
+INFO [2017-12-19 01:25:57] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-19 01:26:12] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-19 01:26:12] Info in class 'FileCollection', method 'write. Wrote foo. 
+INFO [2017-12-19 01:26:13] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-19 01:26:27] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-19 01:26:27] Info in class 'FileCollection', method 'write. Wrote foo. 
+INFO [2017-12-19 01:26:27] Info in class 'Data', method 'initialize. Added FileCollection object, foo, to the data set.
+INFO [2017-12-19 01:29:42] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
