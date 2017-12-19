@@ -15,6 +15,13 @@
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
 #'  }
 #'
+#' @section Corpus Sourcing Methods:
+#'  \describe{
+#'   \item{\code{download(url, name)}}{Creates an object of Corpus Class}
+#'   \item{\code{zipFile()}}{Returns the name of the Corpus object.}
+#'   \item{\code{unZipFile()}}{Returns the path of the Corpus object.}
+#'  }
+#'
 #' @section IO Methods:
 #'  \describe{
 #'   \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus object.}
@@ -55,10 +62,9 @@ Corpus <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..io = character(),
     ..locked = FALSE,
     ..path = character(),
-    ..content = character()
+    ..corpus = character()
   ),
 
   public = list(
@@ -66,16 +72,15 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(collection) {
+    initialize = function(name, path) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..name <- name
       private$..path <- path
-      private$..parent <- NULL
-      private$..io <- IORdata$new()
-      private$..state <- "Corpus instantiated."
+      private$..corpus <- NULL
+      private$..state <- paste0("Corpus, ", name, ", instantiated.")
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
       private$..accessed <- Sys.time()
@@ -90,9 +95,7 @@ Corpus <- R6::R6Class(
         stop()
       }
 
-      # Create corpus content
-      texts <- collection$getDocuments()
-      private$..content <- quanteda::corpus(texts)
+      dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
 
       # Create log entry
       self$logIt()
@@ -100,19 +103,59 @@ Corpus <- R6::R6Class(
       invisible(self)
     },
 
+    getCorpus = function() private$..corpus,
+
     #-------------------------------------------------------------------------#
     #                              IO Methods                                 #
     #-------------------------------------------------------------------------#
     read = function() {
-      private$..documents <- lapply(private$..documents, function(d) {
-        d$read()
+
+      files <- list.files(private$..path, full.names = TRUE)
+      content <- lapply(files, function(f) {
+        io <- IOFactory$new()$getIOStrategy(f)
+        text <- io$read(f)
+        text <- paste(text, collapse = " ")
+        names(text) <- tools::file_path_sans_ext(basename(f))
+        text
       })
+
+      # Create corpus object
+      private$..corpus <- quanteda::corpus(unlist(content))
+
+      # Log it
+      private$..state <- paste0("Read corpus, ", private$..name, ", into memory.")
+      self$logIt()
+
+      invisible(self)
     },
 
     write = function() {
       private$..documents <- lapply(private$..documents, function(d) {
         d$write()
       })
+    },
+
+    #-------------------------------------------------------------------------#
+    #                       Corpus Sourcing Methods                           #
+    #-------------------------------------------------------------------------#
+    download = function(url, name) {
+
+      private$..methodName <- 'download'
+
+      # Create file collection object and download data
+      fc <- FileCollection$new(name = name, path = file.path(private$..path, name))
+      fc <- fc$download(url = url)
+
+      # Add file collection to data
+      name <- fc$getName()
+      private$..corpora[['name']] <- fc
+
+      # Log it
+      fileName <- basename(url)
+      private$..state <- paste0("Successfully downloaded and added", fileName, " to the data set. ")
+      self$logIt()
+
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
@@ -134,9 +177,7 @@ Corpus <- R6::R6Class(
         methodName = private$..methodName,
         name = private$..name,
         path = private$..path,
-        parent = private$..parent,
         content = private$..content,
-        io = private$..io,
         locked = private$..locked,
         logs = private$..logs,
         state = private$..state,

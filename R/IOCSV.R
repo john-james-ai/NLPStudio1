@@ -36,11 +36,10 @@ IOCSV <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(fileObject, header = TRUE) {
+    read = function(path, header = TRUE) {
 
       private$..logs <- LogR$new()
 
-      path <- fileObject$getPath()
       fileName <- basename(path)
 
       if (file.exists(path)) {
@@ -59,11 +58,10 @@ IOCSV <- R6::R6Class(
       return(content)
     },
 
-    write = function(fileObject, content) {
+    write = function(path, content) {
 
       private$..logs <- LogR$new()
 
-      path <- fileObject$getPath()
       fileName <- basename(path)
       dirName <- dirname(path)
 

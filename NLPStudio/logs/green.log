@@ -2812,3 +2812,47 @@ INFO [2017-12-16 17:15:04] Info in class 'File', method 'copyFie. Successfully c
 INFO [2017-12-16 17:15:04] Info in class 'File', method 'copyFile. Successfully tested copy functionality.
 INFO [2017-12-16 17:15:04] Info in class 'File', method 'moveFile. Successfully moved file(s) to ./test/testData/move/csvFile.csv.
 INFO [2017-12-16 17:15:04] Info in class 'File', method 'moveFile. Successfully tested move functionality.
+INFO [2017-12-18 01:09:16] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:11:10] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:11:59] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:13:59] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 01:13:59] Info in class 'File', method 'download. Successfully downloade file collection. 
+INFO [2017-12-18 01:50:06] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:50:43] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:51:08] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:56:51] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:57:07] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 01:57:46] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 02:01:28] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 02:03:36] Info in class 'File', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 02:03:36] Info in class 'FileCollection', method 'download. Successfully downloaded file collection, swiftKey. 
+INFO [2017-12-18 02:04:28] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 02:06:27] Info in class 'File', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 02:06:27] Info in class 'FileCollection', method 'download. Successfully downloaded file collection, swiftKey. 
+INFO [2017-12-18 02:08:49] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 02:11:08] Info in class 'File', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 02:11:08] Info in class 'FileCollection', method 'download. Successfully downloaded file collection, swiftKey. 
+INFO [2017-12-18 02:11:08] Info in class 'File', method 'download. Successfully downloaded file collection. 
+INFO [2017-12-18 04:30:02] Info in class 'File', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 04:30:02] Info in class 'FileCollection', method 'download. Successfully downloaded file collection, swiftKey. 
+INFO [2017-12-18 05:13:29] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-18 05:13:29] Info in class 'File', method 'read. Read en_US.blogs.txt. 
+INFO [2017-12-18 16:01:10] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-18 16:01:10] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-18 16:01:10] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-18 16:01:29] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-18 16:01:29] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-18 16:01:29] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-18 16:03:48] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-18 16:03:48] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-18 16:03:48] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-18 16:09:02] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-18 16:09:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-18 16:09:02] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-18 16:16:22] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-18 16:16:22] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-18 16:16:22] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-18 18:54:58] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 18:56:15] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-18 18:58:33] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 
+INFO [2017-12-18 19:01:43] Info in class 'FileCollection', method 'download. Successfully downloaded Coursera-SwiftKey.zip. 

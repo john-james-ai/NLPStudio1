@@ -41,10 +41,11 @@ IOFactory <- R6::R6Class(
       type <- tolower(tools::file_ext(path))
 
       io <- switch(type,
-                     txt = IOText$new(),
-                     csv = IOCSV$new(),
-                     rdata = IORdata$new(),
-                     rds = IORDS$new())
+                   txt = IOText$new(),
+                   csv = IOCSV$new(),
+                   rdata = IORdata$new(),
+                   rds = IORDS$new(),
+                   NULL)
 
       return(io)
     },

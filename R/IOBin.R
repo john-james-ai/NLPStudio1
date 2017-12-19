@@ -37,11 +37,10 @@ IOBin <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(fileObject) {
+    read = function(path) {
 
       private$..logs <- LogR$new()
 
-      path <- fileObject$getPath()
       fileName <- basename(path)
 
       if (file.exists(path)) {
@@ -59,11 +58,10 @@ IOBin <- R6::R6Class(
       return(content)
     },
 
-    write = function(fileObject, content) {
+    write = function(path, content) {
 
       private$..logs <- LogR$new()
 
-      path <- fileObject$getPath()
       fileName <- basename(path)
       dirName <- dirname(path)
 

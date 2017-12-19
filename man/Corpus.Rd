@@ -9,13 +9,11 @@
 Corpus
 }
 \arguments{
-\item{name}{A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.}
-
-\item{desc}{A chararacter string containing the description of the Corpus.}
-
-\item{document}{An object of one of the Document sub-classes.}
+\item{collection}{FileCollection object.}
 
 \item{field}{Character string name for a field to be added to the Document or Corpus object meta data.}
+
+\item{name}{A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.}
 
 \item{visitor}{An object of one of the visitor classes.}
 }
@@ -29,9 +27,7 @@ transformations such as NGrams, and POS tagged documents.
 \section{Corpus Core Methods}{
 
  \describe{
-  \item{\code{new(name, desc = NULL, studio = NULL)}}{Creates an object of Corpus Class}
-  \item{\code{desc}}{A getter/corpuster method allowing clients to retrieve and corpus the Corpus description variable.}
-  \item{\code{parent}}{A getter/corpuster method allowing clients to retrieve and corpus the Studio object to which the Corpus object belongs.}
+  \item{\code{new(name, path)}}{Creates an object of Corpus Class}
   \item{\code{getName()}}{Returns the name of the Corpus object.}
   \item{\code{getPath()}}{Returns the path of the Corpus object.}
  }
@@ -42,15 +38,6 @@ transformations such as NGrams, and POS tagged documents.
  \describe{
   \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus object.}
   \item{\code{write(io = NULL)}}{Writes a Corpus object to file.}
- }
-}
-
-\section{Composite Methods}{
-
- \describe{
-  \item{\code{getDocuments()}}{Returns the list of Document class objects.}
-  \item{\code{addDocument(document)}}{Adds a Document object to the corpus.}
-  \item{\code{removeDocument(document)}}{Removes a Document object from the corpus.}
  }
 }
 

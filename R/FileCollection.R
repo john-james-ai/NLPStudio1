@@ -36,10 +36,12 @@ FileCollection <- R6::R6Class(
   classname = "FileCollection",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Corpus,
+  inherit = Entity,
 
   private = list(
-    files = list()
+    ..filePaths = character(),
+    ..locked = FALSE,
+    ..path = character()
   ),
 
   public = list(
@@ -53,7 +55,6 @@ FileCollection <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..name <- name
       private$..path <- path
-      private$..io <- NULL
       private$..state <- paste("FileCollection object", private$..name, "instantiated.")
       private$..logs <- LogR$new()
       private$..modified <- Sys.time()
@@ -65,34 +66,50 @@ FileCollection <- R6::R6Class(
       invisible(self)
     },
 
+
+    #-------------------------------------------------------------------------#
+    #                        Aggregate Methods                                #
+    #-------------------------------------------------------------------------#
     getPath = function() private$..path,
+
+    getFilePaths = function() private$..filePaths,
+
+    addFilePath = function(filePath) {
+      fileName <- basename(filePath)
+      private$..filePaths[[fileName]] <- filepath
+    },
+
+    removeFilePath = function(filePath) {
+      fileName <- basename(filePath)
+      private$..filePaths[[fileName]] <- NULL
+    },
 
     #-------------------------------------------------------------------------#
     #                          Download Method                                #
     #-------------------------------------------------------------------------#
-    download = function(url, directory) {
+    download = function(url) {
 
       private$..methodName <- 'download'
 
-      # Format download directory
+      # Format file path
       fileName <- installr::file.name.from.url(url)
+      filePath <- file.path(private$..path, fileName)
 
-      # Format download file path
-      filePath <- file.path(private$..path, directory, fileName)
-
-      if (download.file(url, destfile = file.path(directory, fileName), mode = 'wb') != 0) {
+      if (download.file(url, destfile = filePath, mode = 'wb') != 0) {
         private$..state <- paste0("Unable to download ", fileName, ".")
         self$logIt('Error')
         stop()
       }
+      private$..filePaths <- filePath
       private$..state <- paste0("Successfully downloaded ", fileName, ". ")
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       self$logIt()
 
-      return(filePath)
+      invisible(self)
     },
+
 
     #-------------------------------------------------------------------------#
     #                            Access Methods                               #
@@ -100,9 +117,8 @@ FileCollection <- R6::R6Class(
     lock = function() {
       private$..methodName <- 'lock'
 
-      private$..files <- lapply(private$..files, function(f) {
-        f$lock()
-      })
+      private$..locked <- TRUE
+
       private$..state <- paste0("FileCollection object, ", private$..name, ", locked.")
       private$..modified <- Sys.time()
       self$logIt()
@@ -112,28 +128,12 @@ FileCollection <- R6::R6Class(
     unlock = function() {
       private$..methodName <- 'lock'
 
-      private$..files <- lapply(private$..files, function(f) {
-        f$unlock()
-      })
+      private$..locked <- FALSE
+
       private$..state <- paste0("FileCollection object, ", private$..name, ", unlocked.")
       private$..modified <- Sys.time()
       self$logIt()
       invisible(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                           Aggregate Methods                             #
-    #-------------------------------------------------------------------------#
-    getFiles = function() private$..files,
-
-    addFile = function(file) {
-      fileName <- file$getFileName()
-      private$..files[[fileName]] <- file
-    },
-
-    removeFile = function(file) {
-      fileName <- file$getFileName()
-      private$..files[[fileName]] <- NULL
     },
 
     #-------------------------------------------------------------------------#
@@ -143,8 +143,11 @@ FileCollection <- R6::R6Class(
 
       private$..methodName <- 'read'
 
-      content <- lapply(private$..files, function(f) {
-        f$read(io)
+      files <- list.files(private$..path, full.names = TRUE)
+
+      content <- lapply(files, function(f) {
+        if (is.null(io))  io <- IOFactory$getIOStrategy(f)
+        io$read(f)
       })
 
       # LogIt
@@ -153,64 +156,30 @@ FileCollection <- R6::R6Class(
       self$logIt()
 
       return(content)
-
     },
 
-    write = function(content, io = NULL) {
+    write = function(fileName, content, io = NULL) {
 
       private$..methodName <- 'write'
 
-      lapply(private$..files, function(f) {
-        f$write(io, content)
-      })
+      if (private$..locked == TRUE) {
+        private$..state <- paste0("Unable to write to ", private,
+                                  ", the file collecdtion is locked.")
+        self$logIt("Warn")
+        stop()
+      }
+
+      filePath <- file.path(private$..path, fileName)
+
+      if (is.null(io)) io <- IOFactory$getIOStrategy(filePath)
+
+      io$write(filePath, content)
 
       # LogIt
       private$..state <- paste0("Wrote ", private$..name, ". ")
       private$..accessed <- Sys.time()
       self$logIt()
 
-      invisible(self)
-
-    },
-
-    #-------------------------------------------------------------------------#
-    #                          Zip/Unzip Methods                              #
-    #-------------------------------------------------------------------------#
-    zipFile = function(path, zipFiles) {
-
-      rc <- zip(zipfile = path, files = zipFiles)
-      if (rc == 0) {
-        private$..state <- paste0('Successfully zipped ', basename(path), ".")
-        private$..created <- Sys.time()
-        private$..modified <- Sys.time()
-        private$..accessed <- Sys.time()
-        self$logIt()
-      } else {
-        private..state <- paste0("Unable to zip ", basename(path), ".")
-        self$logIt('Error')
-        stop()
-      }
-      invisible(self)
-    },
-
-    unZipFile = function(path, directory, zipFiles = NULL, listFiles = FALSE,
-                         overwrite = TRUE) {
-
-      if (file.exists(path)) {
-        unzip(zipfile = path, overwrite = overwrite,
-              exdir = file.path(private..path, directory),
-              junkpaths = TRUE, files = zipFiles, list = listFiles)
-        private$..state <-  paste0("Successfully unzipped ", basename(path), ".")
-        private$..created <- Sys.time()
-        private$..modified <- Sys.time()
-        private$..accessed <- Sys.time()
-        self$logIt()
-      } else {
-        private$..state <-  paste0("Could not unzip ", basename(path),
-                                   ". File does not exist.")
-        self$logIt('Error')
-        stop()
-      }
       invisible(self)
     },
 
@@ -221,7 +190,6 @@ FileCollection <- R6::R6Class(
 
       private$..methodName <- 'moveFileCollection'
 
-
       if (missing(to)) {
         private$..state <- paste('Missing parameters with no default. Usage is',
                                  'moveFileCollection(to).  See ?FileCollection for',
@@ -230,16 +198,19 @@ FileCollection <- R6::R6Class(
         stop()
       }
 
-      private$..files <- lapply(private$..files, function(f) {
-        fileName <- f$getFileName()
-        f$moveFile(file.path(to, fileName))
+      dir.create(to, showWarnings = FALSE, recursive=TRUE)
+      files <- list.files(private$..path, full.names = TRUE)
+      lapply(files, function(f) {
+        fileName <- basename(f)
+        file.rename(from = f, to = file.path(to, fileName))
       })
 
-      private$..path <- to
-
       private$..state <-
-        paste0("Successfully moved file collection ", private$..path, " to ", to, "." )
+        paste0("Successfully moved file collection ", private$..name, " from ",
+               private$..path, " to ", to, "." )
       self$logIt()
+
+      private$..path <- to
 
       invisible(self)
     },
@@ -248,14 +219,35 @@ FileCollection <- R6::R6Class(
 
       private$..methodName <- 'removeFileCollection'
 
-      lapply(private$..files, function(f) {
-        f$removeFile()
+      files <- list.files(private$..path, full.names = TRUE)
+      lapply(files, function(f) {
+        file.remove(f)
       })
 
       private$..state <- paste0("Successfully removed file collection, ", private$..name,  ".")
       self$logIt()
 
       invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                            Explose Object                               #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+
+      o <- list(
+        className	 =  private$..className ,
+        name	 = 	    private$..name ,
+        path	 = 	    private$..path ,
+        filePaths = private$..filePaths,
+        state	 = 	    private$..state ,
+        logs	 = 	    private$..logs ,
+        modified	 = 	private$..modified ,
+        created	 = 	  private$..created ,
+        accessed	 = 	private$..accessed
+      )
+      return(o)
     }
+
   )
 )
