@@ -153,6 +153,9 @@ DataBuilder <- R6::R6Class(
         stop()
       }
 
+      #Read the data
+      newFc$read()
+
       # Add new file collection to Data object
       private$..data <- private$..data$addCollection(newFc)
 
@@ -205,6 +208,50 @@ DataBuilder <- R6::R6Class(
       return(newFc)
 
     },
+
+    #-------------------------------------------------------------------------#
+    #                            Reshape Method(s)                            #
+    #-------------------------------------------------------------------------#
+    reshape = function(fc, name) {
+
+      private$..methodName <- 'repair'
+
+      # Get Data object path
+      path <- private$..data$getPath()
+
+      # Create new file collection
+      newPath <- file.path(path, name)
+      newFc <- FileCollection$new(name = name, path = newPath)
+
+      files <- fc$getFilePaths()
+      lapply(files, function(f) {
+
+        # Read and reshape data
+        io <- IOText$new()
+        content <- io$read(f)
+        content <- quanteda::tokens(content, what = "sentence")
+
+
+
+        # Write data to new file collection
+        newFc$write(basename(f), d, io)
+
+        # Add the file to the FileCollection object
+        newFc$addFilePath(file.path(newPath, basename(f)))
+      })
+
+      private$..state <-  paste0("Successfully repaired ", outFc$getName(), ".")
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+
+      # Add new file collection to Data object
+      private$..data <- private$..data$addCollection(newFc)
+
+      return(newFc)
+
+    },
+
 
     #-------------------------------------------------------------------------#
     #                            Explose Object                               #

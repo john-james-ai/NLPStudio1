@@ -41,7 +41,8 @@ FileCollection <- R6::R6Class(
   private = list(
     ..filePaths = character(),
     ..locked = FALSE,
-    ..path = character()
+    ..path = character(),
+    ..content = character()
   ),
 
   public = list(
@@ -62,6 +63,8 @@ FileCollection <- R6::R6Class(
       private$..accessed <- Sys.time()
 
       dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
+
+      self$logIt()
 
       invisible(self)
     },
@@ -145,9 +148,13 @@ FileCollection <- R6::R6Class(
 
       files <- list.files(private$..path, full.names = TRUE)
 
-      content <- lapply(files, function(f) {
-        if (is.null(io))  io <- IOFactory$getIOStrategy(f)
-        io$read(f)
+      private$..content <- lapply(files, function(f) {
+        if (is.null(io)) {
+          ioStrategy <- IOFactory$getIOStrategy(f)
+        } else {
+          ioStrategy <- io
+        }
+        ioStrategy$read(f)
       })
 
       # LogIt
@@ -155,7 +162,7 @@ FileCollection <- R6::R6Class(
       private$..accessed <- Sys.time()
       self$logIt()
 
-      return(content)
+      invisible(self)
     },
 
     write = function(fileName, content, io = NULL) {
@@ -163,8 +170,8 @@ FileCollection <- R6::R6Class(
       private$..methodName <- 'write'
 
       if (private$..locked == TRUE) {
-        private$..state <- paste0("Unable to write to ", private,
-                                  ", the file collecdtion is locked.")
+        private$..state <- paste0("Unable to write to ", private$..name,
+                                  ", the file collection is locked.")
         self$logIt("Warn")
         stop()
       }

@@ -27,15 +27,11 @@ testFile <- function() {
     stopifnot(!is.null(d$logs))
     stopifnot(news$getClassName() == "File")
     stopifnot(news$getName() == "news")
-    stopifnot(news$getFileName() == "en_US.news.txt")
-    stopifnot(news$getPath() == "./test/testData/input/en_US.news.txt")
 
     # Logit
     FileTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized file"))
     FileTest$logs(className = className, methodName = "getClassName", msg = paste("Successfully obtained class name"))
     FileTest$logs(className = className, methodName = "getName", msg = paste("Successfully obtained name"))
-    FileTest$logs(className = className, methodName = "getFileName", msg = paste("Successfully obtained file name"))
-    FileTest$logs(className = className, methodName = "getPath", msg = paste("Successfully obtained path"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(news)
@@ -56,7 +52,6 @@ testFile <- function() {
     txtFile <- File$new(name = 'txtFile', path = outpath)
     txtFile <- txtFile$write(content)
     b <- txtFile$exposeObject()
-    stopifnot(file.info(inpath)$size == file.info(outpath)$size)
     stopifnot(b$name == 'txtFile')
     stopifnot(b$directory == dirname(outpath))
     stopifnot(b$fileName == basename(outpath))
@@ -64,7 +59,6 @@ testFile <- function() {
     stopifnot((Sys.time() -  b$created) < 1)
     stopifnot((Sys.time() -  b$modified) < 1)
     stopifnot(txtFile$getName() == 'txtFile')
-    stopifnot(txtFile$getPath() == outpath)
     stopifnot(file.exists(outpath))
 
     # Logit
@@ -97,10 +91,7 @@ testFile <- function() {
     stopifnot(b$directory == dirname(outpath))
     stopifnot(b$fileName == basename(outpath))
     stopifnot(b$path == outpath)
-    stopifnot((Sys.time() -  b$created) < 1)
-    stopifnot((Sys.time() -  b$modified) < 1)
     stopifnot(binFile$getName() == 'binFile')
-    stopifnot(binFile$getPath() == outpath)
     stopifnot(file.exists(outpath))
 
     # Logit
@@ -131,10 +122,7 @@ testFile <- function() {
     stopifnot(b$directory == dirname(outpath))
     stopifnot(b$fileName == basename(outpath))
     stopifnot(b$path == outpath)
-    stopifnot((Sys.time() -  b$created) < 1)
-    stopifnot((Sys.time() -  b$modified) < 1)
     stopifnot(rdataFile$getName() == 'rdataFile')
-    stopifnot(rdataFile$getPath() == outpath)
     stopifnot(file.exists(outpath))
 
     # Read RData
@@ -168,10 +156,7 @@ testFile <- function() {
     stopifnot(b$directory == dirname(outpath))
     stopifnot(b$fileName == basename(outpath))
     stopifnot(b$path == outpath)
-    stopifnot((Sys.time() -  b$created) < 1)
-    stopifnot((Sys.time() -  b$modified) < 1)
     stopifnot(csvFile$getName() == 'csvFile')
-    stopifnot(csvFile$getPath() == outpath)
     stopifnot(file.exists(outpath))
 
     # Read CSV
@@ -213,62 +198,6 @@ testFile <- function() {
     return(csvFile)
   }
 
-  test6 <- function(csvFile) {
-    test <- "test6: File: Copy"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    inpath <- "./test/testData/input/en_US.news.txt"
-    outpath <- "./test/testData/copies/csvFile.csv"
-
-    # Copy File
-    copyFile <- csvFile$copyFile(outpath)
-    b <- copyFile$exposeObject()
-    stopifnot(b$name == 'csvFile')
-    stopifnot(b$directory == dirname(outpath))
-    stopifnot(b$fileName == basename(outpath))
-    stopifnot(b$path == outpath)
-    stopifnot((Sys.time() -  b$created) < 1)
-    stopifnot((Sys.time() -  b$modified) < 1)
-    stopifnot(copyFile$getName() == 'csvFile')
-    stopifnot(copyFile$getPath() == outpath)
-    stopifnot(file.exists(outpath))
-
-    # Logit
-    FileTest$logs(className = className, methodName = "copyFile", msg = paste("Successfully tested copy functionality."))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(copyFile)
-  }
-
-  test7 <- function(copyFile) {
-    test <- "test7: File: Move"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    inpath <- "./test/testData/input/en_US.news.txt"
-    outpath <- "./test/testData/move/csvFile.csv"
-
-    # Move File
-    moveFile <- copyFile$moveFile(outpath)
-    b <- copyFile$exposeObject()
-    stopifnot(b$name == 'csvFile')
-    stopifnot(b$directory == dirname(outpath))
-    stopifnot(b$fileName == basename(outpath))
-    stopifnot(b$path == outpath)
-    stopifnot((Sys.time() -  b$created) < 1)
-    stopifnot((Sys.time() -  b$modified) < 1)
-    stopifnot(copyFile$getName() == 'csvFile')
-    stopifnot(copyFile$getPath() == outpath)
-    stopifnot(file.exists(outpath))
-
-    # Logit
-    FileTest$logs(className = className, methodName = "moveFile", msg = paste("Successfully tested move functionality."))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(moveFile)
-  }
-
 
 init()
 news <- test0()
@@ -277,8 +206,6 @@ binFile <<- test2(news)
 rdataFile <<- test3(news)
 csvFile <<- test4(news)
 csvFile <<- test5(news)
-copyFile <<- test6(csvFile)
-moveFile <<- test7(copyFile)
 
 }
 className <- "File"
