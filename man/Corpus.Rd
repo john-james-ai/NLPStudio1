@@ -33,6 +33,15 @@ transformations such as NGrams, and POS tagged documents.
  }
 }
 
+\section{Corpus Sourcing Methods}{
+
+ \describe{
+  \item{\code{download(url, name)}}{Creates an object of Corpus Class}
+  \item{\code{zipFile()}}{Returns the name of the Corpus object.}
+  \item{\code{unZipFile()}}{Returns the path of the Corpus object.}
+ }
+}
+
 \section{IO Methods}{
 
  \describe{

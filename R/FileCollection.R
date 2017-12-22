@@ -11,8 +11,6 @@
 #' @section FileCollection Methods:
 #'  \describe{
 #'   \item{\code{new()}}{Creates an object of FileCollection Class}
-#'   \item{\code{move(from, to)}}{Move a group of files.}
-#'   \item{\code{copy(from, to)}}{Copy a group of files.}
 #'   \item{\code{lock()}}{Makes a file collection read-only. }
 #'   \item{\code{unlock()}}{Opens write access on a file collection. }
 #'   \item{\code{read(io)}}{Reads a file collection.}
@@ -39,10 +37,23 @@ FileCollection <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..filePaths = character(),
+    ..io = character(),
+    ..files = list(),
     ..locked = FALSE,
     ..path = character(),
-    ..content = character()
+
+    parseInput = function() {
+
+      path <- private$..path
+      if (isDirectory(path)) {
+        files <- list.files(path, full.names = TRUE)
+      } else {
+        wildcard <- basename(path)
+        path <- dirname(path)
+        files <-list.files(path = path, pattern = wildcard, full.names = TRUE)
+      }
+      return(files)
+    }
   ),
 
   public = list(
@@ -62,11 +73,32 @@ FileCollection <- R6::R6Class(
       private$..created <- Sys.time()
       private$..accessed <- Sys.time()
 
-      dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
+      if (dir.exists(private$..path)) {
+        self$loadFiles()
+      } else {
+        dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
+      }
 
       self$logIt()
 
       invisible(self)
+    },
+
+    loadFiles = function() {
+
+      private$..methodName <- 'loadFiles'
+
+      files <- list.files(private$..path, full.names = TRUE)
+
+      private$..files <- lapply(files, function(f) {
+        name <- tools::file_path_sans_ext(basename(f))
+        File$new(name = name, path = f)
+      })
+      names(private$..files) <- tools::file_path_sans_ext(basename(files))
+
+      # Log it
+      private$..state <- paste0("Loaded files into ", private$..name)
+      self$logIt()
     },
 
 
@@ -75,44 +107,33 @@ FileCollection <- R6::R6Class(
     #-------------------------------------------------------------------------#
     getPath = function() private$..path,
 
-    getFilePaths = function() private$..filePaths,
+    getFiles = function() private$..files,
 
-    addFilePath = function(filePath) {
-      fileName <- basename(filePath)
-      private$..filePaths[[fileName]] <- filePath
-    },
+    addFile = function(file) {
+      private$..methodName <- 'addFile'
 
-    removeFilePath = function(filePath) {
-      fileName <- basename(filePath)
-      private$..filePaths[[fileName]] <- NULL
-    },
-
-    #-------------------------------------------------------------------------#
-    #                          Download Method                                #
-    #-------------------------------------------------------------------------#
-    download = function(url) {
-
-      private$..methodName <- 'download'
-
-      # Format file path
-      fileName <- installr::file.name.from.url(url)
-      filePath <- file.path(private$..path, fileName)
-
-      if (download.file(url, destfile = filePath, mode = 'wb') != 0) {
-        private$..state <- paste0("Unable to download ", fileName, ".")
-        self$logIt('Error')
-        stop()
-      }
-      private$..filePaths <- filePath
-      private$..state <- paste0("Successfully downloaded ", fileName, ". ")
-      private$..created <- Sys.time()
+      name <- file$getName()
+      private$..files[[name]] <- file
+      private$..state <- paste0("Added file ", name, ", to ", private$..name,
+                                " file collection. ")
       private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
       self$logIt()
 
       invisible(self)
     },
 
+    removeFile = function(file) {
+      private$..methodName <- 'removeFile'
+
+      name <- getName(file)
+      private$..files[[name]] <- NULL
+      private$..state <- paste0("Removed file ", name, ", from ", private$..name,
+                                " file collection. ")
+      private$..modified <- Sys.time()
+      self$logIt()
+
+      invisible(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                            Access Methods                               #
@@ -121,6 +142,10 @@ FileCollection <- R6::R6Class(
       private$..methodName <- 'lock'
 
       private$..locked <- TRUE
+
+      private$..files <- lapply(private$..files, function(f) {
+        f$lock()
+      })
 
       private$..state <- paste0("FileCollection object, ", private$..name, ", locked.")
       private$..modified <- Sys.time()
@@ -132,6 +157,10 @@ FileCollection <- R6::R6Class(
       private$..methodName <- 'lock'
 
       private$..locked <- FALSE
+
+      private$..files <- lapply(private$..files, function(f) {
+        f$unLock()
+      })
 
       private$..state <- paste0("FileCollection object, ", private$..name, ", unlocked.")
       private$..modified <- Sys.time()
@@ -146,15 +175,8 @@ FileCollection <- R6::R6Class(
 
       private$..methodName <- 'read'
 
-      files <- list.files(private$..path, full.names = TRUE)
-
-      private$..content <- lapply(files, function(f) {
-        if (is.null(io)) {
-          ioStrategy <- IOFactory$getIOStrategy(f)
-        } else {
-          ioStrategy <- io
-        }
-        ioStrategy$read(f)
+      content <- lapply(private$..files, function(f) {
+        f$read(io)
       })
 
       # LogIt
@@ -162,10 +184,10 @@ FileCollection <- R6::R6Class(
       private$..accessed <- Sys.time()
       self$logIt()
 
-      invisible(self)
+      return(content)
     },
 
-    write = function(fileName, content, io = NULL) {
+    write = function(io = NULL) {
 
       private$..methodName <- 'write'
 
@@ -176,62 +198,13 @@ FileCollection <- R6::R6Class(
         stop()
       }
 
-      filePath <- file.path(private$..path, fileName)
-
-      if (is.null(io)) io <- IOFactory$getIOStrategy(filePath)
-
-      io$write(filePath, content)
+      lapply(private$..files, function(f) {
+        f$write(io)
+      })
 
       # LogIt
       private$..state <- paste0("Wrote ", private$..name, ". ")
       private$..accessed <- Sys.time()
-      self$logIt()
-
-      invisible(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                         Move/Copy/Remove Methods                        #
-    #-------------------------------------------------------------------------#
-    moveFileCollection = function(to)  {
-
-      private$..methodName <- 'moveFileCollection'
-
-      if (missing(to)) {
-        private$..state <- paste('Missing parameters with no default. Usage is',
-                                 'moveFileCollection(to).  See ?FileCollection for',
-                                 'further assistance.')
-        self$logIt('Error')
-        stop()
-      }
-
-      dir.create(to, showWarnings = FALSE, recursive=TRUE)
-      files <- list.files(private$..path, full.names = TRUE)
-      lapply(files, function(f) {
-        fileName <- basename(f)
-        file.rename(from = f, to = file.path(to, fileName))
-      })
-
-      private$..state <-
-        paste0("Successfully moved file collection ", private$..name, " from ",
-               private$..path, " to ", to, "." )
-      self$logIt()
-
-      private$..path <- to
-
-      invisible(self)
-    },
-
-    removeFileCollection = function() {
-
-      private$..methodName <- 'removeFileCollection'
-
-      files <- list.files(private$..path, full.names = TRUE)
-      lapply(files, function(f) {
-        file.remove(f)
-      })
-
-      private$..state <- paste0("Successfully removed file collection, ", private$..name,  ".")
       self$logIt()
 
       invisible(self)
@@ -246,7 +219,7 @@ FileCollection <- R6::R6Class(
         className	 =  private$..className ,
         name	 = 	    private$..name ,
         path	 = 	    private$..path ,
-        filePaths = private$..filePaths,
+        files = private$..files,
         state	 = 	    private$..state ,
         logs	 = 	    private$..logs ,
         modified	 = 	private$..modified ,

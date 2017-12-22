@@ -2,9 +2,12 @@
 
 export(Analyzer)
 export(Archive)
+export(CV0)
+export(CVHoldOut)
 export(Command0)
 export(Corpus)
-export(CorpusBuilder)
+export(Data)
+export(DataBuilder)
 export(Document)
 export(Entity)
 export(File)

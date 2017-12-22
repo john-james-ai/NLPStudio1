@@ -115,7 +115,7 @@ VValidatorInit <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      url <- object$getURL()
+      url <- object$getParams()[[1]]
 
       # Confirm URL is not missing
       if (is.null(url)) {
@@ -184,6 +184,14 @@ VValidatorInit <- R6::R6Class(
 
     pipeline = function(object) {
       return(private$validateStub(object))
+    },
+
+    dataSourceWeb = function(object) {
+      return(private$validateUrl(object))
+    },
+
+    dataSourceWebComp = function(object) {
+      return(private$validateUrl(object))
     },
 
     corpus = function(object) {

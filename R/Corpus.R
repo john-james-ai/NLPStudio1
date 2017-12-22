@@ -15,13 +15,6 @@
 #'   \item{\code{getPath()}}{Returns the path of the Corpus object.}
 #'  }
 #'
-#' @section Corpus Sourcing Methods:
-#'  \describe{
-#'   \item{\code{download(url, name)}}{Creates an object of Corpus Class}
-#'   \item{\code{zipFile()}}{Returns the name of the Corpus object.}
-#'   \item{\code{unZipFile()}}{Returns the path of the Corpus object.}
-#'  }
-#'
 #' @section IO Methods:
 #'  \describe{
 #'   \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus object.}
@@ -47,7 +40,6 @@
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#' @param collection FileCollection object.
 #' @param field Character string name for a field to be added to the Document or Corpus object meta data.
 #' @param name A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
 #' @param visitor An object of one of the visitor classes.
@@ -63,8 +55,7 @@ Corpus <- R6::R6Class(
 
   private = list(
     ..locked = FALSE,
-    ..path = character(),
-    ..corpus = character()
+    ..corpus = list()
   ),
 
   public = list(
@@ -72,14 +63,13 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path) {
+    initialize = function(name, content) {
 
       # Instantiate variables
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..name <- name
-      private$..path <- path
-      private$..corpus <- NULL
+      private$..corpus <- corpus
       private$..state <- paste0("Corpus, ", name, ", instantiated.")
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
@@ -95,7 +85,8 @@ Corpus <- R6::R6Class(
         stop()
       }
 
-      dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
+      # Load files
+
 
       # Create log entry
       self$logIt()
@@ -103,7 +94,7 @@ Corpus <- R6::R6Class(
       invisible(self)
     },
 
-    getCorpus = function() private$..corpus,
+    getCorpus = function() invisible(self),
 
     #-------------------------------------------------------------------------#
     #                              IO Methods                                 #

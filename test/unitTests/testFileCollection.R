@@ -2,8 +2,11 @@ testFileCollection <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
-    if (exists("external", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("external", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    unlink(downloadPath, recursive = TRUE)
+    if (exists("textfc", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("textfc", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("binfc", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("binfc", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("rdatafc", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("rdatafc", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("csvfc", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("csvfc", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+
     FileCollectionTest <<- LogTest$new()
   }
 
@@ -12,50 +15,53 @@ testFileCollection <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Instantiate
-    path <- downloadPath
-    name <- 'external'
-    external <- FileCollection$new(name = name, path = downloadPath)
+    path <- "./test/testData/raw"
+    name <- 'raw'
+    raw <- FileCollection$new(name = name, path = path)
 
     # Evaluate
-    fc <- external$exposeObject()
+    fc <- raw$exposeObject()
     stopifnot(fc$className == 'FileCollection')
     stopifnot(fc$methodName == 'initialize')
-    stopifnot(fc$name == 'external')
-    stopifnot(fc$path == downloadPath)
-    stopifnot((Sys.time() - fc$created) < 1)
-    stopifnot((Sys.time() - fc$modified) < 1)
-    stopifnot((Sys.time() - fc$accessed) < 1)
-    stopifnot(external$getPath() == downloadPath)
-    stopifnot(dir.exists(downloadPath))
+    stopifnot(fc$name == 'raw')
+    stopifnot(fc$path == path)
+    stopifnot(dir.exists(path))
 
 
     FileCollectionTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
-    cat(paste0(test, " Completed: Success!\n"))
+    cat(paste0(test, " Completed: Success!\    binData <- raw$read(IOBin$new())
+n"))
 
-    return(external)
+    return(raw)
   }
 
-  test1 <- function(external) {
-    test <- "test1: FileCollection: Download"
+  test1 <- function(raw) {
+    test <- "test1: FileCollection: ReadBin"
     cat(paste0("\n",test, " Commencing\n"))
 
-    url <- 'http://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip'
-    fileName <- installr::file.name.from.url(url)
-    downloadFilePath <- file.path(downloadPath, fileName)
+    # Read binary file
+    io <- IOBin$new()
+    binData <- raw$read(io)
+    stopifnot()
 
-    # Create download
-    external <- external$download(url)
 
-    # Evaluate
-    fc <- external$exposeObject()
+
+    name = 'binfc'
+    path = './test/testData/binfc'
+
+    binfc <- FileCollection$new(name, path)
+    fc <- binfc$exposeObject()
     stopifnot(fc$className == 'FileCollection')
-    stopifnot(fc$methodName == 'download')
-    stopifnot(fc$name == 'external')
-    stopifnot(fc$path == downloadPath)
-    stopifnot(external$getPath() == downloadPath)
-    stopifnot(dir.exists(downloadPath))
-    stopifnot(file.exists(downloadFilePath))
-    stopifnot(fc$fileNames[[1]] == downloadFilePath)
+    stopifnot(fc$methodName == 'initialize')
+    stopifnot(fc$name == name)
+    stopifnot(fc$path == path)
+    stopifnot(binfc$getPath() == path)
+    stopifnot(dir.exists(path))
+
+    # Read binary file
+    io <- IOBin$new()
+    binData <- binfc$read(io)
+    stopifnot()
 
 
     FileCollectionTest$logs(className = className, methodName = "download", msg = paste("Successfully downloaded file collection. "))
@@ -90,7 +96,7 @@ testFileCollection <- function() {
     stopifnot(dir.exists(rawPath))
 
     # Unzip into the new collection
-    raw <- raw$unZipFile(external$getFilePaths[[1]], zipFiles = zipFiles)
+    raw <- raw$unZipFile(zipFiles = zipFiles)
     files <- raw$geFilePaths()
     stopifnot(files[[1]] == blogsFile)
     stopifnot(files[[2]] == newsFile)
@@ -118,12 +124,11 @@ testFileCollection <- function() {
   }
 
 
-downloadPath <- "./test/testData/swiftKey/data/external"
 
 init()
-external <<- test0()
-external <<- test1(external)
-#raw <<- test2(external)
+raw <<- test0()
+#external <<- test1(external)
+raw <<- test2(external)
 
 }
 className <- "File"

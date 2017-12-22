@@ -30,13 +30,21 @@ File <- R6::R6Class(
   classname = "File",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = FileCollection,
 
   private = list(
-    ..io = character(),
-    ..locked = FALSE,
-    ..path = character(),
     ..content = character()
+  ),
+
+  active = list(
+
+    content = function(value) {
+      if (missing(value)) {
+        return(private$..content)
+      } else {
+        private$..content <- value
+      }
+    }
   ),
 
   public = list(
@@ -56,12 +64,14 @@ File <- R6::R6Class(
       private$..logs <- LogR$new()
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..accessed <- Sys.time
+
+      if (file.exists(private$..path)) self$read()
 
       invisible(self)
     },
 
-    getPath = function() private$..path,
+    getFileName = function() private$..fileName,
 
     #-------------------------------------------------------------------------#
     #                            Access Methods                               #
@@ -107,7 +117,7 @@ File <- R6::R6Class(
       return(private$..content)
     },
 
-    write = function(content, io = NULL) {
+    write = function(io = NULL) {
 
       private$..methodName <- 'write'
 
@@ -117,8 +127,6 @@ File <- R6::R6Class(
         self$logIt("Warn")
         stop()
       }
-
-      private$..content <- content
 
       if (is.null(io)) io <- private$..io
 
@@ -138,18 +146,16 @@ File <- R6::R6Class(
     exposeObject = function() {
 
       o <- list(
-        className	 =  private$..className ,
-        methodName = private$..methodName,
-        name	 = 	    private$..name ,
-        path	 = 	    private$..path ,
-        fileName = private$..fileName,
-        io = private$..io,
         content = private$..content,
-        state	 = 	    private$..state ,
-        logs	 = 	    private$..logs ,
-        modified	 = 	private$..modified ,
-        created	 = 	  private$..created ,
-        accessed	 = 	private$..accessed
+        metaData = list(
+          name	 = 	    private$..name ,
+          fileName = private$..fileName,
+          path	 = 	    private$..path ,
+          state	 = 	    private$..state ,
+          modified	 = 	private$..modified ,
+          created	 = 	  private$..created ,
+          accessed	 = 	private$..accessed
+        )
       )
       return(o)
     }

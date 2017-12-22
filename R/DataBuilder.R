@@ -38,7 +38,25 @@ DataBuilder <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..data = list()
+    ..data = list(),
+
+    parsePath = function(path) {
+
+      if (isDirectory(path)) {
+        files <- list.files(path = path, full.names = TRUE)
+      } else {
+        wildcard <- basename(path)
+        dirName <- dirname(path)
+        files <- list.files(path = dirName, pattern = wildcard, full.names = TRUE)
+      }
+
+      if (length(files) == 0) {
+        private$..state <- paste0("Unable to instantiate corpus. Files not found.")
+        self$logIt('Error')
+        stop()
+      }
+      return(files)
+    }
   ),
 
   public = list(
@@ -46,164 +64,69 @@ DataBuilder <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         DataBuilder Core Methods                        #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path) {
+    initialize = function() {
 
       private$..className <- 'DataBuilder'
       private$..methodName <- 'initialize'
       private$..state <- paste("DataBuilder object", private$..name, "instantiated.")
       private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
-
-      # Create Data object
-      private$..data <- Data$new(name = name, path = path)
 
       invisible(self)
     },
 
     getData = function() private$..data,
 
-    #-------------------------------------------------------------------------#
-    #                          Download Method                                #
-    #-------------------------------------------------------------------------#
-    download = function(url, name) {
-
-      private$..methodName = 'download'
-
-      # Get Data object path
-      path <- private$..data$getPath()
-
-      # Create new file collection
-      fc <- FileCollection$new(name = name, path = file.path(path, name))
-
-      # Download
-      fc <- fc$download(url)
-
-      # Log
-      private$..state <- paste0("Downloaded ", name, " file collection.")
-      self$logIt()
-
-      private$..data <- private$..data$addCollection(fc)
-
-      return(fc)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                          Zip/Unzip Methods                              #
-    #-------------------------------------------------------------------------#
-    zipFile = function(fc, name, zipFilePath) {
-
-      private$..methodName <- 'zipFile'
-
-      # Get Data object path
-      path <- private$..data$getPath()
-
-      # Create fileCollection Object
-      newFc <- FileCollection$new(name = name,
-                                  path = file.path(path, name))
-
-      # Zip Data
-      zipFiles <- list.files(fc$getPath(), full.names = TRUE)
-      rc <- zip(zipfile = zipFilePath, files = zipFiles)
-      if (rc == 0) {
-        private$..state <- paste0('Successfully zipped ', basename(zipFile), ".")
-        self$logIt()
-      } else {
-        private..state <- paste0("Unable to zip ", basename(zipFile), ".")
-        self$logIt('Error')
-        stop()
-      }
-
-      # Add new file collection to Data object
-      private$..data <- private$..data$addCollection(newFc)
-
-      return(newFc)
-    },
-
-    unZipFile = function(fc, name, zipFiles = NULL, listFiles = FALSE,
-                         overwrite = TRUE) {
-
-      private$..methodName <- 'unZipFile'
-
-      # Get Data object path
-      path <- private$..data$getPath()
-
-      # Create fileCollection Object
-      newFc <- FileCollection$new(name = name, path = file.path(path, name))
-
-      # Unzip Files
-      zipFile <- fc$getFilePaths()[[1]]
-      exDir <- file.path(path, name)
-      if (file.exists(zipFile)) {
-        files <- unzip(zipfile = zipFile, overwrite = overwrite,
-                       exdir = exDir, junkpaths = TRUE, files = zipFiles,
-                       list = listFiles)
-
-        lapply(files, function(f) {
-          newFc$addFilePath(f)
-        })
-
-        private$..state <-  paste0("Successfully unzipped ", basename(zipFile), ".")
-        self$logIt()
-      } else {
-        private$..state <-  paste0("Could not unzip ", basename(zipFile),
-                                   ". File does not exist.")
-        self$logIt('Error')
-        stop()
-      }
-
-      #Read the data
-      newFc$read()
-
-      # Add new file collection to Data object
-      private$..data <- private$..data$addCollection(newFc)
-
-      return(newFc)
-    },
 
     #-------------------------------------------------------------------------#
     #                            Repair Method(s)                             #
     #-------------------------------------------------------------------------#
-    repair = function(fc, name) {
+    repair = function(fc, name, path) {
 
       private$..methodName <- 'repair'
 
-      # Get Data object path
-      path <- private$..data$getPath()
+      # Confirm directory is empty
+      if (dir.exists(path)) {
+        private$..state <- paste0("Unable to create new FileCollection at ",
+                                  path, ". Directory is not empty.")
+        self$logIt('Error')
+        stop()
+      }
 
-      # Create new file collection
-      newPath <- file.path(path, name)
-      newFc <- FileCollection$new(name = name, path = newPath)
+      # Create repaired file collection
+      newFc <- FileCollection$new(name = name, path = path)
 
-      files <- fc$getFilePaths()
+      # Repair files iteratively
+      files <- fc$getFiles()
       lapply(files, function(f) {
 
-        # Read and repair data
+        # Read data
         io <- IOBin$new()
-        d <- io$read(f)
+        d <- f$read(io)
+
+        # Repair Data
         d[d == as.raw(0)] = as.raw(0x20)
         d[d == as.raw(26)] = as.raw(0x20)
         temp <- tempfile(fileext = '.txt')
-
         writeBin(d, temp)
         d <- readLines(temp)
         unlink(temp)
 
-        # Write data to new file collection
-        newFc$write(basename(f), d, io)
+        # Create new file
+        fileName <- f$getFileName()
+        filePath <- file.path(path, fileName)
+        newFile <- File$new(name = f$getName(), path = filePath)
 
-        # Add the file to the FileCollection object
-        newFc$addFilePath(file.path(newPath, basename(f)))
+        # Write new file
+        newFile$content <- d
+        newFile$write()
+        newFc$addFile(newFile)
       })
 
-      private$..state <-  paste0("Successfully repaired ", outFc$getName(), ".")
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..state <-  paste0("Successfully repaired ", name, ".")
+      self$logIt()
 
-      # Add new file collection to Data object
-      private$..data <- private$..data$addCollection(newFc)
+      # Add corpus to Data object
+      private$..data[[name]] <- newFc
 
       return(newFc)
 
@@ -212,35 +135,15 @@ DataBuilder <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                            Reshape Method(s)                            #
     #-------------------------------------------------------------------------#
-    reshape = function(fc, name) {
+    reshape = function(korpus) {
 
-      private$..methodName <- 'repair'
+      private$..methodName <- 'reshape'
 
-      # Get Data object path
-      path <- private$..data$getPath()
+      # Reshape the corpus into sentences
+      sentCorpus <- tokens(korpus, what = 'sentence')
+      sentCorpus <- tolower(sentCorpus)
 
-      # Create new file collection
-      newPath <- file.path(path, name)
-      newFc <- FileCollection$new(name = name, path = newPath)
-
-      files <- fc$getFilePaths()
-      lapply(files, function(f) {
-
-        # Read and reshape data
-        io <- IOText$new()
-        content <- io$read(f)
-        content <- quanteda::tokens(content, what = "sentence")
-
-
-
-        # Write data to new file collection
-        newFc$write(basename(f), d, io)
-
-        # Add the file to the FileCollection object
-        newFc$addFilePath(file.path(newPath, basename(f)))
-      })
-
-      private$..state <-  paste0("Successfully repaired ", outFc$getName(), ".")
+      private$..state <-  paste0("Successfully reshaped ", outFc$getName(), ".")
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()

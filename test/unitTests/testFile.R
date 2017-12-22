@@ -24,13 +24,11 @@ testFile <- function() {
     stopifnot(d$className == 'File')
     stopifnot(d$name == 'news')
     stopifnot(d$path == './test/testData/input/en_US.news.txt')
-    stopifnot(!is.null(d$logs))
     stopifnot(news$getClassName() == "File")
     stopifnot(news$getName() == "news")
 
     # Logit
     FileTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized file"))
-    FileTest$logs(className = className, methodName = "getClassName", msg = paste("Successfully obtained class name"))
     FileTest$logs(className = className, methodName = "getName", msg = paste("Successfully obtained name"))
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -45,12 +43,12 @@ testFile <- function() {
     outpath <- "./test/testData/txtFile.txt"
 
     # Read content
-    content <- news$read()
-    stopifnot(length(content) > 1000)
+    file <- news$read()
+    stopifnot(length(file$content) > 1000)
 
     # Write Text
     txtFile <- File$new(name = 'txtFile', path = outpath)
-    txtFile <- txtFile$write(content)
+    txtFile <- txtFile$write()
     b <- txtFile$exposeObject()
     stopifnot(b$name == 'txtFile')
     stopifnot(b$directory == dirname(outpath))
@@ -78,14 +76,14 @@ testFile <- function() {
     outpath <- "./test/testData/binFile.txt"
 
     # ReadBin
-    content <- news$read(IOBin$new())
-    stopifnot(length(content) > 1000)
+    file <- news$read(IOBin$new())
+    stopifnot(length(file$content) > 1000)
     b <- news$exposeObject()
     stopifnot((Sys.time() -  b$accessed) < 1)
 
     # WriteBin
     binFile <- File$new(name = 'binFile', path = outpath)
-    binFile$write(content = content, io = IOBin$new())
+    binFile$write(file$content, io = IOBin$new())
     b <- binFile$exposeObject()
     stopifnot(b$name == 'binFile')
     stopifnot(b$directory == dirname(outpath))
@@ -112,11 +110,11 @@ testFile <- function() {
     outpath <- "./test/testData/rdataFile.rdata"
 
     # Get content
-    content <- news$read()
+    file <- news$read()
 
     # Write rdata
     rdataFile <- File$new(name = 'rdataFile', path = outpath)
-    rdataFile$write(content = content)
+    rdataFile$write(content = file$content)
     b <- rdataFile$exposeObject()
     stopifnot(b$name == 'rdataFile')
     stopifnot(b$directory == dirname(outpath))
@@ -126,8 +124,8 @@ testFile <- function() {
     stopifnot(file.exists(outpath))
 
     # Read RData
-    content <- rdataFile$read()
-    stopifnot(length(content) > 1000)
+    file <- rdataFile$read()
+    stopifnot(length(file$content) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in rdata format"))
@@ -160,8 +158,8 @@ testFile <- function() {
     stopifnot(file.exists(outpath))
 
     # Read CSV
-    content <- csvFile$read()
-    stopifnot(nrow(content) > 1000)
+    file <- csvFile$read()
+    stopifnot(nrow(file$content) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in csv format"))
@@ -180,8 +178,8 @@ testFile <- function() {
     outpath <- "./test/testData/csvFile.csv"
 
     # Read content
-    content <- news$read()
-    stopifnot(length(content) > 1000)
+    file <- news$read()
+    stopifnot(length(file$content) > 1000)
 
     # Write Text
     csvFile <- File$new(name = 'csvFile', path = outpath)
