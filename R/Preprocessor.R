@@ -36,14 +36,14 @@ Preprocessor <- R6::R6Class(
     #                         Initialize Method                               #
     #-------------------------------------------------------------------------#
     initialize = function(name) {
-      private$..className <- 'Preprocessor'
-      private$..methodName <- 'initialize'
-      private$..name <- name
-      private$..state <- "Object of the Preprocessor class initialized"
-      private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..admin$className <- 'Preprocessor'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$name <- name
+      private$..admin$state <- "Object of the Preprocessor class initialized"
+      private$..admin$logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
       # Log it
       self$logIt()
@@ -174,7 +174,7 @@ Preprocessor <- R6::R6Class(
       self$write(document, io)
 
       # Logit
-      private$..state <- paste0("Normalized text in ", document$getName, ". ")
+      private$..admin$state <- paste0("Normalized text in ", document$getName, ". ")
       self$logIt()
 
       return(document)
@@ -214,7 +214,7 @@ Preprocessor <- R6::R6Class(
       self$write(document, io)
 
       # Logit
-      private$..state <- paste0("Extracted malcontent from ", document$getName, ". ")
+      private$..admin$state <- paste0("Extracted malcontent from ", document$getName, ". ")
       self$logIt()
 
       return(document)
@@ -225,14 +225,14 @@ Preprocessor <- R6::R6Class(
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- private$..methodName
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
+      private$..admin$logs$entry$owner <- private$..admin$name
+      private$..admin$logs$entry$className <- private$..admin$className
+      private$..admin$logs$entry$methodName <- private$..admin$methodName
+      private$..admin$logs$entry$level <- level
+      private$..admin$logs$entry$msg <- private$..admin$state
+      private$..admin$logs$entry$fieldName <- fieldName
+      private$..admin$logs$created <- Sys.time()
+      private$..admin$logs$writeLog()
     }
   )
 )

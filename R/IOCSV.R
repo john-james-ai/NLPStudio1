@@ -38,7 +38,7 @@ IOCSV <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function(path, header = TRUE) {
 
-      private$..logs <- LogR$new()
+      private$..admin$logs <- LogR$new()
 
       fileName <- basename(path)
 
@@ -46,11 +46,11 @@ IOCSV <- R6::R6Class(
         content <- read.csv(file = path, header = header,
                             stringsAsFactors = FALSE,
                             sep = ",", quote = "\"'")
-        private$..state <- paste0("Successfully read ", fileName, ".")
-        private$..accessed <- Sys.time()
+        private$..admin$state <- paste0("Successfully read ", fileName, ".")
+        private$..admin$accessed <- Sys.time()
         self$logIt()
       } else {
-        private$..state <- paste0('Unable to read ', fileName, '. ',
+        private$..admin$state <- paste0('Unable to read ', fileName, '. ',
                                   'File does not exist.')
         self$logIt("Error")
         stop()
@@ -60,7 +60,7 @@ IOCSV <- R6::R6Class(
 
     write = function(path, content) {
 
-      private$..logs <- LogR$new()
+      private$..admin$logs <- LogR$new()
 
       fileName <- basename(path)
       dirName <- dirname(path)
@@ -70,12 +70,12 @@ IOCSV <- R6::R6Class(
 
       write.csv(content, file = path, row.names = FALSE)
 
-      private$..state <- paste0("Successfully wrote ", fileName, ".")
+      private$..admin$state <- paste0("Successfully wrote ", fileName, ".")
       self$logIt()
 
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$modified <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
       invisible(self)
     }

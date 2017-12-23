@@ -25,14 +25,17 @@ Entity <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
-    ..className = character(),
-    ..methodName = character(),
-    ..name = character(),
-    ..state = character(),
-    ..logs = character(),
-    ..created = character(),
-    ..modified = character(),
-    ..accessed = character()
+    ..admin = list(
+      className = character(),
+      methodName = character(),
+      path = character(),
+      locked = FALSE,
+      state = character(),
+      logs = character(),
+      created = character(),
+      modified = character(),
+      accessed = character()
+    )
   ),
 
   public = list(
@@ -40,21 +43,21 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Basic Get  Methods                            #
     #-------------------------------------------------------------------------#
-    getClassName = function() private$..className,
-    getName = function() private$..name,
+    getClassName = function() private$..admin$className,
+    getName = function() private$..admin$name,
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..logs$entry$className <- private$..className
-      private$..logs$entry$methodName <- private$..methodName
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
+      private$..admin$logs$entry$className <- private$..admin$className
+      private$..admin$logs$entry$methodName <- private$..admin$methodName
+      private$..admin$logs$entry$level <- level
+      private$..admin$logs$entry$msg <- private$..admin$state
+      private$..admin$logs$entry$fieldName <- fieldName
+      private$..admin$logs$created <- Sys.time()
+      private$..admin$logs$writeLog()
     }
   )
 )

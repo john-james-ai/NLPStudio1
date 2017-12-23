@@ -2,7 +2,7 @@ testFile <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
-    if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("newz", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("newz", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("txtFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("txtFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("rdataFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("rdataFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("csvFile", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("csvFile", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
@@ -15,27 +15,27 @@ testFile <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Validation
-    #news <- File$new()# should fail, no name
-    # news <- File$new(name = 'news')# should fail -success, no path
+    #newz <- File$new()# should fail, no name
+    # newz <- File$new(name = 'newz')# should fail -success, no path
 
     # Instantiate
-    news <- File$new(name = 'news', path = './test/testData/input/en_US.news.txt')
-    d <- news$exposeObject()
+    newz <- File$new(name = 'newz', path = './test/testData/input/en_US.news.txt')
+    d <- newz$exposeObject()
     stopifnot(d$className == 'File')
-    stopifnot(d$name == 'news')
+    stopifnot(d$name == 'newz')
     stopifnot(d$path == './test/testData/input/en_US.news.txt')
-    stopifnot(news$getClassName() == "File")
-    stopifnot(news$getName() == "news")
+    stopifnot(newz$getClassName() == "File")
+    stopifnot(newz$getName() == "newz")
 
     # Logit
     FileTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized file"))
     FileTest$logs(className = className, methodName = "getName", msg = paste("Successfully obtained name"))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(news)
+    return(newz)
   }
 
-  test1 <- function(news) {
+  test1 <- function(newz) {
     test <- "test1: File: Read / Write Text File"
     cat(paste0("\n",test, " Commencing\n"))
 
@@ -43,11 +43,12 @@ testFile <- function() {
     outpath <- "./test/testData/txtFile.txt"
 
     # Read content
-    file <- news$read()
-    stopifnot(length(file$content) > 1000)
+    file <- newz$read()
+    stopifnot(length(newz$content) > 1000)
 
     # Write Text
     txtFile <- File$new(name = 'txtFile', path = outpath)
+    txtFile$content <- file
     txtFile <- txtFile$write()
     b <- txtFile$exposeObject()
     stopifnot(b$name == 'txtFile')
@@ -68,7 +69,7 @@ testFile <- function() {
     return(txtFile)
   }
 
-  test2 <- function(news) {
+  test2 <- function(newz) {
     test <- "test2: File: Read / Write Binary File"
     cat(paste0("\n",test, " Commencing\n"))
 
@@ -76,14 +77,15 @@ testFile <- function() {
     outpath <- "./test/testData/binFile.txt"
 
     # ReadBin
-    file <- news$read(IOBin$new())
-    stopifnot(length(file$content) > 1000)
-    b <- news$exposeObject()
+    file <- newz$read(IOBin$new())
+    stopifnot(length(newz$content) > 1000)
+    b <- newz$exposeObject()
     stopifnot((Sys.time() -  b$accessed) < 1)
 
     # WriteBin
     binFile <- File$new(name = 'binFile', path = outpath)
-    binFile$write(file$content, io = IOBin$new())
+    binFile$content <- file
+    binFile$write(io = IOBin$new())
     b <- binFile$exposeObject()
     stopifnot(b$name == 'binFile')
     stopifnot(b$directory == dirname(outpath))
@@ -102,7 +104,7 @@ testFile <- function() {
   }
 
 
-  test3 <- function(news) {
+  test3 <- function(newz) {
     test <- "test3: File: Read / Write RData File"
     cat(paste0("\n",test, " Commencing\n"))
 
@@ -110,11 +112,12 @@ testFile <- function() {
     outpath <- "./test/testData/rdataFile.rdata"
 
     # Get content
-    file <- news$read()
+    file <- newz$read()
 
     # Write rdata
     rdataFile <- File$new(name = 'rdataFile', path = outpath)
-    rdataFile$write(content = file$content)
+    rdataFile$content <- file
+    rdataFile$write()
     b <- rdataFile$exposeObject()
     stopifnot(b$name == 'rdataFile')
     stopifnot(b$directory == dirname(outpath))
@@ -125,7 +128,7 @@ testFile <- function() {
 
     # Read RData
     file <- rdataFile$read()
-    stopifnot(length(file$content) > 1000)
+    stopifnot(length(newz$content) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in rdata format"))
@@ -136,7 +139,7 @@ testFile <- function() {
     return(rdataFile)
   }
 
-  test4 <- function(news) {
+  test4 <- function(newz) {
     test <- "test4: File: Read / Write CSV File"
     cat(paste0("\n",test, " Commencing\n"))
 
@@ -144,11 +147,12 @@ testFile <- function() {
     outpath <- "./test/testData/csvFile.csv"
 
     # Get content
-    content <- news$read()
+    content <- newz$read()
 
     # Write csv
     csvFile <- File$new(name = 'csvFile', path = outpath)
-    csvFile$write(content = content)
+    csvFile$content <- content
+    csvFile$write()
     b <- csvFile$exposeObject()
     stopifnot(b$name == 'csvFile')
     stopifnot(b$directory == dirname(outpath))
@@ -159,7 +163,7 @@ testFile <- function() {
 
     # Read CSV
     file <- csvFile$read()
-    stopifnot(nrow(file$content) > 1000)
+    stopifnot(nrow(newz$content) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in csv format"))
@@ -170,7 +174,7 @@ testFile <- function() {
     return(csvFile)
   }
 
-  test5 <- function(news) {
+  test5 <- function(newz) {
     test <- "test5: File: Lock / Unlock"
     cat(paste0("\n",test, " Commencing\n"))
 
@@ -178,14 +182,15 @@ testFile <- function() {
     outpath <- "./test/testData/csvFile.csv"
 
     # Read content
-    file <- news$read()
-    stopifnot(length(file$content) > 1000)
+    file <- newz$read()
+    stopifnot(length(newz$content) > 1000)
 
     # Write Text
     csvFile <- File$new(name = 'csvFile', path = outpath)
     #txtFile <- txtFile$lock()
     #txtFile <- txtFile$unlock()
-    csvFile <- csvFile$write(content)
+    csvFile$content <- file
+    csvFile <- csvFile$write()
 
     # Logit
     FileTest$logs(className = className, methodName = "lock", msg = paste("Successfully tested lock and write functionality."))
@@ -198,12 +203,12 @@ testFile <- function() {
 
 
 init()
-news <- test0()
-txtFile <<- test1(news)
-binFile <<- test2(news)
-rdataFile <<- test3(news)
-csvFile <<- test4(news)
-csvFile <<- test5(news)
+newz <- test0()
+txtFile <<- test1(newz)
+binFile <<- test2(newz)
+rdataFile <<- test3(newz)
+csvFile <<- test4(newz)
+csvFile <<- test5(newz)
 
 }
 className <- "File"

@@ -40,22 +40,22 @@ Data <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, path) {
 
-      private$..className <- 'Data'
-      private$..methodName <- 'initialize'
-      private$..name <- name
-      private$..path <- path
-      private$..state <- paste("Data object", private$..name, "instantiated.")
-      private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..admin$className <- 'Data'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$name <- name
+      private$..admin$path <- path
+      private$..admin$state <- paste("Data object", private$..admin$name, "instantiated.")
+      private$..admin$logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
-      dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
+      dir.create(private$..admin$path, showWarnings = FALSE, recursive = TRUE)
 
       invisible(self)
     },
 
-    getPath = function() private$..path,
+    getPath = function() private$..admin$path,
 
     #-------------------------------------------------------------------------#
     #                          Aggegate Methods                               #
@@ -65,7 +65,7 @@ Data <- R6::R6Class(
     addCollection = function(collection) {
       name <- collection$getName()
       private$..collections[[name]] <- collection
-      private$..state <- paste0("Added ", class(collection)[1], " object, ",
+      private$..admin$state <- paste0("Added ", class(collection)[1], " object, ",
                                 name, ", to the data set.")
       self$logIt()
 
@@ -75,7 +75,7 @@ Data <- R6::R6Class(
     removeCollection = function(collection) {
       name <- collection$getName()
       private$..collections[[name]] <- NULL
-      private$..state <- paste0("Removed ", class(collection)[1], " object, ",
+      private$..admin$state <- paste0("Removed ", class(collection)[1], " object, ",
                                 name, ", from the data set.")
       self$logIt()
 

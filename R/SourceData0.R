@@ -67,7 +67,7 @@ SourceData0 <- R6::R6Class(
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+        private$..admin$state <- status[['msg']]
         self$logIt(level = "Error")
         stop()
       }
@@ -94,16 +94,16 @@ SourceData0 <- R6::R6Class(
     exposeObject = function() {
 
       o <- list(
-        className	 =  private$..className,
-        methodName = private$..methodName,
-        name = private$..name,
+        className	 =  private$..admin$className,
+        methodName = private$..admin$methodName,
+        name = private$..admin$name,
         pattern = private$..pattern,
         documents = private$.documents,
-        state = private$..state,
-        logs = private$..logs,
-        modified = private$..modified,
-        created = private$..created,
-        accessed = private$..accessed
+        state = private$..admin$state,
+        logs = private$..admin$logs,
+        modified = private$..admin$modified,
+        created = private$..admin$created,
+        accessed = private$..admin$accessed
       )
       return(o)
     }

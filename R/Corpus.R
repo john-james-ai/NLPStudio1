@@ -63,29 +63,32 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, content) {
+    initialize = function(name, path = NULL) {
 
       # Instantiate variables
-      private$..className <- 'Corpus'
-      private$..methodName <- 'initialize'
-      private$..name <- name
-      private$..corpus <- corpus
-      private$..state <- paste0("Corpus, ", name, ", instantiated.")
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
-      private$..logs <- LogR$new()
+      private$..admin$className <- 'Corpus'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$name <- name
+      private$..admin$path <- path
+      private$..admin$state <- paste0("Corpus, ", name, ", instantiated.")
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
+      private$..admin$logs <- LogR$new()
 
       # Validate Corpus
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+        private$..admin$state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
 
-      # Load files
+      # Load corpus
+      if (!is.null(private$..admin$path)) {
+        private$..corpus == quanteda::corpus(private$..admin$path)
+      }
 
 
       # Create log entry
@@ -101,7 +104,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function() {
 
-      files <- list.files(private$..path, full.names = TRUE)
+      files <- list.files(private$..admin$path, full.names = TRUE)
       content <- lapply(files, function(f) {
         io <- IOFactory$new()$getIOStrategy(f)
         text <- io$read(f)
@@ -114,7 +117,7 @@ Corpus <- R6::R6Class(
       private$..corpus <- quanteda::corpus(unlist(content))
 
       # Log it
-      private$..state <- paste0("Read corpus, ", private$..name, ", into memory.")
+      private$..admin$state <- paste0("Read corpus, ", private$..admin$name, ", into memory.")
       self$logIt()
 
       invisible(self)
@@ -131,10 +134,10 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     download = function(url, name) {
 
-      private$..methodName <- 'download'
+      private$..admin$methodName <- 'download'
 
       # Create file collection object and download data
-      fc <- FileCollection$new(name = name, path = file.path(private$..path, name))
+      fc <- FileCollection$new(name = name, path = file.path(private$..admin$path, name))
       fc <- fc$download(url = url)
 
       # Add file collection to data
@@ -143,7 +146,7 @@ Corpus <- R6::R6Class(
 
       # Log it
       fileName <- basename(url)
-      private$..state <- paste0("Successfully downloaded and added", fileName, " to the data set. ")
+      private$..admin$state <- paste0("Successfully downloaded and added", fileName, " to the data set. ")
       self$logIt()
 
       invisible(self)
@@ -164,16 +167,16 @@ Corpus <- R6::R6Class(
       #TODO: Remove after testing
 
       corpus = list(
-        className = private$..className,
-        methodName = private$..methodName,
-        name = private$..name,
-        path = private$..path,
+        className = private$..admin$className,
+        methodName = private$..admin$methodName,
+        name = private$..admin$name,
+        path = private$..admin$path,
         content = private$..content,
-        locked = private$..locked,
-        logs = private$..logs,
-        state = private$..state,
-        modified = private$..modified,
-        created = private$..created
+        locked = private$..admin$locked,
+        logs = private$..admin$logs,
+        state = private$..admin$state,
+        modified = private$..admin$modified,
+        created = private$..admin$created
       )
 
       return(corpus)

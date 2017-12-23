@@ -54,46 +54,49 @@ File <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, path) {
 
-      private$..className <- 'File'
-      private$..methodName <- 'initialize'
-      private$..name <- name
-      private$..path <- path
+      private$..admin$className <- 'File'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$name <- name
+      private$..admin$path <- path
       private$..fileName <- basename(path)
-      private$..io <- IOFactory$new()$getIOStrategy(private$..path)
-      private$..state <- paste("File object", private$..name, "instantiated.")
-      private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time
-
-      if (file.exists(private$..path)) self$read()
+      private$..io <- IOFactory$new()$getIOStrategy(private$..admin$path)
+      private$..admin$state <- paste("File object", private$..admin$name, "instantiated.")
+      private$..admin$logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
       invisible(self)
     },
 
+    #-------------------------------------------------------------------------#
+    #                            MetaData Methods                             #
+    #-------------------------------------------------------------------------#
     getFileName = function() private$..fileName,
+
+    fileInfo = function() file.info(private$..admin$path),
 
     #-------------------------------------------------------------------------#
     #                            Access Methods                               #
     #-------------------------------------------------------------------------#
     lock = function() {
-      private$..methodName <- 'lock'
+      private$..admin$methodName <- 'lock'
 
-      private$..locked <- TRUE
+      private$..admin$locked <- TRUE
 
-      private$..state <- paste0("File object, ", private$..name, ", locked.")
-      private$..modified <- Sys.time()
+      private$..admin$state <- paste0("File object, ", private$..admin$name, ", locked.")
+      private$..admin$modified <- Sys.time()
       self$logIt()
       invisible(self)
     },
 
     unlock = function() {
-      private$..methodName <- 'lock'
+      private$..admin$methodName <- 'lock'
 
-      private$..locked <- FALSE
+      private$..admin$locked <- FALSE
 
-      private$..state <- paste0("File object, ", private$..name, ", unlocked.")
-      private$..modified <- Sys.time()
+      private$..admin$state <- paste0("File object, ", private$..admin$name, ", unlocked.")
+      private$..admin$modified <- Sys.time()
       self$logIt()
       invisible(self)
     },
@@ -103,15 +106,15 @@ File <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function(io = NULL) {
 
-      private$..methodName <- 'read'
+      private$..admin$methodName <- 'read'
 
       if (is.null(io)) io <-  private$..io
 
-      private$..content <- io$read(private$..path)
+      private$..content <- io$read(private$..admin$path)
 
       # LogIt
-      private$..state <- paste0("Read ", private$..name, ". ")
-      private$..accessed <- Sys.time()
+      private$..admin$state <- paste0("Read ", private$..admin$name, ". ")
+      private$..admin$accessed <- Sys.time()
       self$logIt()
 
       return(private$..content)
@@ -119,10 +122,10 @@ File <- R6::R6Class(
 
     write = function(io = NULL) {
 
-      private$..methodName <- 'write'
+      private$..admin$methodName <- 'write'
 
-      if (private$..locked == TRUE) {
-        private$..state <- paste0("Unable to write to ", private$..name,
+      if (private$..admin$locked == TRUE) {
+        private$..admin$state <- paste0("Unable to write to ", private$..admin$name,
                                   ", the file is locked.")
         self$logIt("Warn")
         stop()
@@ -130,14 +133,18 @@ File <- R6::R6Class(
 
       if (is.null(io)) io <- private$..io
 
-      io$write(private$..path, private$..content)
+      io$write(private$..admin$path, private$..content)
 
       # LogIt
-      private$..state <- paste0("Wrote ", private$..name, ". ")
-      private$..accessed <- Sys.time()
+      private$..admin$state <- paste0("Wrote ", private$..admin$name, ". ")
+      private$..admin$accessed <- Sys.time()
       self$logIt()
 
       invisible(self)
+    },
+
+    flush = function() {
+      private$..content <- NULL
     },
 
     #-------------------------------------------------------------------------#
@@ -148,13 +155,13 @@ File <- R6::R6Class(
       o <- list(
         content = private$..content,
         metaData = list(
-          name	 = 	    private$..name ,
+          name	 = 	    private$..admin$name ,
           fileName = private$..fileName,
-          path	 = 	    private$..path ,
-          state	 = 	    private$..state ,
-          modified	 = 	private$..modified ,
-          created	 = 	  private$..created ,
-          accessed	 = 	private$..accessed
+          path	 = 	    private$..admin$path ,
+          state	 = 	    private$..admin$state ,
+          modified	 = 	private$..admin$modified ,
+          created	 = 	  private$..admin$created ,
+          accessed	 = 	private$..admin$accessed
         )
       )
       return(o)

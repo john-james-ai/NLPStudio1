@@ -37,8 +37,8 @@ DataSourceWeb <- R6::R6Class(
   public = list(
     initialize = function(name, path, params) {
 
-      private$..name <- name
-      private$..path <- path
+      private$..admin$name <- name
+      private$..admin$path <- path
       private$..params <- params
       private$..url <- params[[1]]
 
@@ -46,7 +46,7 @@ DataSourceWeb <- R6::R6Class(
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+        private$..admin$state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
@@ -56,23 +56,23 @@ DataSourceWeb <- R6::R6Class(
 
     execute = function() {
 
-      private$..methodName = 'execute'
+      private$..admin$methodName = 'execute'
 
       # Format file path
       fileName <- installr::file.name.from.url(url)
-      filePath <- file.path(private$..path, fileName)
+      filePath <- file.path(private$..admin$path, fileName)
 
       if (download.file(url, destfile = filePath, mode = 'wb') != 0) {
-        private$..state <- paste0("Unable to download ", fileName, ".")
+        private$..admin$state <- paste0("Unable to download ", fileName, ".")
         self$logIt('Error')
         stop()
       }
 
       # Create new file collection
-      fc <- FileCollection$new(name = private$..name, path = private$..path)
+      fc <- FileCollection$new(name = private$..admin$name, path = private$..admin$path)
 
       # Log
-      private$..state <- paste0("Successfully downloaded ", fileName, ". ")
+      private$..admin$state <- paste0("Successfully downloaded ", fileName, ". ")
       self$logIt()
 
       return(fc)

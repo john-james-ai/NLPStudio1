@@ -51,7 +51,7 @@ DataBuilder <- R6::R6Class(
       }
 
       if (length(files) == 0) {
-        private$..state <- paste0("Unable to instantiate corpus. Files not found.")
+        private$..admin$state <- paste0("Unable to instantiate corpus. Files not found.")
         self$logIt('Error')
         stop()
       }
@@ -66,10 +66,10 @@ DataBuilder <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function() {
 
-      private$..className <- 'DataBuilder'
-      private$..methodName <- 'initialize'
-      private$..state <- paste("DataBuilder object", private$..name, "instantiated.")
-      private$..logs <- LogR$new()
+      private$..admin$className <- 'DataBuilder'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$state <- paste("DataBuilder object", private$..admin$name, "instantiated.")
+      private$..admin$logs <- LogR$new()
 
       invisible(self)
     },
@@ -82,11 +82,11 @@ DataBuilder <- R6::R6Class(
     #-------------------------------------------------------------------------#
     repair = function(fc, name, path) {
 
-      private$..methodName <- 'repair'
+      private$..admin$methodName <- 'repair'
 
       # Confirm directory is empty
       if (dir.exists(path)) {
-        private$..state <- paste0("Unable to create new FileCollection at ",
+        private$..admin$state <- paste0("Unable to create new FileCollection at ",
                                   path, ". Directory is not empty.")
         self$logIt('Error')
         stop()
@@ -122,7 +122,7 @@ DataBuilder <- R6::R6Class(
         newFc$addFile(newFile)
       })
 
-      private$..state <-  paste0("Successfully repaired ", name, ".")
+      private$..admin$state <-  paste0("Successfully repaired ", name, ".")
       self$logIt()
 
       # Add corpus to Data object
@@ -137,16 +137,16 @@ DataBuilder <- R6::R6Class(
     #-------------------------------------------------------------------------#
     reshape = function(korpus) {
 
-      private$..methodName <- 'reshape'
+      private$..admin$methodName <- 'reshape'
 
       # Reshape the corpus into sentences
       sentCorpus <- tokens(korpus, what = 'sentence')
       sentCorpus <- tolower(sentCorpus)
 
-      private$..state <-  paste0("Successfully reshaped ", outFc$getName(), ".")
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..admin$state <-  paste0("Successfully reshaped ", outFc$getName(), ".")
+      private$..admin$created <- Sys.time()
+      private$..admin$modified <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
       # Add new file collection to Data object
       private$..data <- private$..data$addCollection(newFc)
@@ -162,14 +162,14 @@ DataBuilder <- R6::R6Class(
     exposeObject = function() {
 
       o <- list(
-        className	 =  private$..className ,
-        methodName = private$..methodName,
+        className	 =  private$..admin$className ,
+        methodName = private$..admin$methodName,
         data = private$..data,
-        state	 = 	    private$..state ,
-        logs	 = 	    private$..logs ,
-        modified	 = 	private$..modified ,
-        created	 = 	  private$..created ,
-        accessed	 = 	private$..accessed
+        state	 = 	    private$..admin$state ,
+        logs	 = 	    private$..admin$logs ,
+        modified	 = 	private$..admin$modified ,
+        created	 = 	  private$..admin$created ,
+        accessed	 = 	private$..admin$accessed
       )
       return(o)
     }

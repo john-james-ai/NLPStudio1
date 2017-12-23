@@ -38,7 +38,7 @@ testFileCollection <- function() {
     stopifnot(file.exists(file.path(newPath, 'en_US.twitter.txt')))
 
     # Read data (should get no warnings)
-    content <<- raw$read()
+    content <- raw$read()
 
     # Evaluate Data Object
     stopifnot(length(content) == 3)
@@ -56,7 +56,6 @@ testFileCollection <- function() {
   testn <- function() {
     test <- "testn: FileCollection: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
-
 
     DataBuilderTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))

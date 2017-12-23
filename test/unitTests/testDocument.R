@@ -1,151 +1,148 @@
-testFile <- function() {
+testDocument <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
-    if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("twitter", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("twitter", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("blogsTxt", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogsTxt", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("blogsRdata", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogsRdata", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("blogsRds", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogsRds", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("blogsCsv", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogsCsv", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-
-    FileTest <<- LogTest$new()
+    if (exists("newz", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("newz", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    DocumentTest <<- LogTest$new()
   }
 
   test0 <- function() {
-    test <- "test0: File: Instantiation document/ no File"
+    test <- "test0: Document: Instantiation document no file"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Validation
-    # blogs <- Document$new()# should fail, no name
+    # newz <- Document$new()# should fail, no name
 
     # Instantiate
-    blogs <- Document$new(name = 'blogs')
-    d <- blogs$exposeObject()
-    stopifnot(d$className == 'Document')
-    stopifnot(d$name == 'blogs')
-    stopifnot(d$desc == 'blogs')
-    stopifnot(length(d$parent) == 0)
-    stopifnot(length(d$path) == 0)
-    stopifnot(length(d$content) == 0)
-    stopifnot((Sys.time() -  d$created) < 1)
-    stopifnot((Sys.time() -  d$modified) < 1)
-    stopifnot((Sys.time() -  d$accessed) < 1)
-
-    stopifnot(blogs$getClassName() == "Document")
-    stopifnot(blogs$getName() == "blogs")
-    stopifnot(is.null(blogs$getPath()))
-    stopifnot(is.null(blogs$getContent()))
+    newz <- Document$new(name = 'newz')
+    d <- newz$exposeObject()
+    stopifnot(d$admin$name == 'newz')
 
     # Logit
-    FileTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized document"))
-    FileTest$logs(className = className, methodName = "getClassName", msg = paste("Successfully obtained class name"))
-    FileTest$logs(className = className, methodName = "getName", msg = paste("Successfully obtained name"))
-    FileTest$logs(className = className, methodName = "getPath", msg = paste("Successfully obtained path"))
+    DocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized document"))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(blogs)
+    return(newz)
   }
 
-  test1 <- function(blogs) {
-    test <- "test1: File: Create Text Documents"
+  test1 <- function(newz) {
+    test <- "test1: Document: Read/Write Metadata"
     cat(paste0("\n",test, " Commencing\n"))
 
-    init()
+    # Initialize
+    contributor   <-   "Joe Jons"
+    coverage   <-   "USA"
+    creator   <-   "Deff Freadley"
+    date   <-   "2/14/2016"
+    description   <-   "new corpus"
+    format   <-   "rdata"
+    identifier   <-   "232"
+    language   <-   "en"
+    publisher   <-   "house"
+    relation   <-   "sis"
+    rights   <-   "none"
+    source   <-   "raw"
+    subject   <-   "newz"
+    title   <-   "News Corpus"
+    type   <-   "corpus"
 
-    # Instantiate original and copies
-    blogs <- Document$new(name = 'blogs', './test/testData/input/en_US.blogs.txt')
-    blogsTxt <- Document$new(name = 'blogsTxt', './test/testData/output/blogs.txt')
-    blogsRdata <- Document$new(name = 'blogsRdata', './test/testData/output/blogs.rdata')
-    blogsRds <- Document$new(name = 'blogsRds', './test/testData/output/blogs.rds')
-    blogsCsv <- Document$new(name = 'blogsCsv', './test/testData/output/blogs.csv')
-
-    # Load copies
-    content <- blogs$getContent()
-    blogsTxt$addContent(content)
-    blogsRdata$addContent(content)
-    blogsRds$addContent(content)
-    blogsCsv$addContent(content)
-
-    # Write new documents
-    blogsTxt$write()
-    blogsRdata$write()
-    blogsRds$write()
-    blogsCsv$write()
+    # Assign
+    newz$contributor   <-   "Joe Jons"
+    newz$coverage   <-   "USA"
+    newz$creator   <-   "Deff Freadley"
+    newz$date   <-   "43101"
+    newz$description   <-   "new corpus"
+    newz$format   <-   "rdata"
+    newz$identifier   <-   "232"
+    newz$language   <-   "en"
+    newz$publisher   <-   "house"
+    newz$relation   <-   "sis"
+    newz$rights   <-   "none"
+    newz$source   <-   "raw"
+    newz$subject   <-   "newz"
+    newz$title   <-   "News Corpus"
+    newz$type   <-   "corpus"
 
     # Test
-    stopifnot(file.exists('./test/testData/output/blogs.txt'))
-    stopifnot(file.exists('./test/testData/output/blogs.rdata'))
-    stopifnot(file.exists('./test/testData/output/blogs.rds'))
-    stopifnot(file.exists('./test/testData/output/blogs.csv'))
-
-    blogTxtContent <- blogsTxt$read()
-    blogRdataContent <- blogsRdata$read()
-    blogRdsContent <- blogsRds$read()
-    blogCsvContent <- blogsCsv$read()
-
-    stopifnot(length(blogTxtContent) > 1000)
-    stopifnot(length(blogRdataContent) > 1000)
-    stopifnot(length(blogRdsContent) > 1000)
-    stopifnot(nrow(blogCsvContent) > 1000)
+    stopifnot(newz$contributor   =="Joe Jons")
+    stopifnot(newz$coverage   =="USA")
+    stopifnot(newz$creator   =="Deff Freadley")
+    stopifnot(newz$date   =="43101")
+    stopifnot(newz$description   =="new corpus")
+    stopifnot(newz$format   =="rdata")
+    stopifnot(newz$identifier   =="232")
+    stopifnot(newz$language   =="en")
+    stopifnot(newz$publisher   =="house")
+    stopifnot(newz$relation   =="sis")
+    stopifnot(newz$rights   =="none")
+    stopifnot(newz$source   =="raw")
+    stopifnot(newz$subject   =="newz")
+    stopifnot(newz$title   =="News Corpus")
+    stopifnot(newz$type   =="corpus")
 
     # Logit
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read txt document "))
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read rdata document "))
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read rds document "))
-    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read csv document "))
-
-    FileTest$logs(className = className, methodName = "addContent", msg = paste("Successfully add content to txt document "))
-    FileTest$logs(className = className, methodName = "addContent", msg = paste("Successfully add content to rdata document "))
-    FileTest$logs(className = className, methodName = "addContent", msg = paste("Successfully add content to rds document "))
-    FileTest$logs(className = className, methodName = "addContent", msg = paste("Successfully add content to csv document "))
-
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote to txt document "))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote to rdata document "))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote to rds document "))
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote to csv document "))
+    DocumentTest$logs(className = className, methodName = "metadata", msg = paste("Successfully updated meta data on a document"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(blogCsvContent)
+    return(newz)
   }
 
-  test2 <- function(blogs) {
-    test <- "test2: Metadata: Add member"
+  test2 <- function(newz) {
+    test <- "test2: Document: Add content"
     cat(paste0("\n",test, " Commencing\n"))
 
-    if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("twitter", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("twitter", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    newz$content <- file
+    stopifnot(length(newz$content) > 1000)
 
-
-    blogs <- Document$new(name = 'blogs', './test/testData/input/en_US.blogs.txt')
-    twitter <- Document$new(name = 'twitter', './test/testData/input/en_US.twitter.txt')
-
-    blogs <- blogs$docMeta('register', value = 'Blogs Category')
-    twitter$register <- 'Twitter Category'
-    twitter <- twitter$docMeta('year', value = '2010')
-    blogs <- blogs$year <- 2011
-
-    stopifnot(blogs$register == 'Blogs Category')
-    stopifnot(twitter$register == 'Twitter Category')
-
-    FileTest$logs(className = className, methodName = "write", msg = paste("Successfully wrote to csv document "))
-
+    # Logit
+    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully added content to document"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(blogs)
+    return(newz)
   }
 
+  test3 <- function(newz) {
+    test <- "test3: Document: Create with file"
+    cat(paste0("\n",test, " Commencing\n"))
 
+    rm(newz)
+    daller <- Document$new(name = 'daller', file = txtFile)
+    stopifnot(length(newz$content) > 1000)
+
+    # Logit
+    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(newz)
+  }
+
+  test4 <- function(newz) {
+    test <- "test4: Document: Create with file"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    n <- newz$exposeObject()
+
+    stopifnot(length(newz$content) > 1000)
+
+    # Logit
+    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(n)
+  }
 
 init()
-blogs <- test0()
-blogCsvContent <- test1(blogs)
-blogs <- test2(blogs)
+newz <- test0()
+newz <<- test1(newz)
+newz <<- test2(newz)
+newz <<- test3(newz)
+n <<- test4(newz)
+
 }
-className <- "File"
-#source('./test/unitTests/testCorpusBuilder.R')
-testFile()
+className <- "Document"
+
+testDocument()

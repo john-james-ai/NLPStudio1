@@ -141,29 +141,28 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-    validateFileType = function(object) {
+    validateFile = function(object) {
 
       status <- list()
       status[['code']] <- TRUE
 
-      path <- object$getPath()
+      file <- object$getFile()
 
-      if (!is.null(path)) {
+      if (!is.null(file)) {
 
-        type <- tolower(tools::file_ext(path))
-
-        if (!(type %in% c('txt', 'csv', 'rdata', 'rds'))) {
+        v <- ValidatorClass$new()
+        if (v$validate(value = file, expect = 'File') == FALSE) {
           status[['code']] <- FALSE
-          status[['msg']] <- paste0("Cannot create File Strategy for ", class(object)[1],
-                                    " object. File type, ", type,
-                                    " is not supported. ",
+          status[['msg']] <- paste0("Cannot create ", class(object)[1],
+                                    " object. The file parameter is not ",
+                                    "a valid File object. ",
                                     "See ?", class(object)[1],
                                     " for further assistance")
-          return(status)
         }
       }
       return(status)
     },
+
 
     validateStub = function(object) {
       status <- list()
@@ -201,7 +200,7 @@ VValidatorInit <- R6::R6Class(
     document = function(object) {
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      return(private$validateFileType(object))
+      return(private$validateFile(object))
     }
   )
 )

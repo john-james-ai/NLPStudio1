@@ -23,6 +23,7 @@ Imports:
     R6,
     doParallel,
     dplyr,
+    Hmisc,
     installr,
     parsedate,  
     quanteda,

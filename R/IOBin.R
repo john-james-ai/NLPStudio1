@@ -39,17 +39,17 @@ IOBin <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function(path) {
 
-      private$..logs <- LogR$new()
+      private$..admin$logs <- LogR$new()
 
       fileName <- basename(path)
 
       if (file.exists(path)) {
         content <- readBin(path, raw(), file.info(path)$size)
-        private$..state <- paste0("Successfully read ", fileName, ".")
-        private$..accessed <- Sys.time()
+        private$..admin$state <- paste0("Successfully read ", fileName, ".")
+        private$..admin$accessed <- Sys.time()
         self$logIt()
       } else {
-        private$..state <- paste0('Unable to read ', fileName, '. ',
+        private$..admin$state <- paste0('Unable to read ', fileName, '. ',
                                   'File does not exist.')
         self$logIt("Error")
         stop()
@@ -60,7 +60,7 @@ IOBin <- R6::R6Class(
 
     write = function(path, content) {
 
-      private$..logs <- LogR$new()
+      private$..admin$logs <- LogR$new()
 
       fileName <- basename(path)
       dirName <- dirname(path)
@@ -70,12 +70,12 @@ IOBin <- R6::R6Class(
 
       writeBin(content, path)
 
-      private$..state <- paste0("Successfully wrote ", fileName, ".")
+      private$..admin$state <- paste0("Successfully wrote ", fileName, ".")
       self$logIt()
 
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$modified <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
       invisible(self)
     }

@@ -40,24 +40,24 @@ DataSourceWebComp <- R6::R6Class(
   public = list(
     initialize = function(name, path, params) {
 
-      private$..className <- 'DataSourceWebComp'
-      private$..methodName <- 'initialize'
-      private$..name <- name
-      private$..path <- path
+      private$..admin$className <- 'DataSourceWebComp'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$name <- name
+      private$..admin$path <- path
       private$..params <- params
       private$..url <- params[[1]]
       private$..zipFiles <- params[[2]]
-      private$..state <- paste("DataSourceWebComp object instantiated.")
-      private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..admin$state <- paste("DataSourceWebComp object instantiated.")
+      private$..admin$logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
       # Validate Source
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+        private$..admin$state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
@@ -67,34 +67,34 @@ DataSourceWebComp <- R6::R6Class(
 
     execute = function() {
 
-      private$..methodName = 'execute'
+      private$..admin$methodName = 'execute'
 
       # Designate the external download directory
-      downloadDir <- file.path(dirname(private$..path), 'external')
+      downloadDir <- file.path(dirname(private$..admin$path), 'external')
 
       # Create directories
-      dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
+      dir.create(private$..admin$path, showWarnings = FALSE, recursive = TRUE)
       dir.create(downloadDir, showWarnings = FALSE, recursive = TRUE)
 
       # Download file
       fileName <- installr::file.name.from.url(url)
       filePath <- file.path(downloadDir, fileName)
       if (download.file(url, destfile = filePath, mode = 'wb') != 0) {
-        private$..state <- paste0("Unable to download ", fileName, ".")
+        private$..admin$state <- paste0("Unable to download ", fileName, ".")
         self$logIt('Error')
         stop()
       }
 
       # Unzip Files
       files <- unzip(zipfile = filePath, overwrite = TRUE,
-                     exdir = private$..path, junkpaths = TRUE,
+                     exdir = private$..admin$path, junkpaths = TRUE,
                      files = private$..zipFiles)
 
       # Create file collection, file objects and add to file collection
-      fc <- FileCollection$new(name = private$..name, path = private$..path)
+      fc <- FileCollection$new(name = private$..admin$name, path = private$..admin$path)
       lapply(files, function(f) {
         fileName <- basename(f)
-        path <- file.path(private$..path, fileName)
+        path <- file.path(private$..admin$path, fileName)
         file <- File$new(name = tools::file_path_sans_ext(fileName), path = path)
         file$read()
         fc$addFile(file)
@@ -103,7 +103,7 @@ DataSourceWebComp <- R6::R6Class(
       # Lock the data (assumed to be raw data that is immutable)
       fc$lock()
 
-      private$..state <-  paste0("Successfully sourced ", private$..name, ".")
+      private$..admin$state <-  paste0("Successfully sourced ", private$..admin$name, ".")
       self$logIt()
 
       return(fc)

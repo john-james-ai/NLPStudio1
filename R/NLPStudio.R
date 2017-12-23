@@ -52,24 +52,24 @@ NLPStudio <- R6::R6Class(
           initialize = function() {
 
             # Create single instance of NLPStudio object
-            private$..className <- 'NLPStudio'
-            private$..methodName <- 'initialize'
-            private$..name <- "nlpStudio"
+            private$..admin$className <- 'NLPStudio'
+            private$..admin$methodName <- 'initialize'
+            private$..admin$name <- "nlpStudio"
             private$..desc <- "NLPStudio: Natural Language Processing Environment"
-            private$..path <- "./NLPStudio"
-            private$..modified <- Sys.time()
-            private$..created <- Sys.time()
+            private$..admin$path <- "./NLPStudio"
+            private$..admin$modified <- Sys.time()
+            private$..admin$created <- Sys.time()
 
             # Create NLPStudio home directory
-            if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
+            if (!dir.exists(private$..admin$path)) dir.create(private$..admin$path, recursive = TRUE)
 
             # # Create logger and initialization log entry
-            private$..logs <- LogR$new()
-            private$..state <- paste0("Initialized NLPStudio.")
+            private$..admin$logs <- LogR$new()
+            private$..admin$state <- paste0("Initialized NLPStudio.")
             self$logIt()
 
             # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
+            assign(private$..admin$name, self, envir = .GlobalEnv)
             invisible(self)
           },
 
@@ -80,9 +80,9 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           #                             Basic Getters                               #
           #-------------------------------------------------------------------------#
-          getName = function() private$..name,
-          getClassName = function() private$..className,
-          getPath = function() private$..path,
+          getName = function() private$..admin$name,
+          getClassName = function() private$..admin$className,
+          getPath = function() private$..admin$path,
 
           #-------------------------------------------------------------------------#
           #                           Composite Methods                             #
@@ -93,13 +93,13 @@ NLPStudio <- R6::R6Class(
           addPipeline = function(pipeline) {
 
             # Update current method
-            private$..methodName <- 'addPipeline'
+            private$..admin$methodName <- 'addPipeline'
 
             # Validation
             v <- Validator$new()
             status <- v$addChild(self, pipeline)
             if (status[['code']] == FALSE) {
-              private$..state <- status[['msg']]
+              private$..admin$state <- status[['msg']]
               self$logIt(level = 'Error')
               stop()
             }
@@ -113,15 +113,15 @@ NLPStudio <- R6::R6Class(
             pipeline$parent <- self
 
             # Update modified time
-            private$..modified <- Sys.time()
+            private$..admin$modified <- Sys.time()
 
             # Save state and log Event
-            private$..state <-
+            private$..admin$state <-
               paste("Pipeline", pipelineName, "added to nlpPipelines at", Sys.time())
             self$logIt()
 
             # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
+            assign(private$..admin$name, self, envir = .GlobalEnv)
             invisible(self)
 
           },
@@ -130,13 +130,13 @@ NLPStudio <- R6::R6Class(
             #TODO: Archive to archive folder then remove
 
             # Update current method
-            private$..methodName <- 'removePipeline'
+            private$..admin$methodName <- 'removePipeline'
 
             # Validation
             v <- Validator$new()
             status <- v$removeChild(self, document)
             if (status[['code']] == FALSE) {
-              private$..state <- status[['msg']]
+              private$..admin$state <- status[['msg']]
               self$logIt(level = 'Error')
               stop()
             }
@@ -145,7 +145,7 @@ NLPStudio <- R6::R6Class(
             if (!is.null(private$..pipelines[[name]]))  private..pipelines[[name]] <- NULL
 
             # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
+            assign(private$..admin$name, self, envir = .GlobalEnv)
             invisible(self)
 
           },
@@ -155,14 +155,14 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           logIt = function(level = 'Info', fieldName = NA) {
 
-            private$..logs$entry$owner <- private$..name
-            private$..logs$entry$className <- private$..className
-            private$..logs$entry$methodName <- private$..methodName
-            private$..logs$entry$level <- level
-            private$..logs$entry$msg <- private$..state
-            private$..logs$entry$fieldName <- fieldName
-            private$..logs$created <- Sys.time()
-            private$..logs$writeLog()
+            private$..admin$logs$entry$owner <- private$..admin$name
+            private$..admin$logs$entry$className <- private$..admin$className
+            private$..admin$logs$entry$methodName <- private$..admin$methodName
+            private$..admin$logs$entry$level <- level
+            private$..admin$logs$entry$msg <- private$..admin$state
+            private$..admin$logs$entry$fieldName <- fieldName
+            private$..admin$logs$created <- Sys.time()
+            private$..admin$logs$writeLog()
           },
 
           #-------------------------------------------------------------------------#
@@ -177,16 +177,16 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           exposeObject = function() {
             o <- list(
-              className = private$..className,
-              methodName = private$..methodName,
-              name = private$..name,
+              className = private$..admin$className,
+              methodName = private$..admin$methodName,
+              name = private$..admin$name,
               desc = private$..desc,
-              path = private$..path,
+              path = private$..admin$path,
               pipelines = private$..pipelines,
-              logs = private$..logs,
-              state = private$..state,
-              created = private$..created,
-              modified = private$..modified
+              logs = private$..admin$logs,
+              state = private$..admin$state,
+              created = private$..admin$created,
+              modified = private$..admin$modified
             )
             return(o)
           }

@@ -1,84 +1,67 @@
 #==============================================================================#
-#                               Document                                       #
+#                                 Corpus0                                       #
 #==============================================================================#
-#' Document
+#' Corpus0
 #'
-#' \code{Document} Class containing the data and methods for corpus documents
+#' \code{Corpus0} Class that defines a corpus or collection of documents
 #'
-#' Defines the object and behavior of the Document object, a composite of
-#' the Corpus class.
+#' Class contains a collection of text documents along with document
+#' transformations such as NGrams, and POS tagged documents.
 #'
-#' @section Document core methods:
-#'  \itemize{
-#'   \item{\code{new()}}{Method for instantiating a document. Not implemented for the abstract class.}
-#'   \item{\code{getName()}}{Method that returns the name of the Document object. }
-#'   \item{\code{getFileName()}}{Method for obtaining the document file name. .}
-#'   \item{\code{getPath()}}{Method for obtaining the document path. }
+#' @section Corpus0 Core Methods:
+#'  \describe{
+#'   \item{\code{new(name, path)}}{Creates an object of Corpus0 Class}
+#'   \item{\code{getName()}}{Returns the name of the Corpus0 object.}
+#'   \item{\code{getPath()}}{Returns the path of the Corpus0 object.}
 #'  }
 #'
-#' @section Document getter/setter methods:
-#'  \itemize{
-#'   \item{\code{desc()}}{Method for setting or retrieving the Document object description.}
+#' @section IO Methods:
+#'  \describe{
+#'   \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus0 object.}
+#'   \item{\code{write(io = NULL)}}{Writes a Corpus0 object to file.}
 #'  }
 #'
-#'  @section Document IO methods:
-#'  \itemize{
-#'   \item{\code{getContent()}}{Method for obtaining the document content.}
-#'   \item{\code{addContent(content)}}{Method for adding content to a document.}
-#'   \item{\code{read(io)}}{Method for reading a document. }
-#'   \item{\code{write(io)}}{Method for writing a document. }
+#' @section Analysis Methods:
+#'  \describe{
+#'   \item{\code{stats()}}{Produces a data frame with basic descriptive statistics for the corpus. }
+#'   \item{\code{diversity}}{Produces a data frame of lexical diversity measures for the corpus.}
+#'   \item{\code{readability}}{Produces a data frame of readability measures for the corpus.}
 #'  }
 #'
-#' @section Document aggregation method:
-#'  \itemize{
-#'   \item{\code{setParent(parent)}}{Sets the parent Corpus object. }
+#' @section Meta Data Methods:
+#'  \describe{
+#'   \item{\code{docMeta(field)}}{Creates a document meta data field.}
+#'   \item{\code{corpusMeta(field)}}{Creates a corpus meta data field.}
 #'  }
 #'
-#'
-#' @section Other methods:
-#'  \itemize{
-#'   \item{\code{accept(visitor)}}{Accepts a visitor object. Not implemented for this abstract class}
-#'   \item{\code{logIt(level = 'Info')}}{Logs events relating to the document.}
+#' @section Other Methods:
+#'  \describe{
+#'   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
+#'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
 #'  }
 #'
-#'
-#' @param name Character string indicating the file path for a document
-#' @param path Character string indicating the path to the docment file.
-#' @param parent Corpus object to which the document is composed.
-#' @param content List containing character vectors of text.
+#' @param field Character string name for a field to be added to the Document or Corpus0 object meta data.
+#' @param name A character string containing the name of the Corpus0 object. This variable is used in the instantiation and remove methods.
+#' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
-#' @family Document classes
 #' @export
-Document <- R6::R6Class(
-  classname = "Document",
+Corpus0 <- R6::R6Class(
+  classname = "Corpus0",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
 
   private = list(
     ..content = list(),
-    ..file = character(),
     ..meta = list(
-      ..simple = list(),
-      ..dublin = list()
+      corpus = list(),
+      document = list()
     )
   ),
 
   active = list(
-    content = function(value = NULL) {
-
-      if (missing(value)) {
-        private$..admin$accessed <- Sys.time()
-        return(private$..content)
-      } else {
-        if (is.null(private$..content)) private$..admin$created <- Sys.time()
-        private$..content <- value
-        private$..admin$modified <- Sys.time()
-        private$..admin$accessed <- Sys.time()
-      }
-    },
     contributor = function(value = NULL) return(private$..contributor   <- ifelse(is.null(value),  private$..contributor,   value)),
     coverage = function(value = NULL) return(private$..coverage   <- ifelse(is.null(value),  private$..coverage,   value)),
     creator = function(value = NULL) return(private$..creator   <- ifelse(is.null(value),  private$..creator,   value)),
@@ -130,30 +113,22 @@ Document <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                           Core Methods                                  #
+    #                         Corpus0 Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, file = NULL) {
+    initialize = function(name, path = NULL) {
 
       # Instantiate variables
-      private$..admin$className <- 'Document'
+      private$..admin$className <- 'Corpus0'
       private$..admin$methodName <- 'initialize'
       private$..admin$name <- name
-      private$..admin$state <- paste0("Document, ", private$..admin$name, ", instantiated.")
-      private$..admin$logs <- LogR$new()
+      private$..admin$path <- path
+      private$..admin$state <- paste0("Corpus0, ", name, ", instantiated.")
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
       private$..admin$accessed <- Sys.time()
+      private$..admin$logs <- LogR$new()
 
-      private$..file <- file
-      if (!is.null(file)) {
-        private$..content <- file$read()
-        file$flush()
-      }
-
-      private$..meta$..simple <- DMetaSimple$new()
-      private$..meta$..dublin <- DMetaDublin$new()
-
-      # Validate Document
+      # Validate Corpus0
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
@@ -162,108 +137,101 @@ Document <- R6::R6Class(
         stop()
       }
 
+      # Load corpus
+      if (!is.null(private$..admin$path)) {
+        private$..corpus == quanteda::corpus(private$..admin$path)
+      }
+
+
       # Create log entry
       self$logIt()
 
       invisible(self)
     },
 
-    getName = function() private$..admin$name,
-    getFile = function() private$..file,
+    getCorpus0 = function() invisible(self),
 
     #-------------------------------------------------------------------------#
-    #                         Content Methods                                 #
+    #                              IO Methods                                 #
     #-------------------------------------------------------------------------#
     read = function() {
 
-      private$..admin$methodName <- 'read'
+      files <- list.files(private$..admin$path, full.names = TRUE)
+      content <- lapply(files, function(f) {
+        io <- IOFactory$new()$getIOStrategy(f)
+        text <- io$read(f)
+        text <- paste(text, collapse = " ")
+        names(text) <- tools::file_path_sans_ext(basename(f))
+        text
+      })
 
-      if (private$..file$fileInfo()$mtime < private$..admin$modified &
-          !is.null(private$..content)) {
-        content <- private$..content
-      } else {
-        content <- private$..file$read()
-      }
+      # Create corpus object
+      private$..corpus <- quanteda::corpus(unlist(content))
 
-      # LogIt
-      private$..admin$state <- paste0("Read ", private$..admin$name, ". ")
-      private$..admin$accessed <- Sys.time()
+      # Log it
+      private$..admin$state <- paste0("Read corpus, ", private$..admin$name, ", into memory.")
       self$logIt()
 
-      return(content)
+      invisible(self)
     },
 
     write = function() {
+      private$..documents <- lapply(private$..documents, function(d) {
+        d$write()
+      })
+    },
 
-      private$..admin$methodName <- 'write'
+    #-------------------------------------------------------------------------#
+    #                       Corpus0 Sourcing Methods                           #
+    #-------------------------------------------------------------------------#
+    download = function(url, name) {
 
-      private$..file$content <- private$..content
-      private$..file$write()
+      private$..admin$methodName <- 'download'
 
-      # LogIt
-      private$..admin$state <- paste0("Wrote ", private$..admin$name, ". ")
-      private$..admin$accessed <- Sys.time()
+      # Create file collection object and download data
+      fc <- FileCollection$new(name = name, path = file.path(private$..admin$path, name))
+      fc <- fc$download(url = url)
+
+      # Add file collection to data
+      name <- fc$getName()
+      private$..corpora[['name']] <- fc
+
+      # Log it
+      fileName <- basename(url)
+      private$..admin$state <- paste0("Successfully downloaded and added", fileName, " to the data set. ")
       self$logIt()
 
-      return(TRUE)
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$document(self)
+      visitor$corpus(self)
     },
 
     #-------------------------------------------------------------------------#
-    #                           Expose Object                                 #
+    #                           Test Methods                                  #
     #-------------------------------------------------------------------------#
     exposeObject = function() {
 
-      o <- list(
-        simple = list(
-          name = private$..meta$..simple$..name,
-          author = private$..meta$..simple$..author,
-          description = private$..meta$..simple$..description,
-          heading = private$..meta$..simple$..heading,
-          id = private$..meta$..simple$..id,
-          language = private$..meta$..simple$..language,
-          origin = private$..meta$..simple$..origin,
-          class = private$..meta$..simple$..class
-        ),
-        admin = list(
-          path = private$..admin$path,
-          className = private$..admin$className,
-          methodName = private$..admin$methodName,
-          locked = private$..admin$locked,
-          state = private$..admin$state,
-          logs = private$..admin$logs,
-          created = private$..admin$created,
-          modified = private$..admin$modified,
-          accessed = private$..admin$accessed
-          ),
-        dublincore = list(
-          contributor = private$..meta$..dublin$..contributor,
-          coverage = private$..meta$..dublin$..coverage,
-          creator = private$..meta$..dublin$..creator,
-          date = private$..meta$..dublin$..date,
-          description = private$..meta$..dublin$..description,
-          format = private$..meta$..dublin$..format,
-          identifier = private$..meta$..dublin$..identifier,
-          language = private$..meta$..dublin$..language,
-          publisher = private$..meta$..dublin$..publisher,
-          relation = private$..meta$..dublin$..relation,
-          rights = private$..meta$..dublin$..rights,
-          source = private$..meta$..dublin$..source,
-          subject = private$..meta$..dublin$..subject,
-          title = private$..meta$..dublin$..title,
-          type = private$..meta$..dublin$..type
-          ),
-        content = private$..content,
-        file = private$..file
-        )
-      return(o)
-    }
+      #TODO: Remove after testing
 
+      corpus = list(
+        className = private$..admin$className,
+        methodName = private$..admin$methodName,
+        name = private$..admin$name,
+        path = private$..admin$path,
+        content = private$..content,
+        locked = private$..admin$locked,
+        logs = private$..admin$logs,
+        state = private$..admin$state,
+        modified = private$..admin$modified,
+        created = private$..admin$created
+      )
+
+      return(corpus)
+    }
   )
 )

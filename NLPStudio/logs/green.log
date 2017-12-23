@@ -3496,3 +3496,213 @@ INFO [2017-12-21 21:20:36] Info in class '', method '. Successfully wrote en_US.
 INFO [2017-12-21 21:20:36] Info in class 'File', method 'write. Wrote en_US.twitter. 
 INFO [2017-12-21 21:20:36] Info in class 'FileCollection', method 'addFile. Added file en_US.twitter, to foo file collection. 
 INFO [2017-12-21 21:20:36] Info in class 'DataBuilder', method 'repair. Successfully repaired foo.
+INFO [2017-12-22 00:45:00] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-22 00:45:00] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-22 00:45:00] Info in class 'DataBuilder', method 'repair. Successfully repaired foo.
+INFO [2017-12-22 00:49:47] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-22 00:49:47] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-22 00:49:47] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-22 00:49:47] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-22 00:50:08] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-22 00:50:08] Info in class 'File', method 'write. Wrote en_US.blogs. 
+INFO [2017-12-22 00:50:08] Info in class 'FileCollection', method 'addFile. Added file en_US.blogs, to foo file collection. 
+INFO [2017-12-22 00:50:10] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 00:50:10] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-22 00:50:31] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-22 00:50:31] Info in class 'File', method 'write. Wrote en_US.news. 
+INFO [2017-12-22 00:50:31] Info in class 'FileCollection', method 'addFile. Added file en_US.news, to foo file collection. 
+INFO [2017-12-22 00:50:32] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-22 00:50:32] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-22 00:50:57] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-22 00:50:57] Info in class 'File', method 'write. Wrote en_US.twitter. 
+INFO [2017-12-22 00:50:57] Info in class 'FileCollection', method 'addFile. Added file en_US.twitter, to foo file collection. 
+INFO [2017-12-22 00:50:57] Info in class 'DataBuilder', method 'repair. Successfully repaired foo.
+INFO [2017-12-22 00:51:07] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-22 00:51:07] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-22 00:51:07] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 00:51:07] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-22 00:51:15] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-22 00:51:15] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-22 00:51:15] Info in class 'FileCollection', method 'read. Read raw. 
+INFO [2017-12-22 00:51:15] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-22 00:51:15] Info in class 'File', method 'repair. Successfully repaired file collection. 
+INFO [2017-12-22 00:55:29] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-22 00:55:29] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-22 00:55:29] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-22 00:55:29] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-22 00:55:49] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2017-12-22 00:55:49] Info in class 'File', method 'write. Wrote en_US.blogs. 
+INFO [2017-12-22 00:55:49] Info in class 'FileCollection', method 'addFile. Added file en_US.blogs, to foo file collection. 
+INFO [2017-12-22 00:55:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 00:55:50] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-22 00:56:12] Info in class '', method '. Successfully wrote en_US.news.txt.
+INFO [2017-12-22 00:56:12] Info in class 'File', method 'write. Wrote en_US.news. 
+INFO [2017-12-22 00:56:12] Info in class 'FileCollection', method 'addFile. Added file en_US.news, to foo file collection. 
+INFO [2017-12-22 00:56:13] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-22 00:56:13] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-22 00:56:31] Info in class '', method '. Successfully wrote en_US.twitter.txt.
+INFO [2017-12-22 00:56:31] Info in class 'File', method 'write. Wrote en_US.twitter. 
+INFO [2017-12-22 00:56:31] Info in class 'FileCollection', method 'addFile. Added file en_US.twitter, to foo file collection. 
+INFO [2017-12-22 00:56:31] Info in class 'DataBuilder', method 'repair. Successfully repaired foo.
+INFO [2017-12-22 00:56:41] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-22 00:56:41] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-22 00:56:41] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 00:56:41] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-22 00:56:49] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-22 00:56:49] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-22 00:56:49] Info in class 'FileCollection', method 'read. Read raw. 
+INFO [2017-12-22 00:56:49] Info in class 'File', method 'initiate. Successfully instantiated DataBuilder and Data objects. 
+INFO [2017-12-22 00:56:49] Info in class 'File', method 'repair. Successfully repaired file collection. 
+INFO [2017-12-22 04:54:22] Info in class 'Document', method 'initialize. Document, doc, instantiated.
+INFO [2017-12-22 06:18:51] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 06:18:51] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 06:18:51] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 06:18:51] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 06:30:11] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 06:30:11] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 06:30:11] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 06:30:11] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 06:30:29] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 06:30:29] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 06:30:29] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 06:30:29] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 06:30:29] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-22 06:32:19] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-22 06:36:51] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:03:19] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 14:03:19] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 14:03:19] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 14:03:19] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 14:03:19] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:06:12] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 14:06:12] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 14:06:12] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 14:06:12] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 14:06:12] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:12:33] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 14:12:33] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 14:12:33] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 14:13:23] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-22 14:13:23] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-22 14:14:04] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-22 14:14:04] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-22 14:14:04] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:14:04] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:16:32] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:16:32] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:16:57] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-22 14:16:58] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-22 14:16:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:16:58] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:16:58] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-22 14:16:58] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-22 14:16:58] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-22 14:16:58] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-22 14:16:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:16:58] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-22 14:17:40] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:17:40] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-22 14:17:40] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:17:40] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:18:08] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-22 14:18:08] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-22 14:18:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:18:09] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-22 14:18:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:18:09] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-22 14:18:09] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:18:09] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'initialize. Successfully initialized file
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'getName. Successfully obtained name
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully wrote txtFile.txt.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Wrote txtFile. 
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Successfully read the file in txt format
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Successfully wrote the file in txt format
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully wrote binFile.txt.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Wrote binFile. 
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Successfully read the file in binary format
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Successfully wrote the file in binary format
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully wrote rdataFile.rdata.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Wrote rdataFile. 
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read rdataFile.rdata.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Read rdataFile. 
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Successfully read the file in rdata format
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Successfully wrote the file in rdata format
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read csvFile.csv.
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Read csvFile. 
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'read. Successfully read the file in csv format
+INFO [2017-12-22 14:26:35] Info in class 'File', method 'write. Successfully wrote the file in csv format
+INFO [2017-12-22 14:26:35] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-22 14:26:36] Info in class 'File', method 'read. Read newz. 
+INFO [2017-12-22 14:26:36] Info in class '', method '. Successfully wrote csvFile.csv.
+INFO [2017-12-22 14:26:36] Info in class 'File', method 'write. Wrote csvFile. 
+INFO [2017-12-22 14:26:36] Info in class 'File', method 'lock. Successfully tested lock and write functionality.
+INFO [2017-12-22 14:26:36] Info in class 'File', method 'unlock. Successfully tested unlock and write functionality.
+INFO [2017-12-22 14:28:23] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 14:28:23] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 14:28:23] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 14:28:58] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 14:28:58] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 14:28:58] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 14:28:58] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 14:28:58] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-22 14:28:58] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-22 14:28:58] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-22 14:28:58] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-22 21:55:19] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 21:55:19] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 21:55:19] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 21:55:19] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 21:55:19] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-22 21:55:19] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-22 21:55:19] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-22 21:55:19] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-22 21:58:02] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-22 21:58:02] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-22 21:58:02] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-22 21:58:02] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-22 21:58:03] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-22 21:58:03] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-22 21:58:03] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-22 21:58:03] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 02:08:24] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 02:08:24] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 02:08:24] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 02:08:24] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 02:08:24] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 02:08:24] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 02:08:24] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 02:08:24] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 02:10:13] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 02:10:13] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 02:10:13] Info in class 'Document', method 'content. Successfully instantiated document with file

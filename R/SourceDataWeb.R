@@ -55,16 +55,16 @@ SourceDataWeb <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, url, compressed = TRUE) {
 
-      private$..className <- 'SourceDataWeb'
-      private$..methodName <- 'initialize'
-      private$..state <- paste0("Web data sourcing initiated for ", url, ".")
-      private$..name <- name
-      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
+      private$..admin$className <- 'SourceDataWeb'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$state <- paste0("Web data sourcing initiated for ", url, ".")
+      private$..admin$name <- name
+      private$..admin$path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
       private$..url <- url
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
-      private$..logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
+      private$..admin$logs <- LogR$new()
 
       # Validation
       status <- list()
@@ -72,7 +72,7 @@ SourceDataWeb <- R6::R6Class(
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+        private$..admin$state <- status[['msg']]
         self$logIt(level = "Error")
         stop()
       }
@@ -84,7 +84,7 @@ SourceDataWeb <- R6::R6Class(
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
+      assign(private$..admin$name, self, envir = .GlobalEnv)
 
       invisible(self)
 
@@ -92,36 +92,36 @@ SourceDataWeb <- R6::R6Class(
 
     sourceData = function() {
 
-      private$..methodName <- 'sourceData'
+      private$..admin$methodName <- 'sourceData'
 
       status <- list()
       status[['code']] <- TRUE
 
       # Create download directory
-      dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
+      dir.create(private$..admin$path, showWarnings = FALSE, recursive = TRUE)
 
       # Download data
-      if (!file.exists(private$..path)) {
+      if (!file.exists(private$..admin$path)) {
         f <- FileManager$new()
         status <- f$download(private$..url, directory)
         if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
+          private$..admin$state <- status[['msg']]
           self$logIt(level = 'Error')
           stop()
         }
       }
 
       # Obtain file size
-      private$..size <- file.size(private$..path)
+      private$..size <- file.size(private$..admin$path)
 
 
       # LogIt
-      private$..state <- paste("Sourced Corpus object", private$..name, "from the web.")
-      private$..modified <- Sys.time()
+      private$..admin$state <- paste("Sourced Corpus object", private$..admin$name, "from the web.")
+      private$..admin$modified <- Sys.time()
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
+      assign(private$..admin$name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -142,19 +142,19 @@ SourceDataWeb <- R6::R6Class(
     exposeObject = function() {
 
       o <- list(
-        className	 =  private$..className ,
-        methodName = private$..methodName,
-        name	 = 	    private$..name ,
+        className	 =  private$..admin$className ,
+        methodName = private$..admin$methodName,
+        name	 = 	    private$..admin$name ,
         parent = private$..parent,
         url = private$..url,
         fileName = private$..fileName,
-        path	 = 	    private$..path ,
-        state	 = 	    private$..state ,
+        path	 = 	    private$..admin$path ,
+        state	 = 	    private$..admin$state ,
         size = private$..size,
-        logs	 = 	    private$..logs ,
-        modified	 = 	private$..modified ,
-        created	 = 	  private$..created ,
-        accessed	 = 	private$..accessed
+        logs	 = 	    private$..admin$logs ,
+        modified	 = 	private$..admin$modified ,
+        created	 = 	  private$..admin$created ,
+        accessed	 = 	private$..admin$accessed
       )
       return(o)
     }

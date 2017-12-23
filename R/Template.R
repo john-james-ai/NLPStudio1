@@ -107,13 +107,13 @@ Template <- R6::R6Class(
 
       # Create logger and initialization log entry
       private$..log <- LogR$new()
-      private$..log$entry$owner <- private$..name
+      private$..log$entry$owner <- private$..admin$name
       private$..log$entry$className <- "Studio"
       private$..log$entry$methodName <- "initialize"
-      private$..log$entry$path <- private$..path
+      private$..log$entry$path <- private$..admin$path
       private$..log$entry$level <- "Info"
-      private$..log$entry$msg <- paste("Initialized", private$..name, "studio.")
-      private$..log$entry$fieldName <- private$..name
+      private$..log$entry$msg <- paste("Initialized", private$..admin$name, "studio.")
+      private$..log$entry$fieldName <- private$..admin$name
       private$..log$entry$created <- Sys.time()
       private$..log$writeLog()
 
@@ -124,7 +124,7 @@ Template <- R6::R6Class(
     },
 
     getName = function() {
-      return(private$..name)
+      return(private$..admin$name)
     },
 
 
@@ -133,14 +133,14 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..logs$entry$owner <- private$..name
-      private$..logs$entry$className <- "Studio"
-      private$..logs$entry$methodName <- match.call()[[1]]
-      private$..logs$entry$level <- level
-      private$..logs$entry$msg <- private$..state
-      private$..logs$entry$fieldName <- fieldName
-      private$..logs$created <- Sys.time()
-      private$..logs$writeLog()
+      private$..admin$logs$entry$owner <- private$..admin$name
+      private$..admin$logs$entry$className <- "Studio"
+      private$..admin$logs$entry$methodName <- match.call()[[1]]
+      private$..admin$logs$entry$level <- level
+      private$..admin$logs$entry$msg <- private$..admin$state
+      private$..admin$logs$entry$fieldName <- fieldName
+      private$..admin$logs$created <- Sys.time()
+      private$..admin$logs$writeLog()
     },
 
     #-------------------------------------------------------------------------#
@@ -148,7 +148,7 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       name <- visitor$getName()
-      private$..state <- paste("Accepted visitor,", name, "at", Sys.time())
+      private$..admin$state <- paste("Accepted visitor,", name, "at", Sys.time())
       self$logIt()
       visitor$template(self)
     },
@@ -158,12 +158,12 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     exposeObject = function() {
       o <- list(
-        name <- private$..name,
+        name <- private$..admin$name,
         desc <- private$..desc,
-        path <- private$..path,
+        path <- private$..admin$path,
         log <- private$..log,
-        created <- private$..created,
-        modified <- private$..modified
+        created <- private$..admin$created,
+        modified <- private$..admin$modified
       )
       return(o)
     }
