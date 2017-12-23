@@ -55,76 +55,11 @@ Document <- R6::R6Class(
   classname = "Document",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = Document0,
 
   private = list(
     ..content = list(),
-    ..file = character(),
-    ..meta = list(
-      ..simple = list(),
-      ..dublin = list()
-    )
-  ),
-
-  active = list(
-    content = function(value = NULL) {
-
-      if (missing(value)) {
-        private$..admin$accessed <- Sys.time()
-        return(private$..content)
-      } else {
-        if (is.null(private$..content)) private$..admin$created <- Sys.time()
-        private$..content <- value
-        private$..admin$modified <- Sys.time()
-        private$..admin$accessed <- Sys.time()
-      }
-    },
-    contributor = function(value = NULL) return(private$..contributor   <- ifelse(is.null(value),  private$..contributor,   value)),
-    coverage = function(value = NULL) return(private$..coverage   <- ifelse(is.null(value),  private$..coverage,   value)),
-    creator = function(value = NULL) return(private$..creator   <- ifelse(is.null(value),  private$..creator,   value)),
-    date = function(value = NULL) return(private$..date   <- ifelse(is.null(value),  private$..date,   value)),
-    description = function(value = NULL) return(private$..description   <- ifelse(is.null(value),  private$..description,   value)),
-    format = function(value = NULL) return(private$..format   <- ifelse(is.null(value),  private$..format,   value)),
-    identifier = function(value = NULL) return(private$..identifier   <- ifelse(is.null(value),  private$..identifier,   value)),
-    language = function(value = NULL) return(private$..language   <- ifelse(is.null(value),  private$..language,   value)),
-    publisher = function(value = NULL) return(private$..publisher   <- ifelse(is.null(value),  private$..publisher,   value)),
-    relation = function(value = NULL) return(private$..relation   <- ifelse(is.null(value),  private$..relation,   value)),
-    rights = function(value = NULL) return(private$..rights   <- ifelse(is.null(value),  private$..rights,   value)),
-    source = function(value = NULL) return(private$..source   <- ifelse(is.null(value),  private$..source,   value)),
-    subject = function(value = NULL) return(private$..subject   <- ifelse(is.null(value),  private$..subject,   value)),
-    title = function(value = NULL) return(private$..title   <- ifelse(is.null(value),  private$..title,   value)),
-    type = function(value = NULL) return(private$..type   <- ifelse(is.null(value),  private$..type,   value)),
-
-    type = function(value = NULL) return(private$..type   <- ifelse(is.null(value),  private$..type,   value)),
-    identifier = function(value = NULL) return(private$..identifier   <- ifelse(is.null(value),  private$..identifier,   value)),
-    title = function(value = NULL) return(private$..title   <- ifelse(is.null(value),  private$..title,   value)),
-    alternative = function(value = NULL) return(private$..alternative   <- ifelse(is.null(value),  private$..alternative,   value)),
-    abstract = function(value = NULL) return(private$..abstract   <- ifelse(is.null(value),  private$..abstract,   value)),
-    extent = function(value = NULL) return(private$..extent   <- ifelse(is.null(value),  private$..extent,   value)),
-    language = function(value = NULL) return(private$..language   <- ifelse(is.null(value),  private$..language,   value)),
-    itemType = function(value = NULL) return(private$..itemType   <- ifelse(is.null(value),  private$..itemType,   value)),
-    itemFormat = function(value = NULL) return(private$..itemFormat   <- ifelse(is.null(value),  private$..itemFormat,   value)),
-    rights = function(value = NULL) return(private$..rights   <- ifelse(is.null(value),  private$..rights,   value)),
-    accessRights = function(value = NULL) return(private$..accessRights   <- ifelse(is.null(value),  private$..accessRights,   value)),
-    accrualMethod = function(value = NULL) return(private$..accrualMethod   <- ifelse(is.null(value),  private$..accrualMethod,   value)),
-    accrualPeriodicity = function(value = NULL) return(private$..accrualPeriodicity   <- ifelse(is.null(value),  private$..accrualPeriodicity,   value)),
-    accrualPolicy = function(value = NULL) return(private$..accrualPolicy   <- ifelse(is.null(value),  private$..accrualPolicy,   value)),
-    provenance = function(value = NULL) return(private$..provenance   <- ifelse(is.null(value),  private$..provenance,   value)),
-    audience = function(value = NULL) return(private$..audience   <- ifelse(is.null(value),  private$..audience,   value)),
-    subject = function(value = NULL) return(private$..subject   <- ifelse(is.null(value),  private$..subject,   value)),
-    spatial = function(value = NULL) return(private$..spatial   <- ifelse(is.null(value),  private$..spatial,   value)),
-    temporal = function(value = NULL) return(private$..temporal   <- ifelse(is.null(value),  private$..temporal,   value)),
-    created = function(value = NULL) return(private$..created   <- ifelse(is.null(value),  private$..created,   value)),
-    dateItemsCreated = function(value = NULL) return(private$..dateItemsCreated   <- ifelse(is.null(value),  private$..dateItemsCreated,   value)),
-    creator = function(value = NULL) return(private$..creator   <- ifelse(is.null(value),  private$..creator,   value)),
-    OWN = function(value = NULL) return(private$..OWN   <- ifelse(is.null(value),  private$..OWN,   value)),
-    isLocatedAt = function(value = NULL) return(private$..isLocatedAt   <- ifelse(is.null(value),  private$..isLocatedAt,   value)),
-    isAccessedVia = function(value = NULL) return(private$..isAccessedVia   <- ifelse(is.null(value),  private$..isAccessedVia,   value)),
-    hasPart = function(value = NULL) return(private$..hasPart   <- ifelse(is.null(value),  private$..hasPart,   value)),
-    isPartOf = function(value = NULL) return(private$..isPartOf   <- ifelse(is.null(value),  private$..isPartOf,   value)),
-    catalogueOrIndex = function(value = NULL) return(private$..catalogueOrIndex   <- ifelse(is.null(value),  private$..catalogueOrIndex,   value)),
-    associatedCollection = function(value = NULL) return(private$..associatedCollection   <- ifelse(is.null(value),  private$..associatedCollection,   value)),
-    isReferencedBy = function(value = NULL) return(private$..isReferencedBy   <- ifelse(is.null(value),  private$..isReferencedBy,   value))
+    ..file = character()
   ),
 
   public = list(
@@ -150,9 +85,6 @@ Document <- R6::R6Class(
         file$flush()
       }
 
-      private$..meta$..simple <- DMetaSimple$new()
-      private$..meta$..dublin <- DMetaDublin$new()
-
       # Validate Document
       v <- Validator$new()
       status <- v$init(self)
@@ -170,6 +102,7 @@ Document <- R6::R6Class(
 
     getName = function() private$..admin$name,
     getFile = function() private$..file,
+
 
     #-------------------------------------------------------------------------#
     #                         Content Methods                                 #
@@ -213,57 +146,6 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       visitor$document(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                           Expose Object                                 #
-    #-------------------------------------------------------------------------#
-    exposeObject = function() {
-
-      o <- list(
-        simple = list(
-          name = private$..meta$..simple$..name,
-          author = private$..meta$..simple$..author,
-          description = private$..meta$..simple$..description,
-          heading = private$..meta$..simple$..heading,
-          id = private$..meta$..simple$..id,
-          language = private$..meta$..simple$..language,
-          origin = private$..meta$..simple$..origin,
-          class = private$..meta$..simple$..class
-        ),
-        admin = list(
-          path = private$..admin$path,
-          className = private$..admin$className,
-          methodName = private$..admin$methodName,
-          locked = private$..admin$locked,
-          state = private$..admin$state,
-          logs = private$..admin$logs,
-          created = private$..admin$created,
-          modified = private$..admin$modified,
-          accessed = private$..admin$accessed
-          ),
-        dublincore = list(
-          contributor = private$..meta$..dublin$..contributor,
-          coverage = private$..meta$..dublin$..coverage,
-          creator = private$..meta$..dublin$..creator,
-          date = private$..meta$..dublin$..date,
-          description = private$..meta$..dublin$..description,
-          format = private$..meta$..dublin$..format,
-          identifier = private$..meta$..dublin$..identifier,
-          language = private$..meta$..dublin$..language,
-          publisher = private$..meta$..dublin$..publisher,
-          relation = private$..meta$..dublin$..relation,
-          rights = private$..meta$..dublin$..rights,
-          source = private$..meta$..dublin$..source,
-          subject = private$..meta$..dublin$..subject,
-          title = private$..meta$..dublin$..title,
-          type = private$..meta$..dublin$..type
-          ),
-        content = private$..content,
-        file = private$..file
-        )
-      return(o)
     }
-
   )
 )

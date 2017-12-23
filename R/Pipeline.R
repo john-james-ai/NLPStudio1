@@ -49,28 +49,28 @@ Pipeline <- R6::R6Class(
     initialize = function(name, desc = NULL) {
 
       # Instantiate variables
-      private$..className <- 'Pipeline'
-      private$..methodName <- 'initialize'
-      private$..name <- name
+      private$..admin$className <- 'Pipeline'
+      private$..admin$methodName <- 'initialize'
+      private$..admin$name <- name
       private$..desc <- ifelse(is.null(desc), paste(name, "pipeline"), desc)
-      private$..path <- file.path("./NLPStudio/pipelines", name)
+      private$..admin$path <- file.path("./NLPStudio/pipelines", name)
       private$..parent <- NLPStudio$new()$getInstance()
-      private$..state <- paste("Pipeline", name, "instantiated at", Sys.time())
-      private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
+      private$..admin$state <- paste("Pipeline", name, "instantiated at", Sys.time())
+      private$..admin$logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
 
       # Validate Pipeline
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+        private$..admin$state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
 
       # Create directory
-      dir.create(private$..path, recursive = TRUE)
+      dir.create(private$..admin$path, recursive = TRUE)
 
       # Create log entry
       self$logIt()
@@ -98,21 +98,21 @@ Pipeline <- R6::R6Class(
       #TODO: Remove after testing
 
       pipeline = list(
-        className = private$..className,
-        methodName = private$..methodName,
-        name = private$..name,
+        className = private$..admin$className,
+        methodName = private$..admin$methodName,
+        name = private$..admin$name,
         desc = private$..desc,
-        path = private$..path,
+        path = private$..admin$path,
         parent = private$..parent,
         data = private$..data,
         analysis = private$..analysis,
         features = private$..features,
         models = private$..models,
         eval = private$..eval,
-        logs <- private$..logs,
-        state = private$..state,
-        modified = private$..modified,
-        created = private$..created
+        logs <- private$..admin$logs,
+        state = private$..admin$state,
+        modified = private$..admin$modified,
+        created = private$..admin$created
       )
 
       return(pipeline)

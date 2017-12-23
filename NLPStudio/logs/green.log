@@ -3706,3 +3706,57 @@ INFO [2017-12-23 02:10:13] Info in class 'File', method 'read. Read txtFile.
 INFO [2017-12-23 02:10:13] Info in class 'Document', method 'initialize. Document, daller, instantiated.
 INFO [2017-12-23 02:10:13] Info in class 'Document', method 'content. Successfully instantiated document with file
 INFO [2017-12-23 02:10:13] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 02:57:36] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 02:57:36] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 02:58:45] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 02:58:45] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:01:20] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:01:20] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:04:34] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:04:34] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:52:14] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:52:14] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:52:15] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 03:52:15] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 03:52:15] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 03:52:15] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 03:52:15] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 03:52:15] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 03:52:15] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 03:53:25] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:56:13] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:56:13] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 03:57:05] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 03:57:05] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 03:57:05] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 03:57:10] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 03:57:10] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 03:57:10] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 04:01:21] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 04:01:21] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 04:01:21] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 04:01:21] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 04:01:21] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 04:01:21] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 04:01:21] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 04:01:21] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-23 04:02:28] Info in class 'Document', method 'initialize. Document, newz, instantiated.
+INFO [2017-12-23 04:02:28] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2017-12-23 04:02:28] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2017-12-23 04:02:28] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2017-12-23 04:02:28] Info in class '', method '. Successfully read txtFile.txt.
+INFO [2017-12-23 04:02:28] Info in class 'File', method 'read. Read txtFile. 
+INFO [2017-12-23 04:02:28] Info in class 'Document', method 'initialize. Document, daller, instantiated.
+INFO [2017-12-23 04:02:28] Info in class 'Document', method 'content. Successfully instantiated document with file
