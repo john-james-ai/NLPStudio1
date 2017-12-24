@@ -25,6 +25,7 @@ Entity <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
+    ..name = character(),
     ..admin = list(
       className = character(),
       methodName = character(),

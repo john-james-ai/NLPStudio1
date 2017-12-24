@@ -57,6 +57,39 @@ Document0 <- R6::R6Class(
   lock_class = FALSE,
   inherit = Corpus0,
 
+  private = list(
+    ..content = character(),
+    ..meta = list(
+      simple = list(
+        name = character(),
+        author = character(),
+        description = character(),
+        heading = character(),
+        id = character(),
+        language = character(),
+        origin = character(),
+        class = character()
+      ),
+      dublincore = list(
+        contributor = character(),
+        coverage = character(),
+        creator = character(),
+        date = character(),
+        description = character(),
+        format = character(),
+        identifier = character(),
+        language = character(),
+        publisher = character(),
+        relation = character(),
+        rights = character(),
+        source = character(),
+        subject = character(),
+        title = character(),
+        type = character()
+      )
+    )
+  ),
+
   active = list(
     content = function(value = NULL) {
 
@@ -82,26 +115,24 @@ Document0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Meta Data Methods                               #
     #-------------------------------------------------------------------------#
-    meta = function(key = NULL, value) {
+    docMeta = function(key = NULL, value) {
 
-      private$..admin$methodName <- 'metaSimple'
+      private$..admin$methodName <- 'meta'
 
       if (is.null(key)) {
         key <- names(value)
       }
 
-      if (!key %in% names(private$..meta$simple)) {
-        private$..admin$state <- paste0("Not able to add meta data variables ",
-                                        "at the document level. New variables ",
-                                        "must be added at the corpus level. ",
-                                        "See ?Corpus for further assistance. ")
-        self$logIt('Error')
-        stop()
+      if (is.null(key)) {
+        key <- paste("docMeta", seq_len(ncol(as.data.frame(value))),
+                     sep = "")
       }
+
       private$..meta$simple[[key]] <- value
+      return(private$..meta$simple)
     },
 
-    metaDublin = function(key = NULL, value) {
+    docMetaDublin = function(key = NULL, value) {
 
       private$..admin$methodName <- 'metaDublin'
 
@@ -109,25 +140,26 @@ Document0 <- R6::R6Class(
         key <- names(value)
       }
 
-      if (!key %in% names(private$..meta$dublin)) {
+      if (!key %in% names(private$..meta$dublincore)) {
         private$..admin$state <- paste0("New metadata variables must be added ",
                                         "using the meta method. ",
                                         "See ?Corpus for further assistance. ")
         self$logIt('Error')
         stop()
       }
-      private$..meta$dublin[[key]] <- value
+      private$..meta$dublincore[[key]] <- value
+      return(private$..meta$dublincore)
     },
 
-    printMeta = function() {
+    printDocMeta = function() {
       df <- as.data.frame(private$..meta$simple)
       names(df) <- Hmisc::capitalize(names(df))
       print(df)
       return(df)
     },
 
-    printMetaDublin = function() {
-      df <- as.data.frame(private$..meta$dublin)
+    printDocMetaDublin = function() {
+      df <- as.data.frame(private$..meta$dublincore)
       names(df) <- Hmisc::capitalize(names(df))
       print(df)
       return(df)
@@ -139,6 +171,8 @@ Document0 <- R6::R6Class(
     exposeObject = function() {
 
       o <- list(
+        name = private$..name,
+        content = private$..content,
         simple = list(
           name = private$..meta$simple$name,
           author = private$..meta$simple$author,
@@ -149,17 +183,6 @@ Document0 <- R6::R6Class(
           origin = private$..meta$simple$origin,
           class = private$..meta$simple$class
         ),
-        admin = list(
-          path = private$..admin$path,
-          className = private$..admin$className,
-          methodName = private$..admin$methodName,
-          locked = private$..admin$locked,
-          state = private$..admin$state,
-          logs = private$..admin$logs,
-          created = private$..admin$created,
-          modified = private$..admin$modified,
-          accessed = private$..admin$accessed
-          ),
         dublincore = list(
           contributor = private$..meta$dublin$contributor,
           coverage = private$..meta$dublin$coverage,
@@ -177,9 +200,19 @@ Document0 <- R6::R6Class(
           title = private$..meta$dublin$title,
           type = private$..meta$dublin$type
           ),
-        content = private$..content,
+        admin = list(
+          path = private$..admin$path,
+          className = private$..admin$className,
+          methodName = private$..admin$methodName,
+          locked = private$..admin$locked,
+          state = private$..admin$state,
+          logs = private$..admin$logs,
+          created = private$..admin$created,
+          modified = private$..admin$modified,
+          accessed = private$..admin$accessed
+        ),
         file = private$..file
-        )
+      )
       return(o)
     }
   )
