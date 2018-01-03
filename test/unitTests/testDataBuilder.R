@@ -1,60 +1,62 @@
-testFileCollection <- function() {
+testDataBuilder <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("builder", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("builder", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("swiftKey", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("swiftKey", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    unlink(downloadPath, recursive = TRUE)
+    if (exists("director", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("director", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("dataSource", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("dataSource", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("cSource", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("cSource", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("data", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("data", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    unlink("./test/testData/data", recursive = TRUE)
     DataBuilderTest <<- LogTest$new()
   }
 
 
 
   test0 <- function() {
-    test <- "test0: DataBuilder: Instantiate"
+    test <- "test0: DataBuilder: Source Data"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Key variables
-    rawName <- 'raw'
-    rawPath <- './test/testData/raw'
-    newName <- 'foo'
-    newPath <- './test/testData/foo'
-    unlink(newPath, recursive = TRUE)
+    # Create director and builder
+    name <- 'data'
+    path <- './test/testData/data'
+    director <- DataDirector$new()
+    builder <- DataBuilder$new(name = name, path = path)
 
-    # Instantiate builder and raw data
-    builder <- DataBuilder$new()
-    raw <- FileCollection$new(name = rawName, path = rawPath)
+    # Create data source
+    name <- 'raw'
+    path <- "./test/testData/data/raw"
+    params <- list()
+    params[['url']] <- 'http://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip'
+    params[['zipFiles']] <- c(file.path('final/en_US/en_US.blogs.txt'),
+                              file.path('final/en_US/en_US.news.txt'),
+                              file.path('final/en_US/en_US.twitter.txt'))
+    dataSource <- DataSourceWebComp$new(name = name, path = path, params = params)
+
+    # Create commands
+    cSource <- CSourceData$new(builder, dataSource)
+    cRepair <- CRepair$new(builder, )
+    director <- director$addCommand(cSource)
+
+    # Create
 
 
-    # Repair raw data
-    refined <- builder$repair(raw, name = newName, path = newPath)
+    data <- director$execute()
 
-    # Evaluate
-    fc <- refined$exposeObject()
-    stopifnot(length(fc$files) == 3)
-    stopifnot(dir.exists(newPath))
-    stopifnot(file.exists(file.path(newPath, 'en_US.blogs.txt')))
-    stopifnot(file.exists(file.path(newPath, 'en_US.news.txt')))
-    stopifnot(file.exists(file.path(newPath, 'en_US.twitter.txt')))
-
-    # Read data (should get no warnings)
-    content <- raw$read()
-
-    # Evaluate Data Object
-    stopifnot(length(content) == 3)
-
-    DataBuilderTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated DataBuilder and Data objects. "))
-    DataBuilderTest$logs(className = className, methodName = "repair", msg = paste("Successfully repaired file collection. "))
+    DataBuilderTest$logs(className = 'DataDirector', methodName = "initiate", msg = paste("Successfully instantiated DataDirector. "))
+    DataBuilderTest$logs(className = 'DataBuilder', methodName = "initiate", msg = paste("Successfully instantiated DataBuilder and Data object "))
+    DataBuilderTest$logs(className = 'DataDirector', methodName = "addCommand", msg = paste("Successfully added a command to DataDirector. "))
+    DataBuilderTest$logs(className = 'DataDirector', methodName = "execute", msg = paste("Successfully executed command in DataDirector. "))
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(refined)
+    return(data)
   }
 
 
 
   testn <- function() {
-    test <- "testn: FileCollection: Unzip"
+    test <- "testn: DataBuilder: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
 
     DataBuilderTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
@@ -67,11 +69,11 @@ testFileCollection <- function() {
 downloadPath <- "./test/testData/swiftKey/data/external"
 
 init()
-refined <- test0()
+raw <- test0()
 
 
 
 }
-className <- "File"
+className <- "DataBuilder"
 #source('./test/unitTests/testCorpusBuilder.R')
-testFileCollection()
+testDataBuilder()

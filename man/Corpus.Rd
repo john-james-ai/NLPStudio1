@@ -9,8 +9,6 @@
 Corpus
 }
 \arguments{
-\item{collection}{FileCollection object.}
-
 \item{field}{Character string name for a field to be added to the Document or Corpus object meta data.}
 
 \item{name}{A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.}
@@ -30,15 +28,6 @@ transformations such as NGrams, and POS tagged documents.
   \item{\code{new(name, path)}}{Creates an object of Corpus Class}
   \item{\code{getName()}}{Returns the name of the Corpus object.}
   \item{\code{getPath()}}{Returns the path of the Corpus object.}
- }
-}
-
-\section{Corpus Sourcing Methods}{
-
- \describe{
-  \item{\code{download(url, name)}}{Creates an object of Corpus Class}
-  \item{\code{zipFile()}}{Returns the name of the Corpus object.}
-  \item{\code{unZipFile()}}{Returns the path of the Corpus object.}
  }
 }
 

@@ -55,11 +55,26 @@ Document <- R6::R6Class(
   classname = "Document",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Document0,
+  inherit = Meta,
 
   private = list(
     ..content = list(),
     ..file = character()
+  ),
+
+  active = list(
+    content = function(value = NULL) {
+
+      if (missing(value)) {
+        private$..admin$accessed <- Sys.time()
+        return(private$..content)
+      } else {
+        if (is.null(private$..content)) private$..admin$created <- Sys.time()
+        private$..content <- value
+        private$..admin$modified <- Sys.time()
+        private$..admin$accessed <- Sys.time()
+      }
+    }
   ),
 
   public = list(
@@ -72,16 +87,18 @@ Document <- R6::R6Class(
       # Instantiate variables
       private$..admin$className <- 'Document'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
-      private$..admin$state <- paste0("Document, ", private$..admin$name, ", instantiated.")
+      private$..name <- name
+      private$..admin$state <- paste0("Document, ", private$..name, ", instantiated.")
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
       private$..admin$accessed <- Sys.time()
 
+      # Attach File object and contents
       private$..file <- file
       if (!is.null(file)) {
         private$..content <- file$read()
+        self$docMeta(key = 'title', value = file$getName())
         file$flush()
       }
 
@@ -100,12 +117,12 @@ Document <- R6::R6Class(
       invisible(self)
     },
 
-    getName = function() private$..admin$name,
+    getName = function() private$..name,
     getFile = function() private$..file,
 
 
     #-------------------------------------------------------------------------#
-    #                         Content Methods                                 #
+    #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
     read = function() {
 
@@ -119,7 +136,7 @@ Document <- R6::R6Class(
       }
 
       # LogIt
-      private$..admin$state <- paste0("Read ", private$..admin$name, ". ")
+      private$..admin$state <- paste0("Read ", private$..name, ". ")
       private$..admin$accessed <- Sys.time()
       self$logIt()
 
@@ -134,11 +151,41 @@ Document <- R6::R6Class(
       private$..file$write()
 
       # LogIt
-      private$..admin$state <- paste0("Wrote ", private$..admin$name, ". ")
+      private$..admin$state <- paste0("Wrote ", private$..name, ". ")
       private$..admin$accessed <- Sys.time()
       self$logIt()
 
       return(TRUE)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                         Meta Data Methods                               #
+    #-------------------------------------------------------------------------#
+    docMeta = function(key = NULL, value = NULL) {
+
+      private$..admin$methodName <- 'meta'
+
+      # If no parameters, return meta data if available, else the metadata names
+      if (is.null(key) & is.null(value)) {
+        meta <- Filter(Negate(is.null), private$..meta$document)
+        if (length(meta) == 0) {
+          return(names(private$..meta$document))
+        } else {
+          return(as.data.frame(meta))
+        }
+      }
+
+      if (is.null(key)) {
+        key <- names(value)
+      }
+
+      if (is.null(key)) {
+        key <- paste("docMeta", seq_len(ncol(as.data.frame(value))),
+                     sep = "")
+      }
+
+      private$..meta$document[[key]] <- value
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#

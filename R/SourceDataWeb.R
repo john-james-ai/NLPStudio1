@@ -58,7 +58,7 @@ SourceDataWeb <- R6::R6Class(
       private$..admin$className <- 'SourceDataWeb'
       private$..admin$methodName <- 'initialize'
       private$..admin$state <- paste0("Web data sourcing initiated for ", url, ".")
-      private$..admin$name <- name
+      private$..name <- name
       private$..admin$path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
       private$..url <- url
       private$..admin$modified <- Sys.time()
@@ -84,7 +84,7 @@ SourceDataWeb <- R6::R6Class(
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
 
@@ -116,12 +116,12 @@ SourceDataWeb <- R6::R6Class(
 
 
       # LogIt
-      private$..admin$state <- paste("Sourced Corpus object", private$..admin$name, "from the web.")
+      private$..admin$state <- paste("Sourced Corpus object", private$..name, "from the web.")
       private$..admin$modified <- Sys.time()
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -144,7 +144,7 @@ SourceDataWeb <- R6::R6Class(
       o <- list(
         className	 =  private$..admin$className ,
         methodName = private$..admin$methodName,
-        name	 = 	    private$..admin$name ,
+        name	 = 	    private$..name ,
         parent = private$..parent,
         url = private$..url,
         fileName = private$..fileName,

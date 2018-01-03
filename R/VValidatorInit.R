@@ -163,6 +163,23 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
+    validatePath = function(object) {
+      status <- list()
+      status[['code']] <- TRUE
+
+      path <- object$getPath()
+
+      if (dir.exists(path)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot create ", class(object)[1],
+                                  " object. The path already exists. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
+      }
+
+      return(status)
+    },
+
 
     validateStub = function(object) {
       status <- list()
@@ -182,7 +199,9 @@ VValidatorInit <- R6::R6Class(
     },
 
     pipeline = function(object) {
-      return(private$validateStub(object))
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      return(private$validatePath(object))
     },
 
     dataSourceWeb = function(object) {

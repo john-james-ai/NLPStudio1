@@ -56,11 +56,11 @@ File <- R6::R6Class(
 
       private$..admin$className <- 'File'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
+      private$..name <- name
       private$..admin$path <- path
       private$..fileName <- basename(path)
       private$..io <- IOFactory$new()$getIOStrategy(private$..admin$path)
-      private$..admin$state <- paste("File object", private$..admin$name, "instantiated.")
+      private$..admin$state <- paste("File object", private$..name, "instantiated.")
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
@@ -84,7 +84,7 @@ File <- R6::R6Class(
 
       private$..admin$locked <- TRUE
 
-      private$..admin$state <- paste0("File object, ", private$..admin$name, ", locked.")
+      private$..admin$state <- paste0("File object, ", private$..name, ", locked.")
       private$..admin$modified <- Sys.time()
       self$logIt()
       invisible(self)
@@ -95,7 +95,7 @@ File <- R6::R6Class(
 
       private$..admin$locked <- FALSE
 
-      private$..admin$state <- paste0("File object, ", private$..admin$name, ", unlocked.")
+      private$..admin$state <- paste0("File object, ", private$..name, ", unlocked.")
       private$..admin$modified <- Sys.time()
       self$logIt()
       invisible(self)
@@ -113,7 +113,7 @@ File <- R6::R6Class(
       private$..content <- io$read(private$..admin$path)
 
       # LogIt
-      private$..admin$state <- paste0("Read ", private$..admin$name, ". ")
+      private$..admin$state <- paste0("Read ", private$..name, ". ")
       private$..admin$accessed <- Sys.time()
       self$logIt()
 
@@ -125,7 +125,7 @@ File <- R6::R6Class(
       private$..admin$methodName <- 'write'
 
       if (private$..admin$locked == TRUE) {
-        private$..admin$state <- paste0("Unable to write to ", private$..admin$name,
+        private$..admin$state <- paste0("Unable to write to ", private$..name,
                                   ", the file is locked.")
         self$logIt("Warn")
         stop()
@@ -136,7 +136,7 @@ File <- R6::R6Class(
       io$write(private$..admin$path, private$..content)
 
       # LogIt
-      private$..admin$state <- paste0("Wrote ", private$..admin$name, ". ")
+      private$..admin$state <- paste0("Wrote ", private$..name, ". ")
       private$..admin$accessed <- Sys.time()
       self$logIt()
 
@@ -155,7 +155,7 @@ File <- R6::R6Class(
       o <- list(
         content = private$..content,
         metaData = list(
-          name	 = 	    private$..admin$name ,
+          name	 = 	    private$..name ,
           fileName = private$..fileName,
           path	 = 	    private$..admin$path ,
           state	 = 	    private$..admin$state ,

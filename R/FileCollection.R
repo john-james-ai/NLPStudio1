@@ -63,9 +63,9 @@ FileCollection <- R6::R6Class(
 
       private$..admin$className <- 'FileCollection'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
+      private$..name <- name
       private$..admin$path <- path
-      private$..admin$state <- paste("FileCollection object", private$..admin$name, "instantiated.")
+      private$..admin$state <- paste("FileCollection object", private$..name, "instantiated.")
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
@@ -96,7 +96,7 @@ FileCollection <- R6::R6Class(
 
       name <- file$getName()
       private$..files[[name]] <- file
-      private$..admin$state <- paste0("Added file ", name, ", to ", private$..admin$name,
+      private$..admin$state <- paste0("Added file ", name, ", to ", private$..name,
                                 " file collection. ")
       private$..admin$modified <- Sys.time()
       self$logIt()
@@ -109,7 +109,7 @@ FileCollection <- R6::R6Class(
 
       name <- getName(file)
       private$..files[[name]] <- NULL
-      private$..admin$state <- paste0("Removed file ", name, ", from ", private$..admin$name,
+      private$..admin$state <- paste0("Removed file ", name, ", from ", private$..name,
                                 " file collection. ")
       private$..admin$modified <- Sys.time()
       self$logIt()
@@ -129,7 +129,7 @@ FileCollection <- R6::R6Class(
         f$lock()
       })
 
-      private$..admin$state <- paste0("FileCollection object, ", private$..admin$name, ", locked.")
+      private$..admin$state <- paste0("FileCollection object, ", private$..name, ", locked.")
       private$..admin$modified <- Sys.time()
       self$logIt()
       invisible(self)
@@ -144,7 +144,7 @@ FileCollection <- R6::R6Class(
         f$unLock()
       })
 
-      private$..admin$state <- paste0("FileCollection object, ", private$..admin$name, ", unlocked.")
+      private$..admin$state <- paste0("FileCollection object, ", private$..name, ", unlocked.")
       private$..admin$modified <- Sys.time()
       self$logIt()
       invisible(self)
@@ -162,7 +162,7 @@ FileCollection <- R6::R6Class(
       })
 
       # LogIt
-      private$..admin$state <- paste0("Read ", private$..admin$name, ". ")
+      private$..admin$state <- paste0("Read ", private$..name, ". ")
       private$..admin$accessed <- Sys.time()
       self$logIt()
 
@@ -174,7 +174,7 @@ FileCollection <- R6::R6Class(
       private$..admin$methodName <- 'write'
 
       if (private$..admin$locked == TRUE) {
-        private$..admin$state <- paste0("Unable to write to ", private$..admin$name,
+        private$..admin$state <- paste0("Unable to write to ", private$..name,
                                   ", the file collection is locked.")
         self$logIt("Warn")
         stop()
@@ -185,7 +185,7 @@ FileCollection <- R6::R6Class(
       })
 
       # LogIt
-      private$..admin$state <- paste0("Wrote ", private$..admin$name, ". ")
+      private$..admin$state <- paste0("Wrote ", private$..name, ". ")
       private$..admin$accessed <- Sys.time()
       self$logIt()
 
@@ -206,7 +206,7 @@ FileCollection <- R6::R6Class(
 
       o <- list(
         className	 =  private$..admin$className ,
-        name	 = 	    private$..admin$name ,
+        name	 = 	    private$..name ,
         path	 = 	    private$..admin$path ,
         files = private$..files,
         state	 = 	    private$..admin$state ,

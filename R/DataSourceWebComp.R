@@ -42,7 +42,7 @@ DataSourceWebComp <- R6::R6Class(
 
       private$..admin$className <- 'DataSourceWebComp'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
+      private$..name <- name
       private$..admin$path <- path
       private$..params <- params
       private$..url <- params[[1]]
@@ -77,6 +77,7 @@ DataSourceWebComp <- R6::R6Class(
       dir.create(downloadDir, showWarnings = FALSE, recursive = TRUE)
 
       # Download file
+      url <- private$..url
       fileName <- installr::file.name.from.url(url)
       filePath <- file.path(downloadDir, fileName)
       if (download.file(url, destfile = filePath, mode = 'wb') != 0) {
@@ -91,7 +92,7 @@ DataSourceWebComp <- R6::R6Class(
                      files = private$..zipFiles)
 
       # Create file collection, file objects and add to file collection
-      fc <- FileCollection$new(name = private$..admin$name, path = private$..admin$path)
+      fc <- FileCollection$new(name = private$..name, path = private$..admin$path)
       lapply(files, function(f) {
         fileName <- basename(f)
         path <- file.path(private$..admin$path, fileName)
@@ -103,7 +104,7 @@ DataSourceWebComp <- R6::R6Class(
       # Lock the data (assumed to be raw data that is immutable)
       fc$lock()
 
-      private$..admin$state <-  paste0("Successfully sourced ", private$..admin$name, ".")
+      private$..admin$state <-  paste0("Successfully sourced ", private$..name, ".")
       self$logIt()
 
       return(fc)

@@ -5,15 +5,21 @@
 #'
 #' \code{Pipeline} Class containing the NLP processing, analysis, and modeling pipeline.
 #'
-#' The pipeline starts with the extraction of data from external sources and includes
-#' the establishment of the raw data sets, the cross-validation sets, data
-#' preprocessing, analysis, feature engineering and selection, modeling
-#' an model evaluation.
+#' The pipeline is comprised of six (6) stages
+#' \enumerate{
+#'  \item State 1: Data Preparation
+#'  \item State 2: Data Processing
+#'  \item State 3: Exploratory Data Analysis
+#'  \item State 4: Feature Selection & Engineering
+#'  \item State 5: Modeling
+#'  \item State 6: Model Evaluation
+#' }
+#' The Pipeline object also contains general meta data for the pipeline as
+#' well as the current stage of the pipeline.
 #'
 #' \strong{Pipeline Methods:}
 #'  \describe{
-#'   \item{\code{new(name, desc = NULL)}}{Creates an object of Pipeline Class}
-#'   \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Pipeline description variable.}
+#'   \item{\code{new(name, path)}}{Creates an object of Pipeline Class}
 #'   \item{\code{getName()}}{Returns the name of the Pipeline object.}
 #'   \item{\code{getPath()}}{Returns the path of the Pipeline object.}
 #'   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
@@ -21,7 +27,7 @@
 #' }
 #'
 #' @param name A character string containing the name of the Pipeline object. This variable is used in the instantiation and remove methods.
-#' @param desc A chararacter string containing the description of the Pipeline
+#' @param path A chararacter string containing the relative path to the pipeline files.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class
@@ -34,11 +40,30 @@ Pipeline <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..data = list(),
-    ..analyis = list(),
-    ..features = list(),
-    ..models = list(),
-    ..eval = list()
+    ..stages = list(),
+    ..currentStage = numeric()
+  ),
+
+  active = list(
+    currentStage = function(value) {
+      if (missing(value)) {
+        private$..currentStage
+      } else {
+        if ('Stage' %in% class(value)) {
+          private$..currentStage <- value
+          private$..admin$state <- paste0("Set current stage of ", private$..name,
+                                          " pipeline to ", value$getStageName(), ".")
+          self$logIt()
+        } else {
+          private$..admin$state <- paste0("Unable to set current stage of ", private$..name,
+                                          " pipeline to ", value$getStageName(), ". ",
+                                          value$getStageName(), " is not a valid Stage ",
+                                          "object. ")
+          self$logIt('Error')
+          stop()
+        }
+      }
+    }
   ),
 
   public = list(
@@ -46,15 +71,13 @@ Pipeline <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Pipeline Core Methods                           #
     #-------------------------------------------------------------------------#
-    initialize = function(name, desc = NULL) {
+    initialize = function(name, path) {
 
       # Instantiate variables
       private$..admin$className <- 'Pipeline'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
-      private$..desc <- ifelse(is.null(desc), paste(name, "pipeline"), desc)
-      private$..admin$path <- file.path("./NLPStudio/pipelines", name)
-      private$..parent <- NLPStudio$new()$getInstance()
+      private$..name <- name
+      private$..admin$path <- path
       private$..admin$state <- paste("Pipeline", name, "instantiated at", Sys.time())
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
@@ -75,11 +98,70 @@ Pipeline <- R6::R6Class(
       # Create log entry
       self$logIt()
 
-      # Assign its name in the global environment
-      assign(name, self, envir = .GlobalEnv)
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                          Aggregation Methods                            #
+    #-------------------------------------------------------------------------#
+    getStages = function() private$..stages,
+
+    addStage = function(stage, current = FALSE) {
+
+      private$..admin$methodName <- 'addStage'
+
+      stageNum <- stage$getStageNum()
+      stageName <- stage$getStageName()
+
+      if (!is.null(private$..stages[[stageNum]])) {
+        private$..admin$state <- paste0("Unable to add stage, ", stageName, ", ",
+                                        "as it already exists. See ?",class(self)[[1]],
+                                        " for further assistance.")
+        self$logIt('Error')
+        stop()
+      }
+
+      private$..stages[[stageNum]] <- stage
+      if (current == TRUE) private$..currentStage <- stage
+      private$..admin$state <- paste0("Added ", stageNum, " to Pipeline object, ",
+                                      private$..name, ".")
+      self$logIt()
 
       invisible(self)
     },
+
+    removeStage = function(stage) {
+
+      private$..admin$methodName <- 'removeStage'
+
+      stageNum <- stage$getstageNum()
+      stageName <- stage$getStageName()
+
+      private$..stages[[stageNum]] <- NULL
+
+      private$..admin$state <- paste0("Removed ", stageName, " from Pipeline object, ",
+                                      private$..name, ".")
+      self$logIt()
+
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                       Pipeline Execution Methods                        #
+    #-------------------------------------------------------------------------#
+    execute = function(restart = FALSE) {
+
+      private$..admin$methodName <- 'execute'
+
+      if (restart == TRUE) {
+        stageNum <- 1
+      } else {
+        stageNum <- private$..currentStage
+      }
+
+
+
+    }
 
 
     #-------------------------------------------------------------------------#
@@ -100,16 +182,9 @@ Pipeline <- R6::R6Class(
       pipeline = list(
         className = private$..admin$className,
         methodName = private$..admin$methodName,
-        name = private$..admin$name,
-        desc = private$..desc,
+        name = private$..name,
         path = private$..admin$path,
-        parent = private$..parent,
-        data = private$..data,
-        analysis = private$..analysis,
-        features = private$..features,
-        models = private$..models,
-        eval = private$..eval,
-        logs <- private$..admin$logs,
+        stages = private$..stages,
         state = private$..admin$state,
         modified = private$..admin$modified,
         created = private$..admin$created

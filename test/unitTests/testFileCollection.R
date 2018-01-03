@@ -15,36 +15,34 @@ testFileCollection <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Instantiate
-    path <- "./test/testData/raw"
-    name <- 'raw'
-    raw <- FileCollection$new(name = name, path = path)
+    path <- "./test/testData/input"
+    name <- 'foo'
+    foo <- FileCollection$new(name = name, path = path)
 
     # Evaluate
-    fc <- raw$exposeObject()
+    fc <- foo$exposeObject()
     stopifnot(fc$className == 'FileCollection')
     stopifnot(fc$methodName == 'initialize')
-    stopifnot(fc$name == 'raw')
+    stopifnot(fc$name == 'foo')
     stopifnot(fc$path == path)
     stopifnot(dir.exists(path))
 
 
     FileCollectionTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
-    cat(paste0(test, " Completed: Success!\    binData <- raw$read(IOBin$new())
+    cat(paste0(test, " Completed: Success!\    binData <- foo$read(IOBin$new())
 n"))
 
-    return(raw)
+    return(foo)
   }
 
-  test1 <- function(raw) {
+  test1 <- function(foo) {
     test <- "test1: FileCollection: ReadBin"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Read binary file
     io <- IOBin$new()
-    binData <- raw$read(io)
+    binData <- foo$read(io)
     stopifnot()
-
-
 
     name = 'binfc'
     path = './test/testData/binfc'
@@ -67,7 +65,7 @@ n"))
     FileCollectionTest$logs(className = className, methodName = "download", msg = paste("Successfully downloaded file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(external)
+    return(binfc)
   }
 
 
@@ -77,27 +75,27 @@ n"))
     cat(paste0("\n",test, " Commencing\n"))
 
     # Initialize variables
-    rawPath <- "./test/testData/swiftKey/data/raw"
-    name <- 'raw'
+    fooPath <- "./test/testData/swiftKey/data/foo"
+    name <- 'foo'
     zipFiles <- c("final/en_US/en_US.blogs.txt", "final/en_US/en_US.news.txt", "final/en_US/en_US.twitter.txt")
 
-    blogsFile <- file.path(rawPath, "en_US.blogs.txt")
-    newsFile <- file.path(rawPath, "en_US.news.txt")
-    twitterFile <- file.path(rawPath, "en_US.twitter.txt")
+    blogsFile <- file.path(fooPath, "en_US.blogs.txt")
+    newsFile <- file.path(fooPath, "en_US.news.txt")
+    twitterFile <- file.path(fooPath, "en_US.twitter.txt")
 
     # Create new file collection
-    raw <- FileCollection$new(name = name, path = rawPath)
-    fc <- raw$exposeObject()
+    foo <- FileCollection$new(name = name, path = fooPath)
+    fc <- foo$exposeObject()
     stopifnot(fc$className == 'FileCollection')
     stopifnot(fc$methodName == 'initialize')
-    stopifnot(fc$name == 'raw')
-    stopifnot(fc$path == rawPath)
-    stopifnot(raw$getPath() == rawPath)
-    stopifnot(dir.exists(rawPath))
+    stopifnot(fc$name == 'foo')
+    stopifnot(fc$path == fooPath)
+    stopifnot(foo$getPath() == fooPath)
+    stopifnot(dir.exists(fooPath))
 
     # Unzip into the new collection
-    raw <- raw$unZipFile(zipFiles = zipFiles)
-    files <- raw$geFilePaths()
+    foo <- foo$unZipFile(zipFiles = zipFiles)
+    files <- foo$geFilePaths()
     stopifnot(files[[1]] == blogsFile)
     stopifnot(files[[2]] == newsFile)
     stopifnot(files[[3]] == twitterFile)
@@ -126,9 +124,9 @@ n"))
 
 
 init()
-raw <<- test0()
-#external <<- test1(external)
-raw <<- test2(external)
+foo <- test0()
+external <<- test1(external)
+foo <- test2(external)
 
 }
 className <- "File"

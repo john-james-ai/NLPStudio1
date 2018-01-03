@@ -3760,3 +3760,460 @@ INFO [2017-12-23 04:02:28] Info in class '', method '. Successfully read txtFile
 INFO [2017-12-23 04:02:28] Info in class 'File', method 'read. Read txtFile. 
 INFO [2017-12-23 04:02:28] Info in class 'Document', method 'initialize. Document, daller, instantiated.
 INFO [2017-12-23 04:02:28] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2017-12-24 16:32:45] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 16:34:48] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 16:56:28] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 16:57:42] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:04:40] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:05:27] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:05:27] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:06:25] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:06:25] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:07:13] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:07:13] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:07:44] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:08:49] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:10:34] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:10:34] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:10:59] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:12:04] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:12:28] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:12:31] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:15:16] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:15:16] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:15:46] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:15:49] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 17:17:38] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:18:10] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:19:38] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:20:50] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:21:50] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:22:58] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 17:22:58] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 17:22:58] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 17:22:58] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 17:22:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 17:22:58] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 17:22:58] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 17:22:58] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 17:22:58] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 17:22:58] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 17:22:58] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:12:15] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:12:57] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:14:46] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:15:56] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:18:02] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:20:49] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:21:08] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:21:44] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:21:44] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 20:21:44] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:21:44] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 20:21:44] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 20:21:44] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:21:44] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 20:21:44] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 20:21:44] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:21:44] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 20:21:45] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:21:59] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:22:03] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:22:08] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 20:22:08] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:22:08] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 20:22:08] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 20:22:08] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:22:08] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 20:22:08] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 20:22:08] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:22:08] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 20:22:08] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:22:44] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:22:44] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 20:22:44] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:22:44] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 20:22:44] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 20:22:44] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:22:44] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 20:22:44] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 20:22:44] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:22:44] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 20:22:44] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:22:44] Info in class 'Corpus', method 'initialize. Successfully initialized set bar
+INFO [2017-12-24 20:23:32] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:23:32] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 20:23:32] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:23:32] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 20:23:32] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 20:23:32] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:23:32] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 20:23:32] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 20:23:32] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:23:32] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 20:23:32] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:23:52] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:23:53] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 20:23:53] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:23:53] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 20:23:53] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 20:23:53] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:23:53] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 20:23:53] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 20:23:53] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:23:53] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 20:23:53] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:32:38] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 20:32:38] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 20:32:38] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:32:38] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 20:32:38] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 20:32:38] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:32:38] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 20:32:38] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 20:32:38] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:32:38] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 20:32:38] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 20:32:38] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 20:32:38] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 20:32:38] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 20:32:38] Info in class 'Corpus', method 'initialize. Successfully initialized set bar
+INFO [2017-12-24 21:52:31] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 21:52:37] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 21:52:37] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:52:37] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 21:52:37] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 21:52:37] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:52:37] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 21:52:37] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 21:52:37] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:52:37] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 21:52:37] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 21:52:37] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:52:37] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:52:37] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:54:07] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 21:54:11] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 21:54:11] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:54:11] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 21:54:11] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 21:54:11] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:54:11] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 21:54:12] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 21:54:12] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:54:12] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 21:54:12] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 21:54:12] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:54:12] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:54:12] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:55:21] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 21:55:23] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 21:55:23] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:55:23] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 21:55:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 21:55:23] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:55:23] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 21:55:23] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 21:55:23] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:55:23] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 21:55:23] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 21:56:12] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 21:56:16] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 21:56:16] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:56:16] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 21:56:16] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 21:56:16] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:56:16] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 21:56:16] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 21:56:16] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:56:16] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 21:56:16] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 21:56:16] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:56:16] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:56:16] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:57:33] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 21:57:39] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 21:57:39] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:57:39] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 21:57:39] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 21:57:39] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:57:39] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 21:57:39] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 21:57:39] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 21:57:39] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 21:57:39] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 21:57:39] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 21:57:39] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 21:57:39] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:00:55] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:00:59] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 22:00:59] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:00:59] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 22:00:59] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 22:00:59] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:00:59] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 22:00:59] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 22:00:59] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:00:59] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 22:00:59] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 22:00:59] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:00:59] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:00:59] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:38:23] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:38:29] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:38:29] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:38:29] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:38:37] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:38:37] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:38:37] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:38:58] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:43:16] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:49:27] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:50:51] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:50:55] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 22:50:55] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:50:55] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 22:50:55] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 22:50:55] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:50:55] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2017-12-24 22:50:55] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 22:50:55] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:50:55] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 22:50:55] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 22:51:03] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:51:03] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:51:03] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:57:16] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:57:16] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 22:57:16] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:57:16] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 22:57:16] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 22:57:16] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:57:16] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-24 22:57:16] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 22:57:16] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:57:16] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 22:57:16] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 22:57:16] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:57:16] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:57:16] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:57:16] Info in class 'Corpus', method 'initialize. Successfully initialized set bar
+INFO [2017-12-24 22:57:32] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 22:57:37] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 22:57:37] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:57:37] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 22:57:37] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 22:57:37] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:57:37] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-24 22:57:37] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 22:57:37] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 22:57:38] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 22:57:38] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 22:57:38] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 22:57:38] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 22:57:38] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 23:01:54] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 23:01:55] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 23:01:55] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 23:01:55] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 23:01:55] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 23:01:55] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 23:01:55] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-24 23:01:55] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 23:01:55] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 23:01:55] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 23:01:55] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 23:01:55] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 23:01:55] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 23:01:55] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 23:01:55] Info in class 'Corpus', method 'initialize. Successfully initialized set bar
+INFO [2017-12-24 23:02:59] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-24 23:03:06] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-24 23:03:06] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 23:03:06] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-24 23:03:06] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-24 23:03:06] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-24 23:03:06] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-24 23:03:06] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-24 23:03:06] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-24 23:03:06] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-24 23:03:06] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-24 23:03:06] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-24 23:03:06] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-24 23:03:06] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 06:39:54] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 06:39:54] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 06:39:54] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 06:39:54] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 06:39:54] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 06:39:54] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 06:39:54] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 06:39:54] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 06:39:54] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 06:39:54] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 06:39:54] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-25 06:39:54] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 06:39:54] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 06:39:54] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 06:39:54] Info in class 'Corpus', method 'initialize. Successfully initialized set bar
+INFO [2017-12-25 06:41:39] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 06:41:39] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 06:41:39] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 06:41:39] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 06:41:39] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 06:41:39] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 06:41:39] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 06:41:39] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 06:41:39] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 06:41:39] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 06:41:39] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-25 06:41:39] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 06:41:39] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 06:41:39] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 06:41:39] Info in class 'Corpus', method 'initialize. Successfully initialized set bar
+INFO [2017-12-25 06:43:22] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-25 06:43:46] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-25 06:43:46] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-25 06:44:17] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-25 06:44:17] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-25 06:44:17] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2017-12-25 06:46:46] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 06:46:46] Info in class 'File', method 'initiate. Successfully instantiated file collection. 
+INFO [2017-12-25 06:50:18] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 06:50:18] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 06:50:18] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 06:50:18] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 06:50:18] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 06:50:18] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 06:50:18] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 06:50:18] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 06:50:18] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 06:50:18] Info in class 'Corpus', method 'initialize. Corpus, bar, instantiated.
+INFO [2017-12-25 06:50:25] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 06:50:25] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 06:50:25] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 07:00:11] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 07:04:50] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 07:04:50] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 07:04:50] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 07:04:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 07:04:50] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 07:04:50] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 07:04:50] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 07:04:50] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 07:04:50] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 07:06:44] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 07:06:44] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 07:06:44] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 07:06:44] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 07:06:44] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 07:06:44] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 07:06:44] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 07:06:44] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 07:06:44] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 07:06:44] Info in class 'Corpus', method 'addDocument. Add en_US.blogs to bar
+INFO [2017-12-25 07:06:44] Info in class 'Corpus', method 'addDocument. Add en_US.news to bar
+INFO [2017-12-25 07:06:44] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 07:06:44] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 07:06:55] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 07:06:55] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 07:06:55] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:16:19] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 08:16:24] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 08:16:24] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:16:24] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 08:16:24] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 08:16:24] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:16:24] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 08:16:24] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 08:16:24] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:16:24] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 08:16:24] Info in class 'Corpus', method 'addDocument. Add en_US.blogs to bar
+INFO [2017-12-25 08:16:24] Info in class 'Corpus', method 'addDocument. Add en_US.news to bar
+INFO [2017-12-25 08:16:24] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:16:24] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:16:24] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:16:24] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:16:24] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:22:14] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 08:22:18] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 08:22:18] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:22:18] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 08:22:18] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 08:22:18] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:22:18] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 08:22:18] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 08:22:18] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:22:18] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 08:22:18] Info in class 'Corpus', method 'addDocument. Add en_US.blogs to bar
+INFO [2017-12-25 08:22:18] Info in class 'Corpus', method 'addDocument. Add en_US.news to bar
+INFO [2017-12-25 08:22:18] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:22:18] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:22:18] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:22:18] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:22:18] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:37:02] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 08:37:08] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 08:37:08] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:37:08] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 08:37:08] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 08:37:08] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:37:08] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 08:37:08] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 08:37:08] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:37:08] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 08:37:08] Info in class 'Corpus', method 'addDocument. Add en_US.blogs to bar
+INFO [2017-12-25 08:37:08] Info in class 'Corpus', method 'addDocument. Add en_US.news to bar
+INFO [2017-12-25 08:37:08] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:37:08] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:37:08] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:37:08] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:37:08] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:38:16] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2017-12-25 08:38:19] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2017-12-25 08:38:19] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:38:19] Info in class 'Document', method 'meta. Document, en_US.blogs, instantiated.
+INFO [2017-12-25 08:38:20] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2017-12-25 08:38:20] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:38:20] Info in class 'Document', method 'meta. Document, en_US.news, instantiated.
+INFO [2017-12-25 08:38:20] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2017-12-25 08:38:20] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2017-12-25 08:38:20] Info in class 'Document', method 'meta. Document, en_US.twitter, instantiated.
+INFO [2017-12-25 08:38:20] Info in class 'Corpus', method 'addDocument. Add en_US.blogs to bar
+INFO [2017-12-25 08:38:20] Info in class 'Corpus', method 'addDocument. Add en_US.news to bar
+INFO [2017-12-25 08:38:20] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:38:20] Info in class 'Corpus', method 'addDocument. Add en_US.twitter to bar
+INFO [2017-12-25 08:38:20] Info in class 'Document', method 'read. Read en_US.blogs. 
+INFO [2017-12-25 08:38:20] Info in class 'Document', method 'read. Read en_US.news. 
+INFO [2017-12-25 08:38:20] Info in class 'Document', method 'read. Read en_US.twitter. 
+INFO [2018-01-01 22:24:58] Info in class 'DataDirector', method 'initialize. DataDirector object instantiated.
+INFO [2018-01-01 22:24:58] Info in class 'DataBuilder', method 'initialize. DataBuilder object instantiated.
+INFO [2018-01-01 22:26:32] Info in class 'DataDirector', method 'initialize. DataDirector object instantiated.
+INFO [2018-01-01 22:26:32] Info in class 'DataBuilder', method 'initialize. DataBuilder object instantiated.
+INFO [2018-01-01 22:29:17] Info in class 'DataDirector', method 'initialize. DataDirector object instantiated.
+INFO [2018-01-01 22:29:17] Info in class 'DataBuilder', method 'initialize. DataBuilder object instantiated.
+INFO [2018-01-01 22:31:45] Info in class 'DataDirector', method 'initialize. DataDirector object instantiated.
+INFO [2018-01-01 22:31:45] Info in class 'DataBuilder', method 'initialize. DataBuilder object instantiated.
+INFO [2018-01-01 22:34:31] Info in class 'DataDirector', method 'initialize. DataDirector object instantiated.
+INFO [2018-01-01 22:36:17] Info in class 'DataDirector', method 'initialize. DataDirector object instantiated.
+INFO [2018-01-01 22:36:17] Info in class 'DataBuilder', method 'initialize. DataBuilder object instantiated.
+INFO [2018-01-01 22:38:31] Info in class 'FileCollection', method 'initialize. FileCollection object raw instantiated.
+INFO [2018-01-01 22:38:44] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-01 22:38:44] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-01 22:38:44] Info in class 'FileCollection', method 'addFile. Added file en_US.blogs, to raw file collection. 
+INFO [2018-01-01 22:38:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-01 22:38:46] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-01 22:38:46] Info in class 'FileCollection', method 'addFile. Added file en_US.news, to raw file collection. 
+INFO [2018-01-01 22:38:59] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-01 22:38:59] Info in class 'FileCollection', method 'addFile. Added file en_US.twitter, to raw file collection. 
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'lock. File object, en_US.blogs, locked.
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'lock. File object, en_US.news, locked.
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'lock. File object, en_US.twitter, locked.
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'lock. File object, en_US.blogs, locked.
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'lock. File object, en_US.news, locked.
+INFO [2018-01-01 22:38:59] Info in class 'File', method 'lock. File object, en_US.twitter, locked.
+INFO [2018-01-01 22:38:59] Info in class 'FileCollection', method 'lock. FileCollection object, raw, locked.
+INFO [2018-01-01 22:38:59] Info in class 'DataSourceWebComp', method 'execute. Successfully sourced raw.
+INFO [2018-01-01 22:38:59] Info in class 'Data', method 'initialize. Added FileCollection object, raw, to the data set.
+INFO [2018-01-01 22:38:59] Info in class 'DataBuilder', method 'initialize. Data obtained from source

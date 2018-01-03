@@ -54,7 +54,7 @@ NLPStudio <- R6::R6Class(
             # Create single instance of NLPStudio object
             private$..admin$className <- 'NLPStudio'
             private$..admin$methodName <- 'initialize'
-            private$..admin$name <- "nlpStudio"
+            private$..name <- "nlpStudio"
             private$..desc <- "NLPStudio: Natural Language Processing Environment"
             private$..admin$path <- "./NLPStudio"
             private$..admin$modified <- Sys.time()
@@ -69,7 +69,7 @@ NLPStudio <- R6::R6Class(
             self$logIt()
 
             # Assign its name in the global environment
-            assign(private$..admin$name, self, envir = .GlobalEnv)
+            assign(private$..name, self, envir = .GlobalEnv)
             invisible(self)
           },
 
@@ -80,7 +80,7 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           #                             Basic Getters                               #
           #-------------------------------------------------------------------------#
-          getName = function() private$..admin$name,
+          getName = function() private$..name,
           getClassName = function() private$..admin$className,
           getPath = function() private$..admin$path,
 
@@ -121,7 +121,7 @@ NLPStudio <- R6::R6Class(
             self$logIt()
 
             # Assign its name in the global environment
-            assign(private$..admin$name, self, envir = .GlobalEnv)
+            assign(private$..name, self, envir = .GlobalEnv)
             invisible(self)
 
           },
@@ -145,7 +145,7 @@ NLPStudio <- R6::R6Class(
             if (!is.null(private$..pipelines[[name]]))  private..pipelines[[name]] <- NULL
 
             # Assign its name in the global environment
-            assign(private$..admin$name, self, envir = .GlobalEnv)
+            assign(private$..name, self, envir = .GlobalEnv)
             invisible(self)
 
           },
@@ -155,7 +155,7 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           logIt = function(level = 'Info', fieldName = NA) {
 
-            private$..admin$logs$entry$owner <- private$..admin$name
+            private$..admin$logs$entry$owner <- private$..name
             private$..admin$logs$entry$className <- private$..admin$className
             private$..admin$logs$entry$methodName <- private$..admin$methodName
             private$..admin$logs$entry$level <- level
@@ -179,7 +179,7 @@ NLPStudio <- R6::R6Class(
             o <- list(
               className = private$..admin$className,
               methodName = private$..admin$methodName,
-              name = private$..admin$name,
+              name = private$..name,
               desc = private$..desc,
               path = private$..admin$path,
               pipelines = private$..pipelines,

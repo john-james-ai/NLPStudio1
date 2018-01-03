@@ -51,11 +51,11 @@ Corpus <- R6::R6Class(
   classname = "Corpus",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = Meta,
 
   private = list(
-    ..locked = FALSE,
-    ..corpus = list()
+    ..source = character(),
+    ..documents = list()
   ),
 
   public = list(
@@ -63,13 +63,13 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path = NULL) {
+    initialize = function(name, x) {
 
       # Instantiate variables
+      private$..name <- name
+      private$..source <- x
       private$..admin$className <- 'Corpus'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
-      private$..admin$path <- path
       private$..admin$state <- paste0("Corpus, ", name, ", instantiated.")
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
@@ -85,11 +85,13 @@ Corpus <- R6::R6Class(
         stop()
       }
 
-      # Load corpus
-      if (!is.null(private$..admin$path)) {
-        private$..corpus == quanteda::corpus(private$..admin$path)
-      }
-
+      # Import data
+      documents <- switch(class(x)[[1]],
+                          FileCollection = self$importFC()
+      )
+      lapply(documents, function(d) {
+        self$addDocument(d)
+      })
 
       # Create log entry
       self$logIt()
@@ -97,7 +99,42 @@ Corpus <- R6::R6Class(
       invisible(self)
     },
 
-    getCorpus = function() invisible(self),
+    getName = function() private$..name,
+
+    #-------------------------------------------------------------------------#
+    #                           Import Methods                                #
+    #-------------------------------------------------------------------------#
+    importFC = function() {
+      import <- CorpusImportFC$new(private$..source)
+      return(import$execute())
+    },
+
+    #-------------------------------------------------------------------------#
+    #                    Document Aggregation Methods                         #
+    #-------------------------------------------------------------------------#
+    getDocuments = function()  private$..documents,
+
+    addDocument = function(document) {
+
+      private$..admin$methodName <- 'addDocument'
+      name <- document$getName()
+      private$..documents[[name]] <- document
+      private$..admin$state <- paste0("Add ", name, " to ", private$..name)
+      self$logIt()
+      invisible(self)
+
+    },
+
+    removeDocument = function(document) {
+
+      private$..admin$methodName <- 'removeDocument'
+      name <- getName(document)
+      private$..documents[[name]] <- NULL
+      private$..admin$state <- paste0("Removed ", name, " from ", private$..name)
+      self$logIt()
+      invisible(self)
+
+    },
 
     #-------------------------------------------------------------------------#
     #                              IO Methods                                 #
@@ -117,7 +154,7 @@ Corpus <- R6::R6Class(
       private$..corpus <- quanteda::corpus(unlist(content))
 
       # Log it
-      private$..admin$state <- paste0("Read corpus, ", private$..admin$name, ", into memory.")
+      private$..admin$state <- paste0("Read corpus, ", private$..name, ", into memory.")
       self$logIt()
 
       invisible(self)
@@ -130,26 +167,98 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                       Corpus Sourcing Methods                           #
+    #                       Document MetaData Methods                         #
     #-------------------------------------------------------------------------#
-    download = function(url, name) {
+    docMeta = function(key = NULL, value = NULL) {
 
-      private$..admin$methodName <- 'download'
+      private$..admin$methodName <- 'docMeta'
 
-      # Create file collection object and download data
-      fc <- FileCollection$new(name = name, path = file.path(private$..admin$path, name))
-      fc <- fc$download(url = url)
+      # If no parameters, return meta data if available, else the metadata names
+      if (is.null(key) & is.null(value)) {
+        meta <- rbindlist(lapply(private$..documents, function(d) {
+          m <- d$docMeta()
+          if (class(m)[[1]] == 'data.frame') {
+            m <- as.list(m)
+          } else {
+            m <- as.list(d$getName())
+            names(m) <- 'Name'
+          }
+          m
+        }))
+        return(meta)
+      }
 
-      # Add file collection to data
-      name <- fc$getName()
-      private$..corpora[['name']] <- fc
+      if (is.null(key)) {
+        key <- names(value)
+      }
 
-      # Log it
-      fileName <- basename(url)
-      private$..admin$state <- paste0("Successfully downloaded and added", fileName, " to the data set. ")
-      self$logIt()
+      if (is.null(key)) {
+        key <- paste("docMeta", seq_len(ncol(as.data.frame(value))),
+                     sep = "")
+      }
+
+      if (length(value) != 1) {
+        if (length(value) != length(private$..documents)) {
+          private$..state <- paste0("Unable to add document metadata. ",
+                                    "The value parameter must be length 1 or ",
+                                    "the length equal to the number of documents ",
+                                    "in the corpus.  See ?Corpus for further ",
+                                    "assistance. ")
+          self$logIt("Error")
+          stop()
+        }
+      } else {
+        value <- rep(value, length(private$..documents))
+      }
+
+      if (length(key) == 1) key <- rep(key, length(value))
+
+      lapply(seq_along(value), function(m) {
+        private$..documents[[m]]$docMeta(key = key[[m]], value = value[[m]])
+      })
 
       invisible(self)
+    },
+
+
+    #-------------------------------------------------------------------------#
+    #                         Corpus MetaData Methods                         #
+    #-------------------------------------------------------------------------#
+    corpusMeta = function(key = NULL, value = NULL) {
+
+      private$..admin$methodName <- 'corpusMeta'
+
+      if (is.null(key) & is.null(value)) {
+        if (length(private$..meta$corpus) == 0) {
+          return(names(private$..meta$corpus))
+        } else {
+          meta <- Filter(Negate(is.null), private$..meta$corpus)
+          return(as.data.frame(meta))
+        }
+      }
+
+      if (is.null(key)) {
+        key <- names(value)
+      }
+
+      if (is.null(key)) {
+        key <- paste("corpusMeta", seq_len(ncol(as.data.frame(value))),
+                     sep = "")
+      }
+
+      private$..meta$corpus[[key]] <- value
+
+      invisible(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #               MetaData Description and Summary Methods                  #
+    #-------------------------------------------------------------------------#
+    metaVarNames = function() {
+      cat("\nCorpus metadata variable names:\n")
+      print(names(private$..meta$corpus))
+      cat("\nDocument metadata variable names:\n")
+      print(names(private$..meta$document))
     },
 
     #-------------------------------------------------------------------------#
@@ -167,16 +276,17 @@ Corpus <- R6::R6Class(
       #TODO: Remove after testing
 
       corpus = list(
-        className = private$..admin$className,
-        methodName = private$..admin$methodName,
-        name = private$..admin$name,
+        name = private$..name,
         path = private$..admin$path,
         content = private$..content,
         locked = private$..admin$locked,
         logs = private$..admin$logs,
         state = private$..admin$state,
         modified = private$..admin$modified,
-        created = private$..admin$created
+        created = private$..admin$created,
+        documents = private$..documents,
+        docMeta = self$docMeta(),
+        corpusMeta = self$corpusMeta()
       )
 
       return(corpus)

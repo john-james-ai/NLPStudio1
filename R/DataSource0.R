@@ -26,7 +26,6 @@ DataSource0 <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..path = character(),
     ..params = list()
   ),
 

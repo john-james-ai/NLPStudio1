@@ -45,7 +45,8 @@ Entity <- R6::R6Class(
     #                           Basic Get  Methods                            #
     #-------------------------------------------------------------------------#
     getClassName = function() private$..admin$className,
-    getName = function() private$..admin$name,
+    getName = function() private$..name,
+    getPath = function() private$..admin$path,
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #

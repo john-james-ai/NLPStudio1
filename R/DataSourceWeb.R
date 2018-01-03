@@ -37,7 +37,7 @@ DataSourceWeb <- R6::R6Class(
   public = list(
     initialize = function(name, path, params) {
 
-      private$..admin$name <- name
+      private$..name <- name
       private$..admin$path <- path
       private$..params <- params
       private$..url <- params[[1]]
@@ -69,7 +69,7 @@ DataSourceWeb <- R6::R6Class(
       }
 
       # Create new file collection
-      fc <- FileCollection$new(name = private$..admin$name, path = private$..admin$path)
+      fc <- FileCollection$new(name = private$..name, path = private$..admin$path)
 
       # Log
       private$..admin$state <- paste0("Successfully downloaded ", fileName, ". ")

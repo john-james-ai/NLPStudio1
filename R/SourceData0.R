@@ -96,7 +96,7 @@ SourceData0 <- R6::R6Class(
       o <- list(
         className	 =  private$..admin$className,
         methodName = private$..admin$methodName,
-        name = private$..admin$name,
+        name = private$..name,
         pattern = private$..pattern,
         documents = private$.documents,
         state = private$..admin$state,

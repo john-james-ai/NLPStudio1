@@ -2,67 +2,55 @@ testCorpus <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
-    if (exists("train", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("train", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("en_US.twitter", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("en_US.twitter", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("en_US.news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("en_US.news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("en_US.blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("en_US.blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    CorpusTest <<- LogTest$new()
-    file.copy('./test/testData/hc/en_US.blogs.txt', 'test/testData/en_US.blogs.txt')
-    file.copy('./test/testData/hc/en_US.news.txt', 'test/testData/en_US.news.txt')
-    file.copy('./test/testData/hc/en_US.twitter.txt', 'test/testData/en_US.twitter.txt')
-    blogs <- readLines(con = 'test/testData/en_US.blogs.txt')
-    news <- readLines(con = 'test/testData/en_US.news.txt')
-    twitter <- readLines(con = 'test/testData/en_US.twitter.txt')
-    blogs <<- blogs[1:2000]
-    news <<- news[1:2000]
-    twitter <<- twitter[1:2000]
-    writeLines(blogs, con = 'test/testData/en_US.blogs.txt')
-    writeLines(news, con = 'test/testData/en_US.news.txt')
-    writeLines(twitter, con = 'test/testData/en_US.twitter.txt')
-    rm(textData)
+    if (exists("foo", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("foo", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("bar", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("bar", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
 
+    foo <- FileCollection$new(name = 'foo', path = "./test/testData/input")
+    return(foo)
   }
 
-  test0 <- function() {
-    test <- "test0: Corpus: Instantiate"
+  test0 <- function(foo) {
+    test <- "test0: Corpus: Instantiate and Import"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Instantiate
-    train <- Corpus$new(name = 'train', desc = 'Train Corpus')
-    s <- train$exposeObject()
-    stopifnot(s$className == 'Corpus')
-    stopifnot(s$name == 'train')
-    stopifnot(s$desc == 'Train Corpus')
-    stopifnot(s$parent$getName() == 'nlpStudio')
-    stopifnot(s$path == './NLPStudio/sets/train')
-    stopifnot(length(s$documents) == 0)
+    bar <- Corpus$new(name = 'bar', x = foo)
+    b <- bar$exposeObject()
+    stopifnot(b$name == 'bar')
+    stopifnot(length(b$documents) == 3)
+
+    # Get Document content
+    documents <- bar$getDocuments()
+    stopifnot(length(documents[[1]]$read()) > 1000)
+    stopifnot(length(documents[[2]]$read()) > 1000)
+    stopifnot(length(documents[[3]]$read()) > 1000)
+
+    # Logit
+    CorpusTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized set", b$name))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(bar)
+  }
+
+  test1 <- function(bar) {
+    test <- "test1: Corpus: Add and print metadata"
+    cat(paste0("\n",test, " Commencing\n"))
+    blogsDesc <- 'Blogs Register'
+    newsDesc <- 'News Register'
+    twitterDesc <- 'Twitter Register'
+
+    bar$docMeta()
+    bar$docMeta(key = 'title', value = c("Blogs", "News", "Twitter"))
+    bar$docMeta(key = 'description', value = c(blogsDesc, newsDesc, twitterDesc))
+    bar$corpusMeta(key = "title", value = "Swiftkey Corpus")
+    bar$corpusMeta()
+    bar$metaVarNames()
 
     # Logit
     CorpusTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized set", s$name))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(train)
-  }
-
-  test1 <- function() {
-    test <- "test1: Corpus: Instantiate 2nd Corpus"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    # Instantiate
-    val <- Corpus$new(name = 'val', desc = 'val Corpus')
-    s <- val$exposeObject()
-    stopifnot(s$className == 'Corpus')
-    stopifnot(s$name == 'val')
-    stopifnot(s$desc == 'val Corpus')
-    stopifnot(s$parent$getName() == 'nlpStudio')
-    stopifnot(s$path == './NLPStudio/sets/val')
-    stopifnot(length(s$documents) == 0)
-
-    # Logit
-    CorpusTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized set", s$name))
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(val)
+    return(bar)
   }
 
   test2 <- function(train) {
@@ -140,12 +128,12 @@ testCorpus <- function() {
     return(train)
   }
 
-init()
-train <- test0()
-test <- test1()
-train <- test2(train)
-train <- test3(train)
-train <- test4(train)
+foo <<- init()
+bar <<- test0(foo)
+bar <<- test1(bar)
+# train <- test2(train)
+# train <- test3(train)
+# train <- test4(train)
 }
 className <- "Corpus"
 CorpusTest <- LogTest$new()

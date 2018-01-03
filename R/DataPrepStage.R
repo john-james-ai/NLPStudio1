@@ -30,7 +30,7 @@ Data <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..collections = list()
+    ..data = list()
   ),
 
   public = list(
@@ -42,9 +42,9 @@ Data <- R6::R6Class(
 
       private$..admin$className <- 'Data'
       private$..admin$methodName <- 'initialize'
-      private$..admin$name <- name
+      private$..name <- name
       private$..admin$path <- path
-      private$..admin$state <- paste("Data object", private$..admin$name, "instantiated.")
+      private$..admin$state <- paste("Data object", private$..name, "instantiated.")
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
@@ -55,27 +55,25 @@ Data <- R6::R6Class(
       invisible(self)
     },
 
-    getPath = function() private$..admin$path,
-
     #-------------------------------------------------------------------------#
     #                          Aggegate Methods                               #
     #-------------------------------------------------------------------------#
-    getCollections = function() private$..collections,
+    getData = function() private$..data,
 
-    addCollection = function(collection) {
-      name <- collection$getName()
-      private$..collections[[name]] <- collection
-      private$..admin$state <- paste0("Added ", class(collection)[1], " object, ",
+    addData = function(data) {
+      name <- data$getName()
+      private$..data[[name]] <- data
+      private$..admin$state <- paste0("Added ", class(data)[1], " object, ",
                                 name, ", to the data set.")
       self$logIt()
 
       invisible(self)
     },
 
-    removeCollection = function(collection) {
-      name <- collection$getName()
-      private$..collections[[name]] <- NULL
-      private$..admin$state <- paste0("Removed ", class(collection)[1], " object, ",
+    removeData = function(data) {
+      name <- data$getName()
+      private$..data[[name]] <- NULL
+      private$..admin$state <- paste0("Removed ", class(data)[1], " object, ",
                                 name, ", from the data set.")
       self$logIt()
 

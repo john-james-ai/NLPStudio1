@@ -1,18 +1,18 @@
 #==============================================================================#
-#                             DataBuilder                                      #
+#                             DataPrepStageBuilder                             #
 #==============================================================================#
-#' DataBuilder
+#' DataPrepStageBuilder
 #'
-#' \code{DataBuilder} Class responsible for building the data sets for the pipeline.
+#' \code{DataPrepStageBuilder} Class responsible for the data preparation stage of the pipeline.
 #'
 #' Class obtains the source data from external sources, creates the raw data,
 #' creates a refined data set with encoding errors corrected, splits the data
 #' into cross validation sets and creates the corpus that will be used to
 #' train the model(s)
 #'
-#' @section DataBuilder Methods:
+#' @section DataPrepStageBuilder Methods:
 #'  \describe{
-#'   \item{\code{new(name, path)}}{Instantiates a DataBuilder object and the Data object. }
+#'   \item{\code{new(name, path)}}{Instantiates a DataPrepStageBuilder object and the Data object. }
 #'   \item{\code{download(url name)}}{Downloads the data from the URL, stores the file collection and adds it to the Data object.}
 #'   \item{\code{zipFile(fc, name, zipFilePath)}}{Zips the files in the given FileCollection object, creates a new FileCollection object and stores it the designated zipFilePath.}
 #'   \item{\code{unZipFiles(fc, name, zipFiles)}}{Unzips the file in the designated FileCollection object, creates a new FileCollection object by the given name, extracts the zipFiles, stores them in the new FileCollection, and adds the FileCollection object to the Data object.}
@@ -22,7 +22,7 @@
 #'
 #' @section Parameters:
 #' @param fc FileCollection object.
-#' @param name A character string containing the name of the DataBuilder object.
+#' @param name A character string containing the name of the DataPrepStageBuilder object.
 #' @param path Character string indicating the directory location for the File Collection object.
 #' @param url Character string containing the URL from which a file collection will be downloaded.
 #' @param zipFilePath Character string containing the relative path to the zipFile.
@@ -31,60 +31,56 @@
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-DataBuilder <- R6::R6Class(
-  classname = "DataBuilder",
+DataPrepStageBuilder <- R6::R6Class(
+  classname = "DataPrepStageBuilder",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
 
   private = list(
-    ..data = list(),
-
-    parsePath = function(path) {
-
-      if (isDirectory(path)) {
-        files <- list.files(path = path, full.names = TRUE)
-      } else {
-        wildcard <- basename(path)
-        dirName <- dirname(path)
-        files <- list.files(path = dirName, pattern = wildcard, full.names = TRUE)
-      }
-
-      if (length(files) == 0) {
-        private$..admin$state <- paste0("Unable to instantiate corpus. Files not found.")
-        self$logIt('Error')
-        stop()
-      }
-      return(files)
-    }
+    ..dataPrep = list()
   ),
 
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         DataBuilder Core Methods                        #
+    #                     DataPrepStageBuilder Core Methods                   #
     #-------------------------------------------------------------------------#
-    initialize = function() {
+    initialize = function(design) {
 
-      private$..admin$className <- 'DataBuilder'
+      private$..admin$className <- 'DataPrepStageBuilder'
       private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste("DataBuilder object", private$..admin$name, "instantiated.")
+      private$..admin$state <- paste("DataPrepStageBuilder object instantiated.")
       private$..admin$logs <- LogR$new()
+      private$..name <- 'dataBuilder'
+      private$..data <- DataPrep$new(name = name, path = path)
+
+      self$logIt()
 
       invisible(self)
     },
 
-    getData = function() private$..data,
+    #-------------------------------------------------------------------------#
+    #                          Data Source Methods                            #
+    #-------------------------------------------------------------------------#
+    sourceData = function(dataSource) {
+      fc <- dataSource$execute()
+      private$..data$addData(fc)
+      private$..admin$state <- paste0("Data obtained from source")
+      self$logIt()
+      return(fc)
+    },
 
 
     #-------------------------------------------------------------------------#
     #                            Repair Method(s)                             #
     #-------------------------------------------------------------------------#
-    repair = function(fc, name, path) {
+    repair = function(inFc, outFc) {
 
       private$..admin$methodName <- 'repair'
 
-      # Confirm directory is empty
+      # Confirm outFc directory is empty
+      path <- outFc$getPath()
       if (dir.exists(path)) {
         private$..admin$state <- paste0("Unable to create new FileCollection at ",
                                   path, ". Directory is not empty.")
@@ -92,11 +88,8 @@ DataBuilder <- R6::R6Class(
         stop()
       }
 
-      # Create repaired file collection
-      newFc <- FileCollection$new(name = name, path = path)
-
       # Repair files iteratively
-      files <- fc$getFiles()
+      files <- inFc$getFiles()
       lapply(files, function(f) {
 
         # Read data
@@ -119,29 +112,55 @@ DataBuilder <- R6::R6Class(
         # Write new file
         newFile$content <- d
         newFile$write()
-        newFc$addFile(newFile)
+        outFc$addFile(newFile)
       })
 
       private$..admin$state <-  paste0("Successfully repaired ", name, ".")
       self$logIt()
 
       # Add corpus to Data object
-      private$..data[[name]] <- newFc
+      private$..data$addData(outFc)
 
-      return(newFc)
+      return(private$..data)
 
     },
 
     #-------------------------------------------------------------------------#
     #                            Reshape Method(s)                            #
     #-------------------------------------------------------------------------#
-    reshape = function(korpus) {
+    reshape = function(inFc, outFc) {
 
       private$..admin$methodName <- 'reshape'
 
-      # Reshape the corpus into sentences
-      sentCorpus <- tokens(korpus, what = 'sentence')
-      sentCorpus <- tolower(sentCorpus)
+      # Confirm outFc directory is empty
+      path <- outFc$getPath()
+      if (dir.exists(path)) {
+        private$..admin$state <- paste0("Unable to create new FileCollection at ",
+                                        path, ". Directory is not empty.")
+        self$logIt('Error')
+        stop()
+      }
+
+      # Reshape files iteratively
+      files <- inFc$getFiles()
+      lapply(files, function(f) {
+
+        # Read data
+        d <- f$read()
+
+        # Reshape Data
+        sents <- quanteda::tokens(unlist(d), what = 'sentence')
+
+        # Create new file
+        fileName <- f$getFileName()
+        filePath <- file.path(path, fileName)
+        newFile <- File$new(name = f$getName(), path = filePath)
+
+        # Write new file
+        newFile$content <- sents
+        newFile$write()
+        outFc$addFile(newFile)
+      })
 
       private$..admin$state <-  paste0("Successfully reshaped ", outFc$getName(), ".")
       private$..admin$created <- Sys.time()

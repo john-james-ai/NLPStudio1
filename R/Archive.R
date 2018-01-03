@@ -54,12 +54,12 @@ Archive <- R6::R6Class(
 
       # Instantiate variables
       private$..admin$className <- 'Archive'
-      private$..admin$name <- name
+      private$..name <- name
       private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
       private$..parent <- NLPStudio$new()$getInstance()
       private$..homeDir <- file.path(private$..parent()$getPath(), 'archive')
       private$..admin$path <- file.path(private$..homeDir, name)
-      private$..admin$state <- paste("Archive", private$..admin$name, "instantiated at", Sys.time())
+      private$..admin$state <- paste("Archive", private$..name, "instantiated at", Sys.time())
       private$..admin$logs <- LogR$new()
 
       # Validate Archive
@@ -74,7 +74,7 @@ Archive <- R6::R6Class(
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
 
@@ -90,11 +90,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Refined", private$..admin$name, "Archive.")
+      private$..admin$state <- paste("Refined", private$..name, "Archive.")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -119,11 +119,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Parsed", private$..admin$name, "using parseFast method.")
+      private$..admin$state <- paste("Parsed", private$..name, "using parseFast method.")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -171,11 +171,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Parsed", private$..admin$name, "using parseFull method.")
+      private$..admin$state <- paste("Parsed", private$..name, "using parseFull method.")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -196,11 +196,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste0("Normalized ", private$..admin$name, ".")
+      private$..admin$state <- paste0("Normalized ", private$..name, ".")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -220,11 +220,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Sanitized", private$..admin$name, "using sanitizeWord method.")
+      private$..admin$state <- paste("Sanitized", private$..name, "using sanitizeWord method.")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -239,11 +239,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Sanitized", private$..admin$name, "using sanitizeSent method.")
+      private$..admin$state <- paste("Sanitized", private$..name, "using sanitizeSent method.")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -260,11 +260,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Sanitized", private$..admin$name, "using sanitizeTag method.")
+      private$..admin$state <- paste("Sanitized", private$..name, "using sanitizeTag method.")
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       invisible(self)
 
@@ -286,11 +286,11 @@ Archive <- R6::R6Class(
 
       # Logit
       private$..admin$modified <- Sys.time()
-      private$..admin$state <- paste("Commited preprocessing of", private$..admin$name, "at", Sys.time())
+      private$..admin$state <- paste("Commited preprocessing of", private$..name, "at", Sys.time())
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..admin$name, self, envir = .GlobalEnv)
+      assign(private$..name, self, envir = .GlobalEnv)
 
       # Write to file
       self$write()
