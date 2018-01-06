@@ -13,25 +13,15 @@ Pipeline
 
 \item{path}{A chararacter string containing the relative path to the pipeline files.}
 
-\item{dataExternal}{A FileCollection object, containing external data sources}
+\item{data}{PipelineData object, containing external, raw, cross-validation sets and preprocessed data.}
 
-\item{dataRaw}{File Collection object containing raw data}
+\item{features}{PipelineFeatures object.}
 
-\item{dataPrepared}{File Collection object containing prepared data}
+\item{analyses}{PipelineAnalyses object.}
 
-\item{dataCvCorpora}{List of cross-validation Corpus objects}
+\item{model}{PipelineModel object.}
 
-\item{dataProcessed}{Processed training Corpus object}
-
-\item{featureNGram}{List of NGram Feature objects}
-
-\item{featurePOS}{Part-of-speech tagged Feature object}
-
-\item{analysis}{List of Analysis objects}
-
-\item{model}{Model object}
-
-\item{evaluation}{Model Evaluation object}
+\item{eval}{PipelineEval object.}
 }
 \description{
 \code{Pipeline} Class containing the NLP processing, analysis, and modeling pipeline.
@@ -46,37 +36,76 @@ the creation of different pipeline representations via separate
 builder classes.#'
 
 \strong{Pipeline Family of Classes Participants:}
-The Pipeline Family of classes is comprised of:
+The Pipeline Family of classes is comprised of product classes, director classes, and abstract and concrete builder classes.
+
+The Product classes include:
 \itemize{
- \item Pipeline: This class comprising the 'product' class within the family.
- \item PipelineBuilder0: Abstact class, defining the base operations and interface for the concrete builder classes.
- \item PipelineBuilderWebSourceMKN: Concrete builder class for web source corpora and the Modified Kneser Ney language model.
- \item PipelineBuilderWebSourceKFoldMKN: Concrete builder class for web source corpora, using K-Fold validation and the Modified Kneser Ney language model.
- \item PipelineBuilderWebSourceKatz: Concrete builder class for web source corpora and the Katz back-off language model.
- \item PipelineBuilderWebSourceKFoldKatz: Concrete builder class for web source corpora, using K-Fold validation and the Katz back-off language model.
- \item PipelineDirector: Constructs the Pipeline object using a concrete builder class.
+ \item Pipeline: This class comprising the final pipeline 'product' class within the family.
+ \item PipelineData: This class comprising the data pipeline within the family.
+ \item PipelineFeatures: This class comprising the feature sets within the family.
+ \item PipelineAnalyses: This class comprising the analysis objects created within the family.
+ \item PipelineModel: This class comprising the model to be evaluated within the family.
+ \item PipelineEval: This class comprising the model evaluation within the family.
+ }
+
+ The Director classes include:
+\itemize{
+ \item PipelineDirector: Class responsible for building the Pipeline product via the concrete Builder classes.
+ \item PipelineDirectorData: Class responsible for building the Data Pipeline via the concrete Builder classes.
+ \item PipelineDirectorFeatures: Class responsible for building the Feature products via the concrete Builder classes.
+ \item PipelineDirectorAnalyses: Class responsible for building the Analysis products via the concrete Builder classes.
+ \item PipelineDirectorModel: Class responsible for building the Model products via the concrete Builder classes.
+ \item PipelineDirectorEval: Class responsible for building the Model Evaluation products via the concrete Builder classes.
+ }
+
+ The Abstract Builder classes include:
+\itemize{
+ \item PipelineBuilder0: Abstract class which defines the interface for concrete PipelineBuilder subclass.
+ \item PipelineBuilderData0: Abstract class which defines the interface for concrete PipelineBuilderData subclasses.
+ \item PipelineBuilderDataProcessed0: Abstract class which defines the interface for concrete PipelineBuilderDataProcessed subclasses.
+ \item PipelineBuilderFeatures0: Abstract class which defines the interface for concrete PipelineBuilderFeatures subclasses.
+ \item PipelineBuilderAnalyses0: Abstract class which defines the interface for concrete PipelineBuilderAnalyses subclasses.
+ \item PipelineBuilderModel0: Abstract class which defines the interface for concrete PipelineBuilderModel subclasses.
+ \item PipelineBuilderEval0: Abstract class which defines the interface for concrete PipelineBuilderEval subclasses.
+ }
+
+ The Concrete Builder classes inclue:
+\itemize{
+ \item Pipeline #1: Hold-out cross validation strategy, analyzing, and modeling ngram based features for the Modified Kneser Ney (MKN) language model.
+ \item Pipeline #2: Hold-out cross validation strategy, analyzing, and modeling ngram based features for the Katz language model.
+ \item Pipeline #3: Hold-out cross validation strategy, analyzing, and modeling ngram and POS based features for the Combined language model.
+ \item Pipeline #4: K-Fold  cross validation strategy, analyzing, and modeling ngram based features for the Modified Kneser Ney (MKN) language model.
+ \item Pipeline #5: K-Fold  cross validation strategy, analyzing, and modeling ngram based features for the Katz language model.
+ \item Pipeline #6: K-Fold  cross validation strategy, analyzing, and modeling ngram and POS based features for the Combined language model.
+}
 }
 
-\strong{Pipeline Methods:}
+\section{Pipeline Methods}{
+
  \describe{
   \item{\code{new(...)}}{Creates an object of Pipeline Class}
   \item{\code{getName()}}{Returns the name of the Pipeline object.}
   \item{\code{getPath()}}{Returns the path of the Pipeline object.}
-  \item{\code{getDataExternal()}}{Returns the dataExternal object. }
-  \item{\code{getDataRaw()}}{Returns the dataRaw object. }
-  \item{\code{getDataPrepared()}}{Returns the dataPrepared object. }
-  \item{\code{getDataCvCorprea()}}{Returns the dataCvCorprea object. }
-  \item{\code{getDataProcessed()}}{Returns the dataProcessed object. }
-  \item{\code{getFeatureNGram()}}{Returns the featureNGram object. }
-  \item{\code{getFeaturePOS()}}{Returns the featurePOS object. }
-  \item{\code{getAnalysis()}}{Returns the analysis object. }
-  \item{\code{getModel()}}{Returns the model object. }
-  \item{\code{getEvaluation()}}{Returns the evaluation object. }
+  \item{\code{getData()}}{Returns the Pipeline data objects. }
+  \item{\code{getFeatures()}}{Returns the Pipeline feature objects. }
+  \item{\code{getAnalyses()}}{Returns the Pipeline analysis objects. }
+  \item{\code{getModel()}}{Returns the Pipeline model objects. }
+  \item{\code{getEval()}}{Returns the Pipeline model evaluation objects. }
   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
-  \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
+  \item{\code{logIt(level = 'Info')}}{Formats the log and calls the LogR class to log an event.}
 }
 }
 
+\section{Pipeline Parameters}{
+
+}
+
+\seealso{
+Other Pipeline classes: \code{\link{PipelineBuilder0}},
+  \code{\link{PipelineBuilderData0}},
+  \code{\link{PipelineBuilder}},
+  \code{\link{PipelineDirector}}
+}
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

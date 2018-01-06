@@ -1,9 +1,9 @@
 #==============================================================================#
-#                             PipelineBuilder0                                 #
+#                             PipelineBuilder                                  #
 #==============================================================================#
-#' PipelineBuilder0
+#' PipelineBuilder
 #'
-#' \code{PipelineBuilder0} Abstract class for the builder for the pipeline object.
+#' \code{PipelineBuilder} Concrete builder class for the pipeline object.
 #'
 #' @section Pipeline Family of Classes Overview:
 #' The Pipeline family of classes is an implementation of the builder design pattern,
@@ -63,17 +63,17 @@
 #'  \item PipelineBuilderEvalCombined: Evaluation of Combined Model.
 #' }
 #'
-#' @section PipelineBuilder0 Methods:
+#' @section PipelineBuilder Methods:
 #'  \describe{
 #'   \item{\code{new(name, path)}}{Not implemented for this abstract class.}
-#'   \item{\code{buildData(data)}}{Builds the PipelineData objects.}
-#'   \item{\code{buildFeatures(features)}}{Builds the PipelineFeature objects.}
-#'   \item{\code{buildAnalyses(analyses)}}{Builds the PipelineAnalyses objects.}
-#'   \item{\code{buildModel(model)}}{Builds the PipelineModel objects.}
-#'   \item{\code{buildEval(eval)}}{Builds the PipelineEval objects.}
-#'   \item{\code{getResult()}}{Obtains the PipelineObject and returns it to the calling environment.}
+#'   \item{\code{buildData(data)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildFeatures(features)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildAnalyses(analyses)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildModel(model)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildEval(eval)}}{Not implemented for this abstract class.}
+#'   \item{\code{getResult()}}{Not implemented for this abstract class.}
 #'   \item{\code{accept(visitor)}}{Not implemented for this abstract class.}
-#'   \item{\code{logIt(level = 'Info')}}{Not implemented for this abstract class.}
+#'   \item{\code{logIt(level = 'Info')}}{Not implemented for this abstract class. }
 #' }
 #'
 #' @section Parameters:
@@ -84,8 +84,8 @@
 #' @family Pipeline classes
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-PipelineBuilder0 <- R6::R6Class(
-  classname = "PipelineBuilder0",
+PipelineBuilder <- R6::R6Class(
+  classname = "PipelineBuilder",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
@@ -103,75 +103,61 @@ PipelineBuilder0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                     Pipeline Initialization Method                      #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path) { stop("This method is not implemented for this abstract class.") },
+    initialize = function(name, path) {
 
-    #-------------------------------------------------------------------------#
-    #                              Build Methods                              #
-    #-------------------------------------------------------------------------#
-    buildData = function(data) {
+      private$..name <- name
+      private$..path <- path
+      private$..admin$className <- "PipelineBuilder"
+      private$..admin$methodName <- "initialize"
+      private$..admin$state <- paste0("PipelineBuilder instantiated.")
+      private$..admin$logs <- LogR$new()
+      private$..admin$modified <- Sys.time()
+      private$..admin$created <- Sys.time()
+      private$..admin$accessed <- Sys.time()
 
-      private$..admin$methodName <- 'buildData'
-      private$..data <- data
-      private$..admin$state <- paste0("Added data objects to ", private$..name, " pipeline.")
+      # Validate Builder
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..admin$state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
       self$logIt()
       invisible(self)
 
-    },
-
-    buildFeatures = function(features) {
-
-      private$..admin$methodName <- 'buildFeatures'
-      private$..features <- features
-      private$..admin$state <- paste0("Added feature objects to ", private$..name, " pipeline.")
-      self$logIt()
-      invisible(self)
-
-    },
-
-    buildAnalyses = function(analyses) {
-
-      private$..admin$methodName <- 'buildAnalyses'
-      private$..analyses <- analyses
-      private$..admin$state <- paste0("Added analysis objects to ", private$..name, " pipeline.")
-      self$logIt()
-      invisible(self)
-
-    },
-
-    buildModel = function(model) {
-
-      private$..admin$methodName <- 'buildModel'
-      private$..model <- model
-      private$..admin$state <- paste0("Added model object to ", private$..name, " pipeline.")
-      self$logIt()
-      invisible(self)
-
-    },
-
-    buildEval = function(eval) {
-
-      private$..admin$methodName <- 'buildEval'
-      private$..eval <- eval
-      private$..admin$state <- paste0("Added model evaluation object to ", private$..name, " pipeline.")
-      self$logIt()
-      invisible(self)
-
-    },
-
-    getResult = function() {
-
-      private$..admin$methodName <- 'getResult'
-      private$..admin$state <- paste0("Returning result of ", private$..name, " pipeline.")
-      self$logIt()
-      return(Pipeline$new(name = private$..name, path = private$..path,
-                          data = private$..data,  features = private$..features,
-                          analyses = private$..analyses, model = private$..model,
-                          eval = private$..eval))
     },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
-    accept = function(visitor)  { stop("This method is not implemented for this abstract class. ") }
+    accept = function(visitor)  {
+      visitor$pipelineBuilder(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                           Test Methods                                  #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+
+      #TODO: Remove after testing
+
+      builder = list(
+        className = private$..admin$className,
+        methodName = private$..admin$methodName,
+        data = private$..data,
+        features = private$..features,
+        analyses = private$..analyses,
+        model = private$..model,
+        eval = private$..eval,
+        state = private$..admin$state,
+        modified = private$..admin$modified,
+        created = private$..admin$created,
+        accessed = private$..admin$accessed
+      )
+
+      return(builder)
+    }
   )
 )

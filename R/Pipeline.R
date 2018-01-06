@@ -5,56 +5,7 @@
 #'
 #' \code{Pipeline} Class containing the NLP processing, analysis, and modeling pipeline.
 #'
-#' @section Pipeline Family of Classes Overview:
-#' The Pipeline family of classes is an implementation of the builder design pattern,
-#' as described in the book "Design Patterns: Elements of Reusable
-#' Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
-#' and John Vlissides (hence Gang of Four). This builder pattern accommodates
-#' the creation of different pipeline representations via separate
-#' builder classes.#'
-#'
-#' \strong{Pipeline Family of Classes Participants:}
-#' The Pipeline Family of classes is comprised of product classes, director classes, and abstract and concrete builder classes.
-#'
-#' The Product classes include:
-#' \itemize{
-#'  \item Pipeline: This class comprising the final pipeline 'product' class within the family.
-#'  \item PipelineData: This class comprising the data pipeline within the family.
-#'  \item PipelineFeatures: This class comprising the feature sets within the family.
-#'  \item PipelineAnalyses: This class comprising the analysis objects created within the family.
-#'  \item PipelineModel: This class comprising the model to be evaluated within the family.
-#'  \item PipelineEval: This class comprising the model evaluation within the family.
-#'  }
-#'
-#'  The Director classes include:
-#' \itemize{
-#'  \item PipelineDirector: Class responsible for building the Pipeline product via the concrete Builder classes.
-#'  \item PipelineDirectorData: Class responsible for building the Data Pipeline via the concrete Builder classes.
-#'  \item PipelineDirectorFeatures: Class responsible for building the Feature products via the concrete Builder classes.
-#'  \item PipelineDirectorAnalyses: Class responsible for building the Analysis products via the concrete Builder classes.
-#'  \item PipelineDirectorModel: Class responsible for building the Model products via the concrete Builder classes.
-#'  \item PipelineDirectorEval: Class responsible for building the Model Evaluation products via the concrete Builder classes.
-#'  }
-#'
-#'  The Abstract Builder classes include:
-#' \itemize{
-#'  \item PipelineBuilder0: Abstract class which defines the interface for concrete PipelineBuilder subclass.
-#'  \item PipelineBuilderData0: Abstract class which defines the interface for concrete PipelineBuilderData subclasses.
-#'  \item PipelineBuilderFeatures0: Abstract class which defines the interface for concrete PipelineBuilderFeatures subclasses.
-#'  \item PipelineBuilderAnalyses0: Abstract class which defines the interface for concrete PipelineBuilderAnalyses subclasses.
-#'  \item PipelineBuilderModel0: Abstract class which defines the interface for concrete PipelineBuilderModel subclasses.
-#'  \item PipelineBuilderEval0: Abstract class which defines the interface for concrete PipelineBuilderEval subclasses.
-#'  }
-#'
-#'  The Concrete Builder classes inclue:
-#' \itemize{
-#'  \item Pipeline #1: Hold-out cross validation strategy, analyzing, and modeling ngram based features for the Modified Kneser Ney (MKN) language model.
-#'  \item Pipeline #2: Hold-out cross validation strategy, analyzing, and modeling ngram based features for the Katz language model.
-#'  \item Pipeline #3: Hold-out cross validation strategy, analyzing, and modeling ngram and POS based features for the Combined language model.
-#'  \item Pipeline #4: K-Fold  cross validation strategy, analyzing, and modeling ngram based features for the Modified Kneser Ney (MKN) language model.
-#'  \item Pipeline #5: K-Fold  cross validation strategy, analyzing, and modeling ngram based features for the Katz language model.
-#'  \item Pipeline #6: K-Fold  cross validation strategy, analyzing, and modeling ngram and POS based features for the Combined language model.
-#' }
+#' @template pipelineClasses
 #'
 #' @section Pipeline Methods:
 #'  \describe{

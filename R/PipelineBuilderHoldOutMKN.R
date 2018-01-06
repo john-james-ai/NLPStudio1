@@ -1,9 +1,9 @@
 #==============================================================================#
-#                             PipelineBuilder0                                 #
+#                             PipelineBuilder                                  #
 #==============================================================================#
-#' PipelineBuilder0
+#' PipelineBuilder
 #'
-#' \code{PipelineBuilder0} Abstract class for the builder for the pipeline object.
+#' \code{PipelineBuilder} Concrete builder for the pipeline object.
 #'
 #' @section Pipeline Family of Classes Overview:
 #' The Pipeline family of classes is an implementation of the builder design pattern,
@@ -38,7 +38,7 @@
 #'
 #'  The Abstract Builder classes include:
 #' \itemize{
-#'  \item PipelineBuilder0: Abstract class which defines the interface for concrete PipelineBuilder subclass.
+#'  \item PipelineBuilder: Abstract class which defines the interface for concrete PipelineBuilder subclass.
 #'  \item PipelineBuilderData0: Abstract class which defines the interface for concrete PipelineBuilderData subclasses.
 #'  \item PipelineBuilderFeatures0: Abstract class which defines the interface for concrete PipelineBuilderFeatures subclasses.
 #'  \item PipelineBuilderAnalyses0: Abstract class which defines the interface for concrete PipelineBuilderAnalyses subclasses.
@@ -46,34 +46,27 @@
 #'  \item PipelineBuilderEval0: Abstract class which defines the interface for concrete PipelineBuilderEval subclasses.
 #'  }
 #'
-#'  The Concrete Data Builder classes inclue:
+#'  The Concrete Builder classes inclue:
 #' \itemize{
-#'  \item PipelineBuilder: Builder for the full pipeline
-#'  \item PipelineBuilderDataHoldOut: Data for hold-out cross-validation method.
-#'  \item PipelineBuilderDataKFold: Data for K-Fold cross-validation method.
-#'  \item PipelineBuilderFeaturesNGrams: Unigrams, bigrams, trigrams, quadgrams, and quintgrams.
-#'  \item PipelineBuilderFeaturesNGramsPOS: Unigrams, bigrams, trigrams, quadgrams, and quintgrams and POS tags
-#'  \item PipelineBuilderAnalysesNGrams: Analyses of unigrams, bigrams, trigrams, quadgrams, and quintgrams.
-#'  \item PipelineBuilderAnalysesNGramsPOS: Analyses of unigrams, bigrams, trigrams, quadgrams, and quintgrams and POS tags
-#'  \item PipelineBuilderModelMKN: Modified Kneser Ney Model.
-#'  \item PipelineBuilderModelKatz: Katz Back-off Model.
-#'  \item PipelineBuilderModelCombined: Combined Model.
-#'  \item PipelineBuilderEvalMKN: Evaluation of Modified Kneser Ney Model.
-#'  \item PipelineBuilderEvalKatz: Evaluation of Katz Back-off Model.
-#'  \item PipelineBuilderEvalCombined: Evaluation of Combined Model.
+#'  \item Pipeline #1: Hold-out cross validation strategy, analyzing, and modeling ngram based features for the Modified Kneser Ney (MKN) language model.
+#'  \item Pipeline #2: Hold-out cross validation strategy, analyzing, and modeling ngram based features for the Katz language model.
+#'  \item Pipeline #3: Hold-out cross validation strategy, analyzing, and modeling ngram and POS based features for the Combined language model.
+#'  \item Pipeline #4: K-Fold  cross validation strategy, analyzing, and modeling ngram based features for the Modified Kneser Ney (MKN) language model.
+#'  \item Pipeline #5: K-Fold  cross validation strategy, analyzing, and modeling ngram based features for the Katz language model.
+#'  \item Pipeline #6: K-Fold  cross validation strategy, analyzing, and modeling ngram and POS based features for the Combined language model.
 #' }
 #'
-#' @section PipelineBuilder0 Methods:
+#' @section PipelineBuilder Methods:
 #'  \describe{
 #'   \item{\code{new(name, path)}}{Not implemented for this abstract class.}
-#'   \item{\code{buildData(data)}}{Builds the PipelineData objects.}
-#'   \item{\code{buildFeatures(features)}}{Builds the PipelineFeature objects.}
-#'   \item{\code{buildAnalyses(analyses)}}{Builds the PipelineAnalyses objects.}
-#'   \item{\code{buildModel(model)}}{Builds the PipelineModel objects.}
-#'   \item{\code{buildEval(eval)}}{Builds the PipelineEval objects.}
-#'   \item{\code{getResult()}}{Obtains the PipelineObject and returns it to the calling environment.}
+#'   \item{\code{buildData(data)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildFeatures(features)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildAnalyses(analyses)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildModel(model)}}{Not implemented for this abstract class.}
+#'   \item{\code{buildEval(eval)}}{Not implemented for this abstract class.}
+#'   \item{\code{getResult()}}{Not implemented for this abstract class.}
 #'   \item{\code{accept(visitor)}}{Not implemented for this abstract class.}
-#'   \item{\code{logIt(level = 'Info')}}{Not implemented for this abstract class.}
+#'   \item{\code{logIt(level = 'Info')}}{Not implemented for this abstract class. }
 #' }
 #'
 #' @section Parameters:
@@ -84,8 +77,8 @@
 #' @family Pipeline classes
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-PipelineBuilder0 <- R6::R6Class(
-  classname = "PipelineBuilder0",
+PipelineBuilder <- R6::R6Class(
+  classname = "PipelineBuilder",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
@@ -172,6 +165,32 @@ PipelineBuilder0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
-    accept = function(visitor)  { stop("This method is not implemented for this abstract class. ") }
+    accept = function(visitor)  {
+      visitor$pipelineBuilder(self)
+    },
+
+    #-------------------------------------------------------------------------#
+    #                           Test Methods                                  #
+    #-------------------------------------------------------------------------#
+    exposeObject = function() {
+
+      #TODO: Remove after testing
+
+      builder = list(
+        className = private$..admin$className,
+        methodName = private$..admin$methodName,
+        data = private$..data,
+        features = private$..features,
+        analyses = private$..analyses,
+        model = private$..model,
+        eval = private$..eval,
+        state = private$..admin$state,
+        modified = private$..admin$modified,
+        created = private$..admin$created,
+        accessed = private$..admin$accessed
+      )
+
+      return(builder)
+    }
   )
 )
