@@ -110,7 +110,7 @@ Template <- R6::R6Class(
       private$..log$entry$owner <- private$..name
       private$..log$entry$className <- "Studio"
       private$..log$entry$methodName <- "initialize"
-      private$..log$entry$path <- private$..admin$path
+      private$..log$entry$path <- private$..path
       private$..log$entry$level <- "Info"
       private$..log$entry$msg <- paste("Initialized", private$..name, "studio.")
       private$..log$entry$fieldName <- private$..name
@@ -160,7 +160,7 @@ Template <- R6::R6Class(
       o <- list(
         name <- private$..name,
         desc <- private$..desc,
-        path <- private$..admin$path,
+        path <- private$..path,
         log <- private$..log,
         created <- private$..admin$created,
         modified <- private$..admin$modified

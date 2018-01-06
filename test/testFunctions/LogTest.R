@@ -37,7 +37,7 @@ LogTest <- R6::R6Class(
     #                             Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function() {
-      private$..admin$logs <- LogR$new(private$..admin$path)
+      private$..admin$logs <- LogR$new(private$..path)
       invisible(self)
     },
 
@@ -50,7 +50,7 @@ LogTest <- R6::R6Class(
       private$..admin$logs$entry$owner <- match.call()[1]
       private$..admin$logs$entry$className <- className
       private$..admin$logs$entry$methodName <- methodName
-      private$..admin$logs$entry$path <- private$..admin$path
+      private$..admin$logs$entry$path <- private$..path
       private$..admin$logs$entry$level <- level
       private$..admin$logs$entry$msg <- msg
       private$..admin$logs$entry$fieldName <- fieldName

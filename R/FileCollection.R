@@ -42,7 +42,7 @@ FileCollection <- R6::R6Class(
 
     parseInput = function() {
 
-      path <- private$..admin$path
+      path <- private$..path
       if (isDirectory(path)) {
         files <- list.files(path, full.names = TRUE)
       } else {
@@ -64,15 +64,15 @@ FileCollection <- R6::R6Class(
       private$..admin$className <- 'FileCollection'
       private$..admin$methodName <- 'initialize'
       private$..name <- name
-      private$..admin$path <- path
+      private$..path <- path
       private$..admin$state <- paste("FileCollection object", private$..name, "instantiated.")
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
       private$..admin$accessed <- Sys.time()
 
-      if (file.exists(private$..admin$path)) {
-        files <- list.files(private$..admin$path, full.names = TRUE)
+      if (file.exists(private$..path)) {
+        files <- list.files(private$..path, full.names = TRUE)
         private$..files <- lapply(files, function(f) {
           name = tools::file_path_sans_ext(basename(f))
           File$new(name = name, path = f)
@@ -87,7 +87,7 @@ FileCollection <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                        Aggregate Methods                                #
     #-------------------------------------------------------------------------#
-    getPath = function() private$..admin$path,
+    getPath = function() private$..path,
 
     getFiles = function() private$..files,
 
@@ -207,7 +207,7 @@ FileCollection <- R6::R6Class(
       o <- list(
         className	 =  private$..admin$className ,
         name	 = 	    private$..name ,
-        path	 = 	    private$..admin$path ,
+        path	 = 	    private$..path ,
         files = private$..files,
         state	 = 	    private$..admin$state ,
         logs	 = 	    private$..admin$logs ,

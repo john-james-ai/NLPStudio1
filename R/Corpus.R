@@ -141,7 +141,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function() {
 
-      files <- list.files(private$..admin$path, full.names = TRUE)
+      files <- list.files(private$..path, full.names = TRUE)
       content <- lapply(files, function(f) {
         io <- IOFactory$new()$getIOStrategy(f)
         text <- io$read(f)
@@ -277,7 +277,7 @@ Corpus <- R6::R6Class(
 
       corpus = list(
         name = private$..name,
-        path = private$..admin$path,
+        path = private$..path,
         content = private$..content,
         locked = private$..admin$locked,
         logs = private$..admin$logs,

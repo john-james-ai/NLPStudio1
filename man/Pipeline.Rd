@@ -9,31 +9,74 @@
 Pipeline
 }
 \arguments{
-\item{name}{A character string containing the name of the Pipeline object. This variable is used in the instantiation and remove methods.}
+\item{name}{A character string containing the name of the Pipeline object.}
 
-\item{desc}{A chararacter string containing the description of the Pipeline}
+\item{path}{A chararacter string containing the relative path to the pipeline files.}
 
-\item{visitor}{An object of one of the visitor classes.}
+\item{dataExternal}{A FileCollection object, containing external data sources}
+
+\item{dataRaw}{File Collection object containing raw data}
+
+\item{dataPrepared}{File Collection object containing prepared data}
+
+\item{dataCvCorpora}{List of cross-validation Corpus objects}
+
+\item{dataProcessed}{Processed training Corpus object}
+
+\item{featureNGram}{List of NGram Feature objects}
+
+\item{featurePOS}{Part-of-speech tagged Feature object}
+
+\item{analysis}{List of Analysis objects}
+
+\item{model}{Model object}
+
+\item{evaluation}{Model Evaluation object}
 }
 \description{
 \code{Pipeline} Class containing the NLP processing, analysis, and modeling pipeline.
 }
-\details{
-The pipeline starts with the extraction of data from external sources and includes
-the establishment of the raw data sets, the cross-validation sets, data
-preprocessing, analysis, feature engineering and selection, modeling
-an model evaluation.
+\section{Pipeline Family of Classes Overview}{
+
+The Pipeline family of classes is an implementation of the builder design pattern,
+as described in the book "Design Patterns: Elements of Reusable
+Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
+and John Vlissides (hence Gang of Four). This builder pattern accommodates
+the creation of different pipeline representations via separate
+builder classes.#'
+
+\strong{Pipeline Family of Classes Participants:}
+The Pipeline Family of classes is comprised of:
+\itemize{
+ \item Pipeline: This class comprising the 'product' class within the family.
+ \item PipelineBuilder0: Abstact class, defining the base operations and interface for the concrete builder classes.
+ \item PipelineBuilderWebSourceMKN: Concrete builder class for web source corpora and the Modified Kneser Ney language model.
+ \item PipelineBuilderWebSourceKFoldMKN: Concrete builder class for web source corpora, using K-Fold validation and the Modified Kneser Ney language model.
+ \item PipelineBuilderWebSourceKatz: Concrete builder class for web source corpora and the Katz back-off language model.
+ \item PipelineBuilderWebSourceKFoldKatz: Concrete builder class for web source corpora, using K-Fold validation and the Katz back-off language model.
+ \item PipelineDirector: Constructs the Pipeline object using a concrete builder class.
+}
 
 \strong{Pipeline Methods:}
  \describe{
-  \item{\code{new(name, desc = NULL)}}{Creates an object of Pipeline Class}
-  \item{\code{desc}}{A getter/setter method allowing clients to retrieve and set the Pipeline description variable.}
+  \item{\code{new(...)}}{Creates an object of Pipeline Class}
   \item{\code{getName()}}{Returns the name of the Pipeline object.}
   \item{\code{getPath()}}{Returns the path of the Pipeline object.}
+  \item{\code{getDataExternal()}}{Returns the dataExternal object. }
+  \item{\code{getDataRaw()}}{Returns the dataRaw object. }
+  \item{\code{getDataPrepared()}}{Returns the dataPrepared object. }
+  \item{\code{getDataCvCorprea()}}{Returns the dataCvCorprea object. }
+  \item{\code{getDataProcessed()}}{Returns the dataProcessed object. }
+  \item{\code{getFeatureNGram()}}{Returns the featureNGram object. }
+  \item{\code{getFeaturePOS()}}{Returns the featurePOS object. }
+  \item{\code{getAnalysis()}}{Returns the analysis object. }
+  \item{\code{getModel()}}{Returns the model object. }
+  \item{\code{getEvaluation()}}{Returns the evaluation object. }
   \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
   \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
 }
 }
+
 \author{
 John James, \email{jjames@datasciencesalon.org}
 }

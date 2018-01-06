@@ -43,7 +43,7 @@ DataSourceWebComp <- R6::R6Class(
       private$..admin$className <- 'DataSourceWebComp'
       private$..admin$methodName <- 'initialize'
       private$..name <- name
-      private$..admin$path <- path
+      private$..path <- path
       private$..params <- params
       private$..url <- params[[1]]
       private$..zipFiles <- params[[2]]
@@ -70,10 +70,10 @@ DataSourceWebComp <- R6::R6Class(
       private$..admin$methodName = 'execute'
 
       # Designate the external download directory
-      downloadDir <- file.path(dirname(private$..admin$path), 'external')
+      downloadDir <- file.path(dirname(private$..path), 'external')
 
       # Create directories
-      dir.create(private$..admin$path, showWarnings = FALSE, recursive = TRUE)
+      dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
       dir.create(downloadDir, showWarnings = FALSE, recursive = TRUE)
 
       # Download file
@@ -88,14 +88,14 @@ DataSourceWebComp <- R6::R6Class(
 
       # Unzip Files
       files <- unzip(zipfile = filePath, overwrite = TRUE,
-                     exdir = private$..admin$path, junkpaths = TRUE,
+                     exdir = private$..path, junkpaths = TRUE,
                      files = private$..zipFiles)
 
       # Create file collection, file objects and add to file collection
-      fc <- FileCollection$new(name = private$..name, path = private$..admin$path)
+      fc <- FileCollection$new(name = private$..name, path = private$..path)
       lapply(files, function(f) {
         fileName <- basename(f)
-        path <- file.path(private$..admin$path, fileName)
+        path <- file.path(private$..path, fileName)
         file <- File$new(name = tools::file_path_sans_ext(fileName), path = path)
         file$read()
         fc$addFile(file)

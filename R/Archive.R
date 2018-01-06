@@ -58,7 +58,7 @@ Archive <- R6::R6Class(
       private$..desc <- ifelse(is.null(desc), private$..fileName, desc)
       private$..parent <- NLPStudio$new()$getInstance()
       private$..homeDir <- file.path(private$..parent()$getPath(), 'archive')
-      private$..admin$path <- file.path(private$..homeDir, name)
+      private$..path <- file.path(private$..homeDir, name)
       private$..admin$state <- paste("Archive", private$..name, "instantiated at", Sys.time())
       private$..admin$logs <- LogR$new()
 

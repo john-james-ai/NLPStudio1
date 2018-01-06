@@ -59,7 +59,7 @@ SourceDataWeb <- R6::R6Class(
       private$..admin$methodName <- 'initialize'
       private$..admin$state <- paste0("Web data sourcing initiated for ", url, ".")
       private$..name <- name
-      private$..admin$path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
+      private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
       private$..url <- url
       private$..admin$modified <- Sys.time()
       private$..admin$created <- Sys.time()
@@ -98,10 +98,10 @@ SourceDataWeb <- R6::R6Class(
       status[['code']] <- TRUE
 
       # Create download directory
-      dir.create(private$..admin$path, showWarnings = FALSE, recursive = TRUE)
+      dir.create(private$..path, showWarnings = FALSE, recursive = TRUE)
 
       # Download data
-      if (!file.exists(private$..admin$path)) {
+      if (!file.exists(private$..path)) {
         f <- FileManager$new()
         status <- f$download(private$..url, directory)
         if (status[['code']] == FALSE) {
@@ -112,7 +112,7 @@ SourceDataWeb <- R6::R6Class(
       }
 
       # Obtain file size
-      private$..size <- file.size(private$..admin$path)
+      private$..size <- file.size(private$..path)
 
 
       # LogIt
@@ -148,7 +148,7 @@ SourceDataWeb <- R6::R6Class(
         parent = private$..parent,
         url = private$..url,
         fileName = private$..fileName,
-        path	 = 	    private$..admin$path ,
+        path	 = 	    private$..path ,
         state	 = 	    private$..admin$state ,
         size = private$..size,
         logs	 = 	    private$..admin$logs ,

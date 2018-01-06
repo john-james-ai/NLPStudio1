@@ -38,7 +38,7 @@ DataSourceWeb <- R6::R6Class(
     initialize = function(name, path, params) {
 
       private$..name <- name
-      private$..admin$path <- path
+      private$..path <- path
       private$..params <- params
       private$..url <- params[[1]]
 
@@ -60,7 +60,7 @@ DataSourceWeb <- R6::R6Class(
 
       # Format file path
       fileName <- installr::file.name.from.url(url)
-      filePath <- file.path(private$..admin$path, fileName)
+      filePath <- file.path(private$..path, fileName)
 
       if (download.file(url, destfile = filePath, mode = 'wb') != 0) {
         private$..admin$state <- paste0("Unable to download ", fileName, ".")
@@ -69,7 +69,7 @@ DataSourceWeb <- R6::R6Class(
       }
 
       # Create new file collection
-      fc <- FileCollection$new(name = private$..name, path = private$..admin$path)
+      fc <- FileCollection$new(name = private$..name, path = private$..path)
 
       # Log
       private$..admin$state <- paste0("Successfully downloaded ", fileName, ". ")

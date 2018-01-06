@@ -57,9 +57,9 @@ File <- R6::R6Class(
       private$..admin$className <- 'File'
       private$..admin$methodName <- 'initialize'
       private$..name <- name
-      private$..admin$path <- path
+      private$..path <- path
       private$..fileName <- basename(path)
-      private$..io <- IOFactory$new()$getIOStrategy(private$..admin$path)
+      private$..io <- IOFactory$new()$getIOStrategy(private$..path)
       private$..admin$state <- paste("File object", private$..name, "instantiated.")
       private$..admin$logs <- LogR$new()
       private$..admin$modified <- Sys.time()
@@ -74,7 +74,7 @@ File <- R6::R6Class(
     #-------------------------------------------------------------------------#
     getFileName = function() private$..fileName,
 
-    fileInfo = function() file.info(private$..admin$path),
+    fileInfo = function() file.info(private$..path),
 
     #-------------------------------------------------------------------------#
     #                            Access Methods                               #
@@ -110,7 +110,7 @@ File <- R6::R6Class(
 
       if (is.null(io)) io <-  private$..io
 
-      private$..content <- io$read(private$..admin$path)
+      private$..content <- io$read(private$..path)
 
       # LogIt
       private$..admin$state <- paste0("Read ", private$..name, ". ")
@@ -133,7 +133,7 @@ File <- R6::R6Class(
 
       if (is.null(io)) io <- private$..io
 
-      io$write(private$..admin$path, private$..content)
+      io$write(private$..path, private$..content)
 
       # LogIt
       private$..admin$state <- paste0("Wrote ", private$..name, ". ")
@@ -157,7 +157,7 @@ File <- R6::R6Class(
         metaData = list(
           name	 = 	    private$..name ,
           fileName = private$..fileName,
-          path	 = 	    private$..admin$path ,
+          path	 = 	    private$..path ,
           state	 = 	    private$..admin$state ,
           modified	 = 	private$..admin$modified ,
           created	 = 	  private$..admin$created ,

@@ -26,10 +26,10 @@ Entity <- R6::R6Class(
 
   private = list(
     ..name = character(),
+    ..path = character(),
     ..admin = list(
       className = character(),
       methodName = character(),
-      path = character(),
       locked = FALSE,
       state = character(),
       logs = character(),
@@ -46,7 +46,7 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     getClassName = function() private$..admin$className,
     getName = function() private$..name,
-    getPath = function() private$..admin$path,
+    getPath = function() private$..path,
 
     #-------------------------------------------------------------------------#
     #                            Log Method                                   #

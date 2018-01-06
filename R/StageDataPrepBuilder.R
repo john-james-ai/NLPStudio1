@@ -1,18 +1,18 @@
 #==============================================================================#
-#                             DataPrepStageBuilder                             #
+#                             StageDataPrepBuilder                             #
 #==============================================================================#
-#' DataPrepStageBuilder
+#' StageDataPrepBuilder
 #'
-#' \code{DataPrepStageBuilder} Class responsible for the data preparation stage of the pipeline.
+#' \code{StageDataPrepBuilder} Class responsible for the data preparation stage of the pipeline.
 #'
 #' Class obtains the source data from external sources, creates the raw data,
 #' creates a refined data set with encoding errors corrected, splits the data
 #' into cross validation sets and creates the corpus that will be used to
 #' train the model(s)
 #'
-#' @section DataPrepStageBuilder Methods:
+#' @section StageDataPrepBuilder Methods:
 #'  \describe{
-#'   \item{\code{new(name, path)}}{Instantiates a DataPrepStageBuilder object and the Data object. }
+#'   \item{\code{new(name, path)}}{Instantiates a StageDataPrepBuilder object and the Data object. }
 #'   \item{\code{download(url name)}}{Downloads the data from the URL, stores the file collection and adds it to the Data object.}
 #'   \item{\code{zipFile(fc, name, zipFilePath)}}{Zips the files in the given FileCollection object, creates a new FileCollection object and stores it the designated zipFilePath.}
 #'   \item{\code{unZipFiles(fc, name, zipFiles)}}{Unzips the file in the designated FileCollection object, creates a new FileCollection object by the given name, extracts the zipFiles, stores them in the new FileCollection, and adds the FileCollection object to the Data object.}
@@ -22,7 +22,7 @@
 #'
 #' @section Parameters:
 #' @param fc FileCollection object.
-#' @param name A character string containing the name of the DataPrepStageBuilder object.
+#' @param name A character string containing the name of the StageDataPrepBuilder object.
 #' @param path Character string indicating the directory location for the File Collection object.
 #' @param url Character string containing the URL from which a file collection will be downloaded.
 #' @param zipFilePath Character string containing the relative path to the zipFile.
@@ -31,29 +31,29 @@
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
-DataPrepStageBuilder <- R6::R6Class(
-  classname = "DataPrepStageBuilder",
+StageDataPrepBuilder <- R6::R6Class(
+  classname = "StageDataPrepBuilder",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
 
   private = list(
-    ..dataPrep = list()
+    ..stage = character()
   ),
 
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                     DataPrepStageBuilder Core Methods                   #
+    #                     StageDataPrepBuilder Core Methods                   #
     #-------------------------------------------------------------------------#
-    initialize = function(design) {
+    initialize = function(name, path) {
 
-      private$..admin$className <- 'DataPrepStageBuilder'
+      private$..admin$className <- 'StageDataPrepBuilder'
       private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste("DataPrepStageBuilder object instantiated.")
+      private$..admin$state <- paste("StageDataPrepBuilder object instantiated.")
       private$..admin$logs <- LogR$new()
-      private$..name <- 'dataBuilder'
-      private$..data <- DataPrep$new(name = name, path = path)
+      private$..name <- 'stageDataPrepBuilder'
+      private$..stage <- Stage$new(name, path)
 
       self$logIt()
 
@@ -65,7 +65,7 @@ DataPrepStageBuilder <- R6::R6Class(
     #-------------------------------------------------------------------------#
     sourceData = function(dataSource) {
       fc <- dataSource$execute()
-      private$..data$addData(fc)
+      private$..stage$addObject(fc)
       private$..admin$state <- paste0("Data obtained from source")
       self$logIt()
       return(fc)
@@ -119,9 +119,9 @@ DataPrepStageBuilder <- R6::R6Class(
       self$logIt()
 
       # Add corpus to Data object
-      private$..data$addData(outFc)
+      private$..stage$addObject(outFc)
 
-      return(private$..data)
+      return(private$..stage)
 
     },
 
@@ -168,12 +168,28 @@ DataPrepStageBuilder <- R6::R6Class(
       private$..admin$accessed <- Sys.time()
 
       # Add new file collection to Data object
-      private$..data <- private$..data$addCollection(newFc)
+      private$..stage <- private$..stage$addCollection(newFc)
 
       return(newFc)
 
     },
 
+    #-------------------------------------------------------------------------#
+    #                        Cross-Validation Method                          #
+    #-------------------------------------------------------------------------#
+    cvData = function(cv) {
+      cv <- cv$execute()
+      private$..stage$addObject(fc)
+      private$..admin$state <- paste0("Data obtained from source")
+      self$logIt()
+      return(fc)
+    },
+    #-------------------------------------------------------------------------#
+    #                           Visitor Methods                               #
+    #-------------------------------------------------------------------------#
+    accept = function(visitor)  {
+      visitor$stageDataPrepBuilder(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                            Explose Object                               #
@@ -183,7 +199,7 @@ DataPrepStageBuilder <- R6::R6Class(
       o <- list(
         className	 =  private$..admin$className ,
         methodName = private$..admin$methodName,
-        data = private$..data,
+        data = private$..stage,
         state	 = 	    private$..admin$state ,
         logs	 = 	    private$..admin$logs ,
         modified	 = 	private$..admin$modified ,

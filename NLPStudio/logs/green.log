@@ -4217,3 +4217,74 @@ INFO [2018-01-01 22:38:59] Info in class 'FileCollection', method 'lock. FileCol
 INFO [2018-01-01 22:38:59] Info in class 'DataSourceWebComp', method 'execute. Successfully sourced raw.
 INFO [2018-01-01 22:38:59] Info in class 'Data', method 'initialize. Added FileCollection object, raw, to the data set.
 INFO [2018-01-01 22:38:59] Info in class 'DataBuilder', method 'initialize. Data obtained from source
+INFO [2018-01-02 21:55:01] Info in class 'FileCollection', method 'initialize. FileCollection object foo instantiated.
+INFO [2018-01-02 22:00:28] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-02 22:00:28] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-02 23:02:54] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-02 23:02:54] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-02 23:09:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-02 23:09:43] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-02 23:09:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-02 23:09:43] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-02 23:09:43] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-02 23:09:43] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 00:32:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 00:32:43] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 00:32:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 00:32:43] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 00:32:43] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 00:32:43] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 00:32:43] Info in class 'FileCollection', method 'read. Read foo. 
+INFO [2018-01-03 00:33:17] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 00:33:17] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 00:33:17] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 00:33:17] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 00:33:17] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 00:33:17] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 00:33:17] Info in class 'FileCollection', method 'read. Read foo. 
+INFO [2018-01-03 00:53:31] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 00:53:31] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 00:55:48] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 00:55:48] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 00:58:00] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 00:58:00] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 00:58:47] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 00:58:47] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 01:00:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 01:00:42] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 01:00:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 01:00:42] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 01:00:42] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 01:00:42] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 01:11:10] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 01:11:10] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 01:11:10] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 01:11:10] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 01:11:10] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 01:11:10] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 01:11:10] Info in class 'FileCollection', method 'read. Read foo. 
+INFO [2018-01-03 01:12:23] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 01:12:23] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 01:12:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 01:12:23] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 01:12:23] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 01:12:23] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 01:12:23] Info in class 'FileCollection', method 'read. Read foo. 
+INFO [2018-01-03 01:20:08] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 01:20:08] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 01:20:08] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 01:20:08] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 01:20:08] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 01:20:08] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 01:20:08] Info in class 'FileCollection', method 'read. Read foo. 
+INFO [2018-01-03 01:23:05] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-03 01:23:05] Info in class 'File', method 'read. Read en_US.blogs. 
+INFO [2018-01-03 01:23:05] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-03 01:23:05] Info in class 'File', method 'read. Read en_US.news. 
+INFO [2018-01-03 01:23:05] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-03 01:23:05] Info in class 'File', method 'read. Read en_US.twitter. 
+INFO [2018-01-03 01:23:05] Info in class 'FileCollection', method 'read. Read foo. 
+INFO [2018-01-04 00:06:54] Info in class 'StateSource', method 'initialize. Instantiated StateSource object.
+INFO [2018-01-04 00:08:16] Info in class 'StateSource', method 'initialize. Instantiated StateSource object.
+INFO [2018-01-04 00:09:54] Info in class 'StateSource', method 'initialize. Instantiated StateSource object.
+INFO [2018-01-04 00:09:54] Info in class 'Pipeline', method 'initialize. Pipeline pipeline instantiated at 2018-01-04 00:09:54

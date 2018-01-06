@@ -204,6 +204,12 @@ VValidatorInit <- R6::R6Class(
       return(private$validatePath(object))
     },
 
+    stageDataPrep = function(object) {
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      return(private$validatePath(object))
+    },
+
     dataSourceWeb = function(object) {
       return(private$validateUrl(object))
     },

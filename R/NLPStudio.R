@@ -56,12 +56,12 @@ NLPStudio <- R6::R6Class(
             private$..admin$methodName <- 'initialize'
             private$..name <- "nlpStudio"
             private$..desc <- "NLPStudio: Natural Language Processing Environment"
-            private$..admin$path <- "./NLPStudio"
+            private$..path <- "./NLPStudio"
             private$..admin$modified <- Sys.time()
             private$..admin$created <- Sys.time()
 
             # Create NLPStudio home directory
-            if (!dir.exists(private$..admin$path)) dir.create(private$..admin$path, recursive = TRUE)
+            if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
 
             # # Create logger and initialization log entry
             private$..admin$logs <- LogR$new()
@@ -82,7 +82,7 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           getName = function() private$..name,
           getClassName = function() private$..admin$className,
-          getPath = function() private$..admin$path,
+          getPath = function() private$..path,
 
           #-------------------------------------------------------------------------#
           #                           Composite Methods                             #
@@ -181,7 +181,7 @@ NLPStudio <- R6::R6Class(
               methodName = private$..admin$methodName,
               name = private$..name,
               desc = private$..desc,
-              path = private$..admin$path,
+              path = private$..path,
               pipelines = private$..pipelines,
               logs = private$..admin$logs,
               state = private$..admin$state,

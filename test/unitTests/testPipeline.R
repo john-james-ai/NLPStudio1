@@ -1,32 +1,19 @@
-testPipeline <- function(nlpStudio) {
-  init <- function(nlpStudio) {
-    # Clean up
-    if (exists("predictifyR", envir = .GlobalEnv)) rm(list = ls(envir = .GlobalEnv)[grep("predictifyR", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (!is.null(nlpStudio$getPipelines()[['predictifyR']])) nlpStudio$removePipeline(predictifyR)
+testPipeline <- function() {
+  init <- function() {
+    name <<- "pipeline"
+    path <<- "./test/testData/pipeline"
+    unlink(path, recursive = TRUE)
+    if (exists("pipeline", envir = .GlobalEnv)) rm(list = ls(envir = .GlobalEnv)[grep("pipeline", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     pipelineTests <<- LogTest$new()
-    return(nlpStudio)
   }
 
   # Test 0: Confirm instantiation of pipeline
-  test0 <- function(nlpStudio) {
+  test0 <- function() {
     test <- "test0: Pipeline Instantiation"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Test Instantiation
-    # Pipeline$new() # should fail, name is required: Success
-    predictifyR <- Pipeline$new(name = "predictifyR", "PredictifyR Pipeline")
-    nlpStudio <- nlpStudio$addPipeline(predictifyR)
-
-    # Confirm instantiation
-    l <- predictifyR$exposeObject()
-    stopifnot("Pipeline" %in% class(predictifyR))
-    stopifnot(l$name == "predictifyR")
-    stopifnot(l$desc == "PredictifyR Pipeline")
-    stopifnot(l$path == "./NLPStudio/pipelines/predictifyR")
-    stopifnot(isTRUE(all.equal(l$parent$getName(), nlpStudio$getName())))
-    stopifnot((Sys.time() - l$created) < 1)
-    stopifnot((Sys.time() - l$modified) < 1)
-    stopifnot(dir.exists("./NLPStudio/pipelines/predictifyR"))
+    # Create pipeline object
+    pipeline <- Pipeline$new(name, path)
 
     # Logit
     pipelineTests$logs(className = className, methodName = "initiate", msg = paste("Successfully created pipeline:", l$name))
