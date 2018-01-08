@@ -49,18 +49,18 @@ CVHoldOut <- R6::R6Class(
 
     initialize = function(fc, pTrain = 0.6, pVal = 0.2, pTest = 0.2, k = 10, stratified = TRUE) {
 
-      private$..admin$className <- 'CVHoldOut'
-      private$..admin$methodName <- 'initialize'
+      private$..className <- 'CVHoldOut'
+      private$..methodName <- 'initialize'
       private$..fc <- fc
       private$..pTrain = pTrain
       private$..pVal = pVal
       private$..pTest = pTest
       private$..k <- k
       private$..stratified <- stratified
-      private$..admin$created <- Sys.time()
-      private$..admin$modified <- Sys.time()
-      private$..admin$accessed <- Sys.time()
-      private$..admin$state <- paste0("Initialized CVHoldOut Class")
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+      private$..state <- paste0("Initialized CVHoldOut Class")
       self$logIt()
 
       invisible(self)
@@ -109,7 +109,7 @@ CVHoldOut <- R6::R6Class(
         private$..cv[['test']] <- content[(s2+1):length(content)]
       }
 
-      private$..admin$state <- paste0("Created Hold Out Cross Validation Sets")
+      private$..state <- paste0("Created Hold Out Cross Validation Sets")
       self$logIt()
 
       return(private$..cv)

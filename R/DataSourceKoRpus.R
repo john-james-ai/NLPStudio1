@@ -19,17 +19,16 @@ DataSourceKoRpus <- R6::R6Class(
   inherit = DataSource0,
 
   public = list(
-    initialize = function(name, dataSource) {
+    initialize = function(dataSource) {
 
-      private$..name <- name
       private$..dataSource <- dataSource
-      private$..admin$className <- 'DataSourceKoRpus'
-      private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste0("DataSourceKoRpus object instantiated.")
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
-      private$..admin$logs <- LogR$new()
+      private$..className <- 'DataSourceKoRpus'
+      private$..methodName <- 'initialize'
+      private$..state <- paste0("DataSourceKoRpus object instantiated.")
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
+      private$..logs <- LogR$new()
 
       invisible(self)
     }

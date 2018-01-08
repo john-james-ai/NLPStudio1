@@ -71,19 +71,19 @@ Corpus <- R6::R6Class(
       # Instantiate variables
       private$..name <- name
       private$..path <- path
-      private$..admin$className <- 'Corpus'
-      private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste0("Corpus, ", name, ", instantiated.")
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
-      private$..admin$logs <- LogR$new()
+      private$..className <- 'Corpus'
+      private$..methodName <- 'initialize'
+      private$..state <- paste0("Corpus, ", name, ", instantiated.")
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
+      private$..logs <- LogR$new()
 
       # Validate Corpus
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..admin$state <- status[['msg']]
+        private$..state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
@@ -101,10 +101,10 @@ Corpus <- R6::R6Class(
 
     addDocument = function(document) {
 
-      private$..admin$methodName <- 'addDocument'
+      private$..methodName <- 'addDocument'
       name <- document$getName()
       private$..documents[[name]] <- document
-      private$..admin$state <- paste0("Added ", name, " to ", private$..name)
+      private$..state <- paste0("Added ", name, " to ", private$..name)
       self$logIt()
       invisible(self)
 
@@ -112,10 +112,10 @@ Corpus <- R6::R6Class(
 
     removeDocument = function(document) {
 
-      private$..admin$methodName <- 'removeDocument'
+      private$..methodName <- 'removeDocument'
       name <- getName(document)
       private$..documents[[name]] <- NULL
-      private$..admin$state <- paste0("Removed ", name, " from ", private$..name)
+      private$..state <- paste0("Removed ", name, " from ", private$..name)
       self$logIt()
       invisible(self)
 
@@ -126,14 +126,14 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function() {
 
-      private$..admin$methodName <- "read"
+      private$..methodName <- "read"
 
       content <- lapply(private$..documents, function(d) {
         d$read()
       })
 
       # Log it
-      private$..admin$state <- paste0("Read corpus, ", private$..name, ", into memory.")
+      private$..state <- paste0("Read corpus, ", private$..name, ", into memory.")
       self$logIt()
 
       return(content)
@@ -141,14 +141,14 @@ Corpus <- R6::R6Class(
 
     write = function() {
 
-      private$..admin$methodName <- "write"
+      private$..methodName <- "write"
 
       lapply(private$..documents, function(d) {
         d$write()
       })
 
       # Log it
-      private$..admin$state <- paste0("Wrote corpus, ", private$..name, ", to disk.")
+      private$..state <- paste0("Wrote corpus, ", private$..name, ", to disk.")
       self$logIt()
 
       invisible(self)
@@ -159,7 +159,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     docMeta = function(key = NULL, value = NULL) {
 
-      private$..admin$methodName <- 'docMeta'
+      private$..methodName <- 'docMeta'
 
       # If no parameters, return meta data if available, else the metadata names
       if (is.null(key) & is.null(value)) {
@@ -214,7 +214,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     corpusMeta = function(key = NULL, value = NULL) {
 
-      private$..admin$methodName <- 'corpusMeta'
+      private$..methodName <- 'corpusMeta'
 
       if (is.null(key) & is.null(value)) {
         if (length(private$..meta$corpus) == 0) {
@@ -266,11 +266,11 @@ Corpus <- R6::R6Class(
       corpus = list(
         name = private$..name,
         path = private$..path,
-        locked = private$..admin$locked,
-        logs = private$..admin$logs,
-        state = private$..admin$state,
-        modified = private$..admin$modified,
-        created = private$..admin$created,
+        locked = private$..locked,
+        logs = private$..logs,
+        state = private$..state,
+        modified = private$..modified,
+        created = private$..created,
         documents = private$..documents,
         docMeta = self$docMeta(),
         corpusMeta = self$corpusMeta()

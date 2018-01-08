@@ -66,13 +66,13 @@ Document <- R6::R6Class(
     content = function(value = NULL) {
 
       if (missing(value)) {
-        private$..admin$accessed <- Sys.time()
+        private$..accessed <- Sys.time()
         return(private$..content)
       } else {
-        if (is.null(private$..content)) private$..admin$created <- Sys.time()
+        if (is.null(private$..content)) private$..created <- Sys.time()
         private$..content <- value
-        private$..admin$modified <- Sys.time()
-        private$..admin$accessed <- Sys.time()
+        private$..modified <- Sys.time()
+        private$..accessed <- Sys.time()
       }
     }
   ),
@@ -85,14 +85,14 @@ Document <- R6::R6Class(
     initialize = function(name, file = NULL) {
 
       # Instantiate variables
-      private$..admin$className <- 'Document'
-      private$..admin$methodName <- 'initialize'
+      private$..className <- 'Document'
+      private$..methodName <- 'initialize'
       private$..name <- name
-      private$..admin$state <- paste0("Document, ", private$..name, ", instantiated.")
-      private$..admin$logs <- LogR$new()
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
+      private$..state <- paste0("Document, ", private$..name, ", instantiated.")
+      private$..logs <- LogR$new()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
 
       # Attach File object and contents
       private$..file <- file
@@ -106,7 +106,7 @@ Document <- R6::R6Class(
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..admin$state <- status[['msg']]
+        private$..state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
@@ -126,9 +126,9 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function() {
 
-      private$..admin$methodName <- 'read'
+      private$..methodName <- 'read'
 
-      if (private$..file$fileInfo()$mtime < private$..admin$modified &
+      if (private$..file$fileInfo()$mtime < private$..modified &
           !is.null(private$..content)) {
         content <- private$..content
       } else {
@@ -136,8 +136,8 @@ Document <- R6::R6Class(
       }
 
       # LogIt
-      private$..admin$state <- paste0("Read ", private$..name, ". ")
-      private$..admin$accessed <- Sys.time()
+      private$..state <- paste0("Read ", private$..name, ". ")
+      private$..accessed <- Sys.time()
       self$logIt()
 
       return(content)
@@ -145,14 +145,14 @@ Document <- R6::R6Class(
 
     write = function() {
 
-      private$..admin$methodName <- 'write'
+      private$..methodName <- 'write'
 
       private$..file$content <- private$..content
       private$..file$write()
 
       # LogIt
-      private$..admin$state <- paste0("Wrote ", private$..name, ". ")
-      private$..admin$accessed <- Sys.time()
+      private$..state <- paste0("Wrote ", private$..name, ". ")
+      private$..accessed <- Sys.time()
       self$logIt()
 
       return(TRUE)
@@ -163,7 +163,7 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     docMeta = function(key = NULL, value = NULL) {
 
-      private$..admin$methodName <- 'meta'
+      private$..methodName <- 'meta'
 
       # If no parameters, return meta data if available, else the metadata names
       if (is.null(key) & is.null(value)) {

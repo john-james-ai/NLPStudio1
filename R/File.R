@@ -11,17 +11,14 @@
 #' @section File Methods:
 #'  \describe{
 #'   \item{\code{new()}}{Creates an object of File Class}
-#'   \item{\code{lock()}}{Makes a File read-only. }
-#'   \item{\code{unlock()}}{Opens write access on a File. }
 #'   \item{\code{read(io)}}{Reads a File.}
 #'   \item{\code{write(io, content)}}{Writes a File.}
 #'  }
 #'
 #' @section Parameters:
 #' @param io IO Object indicating the mode for reading and writing the File.
-#' @param locked Boolean indicating whether a File is locked.
 #' @param name A character string containing the name of the File object.
-#' @param path Character string indicating the relative path, including the file name,  for the File object
+#' @param path Character string indicating the relative path, including the file name, for the File object
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -30,114 +27,83 @@ File <- R6::R6Class(
   classname = "File",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = FileCollection,
+  inherit = Entity,
 
   private = list(
+    ..io  = character(),
+    ..fileName = character(),
+    ..fileSize = numeric(),
+    ..fileFormat = character(),
     ..content = character()
-  ),
-
-  active = list(
-
-    content = function(value) {
-      if (missing(value)) {
-        return(private$..content)
-      } else {
-        private$..content <- value
-      }
-    }
   ),
 
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                           File Core Methods                             #
+    #                           Instantiation Method                          #
     #-------------------------------------------------------------------------#
     initialize = function(name, path) {
 
-      private$..admin$className <- 'File'
-      private$..admin$methodName <- 'initialize'
+      private$..className <- 'File'
+      private$..methodName <- 'initialize'
       private$..name <- name
       private$..path <- path
       private$..fileName <- basename(path)
       private$..io <- IOFactory$new()$getIOStrategy(private$..path)
-      private$..admin$state <- paste("File object", private$..name, "instantiated.")
-      private$..admin$logs <- LogR$new()
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
+      private$..state <- paste("File object", private$..name, "instantiated.")
+      private$..logs <- LogR$new()
 
       invisible(self)
     },
-
-    #-------------------------------------------------------------------------#
-    #                            MetaData Methods                             #
-    #-------------------------------------------------------------------------#
-    getFileName = function() private$..fileName,
-
-    fileInfo = function() file.info(private$..path),
-
-    #-------------------------------------------------------------------------#
-    #                            Access Methods                               #
-    #-------------------------------------------------------------------------#
-    lock = function() {
-      private$..admin$methodName <- 'lock'
-
-      private$..admin$locked <- TRUE
-
-      private$..admin$state <- paste0("File object, ", private$..name, ", locked.")
-      private$..admin$modified <- Sys.time()
-      self$logIt()
-      invisible(self)
-    },
-
-    unlock = function() {
-      private$..admin$methodName <- 'lock'
-
-      private$..admin$locked <- FALSE
-
-      private$..admin$state <- paste0("File object, ", private$..name, ", unlocked.")
-      private$..admin$modified <- Sys.time()
-      self$logIt()
+    getContent = function() private$..content,
+    setContent = function(content) {
+      private$..content <- content
       invisible(self)
     },
 
     #-------------------------------------------------------------------------#
     #                               IO Methods                                #
     #-------------------------------------------------------------------------#
-    read = function(io = NULL) {
+    loadFile = function(io = NULL) {
 
-      private$..admin$methodName <- 'read'
+      private$..methodName <- 'loadFile'
 
       if (is.null(io)) io <-  private$..io
 
+      # Read content
       private$..content <- io$read(private$..path)
 
+      # Update file meta data
+      private$..fileSize <- file.size(private$..path)
+      private$..fileFormat <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(private$..fileName))
+      private$..created <- file.info(private$..path)[,'ctime']
+      private$..modified <- file.info(private$..path)[,'mtime']
+      private$..accessed <- Sys.time()
+
       # LogIt
-      private$..admin$state <- paste0("Read ", private$..name, ". ")
-      private$..admin$accessed <- Sys.time()
+      private$..state <- paste0("Loaded file ", private$..name, ". ")
       self$logIt()
 
-      return(private$..content)
+      invisible(self)
     },
 
-    write = function(io = NULL) {
+    saveFile = function(io = NULL) {
 
-      private$..admin$methodName <- 'write'
+      private$..methodName <- 'saveFile'
 
-      if (private$..admin$locked == TRUE) {
-        private$..admin$state <- paste0("Unable to write to ", private$..name,
-                                  ", the file is locked.")
-        self$logIt("Warn")
-        stop()
-      }
-
+      # Write content to file
       if (is.null(io)) io <- private$..io
-
       io$write(private$..path, private$..content)
 
+      # Update meta data
+      private$..fileSize <- file.size(private$..path)
+      private$..fileFormat <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(private$..fileName))
+      private$..created <- file.info(private$..path)[,'ctime']
+      private$..modified <- file.info(private$..path)[,'mtime']
+      private$..accessed <- file.info(private$..path)[,'atime']
+
       # LogIt
-      private$..admin$state <- paste0("Wrote ", private$..name, ". ")
-      private$..admin$accessed <- Sys.time()
+      private$..state <- paste0("Saved file ", private$..name, ". ")
       self$logIt()
 
       invisible(self)
@@ -152,20 +118,23 @@ File <- R6::R6Class(
     #-------------------------------------------------------------------------#
     exposeObject = function() {
 
-      o <- list(
-        content = private$..content,
-        metaData = list(
-          name	 = 	    private$..name ,
-          fileName = private$..fileName,
-          path	 = 	    private$..path ,
-          state	 = 	    private$..admin$state ,
-          modified	 = 	private$..admin$modified ,
-          created	 = 	  private$..admin$created ,
-          accessed	 = 	private$..admin$accessed
+      file <- list(
+        name = private$..name,
+        path = private$..path,
+        created = private$..created,
+        modified = private$..modified,
+        accessed = private$..accessed,
+        className = private$..className,
+        methodName = private$..methodName,
+        state = private$..state,
+        logs = private$..logs,
+        io = private$..io,
+        fileName = private$..fileName,
+        fileSize = private$..fileSize,
+        fileFormat = private$..fileFormat,
+        content = private$..content
         )
-      )
-      return(o)
+      return(file)
     }
-
   )
 )

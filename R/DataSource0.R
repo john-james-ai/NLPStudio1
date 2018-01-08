@@ -23,7 +23,7 @@ DataSource0 <- R6::R6Class(
   ),
 
   public = list(
-    initialize = function(name, dataSource) stop("The method is not implemented for this abstract class."),
+    initialize = function(dataSource) stop("The method is not implemented for this abstract class."),
     getDataSource = function() private$..dataSource
   )
 )

@@ -10,7 +10,13 @@
 #' \itemize{
 #'  \item Corpus: Class that contains the collection of Document objects.
 #'  \item CorpusDirector: Class responsible for building the Corpus product via the concrete Builder classes.
-#'  \item CorpusBuilderRaw: Concrete builder of raw Corpus objects.
+#'  \item CorpusBuilderRawText: Concrete builder of raw Corpus objects sourced from text sources.
+#'  \item CorpusBuilderRawCSV: Concrete builder of raw Corpus objects sourced from CSV sources.
+#'  \item CorpusBuilderRawJSON: Concrete builder of raw Corpus objects sourced from JSON sources.
+#'  \item CorpusBuilderRawXML: Concrete builder of raw Corpus objects sourced from XML sources.
+#'  \item CorpusBuilderRawQuanteda: Concrete builder of raw Corpus objects sourced Quanteda corpus objects.
+#'  \item CorpusBuilderRawTM: Concrete builder of raw Corpus objects sourced TM VCorpus  objects.
+#'  \item CorpusBuilderRawKoRpus: Concrete builder of raw Corpus objects sourced KoRpus package objects.
 #'  \item CorpusBuilderRepair: Concrete builder of repaired Corpus objects.
 #'  \item CorpusBuilderReshape: Concrete builder of reshaped Corpus objects.
 #'  \item CorpusBuilderSplitHoldOut: Concrete builder of Corpus objects split into training, validation and test sets.

@@ -24,7 +24,8 @@ CorpusBuilder0 <- R6::R6Class(
 
   private = list(
     ..corpus = character(),
-    ..dataSource = character()
+    ..dataSource = character(),
+    ..documents = character()
   ),
 
   public = list(
@@ -37,7 +38,6 @@ CorpusBuilder0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                              Build Methods                              #
     #-------------------------------------------------------------------------#
-    buildData = function() { stop("This method is not implemented for this abstract class.") },
     buildDocuments = function() { stop("This method is not implemented for this abstract class.") },
     buildCorpus = function() { stop("This method is not implemented for this abstract class.") },
     getResult = function() { stop("This method is not implemented for this abstract class.") },

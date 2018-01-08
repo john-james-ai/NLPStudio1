@@ -52,20 +52,20 @@ NLPStudio <- R6::R6Class(
           initialize = function() {
 
             # Create single instance of NLPStudio object
-            private$..admin$className <- 'NLPStudio'
-            private$..admin$methodName <- 'initialize'
+            private$..className <- 'NLPStudio'
+            private$..methodName <- 'initialize'
             private$..name <- "nlpStudio"
             private$..desc <- "NLPStudio: Natural Language Processing Environment"
             private$..path <- "./NLPStudio"
-            private$..admin$modified <- Sys.time()
-            private$..admin$created <- Sys.time()
+            private$..modified <- Sys.time()
+            private$..created <- Sys.time()
 
             # Create NLPStudio home directory
             if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
 
             # # Create logger and initialization log entry
-            private$..admin$logs <- LogR$new()
-            private$..admin$state <- paste0("Initialized NLPStudio.")
+            private$..logs <- LogR$new()
+            private$..state <- paste0("Initialized NLPStudio.")
             self$logIt()
 
             # Assign its name in the global environment
@@ -81,7 +81,7 @@ NLPStudio <- R6::R6Class(
           #                             Basic Getters                               #
           #-------------------------------------------------------------------------#
           getName = function() private$..name,
-          getClassName = function() private$..admin$className,
+          getClassName = function() private$..className,
           getPath = function() private$..path,
 
           #-------------------------------------------------------------------------#
@@ -93,13 +93,13 @@ NLPStudio <- R6::R6Class(
           addPipeline = function(pipeline) {
 
             # Update current method
-            private$..admin$methodName <- 'addPipeline'
+            private$..methodName <- 'addPipeline'
 
             # Validation
             v <- Validator$new()
             status <- v$addChild(self, pipeline)
             if (status[['code']] == FALSE) {
-              private$..admin$state <- status[['msg']]
+              private$..state <- status[['msg']]
               self$logIt(level = 'Error')
               stop()
             }
@@ -113,10 +113,10 @@ NLPStudio <- R6::R6Class(
             pipeline$parent <- self
 
             # Update modified time
-            private$..admin$modified <- Sys.time()
+            private$..modified <- Sys.time()
 
             # Save state and log Event
-            private$..admin$state <-
+            private$..state <-
               paste("Pipeline", pipelineName, "added to nlpPipelines at", Sys.time())
             self$logIt()
 
@@ -130,13 +130,13 @@ NLPStudio <- R6::R6Class(
             #TODO: Archive to archive folder then remove
 
             # Update current method
-            private$..admin$methodName <- 'removePipeline'
+            private$..methodName <- 'removePipeline'
 
             # Validation
             v <- Validator$new()
             status <- v$removeChild(self, document)
             if (status[['code']] == FALSE) {
-              private$..admin$state <- status[['msg']]
+              private$..state <- status[['msg']]
               self$logIt(level = 'Error')
               stop()
             }
@@ -155,14 +155,14 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           logIt = function(level = 'Info', fieldName = NA) {
 
-            private$..admin$logs$entry$owner <- private$..name
-            private$..admin$logs$entry$className <- private$..admin$className
-            private$..admin$logs$entry$methodName <- private$..admin$methodName
-            private$..admin$logs$entry$level <- level
-            private$..admin$logs$entry$msg <- private$..admin$state
-            private$..admin$logs$entry$fieldName <- fieldName
-            private$..admin$logs$created <- Sys.time()
-            private$..admin$logs$writeLog()
+            private$..logs$entry$owner <- private$..name
+            private$..logs$entry$className <- private$..className
+            private$..logs$entry$methodName <- private$..methodName
+            private$..logs$entry$level <- level
+            private$..logs$entry$msg <- private$..state
+            private$..logs$entry$fieldName <- fieldName
+            private$..logs$created <- Sys.time()
+            private$..logs$writeLog()
           },
 
           #-------------------------------------------------------------------------#
@@ -177,16 +177,16 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           exposeObject = function() {
             o <- list(
-              className = private$..admin$className,
-              methodName = private$..admin$methodName,
+              className = private$..className,
+              methodName = private$..methodName,
               name = private$..name,
               desc = private$..desc,
               path = private$..path,
               pipelines = private$..pipelines,
-              logs = private$..admin$logs,
-              state = private$..admin$state,
-              created = private$..admin$created,
-              modified = private$..admin$modified
+              logs = private$..logs,
+              state = private$..state,
+              created = private$..created,
+              modified = private$..modified
             )
             return(o)
           }

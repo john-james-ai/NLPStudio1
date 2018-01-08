@@ -27,16 +27,13 @@ Entity <- R6::R6Class(
   private = list(
     ..name = character(),
     ..path = character(),
-    ..admin = list(
-      className = character(),
-      methodName = character(),
-      locked = FALSE,
-      state = character(),
-      logs = character(),
-      created = character(),
-      modified = character(),
-      accessed = character()
-    )
+    ..created = character(),
+    ..modified = character(),
+    ..accessed = character(),
+    ..className = character(),
+    ..methodName = character(),
+    ..state = character(),
+    ..logs = character()
   ),
 
   public = list(
@@ -44,7 +41,7 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Basic Get  Methods                            #
     #-------------------------------------------------------------------------#
-    getClassName = function() private$..admin$className,
+    getClassName = function() private$..className,
     getName = function() private$..name,
     getPath = function() private$..path,
 
@@ -53,13 +50,13 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..admin$logs$entry$className <- private$..admin$className
-      private$..admin$logs$entry$methodName <- private$..admin$methodName
-      private$..admin$logs$entry$level <- level
-      private$..admin$logs$entry$msg <- private$..admin$state
-      private$..admin$logs$entry$fieldName <- fieldName
-      private$..admin$logs$created <- Sys.time()
-      private$..admin$logs$writeLog()
+      private$..logs$entry$className <- private$..className
+      private$..logs$entry$methodName <- private$..methodName
+      private$..logs$entry$level <- level
+      private$..logs$entry$msg <- private$..state
+      private$..logs$entry$fieldName <- fieldName
+      private$..logs$created <- Sys.time()
+      private$..logs$writeLog()
     }
   )
 )

@@ -1,6 +1,5 @@
 #' @section DataSource Family of Classes Overview:
-#' Abstract class for the data source classes. Attending sub-classes indicate
-#' the location of the data sources, and include:
+#' Abstract class for the data source classes. Attending sub-classes include:
 #' \itemize{
 #'  \item DataSourceText: Specifies a text format source or the relative path location thereto.
 #'  \item DataSourceCSV: Specifies a CSV format source or the relative path location thereto.

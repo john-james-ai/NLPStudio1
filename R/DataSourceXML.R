@@ -19,17 +19,16 @@ DataSourceXML <- R6::R6Class(
   inherit = DataSource0,
 
   public = list(
-    initialize = function(name, dataSource) {
+    initialize = function(dataSource) {
 
-      private$..name <- name
       private$..dataSource <- dataSource
-      private$..admin$className <- 'DataSourceXML'
-      private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste0("DataSourceXML object instantiated.")
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
-      private$..admin$logs <- LogR$new()
+      private$..className <- 'DataSourceXML'
+      private$..methodName <- 'initialize'
+      private$..state <- paste0("DataSourceXML object instantiated.")
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
+      private$..logs <- LogR$new()
 
       invisible(self)
     }

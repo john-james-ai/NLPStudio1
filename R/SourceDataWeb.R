@@ -55,16 +55,16 @@ SourceDataWeb <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, url, compressed = TRUE) {
 
-      private$..admin$className <- 'SourceDataWeb'
-      private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste0("Web data sourcing initiated for ", url, ".")
+      private$..className <- 'SourceDataWeb'
+      private$..methodName <- 'initialize'
+      private$..state <- paste0("Web data sourcing initiated for ", url, ".")
       private$..name <- name
       private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
       private$..url <- url
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
-      private$..admin$logs <- LogR$new()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
+      private$..logs <- LogR$new()
 
       # Validation
       status <- list()
@@ -72,7 +72,7 @@ SourceDataWeb <- R6::R6Class(
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..admin$state <- status[['msg']]
+        private$..state <- status[['msg']]
         self$logIt(level = "Error")
         stop()
       }
@@ -92,7 +92,7 @@ SourceDataWeb <- R6::R6Class(
 
     sourceData = function() {
 
-      private$..admin$methodName <- 'sourceData'
+      private$..methodName <- 'sourceData'
 
       status <- list()
       status[['code']] <- TRUE
@@ -105,19 +105,19 @@ SourceDataWeb <- R6::R6Class(
         f <- FileManager$new()
         status <- f$download(private$..url, directory)
         if (status[['code']] == FALSE) {
-          private$..admin$state <- status[['msg']]
+          private$..state <- status[['msg']]
           self$logIt(level = 'Error')
           stop()
         }
       }
 
       # Obtain file size
-      private$..size <- file.size(private$..path)
+      private$..fileSize <- file.size(private$..path)
 
 
       # LogIt
-      private$..admin$state <- paste("Sourced Corpus object", private$..name, "from the web.")
-      private$..admin$modified <- Sys.time()
+      private$..state <- paste("Sourced Corpus object", private$..name, "from the web.")
+      private$..modified <- Sys.time()
       self$logIt()
 
       # Assign its name in the global environment
@@ -142,19 +142,19 @@ SourceDataWeb <- R6::R6Class(
     exposeObject = function() {
 
       o <- list(
-        className	 =  private$..admin$className ,
-        methodName = private$..admin$methodName,
+        className	 =  private$..className ,
+        methodName = private$..methodName,
         name	 = 	    private$..name ,
         parent = private$..parent,
         url = private$..url,
         fileName = private$..fileName,
         path	 = 	    private$..path ,
-        state	 = 	    private$..admin$state ,
-        size = private$..size,
-        logs	 = 	    private$..admin$logs ,
-        modified	 = 	private$..admin$modified ,
-        created	 = 	  private$..admin$created ,
-        accessed	 = 	private$..admin$accessed
+        state	 = 	    private$..state ,
+        size = private$..fileSize,
+        logs	 = 	    private$..logs ,
+        modified	 = 	private$..modified ,
+        created	 = 	  private$..created ,
+        accessed	 = 	private$..accessed
       )
       return(o)
     }

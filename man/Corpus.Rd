@@ -9,59 +9,59 @@
 Corpus
 }
 \arguments{
-\item{field}{Character string name for a field to be added to the Document or Corpus object meta data.}
+\item{dataSource}{A DataSource or}
 
-\item{name}{A character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.}
+\item{field}{Character string name for a field to be added to the document or corpus object meta data.}
+
+\item{name}{Character string containing the name of the corpus object. This variable is used in the instantiation and remove methods.}
+
+\item{path}{Character string containing the path to the corpus object.}
 
 \item{visitor}{An object of one of the visitor classes.}
 }
 \description{
-\code{Corpus} Class that defines a corpus or collection of documents
+\code{Corpus} Class of document collections or corpora.
 }
 \details{
-Class contains a collection of text documents along with document
-transformations such as NGrams, and POS tagged documents.
+Class that contains document collections, or corpora, as well as the methods
+for reading, writing, and managing the documents therein.
 }
-\section{Corpus Core Methods}{
+\section{Methods}{
 
+\strong{Core Methods}
  \describe{
-  \item{\code{new(name, path)}}{Creates an object of Corpus Class}
-  \item{\code{getName()}}{Returns the name of the Corpus object.}
-  \item{\code{getPath()}}{Returns the path of the Corpus object.}
+  \item{\code{new(name, path, dataSource)}}{Instantiates an object of the Corpus class.}
  }
-}
 
-\section{IO Methods}{
-
+\strong{Document Methods}
  \describe{
-  \item{\code{read(io = NULL)}}{Reads a corpus into the Corpus object.}
-  \item{\code{write(io = NULL)}}{Writes a Corpus object to file.}
+  \item{\code{getDocuments()}}{Returns the Corpus Document objects.}
+  \item{\code{addDocument(document)}}{Adds a Document object to the Corpus.}
+  \item{\code{removeDocument(document)}}{Removes a Document object from the Corpus.}
  }
-}
 
-\section{Analysis Methods}{
-
+\strong{IO Methods}
  \describe{
-  \item{\code{stats()}}{Produces a data frame with basic descriptive statistics for the corpus. }
-  \item{\code{diversity}}{Produces a data frame of lexical diversity measures for the corpus.}
-  \item{\code{readability}}{Produces a data frame of readability measures for the corpus.}
+  \item{\code{read(io = NULL)}}{Reads the corpus from file.}
+  \item{\code{write(io = NULL)}}{Writes the corpus to file.}
  }
-}
 
-\section{Meta Data Methods}{
-
+\strong{Metadata Methods}
  \describe{
   \item{\code{docMeta(field)}}{Creates a document meta data field.}
   \item{\code{corpusMeta(field)}}{Creates a corpus meta data field.}
+  \item{\code{metaVarNames()}}{Prints Corpus and Document metadata variables.}
+ }
+
+\strong{Other Methods}
+ \describe{
+  \item{\code{logIt(level = 'Info')}}{Formats the log and calls the LogR class to log an event.}
+  \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
  }
 }
 
-\section{Other Methods}{
-
- \describe{
-  \item{\code{logIt(level = 'Info', fieldName = NA)}}{Formats the log and calls the LogR class to log an event.}
-  \item{\code{accept(visitor)}}{Accepts an object of the Visitor family of classes.}
- }
+\section{Parameters}{
+NA
 }
 
 \author{

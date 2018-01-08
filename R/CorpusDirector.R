@@ -58,9 +58,8 @@ PipelineDirectorData <- R6::R6Class(
       } else {
         private$..paths[['raw']] <- value
       }
-    },
-
-  )
+    }
+  ),
 
   public = list(
 
@@ -73,19 +72,19 @@ PipelineDirectorData <- R6::R6Class(
       private$..builder <- builder
       private$..dataSource <- dataSource
 
-      private$..admin$className <- 'PipelineDirectorData'
-      private$..admin$methodName <- 'initialize'
-      private$..admin$state <- paste("PipelineDirectorData", name, "instantiated at", Sys.time())
-      private$..admin$logs <- LogR$new()
-      private$..admin$modified <- Sys.time()
-      private$..admin$created <- Sys.time()
-      private$..admin$accessed <- Sys.time()
+      private$..className <- 'PipelineDirectorData'
+      private$..methodName <- 'initialize'
+      private$..state <- paste("PipelineDirectorData", name, "instantiated at", Sys.time())
+      private$..logs <- LogR$new()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
 
       # Validate Pipeline
       v <- Validator$new()
       status <- v$init(self)
       if (status[['code']] == FALSE) {
-        private$..admin$state <- status[['msg']]
+        private$..state <- status[['msg']]
         self$logIt(level = 'Error')
         stop()
       }
@@ -104,7 +103,7 @@ PipelineDirectorData <- R6::R6Class(
     #-------------------------------------------------------------------------#
     build = function() {
 
-      private$..admin$methodName <- 'build'
+      private$..methodName <- 'build'
       private$..builder$buildDataRaw()
       private$..builder$buildDataPrepared()
       private$..builder$buildDataCvCorpora()
@@ -115,7 +114,7 @@ PipelineDirectorData <- R6::R6Class(
       private$..builder$buildModel()
       private$..builder$buildEvaluation()
 
-      private$..admin$state <- paste0('Completed build of ',
+      private$..state <- paste0('Completed build of ',
                                       private$..builder$getName(), ". ")
 
       self$logIt()
@@ -138,13 +137,13 @@ PipelineDirectorData <- R6::R6Class(
       #TODO: Remove after testing
 
       director = list(
-        className = private$..admin$className,
-        methodName = private$..admin$methodName,
+        className = private$..className,
+        methodName = private$..methodName,
         builder = private$..builder,
-        state = private$..admin$state,
-        modified = private$..admin$modified,
-        created = private$..admin$created,
-        accessed = private$..admin$accessed
+        state = private$..state,
+        modified = private$..modified,
+        created = private$..created,
+        accessed = private$..accessed
       )
 
       return(director)

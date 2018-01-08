@@ -133,14 +133,14 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..admin$logs$entry$owner <- private$..name
-      private$..admin$logs$entry$className <- "Studio"
-      private$..admin$logs$entry$methodName <- match.call()[[1]]
-      private$..admin$logs$entry$level <- level
-      private$..admin$logs$entry$msg <- private$..admin$state
-      private$..admin$logs$entry$fieldName <- fieldName
-      private$..admin$logs$created <- Sys.time()
-      private$..admin$logs$writeLog()
+      private$..logs$entry$owner <- private$..name
+      private$..logs$entry$className <- "Studio"
+      private$..logs$entry$methodName <- match.call()[[1]]
+      private$..logs$entry$level <- level
+      private$..logs$entry$msg <- private$..state
+      private$..logs$entry$fieldName <- fieldName
+      private$..logs$created <- Sys.time()
+      private$..logs$writeLog()
     },
 
     #-------------------------------------------------------------------------#
@@ -148,7 +148,7 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       name <- visitor$getName()
-      private$..admin$state <- paste("Accepted visitor,", name, "at", Sys.time())
+      private$..state <- paste("Accepted visitor,", name, "at", Sys.time())
       self$logIt()
       visitor$template(self)
     },
@@ -162,8 +162,8 @@ Template <- R6::R6Class(
         desc <- private$..desc,
         path <- private$..path,
         log <- private$..log,
-        created <- private$..admin$created,
-        modified <- private$..admin$modified
+        created <- private$..created,
+        modified <- private$..modified
       )
       return(o)
     }

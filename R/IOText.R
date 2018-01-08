@@ -38,7 +38,7 @@ IOText <- R6::R6Class(
     #-------------------------------------------------------------------------#
     read = function(path) {
 
-      private$..admin$logs <- LogR$new()
+      private$..logs <- LogR$new()
 
       fileName <- basename(path)
 
@@ -46,11 +46,11 @@ IOText <- R6::R6Class(
         con <- file(path)
         on.exit(close(con))
         content <- readLines(con)
-        private$..admin$state <- paste0("Successfully read ", fileName, ".")
-        private$..admin$accessed <- Sys.time()
+        private$..state <- paste0("Successfully read ", fileName, ".")
+        private$..accessed <- Sys.time()
         self$logIt()
       } else {
-        private$..admin$state <- paste0('Unable to read ', fileName, '. ',
+        private$..state <- paste0('Unable to read ', fileName, '. ',
                                   'File does not exist.')
         self$logIt("Error")
         stop()
@@ -60,7 +60,7 @@ IOText <- R6::R6Class(
 
     write = function(path, content) {
 
-      private$..admin$logs <- LogR$new()
+      private$..logs <- LogR$new()
 
       fileName <- basename(path)
       dirName <- dirname(path)
@@ -72,12 +72,12 @@ IOText <- R6::R6Class(
       on.exit(close(con))
       writeLines(content, con)
 
-      private$..admin$state <- paste0("Successfully wrote ", fileName, ".")
+      private$..state <- paste0("Successfully wrote ", fileName, ".")
       self$logIt()
 
-      private$..admin$created <- Sys.time()
-      private$..admin$modified <- Sys.time()
-      private$..admin$accessed <- Sys.time()
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
 
       invisible(self)
     }
