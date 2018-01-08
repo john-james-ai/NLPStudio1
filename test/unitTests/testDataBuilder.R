@@ -31,7 +31,7 @@ testDataBuilder <- function() {
     params[['zipFiles']] <- c(file.path('final/en_US/en_US.blogs.txt'),
                               file.path('final/en_US/en_US.news.txt'),
                               file.path('final/en_US/en_US.twitter.txt'))
-    dataSource <- DataSourceWebComp$new(name = name, path = path, params = params)
+    dataSource <- BuildDataRawWebZip$new(name = name, path = path, params = params)
 
     # Create commands
     cSource <- CSourceData$new(builder, dataSource)

@@ -180,6 +180,35 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
+    validateBuilder = function(object) {
+      status <- list()
+      status[['code']] <- TRUE
+
+      b <- object$getBuilder()
+
+      if (!("PipelineBuilder0" %in% class(b))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid builder object. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
+      }
+      return(status)
+    },
+
+    validateDataSource = function(object) {
+      status <- list()
+      status[['code']] <- TRUE
+
+      d <- object$getDataSource()
+
+      if (!("DataSource0" %in% class(d))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid data source object. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")
+      }
+      return(status)
+    },
 
     validateStub = function(object) {
       status <- list()
@@ -204,18 +233,12 @@ VValidatorInit <- R6::R6Class(
       return(private$validatePath(object))
     },
 
-    pipelineBuilder = function(object) {
+    pipelineDirectorData = function(object) {
       if (private$validateName(object)[['code']] == FALSE)
         return(private$validateName(object))
-      return(private$validatePath(object))
-    },
-
-    dataSourceWeb = function(object) {
-      return(private$validateUrl(object))
-    },
-
-    dataSourceWebComp = function(object) {
-      return(private$validateUrl(object))
+      if (private$validateBuilder(object)[['code']] == FALSE)
+        return(private$validateBuilder(object))
+      return(private$validateDataSource(object))
     },
 
     corpus = function(object) {

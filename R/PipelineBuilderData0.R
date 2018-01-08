@@ -10,7 +10,7 @@
 #' @section PipelineBuilderData0 Methods:
 #'  \describe{
 #'   \item{\code{new(name, path)}}{Not implemented for this abstract class.}
-#'   \item{\code{buildRaw()}}{Builds the raw data from external sources, stores it in the pipeline's raw data directory, and returns it as a FileCollection object.}
+#'   \item{\code{buildDataRaw(dataSource)}}{Builds the raw corpus from external data sources. The external data source is stored in the pipeline's external data directory. The raw corpus is created, stored in the pipeline's raw data directory and the corpus object (sans the text) is retained in memory.}
 #'   \item{\code{buildRepaired()}}{Builds and repairs the raw data, stores it in the pipeline's repaired data directory, and returns it as a FileCollection object.}
 #'   \item{\code{buildCV()}}{Builds the cross-validation sets, stores them in the pipeline's cross-validation directories, and returns it as a FileCollection object.}
 #'   \item{\code{buildProcessed()}}{Builds the training set, stores it in the pipeline's cross-validation directories, and returns it as a FileCollection object.}
@@ -50,7 +50,7 @@ PipelineBuilderData0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                              Build Methods                              #
     #-------------------------------------------------------------------------#
-    buildRaw = function() { stop("This method is not implemented for this abstract class.") },
+    buildDataRaw = function() { stop("This method is not implemented for this abstract class.") },
 
 
     #-------------------------------------------------------------------------#

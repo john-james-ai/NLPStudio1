@@ -23,7 +23,7 @@
 #'
 #' @section Pipeline Parameters:
 #' @param name A character string containing the name of the Pipeline object.
-#' @param path A chararacter string containing the relative path to the pipeline files.
+#' @param path A character string containing the relative path to the pipeline files.
 #' @param data PipelineData object, containing external, raw, cross-validation sets and preprocessed data.
 #' @param features PipelineFeatures object.
 #' @param analyses PipelineAnalyses object.

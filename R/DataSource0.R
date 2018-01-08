@@ -1,38 +1,30 @@
-## ---- DataSource0
 #==============================================================================#
 #                               DataSource0                                    #
 #==============================================================================#
 #' DataSource0
 #'
+#' \code{DataSource0} Abstract class for the DataSource family of classes.
 #'
-#' \code{DataSource0} Abstract class for the DataSource classes.
+#' @template dataSourceClasses
+#' @template  dataSourceMethods
+#' @template  dataSourceParams
 #'
-#' Abstract class for the DataSource classes.
-#'
-#'
-#' @section Methods:
-#' \describe{
-#'  \item{\code{new(name, path, params)}}{Instantiates an object of one of the DataSource classes.}
-#'  \item{\code{execute()}}{Sources the data, creates the FileCollection object, and returns it to the calling environment.}
-#' }
-#'
-#' @return collection FileCollection object
+#' @return dataSource: An object of one of the DataSource classes.
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
-#' @family Data source classes
+#' @family Source data classes
 #' @export
 DataSource0 <- R6::R6Class(
   "DataSource0",
   inherit = Entity,
 
   private = list(
-    ..params = list()
+    ..dataSource = NULL
   ),
 
   public = list(
-    initialize = function(name, path, params) stop("The method is not implemented for this abstract class."),
-    execute = function() stop("The method is not implemented for this abstract class."),
-    getParams = function() private$..params
+    initialize = function(name, dataSource) stop("The method is not implemented for this abstract class."),
+    getDataSource = function() private$..dataSource
   )
 )
 

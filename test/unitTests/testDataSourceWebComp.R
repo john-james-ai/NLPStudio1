@@ -1,13 +1,13 @@
-testDataSourceWebComp <- function() {
+testBuildDataRawWebZip <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("raw", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("raw", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    DataSourceWebCompTest <<- LogTest$new()
+    BuildDataRawWebZipTest <<- LogTest$new()
   }
 
   test0 <- function() {
-    test <- "test0: DataSourceWebComp"
+    test <- "test0: BuildDataRawWebZip"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Parameters
@@ -18,13 +18,13 @@ testDataSourceWebComp <- function() {
                    "final/en_US/en_US.twitter.txt")
 
     # Validation
-    #raw <- DataSourceWebComp$new()# should fail -success
-    #raw <- DataSourceWebComp$new(name = 'raw') # should fail, no path
-    #raw <- DataSourceWebComp$new(name = 'raw', path = path) # should fail, params
-    #raw <- DataSourceWebComp$new(name = 'raw', path = path, params = newDir) # invalid URL
+    #raw <- BuildDataRawWebZip$new()# should fail -success
+    #raw <- BuildDataRawWebZip$new(name = 'raw') # should fail, no path
+    #raw <- BuildDataRawWebZip$new(name = 'raw', path = path) # should fail, params
+    #raw <- BuildDataRawWebZip$new(name = 'raw', path = path, params = newDir) # invalid URL
 
     # Instantiate
-    raw <- DataSourceWebComp$new(name = 'raw', path = path, params = params) # invalid URL
+    raw <- BuildDataRawWebZip$new(name = 'raw', path = path, params = params) # invalid URL
     raw <- raw$execute()
 
     # Check files
@@ -34,8 +34,8 @@ testDataSourceWebComp <- function() {
     stopifnot(length(r$files) == 3)
 
     # Logit
-    DataSourceWebCompTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized DataSourceWebComp"))
-    DataSourceWebCompTest$logs(className = className, methodName = "execute", msg = paste("Successfully sourced the data"))
+    BuildDataRawWebZipTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized BuildDataRawWebZip"))
+    BuildDataRawWebZipTest$logs(className = className, methodName = "execute", msg = paste("Successfully sourced the data"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(raw)
@@ -44,5 +44,5 @@ testDataSourceWebComp <- function() {
 init()
 raw <<- test0()
 }
-className <- "DataSourceWebComp"
-testDataSourceWebComp()
+className <- "BuildDataRawWebZip"
+testBuildDataRawWebZip()
