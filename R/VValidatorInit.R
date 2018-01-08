@@ -242,7 +242,9 @@ VValidatorInit <- R6::R6Class(
     },
 
     corpus = function(object) {
-      return(private$validateName(object))
+      if (private$validateName(object)[['code']] == FALSE)
+        return(private$validateName(object))
+      return(private$validatePath(object))
     },
 
     document = function(object) {
