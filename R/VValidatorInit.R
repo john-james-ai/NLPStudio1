@@ -248,9 +248,7 @@ VValidatorInit <- R6::R6Class(
     },
 
     document = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      return(private$validateFile(object))
+      return(private$validateStub(object))
     }
   )
 )

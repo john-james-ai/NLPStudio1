@@ -4324,3 +4324,6 @@ INFO [2018-01-08 18:39:10] Info in class '', method '. Successfully read en_US.b
 INFO [2018-01-08 18:39:10] Info in class 'File', method 'loadFile. Loaded file blogs. 
 INFO [2018-01-08 18:39:10] Info in class '', method '. Successfully wrote en_US.blogs.txt.
 INFO [2018-01-08 18:39:10] Info in class 'File', method 'saveFile. Saved file blogs. 
+INFO [2018-01-08 19:25:29] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-08 20:02:02] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-08 23:00:14] Info in class 'Document', method 'initialize. Document, blogs, instantiated.

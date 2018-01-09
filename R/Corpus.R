@@ -266,7 +266,6 @@ Corpus <- R6::R6Class(
       corpus = list(
         name = private$..name,
         path = private$..path,
-        locked = private$..locked,
         logs = private$..logs,
         state = private$..state,
         modified = private$..modified,
