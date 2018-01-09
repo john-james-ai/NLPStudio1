@@ -55,47 +55,10 @@ Document <- R6::R6Class(
   classname = "Document",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Meta,
+  inherit = Document0,
 
   private = list(
-    ..content = list(),
-    ..file = character(),
-
-    setFile = function(file = NULL) {
-
-      if (is.null(private$..file) & is.null(file)) {
-        private$..state <- paste0("File object is missing ",
-                                  "with no default. See ?", private$..className,
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
-
-      if (!is.null(file)) {
-        private$..validateFile(file)
-        private$.file <- file
-      }
-    },
-
-    validateFile = function(file = NULL) {
-
-      if (is.null(file)) {
-        private$..state <- paste0("File object is missing ",
-                                  "with no default. See ?", private$..className,
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
-
-      if (class(file)[1] != "File") {
-        private$..state <- paste0("Unable to read file. File parameter is not ",
-                                  "a valid File object. See ?", private$..className,
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
-    }
-
+    ..content = list()
   ),
 
   active = list(
@@ -109,16 +72,6 @@ Document <- R6::R6Class(
         private$..content <- value
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
-      }
-    },
-
-    file = function(value) {
-      if (missing(value)) {
-        private$..accessed <- Sys.time()
-        return(private$..file)
-      } else {
-        private$..validateFile(value)
-        private$..file <- value
       }
     }
   ),
@@ -140,29 +93,17 @@ Document <- R6::R6Class(
       private$..created <- Sys.time()
       private$..accessed <- Sys.time()
 
-      # Validate Document
-      v <- Validator$new()
-      status <- v$init(self)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
-
       # Create log entry
       self$logIt()
 
       invisible(self)
     },
 
-    getFile = function() private$..file,
-
     #-------------------------------------------------------------------------#
     #                             Content Methods                             #
     #-------------------------------------------------------------------------#
     setContent = function(content) {
 
-      if (is.null(private$..content)) private$..created <- Sys.time()
       private$..content <- content
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
@@ -179,68 +120,57 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    readFile = function(file = NULL) {
+    read = function(path, io = NULL) {
 
       private$..methodName <- 'read'
 
-      private$..setFile(file)
-      private$..content <- private$..file$loadFile()$getContent()
-      private$..file$flush()
+      # Validation
+      private$..path <- private$validatePath(path)
+      io <- private$validateIO(io)
+
+      # Read content
+      private$..content <- io$read(path)
+
+      # Update file meta data
+      private$..fileSize <- file.size(path)
+      private$..format <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
+      private$..created <- file.info(path)[,'ctime']
+      private$..modified <- file.info(path)[,'mtime']
+      private$..accessed <- Sys.time()
 
       # LogIt
       private$..state <- paste0("Read ", private$..name, ". ")
-      private$..accessed <- Sys.time()
       self$logIt()
 
       return(private$..content)
     },
 
-    writeFile = function(file = NULL, content = NULL) {
+    write = function(path, io = NULL, content = NULL) {
 
       private$..methodName <- 'write'
 
-      if (is.null(content)) content <- private$..content
+      # Validation
+      private$..path <- path
+      io <- private$validateIO(io)
+      private$..content <- private$validateContent(content)
 
-      private$..setFile(file)
-      private$..file$setContent(content)$saveFile()
+      # Write data
+      io$write(path, private$..content)
+
+      # Update file meta data
+      private$..fileSize <- file.size(path)
+      private$..format <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
+      private$..created <- file.info(path)[,'ctime']
+      private$..modified <- file.info(path)[,'mtime']
+      private$..accessed <- Sys.time()
 
       # LogIt
       private$..state <- paste0("Wrote ", private$..name, ". ")
-      private$..accessed <- Sys.time()
       self$logIt()
 
       invisible(self)
     },
 
-    #-------------------------------------------------------------------------#
-    #                         Meta Data Methods                               #
-    #-------------------------------------------------------------------------#
-    docMeta = function(key = NULL, value = NULL) {
-
-      private$..methodName <- 'meta'
-
-      # If no parameters, return meta data if available, else the metadata names
-      if (is.null(key) & is.null(value)) {
-        meta <- Filter(Negate(is.null), private$..meta$document)
-        if (length(meta) == 0) {
-          return(names(private$..meta$document))
-        } else {
-          return(as.data.frame(meta))
-        }
-      }
-
-      if (is.null(key)) {
-        key <- names(value)
-      }
-
-      if (is.null(key)) {
-        key <- paste("docMeta", seq_len(ncol(as.data.frame(value))),
-                     sep = "")
-      }
-
-      private$..meta$document[[key]] <- value
-      invisible(self)
-    },
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
@@ -255,7 +185,7 @@ Document <- R6::R6Class(
     exposeObject = function() {
       document <- list(
         name = private$..name,
-        docMeta = self$docMeta(),
+        meta = self$meta(),
         content = private$..content,
         state = private$..state,
         created = private$..created,

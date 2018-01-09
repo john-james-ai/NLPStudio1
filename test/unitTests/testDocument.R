@@ -3,7 +3,10 @@ testDocument <- function() {
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    DocumentTest <<- LogTest$new()
+    blogTxt <- readLines("./test/testData/hc/en_US.blogs.txt")
+    newsTxt <- readLines("./test/testData/hc/en_US.news.txt")
+    twitterTxt <- readLines("./test/testData/hc/en_US.twitter.txt")
+    DocumentTest <- LogTest$new()
   }
 
   test0 <- function() {
@@ -29,24 +32,18 @@ testDocument <- function() {
     test <- "test1: Document: Read/Write Metadata"
     cat(paste0("\n",test, " Commencing\n"))
 
-    blogs <- blogs$docMeta(key = "contributor", value = "Joe Jons")
-    blogs <- blogs$docMeta(key = "coverage", value = "USA")
-    blogs <- blogs$docMeta(key = "creator", value = "Deff Freadley")
-    blogs <- blogs$docMeta(key = "date", value = "43091")
-    blogs <- blogs$docMeta(key = "description", value = "Blogs Document")
-    blogs <- blogs$docMeta(key = "format", value = "txt")
-    blogs <- blogs$docMeta(key = "identifier", value = "232")
-    blogs <- blogs$docMeta(key = "language", value = "en")
-    blogs <- blogs$docMeta(key = "publisher", value = "house")
-    blogs <- blogs$docMeta(key = "relation", value = "sis")
-    blogs <- blogs$docMeta(key = "rights", value = "none")
-    blogs <- blogs$docMeta(key = "source", value = "hc")
-    blogs <- blogs$docMeta(key = "subject", value = "blogs")
-    blogs <- blogs$docMeta(key = "title", value = "Blogs Document")
-    blogs <- blogs$docMeta(key = "type", value = "document")
+    blogs <- blogs$meta(key = "title", value = "Blogs")
+    blogs <- blogs$meta(key = "subject", value = "Technology Blogs")
+    blogs <- blogs$meta(key = "description", value = "Blogs about technology and business")
+    blogs <- blogs$meta(key = "language", value = "en")
+    blogs <- blogs$meta(key = "creator", value = "Hans Christensen")
+    blogs <- blogs$meta(key = "dateCreated", value = "12/22/2014")
+    blogs <- blogs$meta(key = "source", value = "www.hc.com")
+    blogs <- blogs$meta(key = "format", value = "txt")
+
 
     # Test
-    print(blogs$docMeta())
+    print(blogs$meta())
 
     # Logit
     DocumentTest$logs(className = className, methodName = "metadata", msg = paste("Successfully updated meta data on a document"))
@@ -61,24 +58,20 @@ testDocument <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Add content via active binding
-    blogs$content <- blogsContent2
+    blogs$content <- blogTxt
     bc3 <- blogs$content
-    stopifnot(blogsContent2 == bc3)
+    stopifnot(blogTxt == bc3)
 
     # Add content via method
-    blogs <- blogs$setContent(blogsBin)
+    blogs <- blogs$setContent(newsTxt)
     bb <- blogs$getContent()
-    stopifnot(bb == blogsBin)
-
-
-    # Write Content
-    blogs <- blogs$write()
-
-    # Read content
-    bContent <- blogs$read()
+    stopifnot(bb == newsTxt)
 
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully added content to document"))
+    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully obtained content from document"))
+    DocumentTest$logs(className = className, methodName = "setContent", msg = paste("Successfully added content to document"))
+    DocumentTest$logs(className = className, methodName = "getContent", msg = paste("Successfully obtained content from document"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -89,9 +82,23 @@ testDocument <- function() {
     test <- "Test3: Document: Read File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    rm(blogs)
-    daller <- Document$new(name = 'daller', file = txtFile)
-    stopifnot(length(blogs$content) > 1000)
+    blogsTxt <- blogs$read(path = './test/testData/hc/en_US.blogs.txt')
+    blogsBin <- blogs$read(path = './test/testData/hc/en_US.blogs.txt', io = IOBin$new())
+
+    # Logit
+    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(blogs)
+  }
+
+  test4 <- function(blogs) {
+    test <- "Test4: Document: Write File"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    blogs1 <- blogs$write(path = './test/testData/output/en_US.blogs.txt', content = blogTxt)
+    blogs2 <- blogs$write(path = './test/testData/hc/en_US.blogs.bin', io = IOBin$new(), content = blogsBin)
 
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))

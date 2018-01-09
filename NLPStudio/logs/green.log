@@ -4327,3 +4327,29 @@ INFO [2018-01-08 18:39:10] Info in class 'File', method 'saveFile. Saved file bl
 INFO [2018-01-08 19:25:29] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
 INFO [2018-01-08 20:02:02] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
 INFO [2018-01-08 23:00:14] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-09 00:58:48] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-09 01:00:17] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-09 01:01:17] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-09 01:07:59] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-09 01:07:59] Info in class 'Document', method 'read. Read blogs. 
+INFO [2018-01-09 01:09:33] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-09 01:09:33] Info in class 'Document', method 'read. Read blogs. 
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'content. Successfully obtained content from document
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'setContent. Successfully added content to document
+INFO [2018-01-09 01:15:46] Info in class 'Document', method 'getContent. Successfully obtained content from document
+INFO [2018-01-09 01:15:55] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-09 01:15:55] Info in class 'Document', method 'read. Read blogs. 
+INFO [2018-01-09 01:15:56] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-09 01:15:56] Info in class 'Document', method 'read. Read blogs. 
+INFO [2018-01-09 01:15:56] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2018-01-09 01:21:14] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-09 01:21:50] Info in class '', method '. Successfully wrote en_US.blogs.txt.
+INFO [2018-01-09 01:21:52] Info in class 'Document', method 'write. Wrote blogs. 
+INFO [2018-01-09 01:22:54] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-09 01:22:54] Info in class 'Document', method 'read. Read blogs. 
+INFO [2018-01-09 01:23:03] Info in class '', method '. Successfully wrote en_US.blogs.bin.
+INFO [2018-01-09 01:23:03] Info in class 'Document', method 'write. Wrote blogs. 

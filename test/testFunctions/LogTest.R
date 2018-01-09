@@ -25,10 +25,8 @@ LogTest <- R6::R6Class(
   lock_class = TRUE,
 
   private = list(
-    ..admin = list(
-      path = "./test/logs",
-      logs = character()
-    )
+    ..path = "./test/logs",
+    ..logs = character()
   ),
 
   public = list(

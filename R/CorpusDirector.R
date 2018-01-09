@@ -18,7 +18,7 @@
 #' @section PipelineDirectorData Methods:
 #'  \describe{
 #'   \item{\code{new(builder)}}{Creates a document meta data field.}
-#'   \item{\code{corpusMeta(field)}}{Creates a corpus meta data field.}
+#'   \item{\code{corpusDocument0(field)}}{Creates a corpus meta data field.}
 #'   }
 #'
 #' @section PipelineDirectorData Parameters:

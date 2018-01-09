@@ -1,12 +1,12 @@
 #==============================================================================#
-#                                   VValidatorMeta                             #
+#                                   VValidatorDocument0                             #
 #==============================================================================#
-#' VValidatorMeta
+#' VValidatorDocument0
 #'
 #'
-#' \code{VValidatorMeta} Visitor class responsible for validating the assignment and removal of members from classes.
+#' \code{VValidatorDocument0} Visitor class responsible for validating the assignment and removal of members from classes.
 #'
-#' @section VValidatorMeta Methods:
+#' @section VValidatorDocument0 Methods:
 #'  \describe{
 #'   \item{\code{pipeline(object, request)}}{Method for validating a request to add a member to the Pipeline class.}
 #'   \item{\code{corpus(object, request)}}{Method for validating a request to add a member to the Corpus class.}
@@ -20,15 +20,15 @@
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Validation Visitor Classes
 #' @export
-VValidatorMeta <- R6::R6Class(
-  classname = "VValidatorMeta",
+VValidatorDocument0 <- R6::R6Class(
+  classname = "VValidatorDocument0",
   inherit = VValidator,
   lock_objects = FALSE,
   lock_class = FALSE,
 
   private = list(
 
-    ..name = 'VValidatorMeta',
+    ..name = 'VValidatorDocument0',
     ..classes = c('character()', 'numeric()'),
     ..request = list(),
 

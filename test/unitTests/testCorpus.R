@@ -42,8 +42,8 @@ testCorpus <- function() {
     bar$docMeta()
     bar$docMeta(key = 'title', value = c("Blogs", "News", "Twitter"))
     bar$docMeta(key = 'description', value = c(blogsDesc, newsDesc, twitterDesc))
-    bar$corpusMeta(key = "title", value = "Swiftkey Corpus")
-    bar$corpusMeta()
+    bar$corpusDocument0(key = "title", value = "Swiftkey Corpus")
+    bar$corpusDocument0()
     bar$metaVarNames()
 
     # Logit

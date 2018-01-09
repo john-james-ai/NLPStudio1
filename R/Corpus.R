@@ -27,10 +27,10 @@
 #'   \item{\code{write(io = NULL)}}{Writes the corpus to file.}
 #'  }
 #'
-#' \strong{Metadata Methods}
+#' \strong{Document0data Methods}
 #'  \describe{
 #'   \item{\code{docMeta(field)}}{Creates a document meta data field.}
-#'   \item{\code{corpusMeta(field)}}{Creates a corpus meta data field.}
+#'   \item{\code{corpusDocument0(field)}}{Creates a corpus meta data field.}
 #'   \item{\code{metaVarNames()}}{Prints Corpus and Document metadata variables.}
 #'  }
 #'
@@ -55,7 +55,7 @@ Corpus <- R6::R6Class(
   classname = "Corpus",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Meta,
+  inherit = Document0,
 
   private = list(
     ..documents = list()
@@ -155,7 +155,7 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                       Document MetaData Methods                         #
+    #                       Document Document0Data Methods                         #
     #-------------------------------------------------------------------------#
     docMeta = function(key = NULL, value = NULL) {
 
@@ -210,11 +210,11 @@ Corpus <- R6::R6Class(
 
 
     #-------------------------------------------------------------------------#
-    #                         Corpus MetaData Methods                        #
+    #                         Corpus Document0Data Methods                        #
     #-------------------------------------------------------------------------#
-    corpusMeta = function(key = NULL, value = NULL) {
+    corpusDocument0 = function(key = NULL, value = NULL) {
 
-      private$..methodName <- 'corpusMeta'
+      private$..methodName <- 'corpusDocument0'
 
       if (is.null(key) & is.null(value)) {
         if (length(private$..meta$corpus) == 0) {
@@ -230,7 +230,7 @@ Corpus <- R6::R6Class(
       }
 
       if (is.null(key)) {
-        key <- paste("corpusMeta", seq_len(ncol(as.data.frame(value))),
+        key <- paste("corpusDocument0", seq_len(ncol(as.data.frame(value))),
                      sep = "")
       }
 
@@ -240,7 +240,7 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #               MetaData Description and Summary Methods                  #
+    #               Document0Data Description and Summary Methods                  #
     #-------------------------------------------------------------------------#
     metaVarNames = function() {
       cat("\nCorpus metadata variable names:\n")
@@ -272,7 +272,7 @@ Corpus <- R6::R6Class(
         created = private$..created,
         documents = private$..documents,
         docMeta = self$docMeta(),
-        corpusMeta = self$corpusMeta()
+        corpusDocument0 = self$corpusDocument0()
       )
 
       return(corpus)

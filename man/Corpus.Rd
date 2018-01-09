@@ -46,10 +46,10 @@ for reading, writing, and managing the documents therein.
   \item{\code{write(io = NULL)}}{Writes the corpus to file.}
  }
 
-\strong{Metadata Methods}
+\strong{Document0data Methods}
  \describe{
   \item{\code{docMeta(field)}}{Creates a document meta data field.}
-  \item{\code{corpusMeta(field)}}{Creates a corpus meta data field.}
+  \item{\code{corpusDocument0(field)}}{Creates a corpus meta data field.}
   \item{\code{metaVarNames()}}{Prints Corpus and Document metadata variables.}
  }
 
