@@ -46,9 +46,9 @@ PipelineDirectorData <- R6::R6Class(
   active = list(
     rawName = function(value) {
       if (missing(value)) {
-        private$..names[['raw']]
+        private$..meta[["name"]]
       } else {
-        private$..names[['raw']] <- value
+        private$..meta[["name"]]  <- value
       }
     },
 
@@ -76,9 +76,9 @@ PipelineDirectorData <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..state <- paste("PipelineDirectorData", name, "instantiated at", Sys.time())
       private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
 
       # Validate Pipeline
       v <- Validator$new()
@@ -141,9 +141,9 @@ PipelineDirectorData <- R6::R6Class(
         methodName = private$..methodName,
         builder = private$..builder,
         state = private$..state,
-        modified = private$..modified,
-        created = private$..created,
-        accessed = private$..accessed
+        modified = private$..meta[["modified"]],
+        created = private$..meta[["created"]],
+        accessed = private$..meta[["accessed"]]
       )
 
       return(director)

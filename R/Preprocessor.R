@@ -38,12 +38,12 @@ Preprocessor <- R6::R6Class(
     initialize = function(name) {
       private$..className <- 'Preprocessor'
       private$..methodName <- 'initialize'
-      private$..name <- name
+      private$..meta[["name"]] <- name
       private$..state <- "Object of the Preprocessor class initialized"
       private$..logs <- LogR$new()
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
 
       # Log it
       self$logIt()
@@ -225,7 +225,7 @@ Preprocessor <- R6::R6Class(
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..logs$entry$owner <- private$..name
+      private$..logs$entry$owner <- private$..meta[["name"]]
       private$..logs$entry$className <- private$..className
       private$..logs$entry$methodName <- private$..methodName
       private$..logs$entry$level <- level

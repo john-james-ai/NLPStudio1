@@ -28,7 +28,7 @@ Validator0 <- R6::R6Class(
   ),
   public = list(
     initialize = function() stop("The initialization method is not implemented for this abstract class."),
-    getName = function() private$..name
+    getName = function() private$..meta[["name"]]
   )
 )
 

@@ -25,9 +25,9 @@ DataSourceText <- R6::R6Class(
       private$..className <- 'DataSourceText'
       private$..methodName <- 'initialize'
       private$..state <- paste0("DataSourceText object instantiated.")
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
 
       invisible(self)

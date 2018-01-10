@@ -33,16 +33,6 @@ Document0 <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..meta = list(
-      title = NULL,
-      subject = NULL,
-      description  = NULL,
-      language = NULL,
-      creator  = NULL,
-      dateCreated = NULL,
-      source  = NULL,
-      format  = NULL
-    ),
 
     validatePath = function(path) {
 
@@ -97,14 +87,10 @@ Document0 <- R6::R6Class(
 
       private$..methodName <- 'meta'
 
-      # If no parameters, return meta data if available, else the metadata names
+      # Return meta data
       if (is.null(key) & is.null(value)) {
         m <- Filter(Negate(is.null), private$..meta)
-        if (length(m) == 0) {
-          return(names(private$..meta))
-        } else {
-          return(as.data.frame(m))
-        }
+        return(as.data.frame(m))
       }
 
       private$..meta[[key]] <- value

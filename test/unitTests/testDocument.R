@@ -3,10 +3,10 @@ testDocument <- function() {
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    blogTxt <- readLines("./test/testData/hc/en_US.blogs.txt")
-    newsTxt <- readLines("./test/testData/hc/en_US.news.txt")
-    twitterTxt <- readLines("./test/testData/hc/en_US.twitter.txt")
-    DocumentTest <- LogTest$new()
+    blogsTxt <- readLines("./test/testData/input/en_US.blogs.txt")
+    newsTxt <- readLines("./test/testData/input/en_US.news.txt")
+    twitterTxt <- readLines("./test/testData/input/en_US.twitter.txt")
+    DocumentTest <<- LogTest$new()
   }
 
   test0 <- function() {
@@ -57,10 +57,14 @@ testDocument <- function() {
     test <- "test2: Document: Get / Set  content"
     cat(paste0("\n",test, " Commencing\n"))
 
+    # Get data
+    blogsTxt <- blogs$load(path = './test/testData/input/en_US.blogs.txt')$getContent()
+    newsTxt <- blogs$load(path = './test/testData/input/en_US.news.txt')$getContent()
+
     # Add content via active binding
-    blogs$content <- blogTxt
+    blogs$content <- blogsTxt
     bc3 <- blogs$content
-    stopifnot(blogTxt == bc3)
+    stopifnot(blogsTxt == bc3)
 
     # Add content via method
     blogs <- blogs$setContent(newsTxt)
@@ -82,8 +86,8 @@ testDocument <- function() {
     test <- "Test3: Document: Read File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    blogsTxt <- blogs$read(path = './test/testData/hc/en_US.blogs.txt')
-    blogsBin <- blogs$read(path = './test/testData/hc/en_US.blogs.txt', io = IOBin$new())
+    blogsTxt <- blogs$load(path = './test/testData/input/en_US.blogs.txt')
+    blogsBin <- blogs$load(path = './test/testData/input/en_US.blogs.txt', io = IOBin$new())
 
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
@@ -97,8 +101,8 @@ testDocument <- function() {
     test <- "Test4: Document: Write File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    blogs1 <- blogs$write(path = './test/testData/output/en_US.blogs.txt', content = blogTxt)
-    blogs2 <- blogs$write(path = './test/testData/hc/en_US.blogs.bin', io = IOBin$new(), content = blogsBin)
+    blogs1 <- blogs$save(path = './test/testData/output/en_US.blogs.txt', content = blogsTxt)
+    blogs2 <- blogs$save(path = './test/testData/input/en_US.blogs.bin', io = IOBin$new(), content = blogsBin)
 
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))

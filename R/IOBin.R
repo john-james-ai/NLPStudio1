@@ -46,7 +46,7 @@ IOBin <- R6::R6Class(
       if (file.exists(path)) {
         content <- readBin(path, raw(), file.info(path)$size)
         private$..state <- paste0("Successfully read ", fileName, ".")
-        private$..accessed <- Sys.time()
+        private$..meta[["accessed"]] <- Sys.time()
         self$logIt()
       } else {
         private$..state <- paste0('Unable to read ', fileName, '. ',
@@ -73,9 +73,9 @@ IOBin <- R6::R6Class(
       private$..state <- paste0("Successfully wrote ", fileName, ".")
       self$logIt()
 
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
 
       invisible(self)
     }

@@ -35,9 +35,9 @@ CorpusBuilderRawText <- R6::R6Class(
       private$..className <- 'CorpusBuilderRawText'
       private$..methodName <- 'initialize'
       private$..state <- paste0("CorpusBuilderRawText object instantiated.")
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
 
       invisible(self)

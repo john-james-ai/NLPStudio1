@@ -54,11 +54,11 @@ NLPStudio <- R6::R6Class(
             # Create single instance of NLPStudio object
             private$..className <- 'NLPStudio'
             private$..methodName <- 'initialize'
-            private$..name <- "nlpStudio"
+            private$..meta[["name"]] <- "nlpStudio"
             private$..desc <- "NLPStudio: Natural Language Processing Environment"
             private$..path <- "./NLPStudio"
-            private$..modified <- Sys.time()
-            private$..created <- Sys.time()
+            private$..meta[["modified"]] <- Sys.time()
+            private$..meta[["created"]] <- Sys.time()
 
             # Create NLPStudio home directory
             if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
@@ -69,7 +69,7 @@ NLPStudio <- R6::R6Class(
             self$logIt()
 
             # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
+            assign(private$..meta[["name"]], self, envir = .GlobalEnv)
             invisible(self)
           },
 
@@ -80,7 +80,7 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           #                             Basic Getters                               #
           #-------------------------------------------------------------------------#
-          getName = function() private$..name,
+          getName = function() private$..meta[["name"]],
           getClassName = function() private$..className,
           getPath = function() private$..path,
 
@@ -113,7 +113,7 @@ NLPStudio <- R6::R6Class(
             pipeline$parent <- self
 
             # Update modified time
-            private$..modified <- Sys.time()
+            private$..meta[["modified"]] <- Sys.time()
 
             # Save state and log Event
             private$..state <-
@@ -121,7 +121,7 @@ NLPStudio <- R6::R6Class(
             self$logIt()
 
             # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
+            assign(private$..meta[["name"]], self, envir = .GlobalEnv)
             invisible(self)
 
           },
@@ -145,7 +145,7 @@ NLPStudio <- R6::R6Class(
             if (!is.null(private$..pipelines[[name]]))  private..pipelines[[name]] <- NULL
 
             # Assign its name in the global environment
-            assign(private$..name, self, envir = .GlobalEnv)
+            assign(private$..meta[["name"]], self, envir = .GlobalEnv)
             invisible(self)
 
           },
@@ -155,7 +155,7 @@ NLPStudio <- R6::R6Class(
           #-------------------------------------------------------------------------#
           logIt = function(level = 'Info', fieldName = NA) {
 
-            private$..logs$entry$owner <- private$..name
+            private$..logs$entry$owner <- private$..meta[["name"]]
             private$..logs$entry$className <- private$..className
             private$..logs$entry$methodName <- private$..methodName
             private$..logs$entry$level <- level
@@ -179,14 +179,14 @@ NLPStudio <- R6::R6Class(
             o <- list(
               className = private$..className,
               methodName = private$..methodName,
-              name = private$..name,
+              name = private$..meta[["name"]],
               desc = private$..desc,
               path = private$..path,
               pipelines = private$..pipelines,
               logs = private$..logs,
               state = private$..state,
-              created = private$..created,
-              modified = private$..modified
+              created = private$..meta[["created"]],
+              modified = private$..meta[["modified"]]
             )
             return(o)
           }

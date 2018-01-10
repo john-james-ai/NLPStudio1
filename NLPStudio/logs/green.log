@@ -4554,3 +4554,181 @@ INFO [2018-01-09 22:06:55] Info in class 'Corpus', method 'initialize. Successfu
 INFO [2018-01-09 22:06:55] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
 INFO [2018-01-09 22:06:55] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
 INFO [2018-01-09 22:06:55] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:35:22] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:35:45] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:35:45] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:35:45] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:39:07] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:39:07] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:39:07] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:39:51] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:39:51] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:39:51] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:40:43] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:40:43] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:40:44] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:40:53] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:40:53] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:40:53] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:44:07] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:44:07] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:44:08] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:44:34] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:44:34] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:44:34] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:44:34] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:44:34] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:45:05] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:45:05] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:45:05] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:45:05] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:45:05] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:45:32] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:45:32] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:45:32] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:45:32] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:45:32] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:46:22] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:46:22] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:46:22] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:46:22] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:46:22] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:47:17] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:47:17] Info in class 'Document', method 'initialize. Successfully initialized document
+INFO [2018-01-10 00:47:17] Info in class 'Document', method 'metadata. Successfully updated meta data on a document
+INFO [2018-01-10 00:47:17] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:47:17] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:47:18] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'content. Successfully added content to document
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'content. Successfully obtained content from document
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'setContent. Successfully added content to document
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'getContent. Successfully obtained content from document
+INFO [2018-01-10 00:47:18] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:47:18] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:47:18] Info in class 'Document', method 'content. Successfully instantiated document with file
+INFO [2018-01-10 00:48:56] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:48:56] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:48:56] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:48:56] Info in class 'Document', method 'initialize. Document, news, instantiated.
+INFO [2018-01-10 00:48:56] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 00:48:56] Info in class 'Document', method 'load. Read news. 
+INFO [2018-01-10 00:48:56] Info in class 'Document', method 'initialize. Document, twitter, instantiated.
+INFO [2018-01-10 00:48:56] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 00:48:56] Info in class 'Document', method 'load. Read twitter. 
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'initialize. Corpus, stanford, instantiated.
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'removeDocument. Removed blogs from stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'removeDocument. Removed news from stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'removeDocument. Removed twitter from stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:48:56] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:51:27] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:51:27] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:51:27] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:51:27] Info in class 'Document', method 'initialize. Document, news, instantiated.
+INFO [2018-01-10 00:51:27] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 00:51:27] Info in class 'Document', method 'load. Read news. 
+INFO [2018-01-10 00:51:27] Info in class 'Document', method 'initialize. Document, twitter, instantiated.
+INFO [2018-01-10 00:51:27] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 00:51:27] Info in class 'Document', method 'load. Read twitter. 
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'initialize. Corpus, stanford, instantiated.
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'removeDocument. Removed blogs from stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'removeDocument. Removed news from stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'removeDocument. Removed twitter from stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:51:27] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:51:28] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:51:28] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:51:28] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:51:46] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:51:46] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:51:46] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:51:46] Info in class 'Document', method 'initialize. Document, news, instantiated.
+INFO [2018-01-10 00:51:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 00:51:46] Info in class 'Document', method 'load. Read news. 
+INFO [2018-01-10 00:51:46] Info in class 'Document', method 'initialize. Document, twitter, instantiated.
+INFO [2018-01-10 00:51:46] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 00:51:46] Info in class 'Document', method 'load. Read twitter. 
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'initialize. Corpus, stanford, instantiated.
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'removeDocument. Removed blogs from stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'removeDocument. Removed news from stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'removeDocument. Removed twitter from stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:51:46] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:52:31] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:52:31] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:52:31] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:52:31] Info in class 'Document', method 'initialize. Document, news, instantiated.
+INFO [2018-01-10 00:52:31] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 00:52:31] Info in class 'Document', method 'load. Read news. 
+INFO [2018-01-10 00:52:31] Info in class 'Document', method 'initialize. Document, twitter, instantiated.
+INFO [2018-01-10 00:52:31] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 00:52:31] Info in class 'Document', method 'load. Read twitter. 
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'initialize. Corpus, stanford, instantiated.
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'removeDocument. Removed blogs from stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'removeDocument. Removed news from stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'removeDocument. Removed twitter from stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:52:31] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:52:52] Info in class 'Document', method 'initialize. Document, blogs, instantiated.
+INFO [2018-01-10 00:52:52] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 00:52:52] Info in class 'Document', method 'load. Read blogs. 
+INFO [2018-01-10 00:52:53] Info in class 'Document', method 'initialize. Document, news, instantiated.
+INFO [2018-01-10 00:52:53] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 00:52:53] Info in class 'Document', method 'load. Read news. 
+INFO [2018-01-10 00:52:53] Info in class 'Document', method 'initialize. Document, twitter, instantiated.
+INFO [2018-01-10 00:52:53] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 00:52:53] Info in class 'Document', method 'load. Read twitter. 
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'initialize. Corpus, stanford, instantiated.
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'removeDocument. Removed blogs from stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'removeDocument. Removed news from stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'removeDocument. Removed twitter from stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Added blogs to stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Added news to stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Added twitter to stanford
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'initialize. Successfully instantiated Corpus object
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
+INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects

@@ -69,13 +69,13 @@ Corpus <- R6::R6Class(
     initialize = function(name) {
 
       # Instantiate variables
-      private$..name <- name
+      private$..meta[["name"]] <- name
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..state <- paste0("Corpus, ", name, ", instantiated.")
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
 
       # Create log entry
@@ -105,7 +105,7 @@ Corpus <- R6::R6Class(
       private$..methodName <- 'addDocument'
       name <- document$getName()
       private$..documents[[name]] <- document
-      private$..state <- paste0("Added ", name, " to ", private$..name)
+      private$..state <- paste0("Added ", name, " to ", private$..meta[["name"]])
       self$logIt()
       invisible(self)
 
@@ -127,7 +127,7 @@ Corpus <- R6::R6Class(
       private$..methodName <- 'removeDocument'
       name <- document$getName()
       private$..documents[[name]] <- NULL
-      private$..state <- paste0("Removed ", name, " from ", private$..name)
+      private$..state <- paste0("Removed ", name, " from ", private$..meta[["name"]])
       self$logIt()
       invisible(self)
 
@@ -140,7 +140,7 @@ Corpus <- R6::R6Class(
       content <- lapply(private$..documents, function(d) {
         d$getContent()
       })
-      private$..accessed <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       return(content)
     },
 
@@ -214,12 +214,12 @@ Corpus <- R6::R6Class(
       #TODO: Remove after testing
 
       corpus = list(
-        name = private$..name,
+        name = private$..meta[["name"]],
         path = private$..path,
         logs = private$..logs,
         state = private$..state,
-        modified = private$..modified,
-        created = private$..created,
+        modified = private$..meta[["modified"]],
+        created = private$..meta[["created"]],
         documents = private$..documents,
         docMeta = self$docMeta(),
         corpusDocument0 = self$corpusDocument0()

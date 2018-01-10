@@ -25,11 +25,7 @@ Entity <- R6::R6Class(
   lock_class = FALSE,
 
   private = list(
-    ..name = character(),
-    ..path = character(),
-    ..created = character(),
-    ..modified = character(),
-    ..accessed = character(),
+    ..meta = list(),
     ..className = character(),
     ..methodName = character(),
     ..state = character(),
@@ -42,7 +38,7 @@ Entity <- R6::R6Class(
     #                           Basic Get  Methods                            #
     #-------------------------------------------------------------------------#
     getClassName = function() private$..className,
-    getName = function() private$..name,
+    getName = function() private$..meta[["name"]],
     getPath = function() private$..path,
 
     #-------------------------------------------------------------------------#

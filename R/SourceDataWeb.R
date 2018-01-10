@@ -58,12 +58,12 @@ SourceDataWeb <- R6::R6Class(
       private$..className <- 'SourceDataWeb'
       private$..methodName <- 'initialize'
       private$..state <- paste0("Web data sourcing initiated for ", url, ".")
-      private$..name <- name
+      private$..meta[["name"]] <- name
       private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
       private$..url <- url
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
 
       # Validation
@@ -84,7 +84,7 @@ SourceDataWeb <- R6::R6Class(
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
+      assign(private$..meta[["name"]], self, envir = .GlobalEnv)
 
       invisible(self)
 
@@ -116,12 +116,12 @@ SourceDataWeb <- R6::R6Class(
 
 
       # LogIt
-      private$..state <- paste("Sourced Corpus object", private$..name, "from the web.")
-      private$..modified <- Sys.time()
+      private$..state <- paste("Sourced Corpus object", private$..meta[["name"]], "from the web.")
+      private$..meta[["modified"]] <- Sys.time()
       self$logIt()
 
       # Assign its name in the global environment
-      assign(private$..name, self, envir = .GlobalEnv)
+      assign(private$..meta[["name"]], self, envir = .GlobalEnv)
 
       invisible(self)
     },
@@ -144,7 +144,7 @@ SourceDataWeb <- R6::R6Class(
       o <- list(
         className	 =  private$..className ,
         methodName = private$..methodName,
-        name	 = 	    private$..name ,
+        name	 = 	    private$..meta[["name"]] ,
         parent = private$..parent,
         url = private$..url,
         fileName = private$..fileName,
@@ -152,9 +152,9 @@ SourceDataWeb <- R6::R6Class(
         state	 = 	    private$..state ,
         size = private$..fileSize,
         logs	 = 	    private$..logs ,
-        modified	 = 	private$..modified ,
-        created	 = 	  private$..created ,
-        accessed	 = 	private$..accessed
+        modified	 = 	private$..meta[["modified"]] ,
+        created	 = 	  private$..meta[["created"]] ,
+        accessed	 = 	private$..meta[["accessed"]]
       )
       return(o)
     }

@@ -78,9 +78,28 @@ testCorpus <- function() {
     return(stanford)
   }
 
+
+  test1 <- function(stanford) {
+    test <- "test0: Corpus: Document Metadata"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    print(stanford$docMeta())
+    stanford <- stanford$docMeta(key = "Title", value = c("Blogs", "News", "Twitter"))
+    print(stanford$docMeta())
+
+    # Logit
+    CorpusTest$logs(className = className, methodName = "initialize", msg = paste("Successfully instantiated Corpus object"))
+    CorpusTest$logs(className = className, methodName = "addDocument", msg = paste("Successfully added Documents to Corpus object"))
+    CorpusTest$logs(className = className, methodName = "getDocuments", msg = paste("Successfully obtained Document objects"))
+    CorpusTest$logs(className = className, methodName = "removeDocument", msg = paste("Successfully removed a Document objects"))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(stanford)
+  }
   #TODO: Test meta data
 init()
 stanford <<- test0()
+stanford <<- test1(stanford)
 
 }
 className <- "Corpus"

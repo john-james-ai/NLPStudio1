@@ -107,13 +107,13 @@ Template <- R6::R6Class(
 
       # Create logger and initialization log entry
       private$..log <- LogR$new()
-      private$..log$entry$owner <- private$..name
+      private$..log$entry$owner <- private$..meta[["name"]]
       private$..log$entry$className <- "Studio"
       private$..log$entry$methodName <- "initialize"
       private$..log$entry$path <- private$..path
       private$..log$entry$level <- "Info"
-      private$..log$entry$msg <- paste("Initialized", private$..name, "studio.")
-      private$..log$entry$fieldName <- private$..name
+      private$..log$entry$msg <- paste("Initialized", private$..meta[["name"]], "studio.")
+      private$..log$entry$fieldName <- private$..meta[["name"]]
       private$..log$entry$created <- Sys.time()
       private$..log$writeLog()
 
@@ -124,7 +124,7 @@ Template <- R6::R6Class(
     },
 
     getName = function() {
-      return(private$..name)
+      return(private$..meta[["name"]])
     },
 
 
@@ -133,7 +133,7 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     logIt = function(level = 'Info', fieldName = NA) {
 
-      private$..logs$entry$owner <- private$..name
+      private$..logs$entry$owner <- private$..meta[["name"]]
       private$..logs$entry$className <- "Studio"
       private$..logs$entry$methodName <- match.call()[[1]]
       private$..logs$entry$level <- level
@@ -158,12 +158,12 @@ Template <- R6::R6Class(
     #-------------------------------------------------------------------------#
     exposeObject = function() {
       o <- list(
-        name <- private$..name,
+        name <- private$..meta[["name"]],
         desc <- private$..desc,
         path <- private$..path,
         log <- private$..log,
-        created <- private$..created,
-        modified <- private$..modified
+        created <- private$..meta[["created"]],
+        modified <- private$..meta[["modified"]]
       )
       return(o)
     }
