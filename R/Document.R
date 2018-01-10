@@ -5,43 +5,33 @@
 #'
 #' \code{Document} Class containing the data and methods for corpus documents
 #'
-#' Defines the object and behavior of the Document object, a composite of
-#' the Corpus class.
+#' Defines the object and behavior of the Document object, a leaf component
+#' of Corpus composite class.
 #'
-#' @section Document core methods:
+#' @template documentClasses
+#'
+#' @section Document methods:
+#' \strong{Core Methods:}
 #'  \itemize{
 #'   \item{\code{new()}}{Method for instantiating a document. Not implemented for the abstract class.}
 #'   \item{\code{getName()}}{Method that returns the name of the Document object. }
-#'   \item{\code{getFileName()}}{Method for obtaining the document file name. .}
-#'   \item{\code{getPath()}}{Method for obtaining the document path. }
+#'   \item{\code{setContent(content)}}{Method that sets the content of the Document object. }
+#'   \item{\code{getContent()}}{Method that returns the content of the Document object. }
 #'  }
 #'
-#' @section Document getter/setter methods:
+#' \strong{IO Methods:}
 #'  \itemize{
-#'   \item{\code{desc()}}{Method for setting or retrieving the Document object description.}
+#'   \item{\code{read(path, io = NULL)}}{Reads document content from a source designated by the path parameter. }
+#'   \item{\code{write(path, io = NULL, content = NULL)}}{Method for writing a document. }
 #'  }
 #'
-#'  @section Document IO methods:
-#'  \itemize{
-#'   \item{\code{getContent()}}{Method for obtaining the document content.}
-#'   \item{\code{addContent(content)}}{Method for adding content to a document.}
-#'   \item{\code{read(io)}}{Method for reading a document. }
-#'   \item{\code{write(io)}}{Method for writing a document. }
-#'  }
-#'
-#' @section Document aggregation method:
-#'  \itemize{
-#'   \item{\code{setParent(parent)}}{Sets the parent Corpus object. }
-#'  }
-#'
-#'
-#' @section Other methods:
+#' \strong{Other Methods:}
 #'  \itemize{
 #'   \item{\code{accept(visitor)}}{Accepts a visitor object. Not implemented for this abstract class}
 #'   \item{\code{logIt(level = 'Info')}}{Logs events relating to the document.}
 #'  }
 #'
-#'
+#' @section Parameters:
 #' @param name Character string indicating the file path for a document
 #' @param path Character string indicating the path to the docment file.
 #' @param parent Corpus object to which the document is composed.
@@ -120,18 +110,34 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(path, io = NULL) {
+    load = function(path, io = NULL) {
 
-      private$..methodName <- 'read'
+      private$..methodName <- 'load'
 
-      # Validation
-      private$..path <- private$validatePath(path)
-      io <- private$validateIO(io)
+      # Validation Path
+      status <- private$validatePath(path)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt("Error")
+        stop()
+      }
+
+      # Validate/instantiate IO
+      if (is.null(io)) {
+        io <- IOFactory$new(path)$getIOStrategy()
+      } else {
+        status <- private$validateIO(io)
+        if (status[['code']] == FALSE) {
+          private$..state <- status[['msg']]
+          self$logIt("Error")
+          stop()
+        }
+      }
 
       # Read content
       private$..content <- io$read(path)
 
-      # Update file meta data
+      # Format document file meta data
       private$..fileSize <- file.size(path)
       private$..format <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
       private$..created <- file.info(path)[,'ctime']
@@ -142,17 +148,40 @@ Document <- R6::R6Class(
       private$..state <- paste0("Read ", private$..name, ". ")
       self$logIt()
 
-      return(private$..content)
+      invisible(self)
     },
 
-    write = function(path, io = NULL, content = NULL) {
+    save = function(path, io = NULL) {
 
-      private$..methodName <- 'write'
+      private$..methodName <- 'save'
 
-      # Validation
-      private$..path <- path
-      io <- private$validateIO(io)
-      private$..content <- private$validateContent(content)
+      # Validation Path
+      status <- private$validatePath(path)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt("Error")
+        stop()
+      }
+
+      # Validate/instantiate IO
+      if (is.null(io)) {
+        io <- IOFactory$new(path)$getIOStrategy()
+      } else {
+        status <- private$validateIO(io)
+        if (status[['code']] == FALSE) {
+          private$..state <- status[['msg']]
+          self$logIt("Error")
+          stop()
+        }
+      }
+
+      # Validate content
+      if (is.null(private$..content)) {
+        private$..state <- paste0("Unable to save document. Content is NULL. ",
+                                  "See ?", class(self)[1], "for further assistance.")
+        self$logIt("Error")
+        stop()
+      }
 
       # Write data
       io$write(path, private$..content)

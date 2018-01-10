@@ -27,18 +27,23 @@ IOFactory <- R6::R6Class(
   lock_class = FALSE,
   lock_objects = FALSE,
 
+  private = list(
+    ..path = character()
+  ),
+
   public = list(
 
     #-------------------------------------------------------------------------#
     #                      Object Creation and Read                           #
     #-------------------------------------------------------------------------#
-    initialize = function() {
+    initialize = function(path) {
+      private$..path <- path
       invisible(self)
     },
 
-    getIOStrategy = function(path) {
+    getIOStrategy = function() {
 
-      type <- tolower(tools::file_ext(path))
+      type <- tolower(tools::file_ext(private$..path))
 
       io <- switch(type,
                    txt = IOText$new(),

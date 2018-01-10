@@ -64,13 +64,12 @@ Corpus <- R6::R6Class(
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                         Corpus Instantiation                           #
+    #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path) {
+    initialize = function(name) {
 
       # Instantiate variables
       private$..name <- name
-      private$..path <- path
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..state <- paste0("Corpus, ", name, ", instantiated.")
@@ -78,15 +77,6 @@ Corpus <- R6::R6Class(
       private$..created <- Sys.time()
       private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
-
-      # Validate Corpus
-      v <- Validator$new()
-      status <- v$init(self)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt(level = 'Error')
-        stop()
-      }
 
       # Create log entry
       self$logIt()
@@ -102,6 +92,17 @@ Corpus <- R6::R6Class(
     addDocument = function(document) {
 
       private$..methodName <- 'addDocument'
+
+      if (!("Document" %in% class(document))) {
+        private$..state <- paste0("Unable to add document. Document parameter ",
+                                  "is not a valid Document class object. ",
+                                  "See ?", class(self)[1], " for further ",
+                                  "assistance.")
+        self$logIt("Error")
+        stop()
+      }
+
+      private$..methodName <- 'addDocument'
       name <- document$getName()
       private$..documents[[name]] <- document
       private$..state <- paste0("Added ", name, " to ", private$..name)
@@ -112,8 +113,19 @@ Corpus <- R6::R6Class(
 
     removeDocument = function(document) {
 
+      private$..methodName <- "removeDocument"
+
+      if (!("Document" %in% class(document))) {
+        private$..state <- paste0("Unable to remove document. Document parameter ",
+                                  "is not a valid Document class object. ",
+                                  "See ?", class(self)[1], " for further ",
+                                  "assistance.")
+        self$logIt("Error")
+        stop()
+      }
+
       private$..methodName <- 'removeDocument'
-      name <- getName(document)
+      name <- document$getName()
       private$..documents[[name]] <- NULL
       private$..state <- paste0("Removed ", name, " from ", private$..name)
       self$logIt()
@@ -122,40 +134,18 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                              IO Methods                                 #
+    #                            Content Methods                              #
     #-------------------------------------------------------------------------#
-    read = function() {
-
-      private$..methodName <- "read"
-
+    getContent = function() {
       content <- lapply(private$..documents, function(d) {
-        d$read()
+        d$getContent()
       })
-
-      # Log it
-      private$..state <- paste0("Read corpus, ", private$..name, ", into memory.")
-      self$logIt()
-
+      private$..accessed <- Sys.time()
       return(content)
     },
 
-    write = function() {
-
-      private$..methodName <- "write"
-
-      lapply(private$..documents, function(d) {
-        d$write()
-      })
-
-      # Log it
-      private$..state <- paste0("Wrote corpus, ", private$..name, ", to disk.")
-      self$logIt()
-
-      invisible(self)
-    },
-
     #-------------------------------------------------------------------------#
-    #                       Document Document0Data Methods                         #
+    #                          Metadata Methods                               #
     #-------------------------------------------------------------------------#
     docMeta = function(key = NULL, value = NULL) {
 
@@ -164,14 +154,7 @@ Corpus <- R6::R6Class(
       # If no parameters, return meta data if available, else the metadata names
       if (is.null(key) & is.null(value)) {
         meta <- rbindlist(lapply(private$..documents, function(d) {
-          m <- d$docMeta()
-          if (class(m)[[1]] == 'data.frame') {
-            m <- as.list(m)
-          } else {
-            m <- as.list(d$getName())
-            names(m) <- 'Name'
-          }
-          m
+          m <- as.list(d$meta())
         }))
         return(meta)
       }
@@ -202,51 +185,18 @@ Corpus <- R6::R6Class(
       if (length(key) == 1) key <- rep(key, length(value))
 
       lapply(seq_along(value), function(m) {
-        private$..documents[[m]]$docMeta(key = key[[m]], value = value[[m]])
+        private$..documents[[m]]$meta(key = key[[m]], value = value[[m]])
       })
 
       invisible(self)
     },
 
-
     #-------------------------------------------------------------------------#
-    #                         Corpus Document0Data Methods                        #
-    #-------------------------------------------------------------------------#
-    corpusDocument0 = function(key = NULL, value = NULL) {
-
-      private$..methodName <- 'corpusDocument0'
-
-      if (is.null(key) & is.null(value)) {
-        if (length(private$..meta$corpus) == 0) {
-          return(names(private$..meta$corpus))
-        } else {
-          meta <- Filter(Negate(is.null), private$..meta$corpus)
-          return(as.data.frame(meta))
-        }
-      }
-
-      if (is.null(key)) {
-        key <- names(value)
-      }
-
-      if (is.null(key)) {
-        key <- paste("corpusDocument0", seq_len(ncol(as.data.frame(value))),
-                     sep = "")
-      }
-
-      private$..meta$corpus[[key]] <- value
-
-      invisible(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #               Document0Data Description and Summary Methods                  #
+    #               Metadata Description and Summary Methods                  #
     #-------------------------------------------------------------------------#
     metaVarNames = function() {
-      cat("\nCorpus metadata variable names:\n")
-      print(names(private$..meta$corpus))
-      cat("\nDocument metadata variable names:\n")
-      print(names(private$..meta$document))
+      cat("\nMetadata variable names:\n")
+      print(names(private$..meta))
     },
 
     #-------------------------------------------------------------------------#

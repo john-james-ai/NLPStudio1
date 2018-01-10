@@ -45,43 +45,41 @@ Document0 <- R6::R6Class(
     ),
 
     validatePath = function(path) {
-      if (!file.exists(path)) {
-        private$..state <- paste0("Unable to perform read operation.  Invalid ",
+
+      status <- list()
+      status[['code']] <- TRUE
+
+      if (!("character" %in% class(path))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Unable to perform read operation.  Invalid ",
                                   "path parameter.  See ?", private$..className,
                                   " for further assistance. ")
-        self$logIt("Error")
-        stop()
+        return(status)
       }
-      return(path)
+
+      if (!file.exists(path)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Unable to perform read operation.  Invalid ",
+                                  "path parameter.  See ?", private$..className,
+                                  " for further assistance. ")
+        return(status)
+      }
+      return(status)
     },
 
-    validateIO = function(io) {
-      if (is.null(io)) {
-        io <- IOFactory$new()$getIOStrategy(path)
-      } else {
-        if (!("IO0" %in% class(io))) {
-          private$..state <- paste0("Unable to perform read operation.  Invalid ",
-                                    "io parameter.  See ?", private$..className,
-                                    " for further assistance. ")
-          self$logIt("Error")
-          stop()
-        }
-      }
-      return(io)
-    },
+    validateIO = function(io, path) {
 
-    validateContent = function(content = NULL){
-      if (is.null(private$..content) & is.null(content)) {
-        private$..state <- paste0("Unable to perform write operation.  Content ",
-                                  "paramter missing with no default.  See ?",
-                                  private$..className, " for further assistance. ")
-        self$logIt("Error")
-        stop()
-      } else {
-        if (!is.null(content)) {
-          return(content)
-        }
+      status <- list()
+      status[['code']] <- TRUE
+
+      if (!("IO0" %in% class(io))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Unable to perform read operation.  Invalid ",
+                                  "io parameter.  See ?", private$..className,
+                                  " for further assistance. ")
+        return(status)
       }
+      return(status)
     }
   ),
 
