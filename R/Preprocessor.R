@@ -41,9 +41,9 @@ Preprocessor <- R6::R6Class(
       private$..meta[["name"]] <- name
       private$..state <- "Object of the Preprocessor class initialized"
       private$..logs <- LogR$new()
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
 
       # Log it
       self$logIt()

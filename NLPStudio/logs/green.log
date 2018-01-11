@@ -4732,3 +4732,464 @@ INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'initialize. Successfu
 INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'addDocument. Successfully added Documents to Corpus object
 INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'getDocuments. Successfully obtained Document objects
 INFO [2018-01-10 00:52:53] Info in class 'Corpus', method 'removeDocument. Successfully removed a Document objects
+INFO [2018-01-10 11:50:13] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 11:50:13] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 11:52:49] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 11:52:49] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 11:52:49] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 11:52:49] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 11:52:49] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 11:52:49] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 11:52:49] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 11:52:49] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 11:52:49] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:01:26] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:01:26] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:02:31] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:02:31] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:04:12] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:04:12] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:05:03] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:05:03] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:06:52] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:06:52] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:06:52] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:06:52] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:06:52] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:06:52] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:06:52] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:06:52] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:06:52] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:06:52] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:06:52] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:10:12] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:10:12] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:10:12] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:10:12] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:10:12] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:10:12] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:10:13] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:10:13] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:10:13] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:10:13] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:10:13] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:10:13] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Build raw documents for Brown corpus. 
+INFO [2018-01-10 12:10:25] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:10:25] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:10:25] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:10:26] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:10:26] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:10:26] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:10:26] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:10:26] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:10:26] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:10:26] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:10:26] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:10:26] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Build raw documents for Brown corpus. 
+INFO [2018-01-10 12:31:41] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:31:41] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:31:41] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:31:41] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:31:41] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:31:41] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:31:41] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:31:41] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:31:41] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:31:41] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:31:41] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:31:41] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 12:31:41] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 12:31:41] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 12:31:41] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 12:31:41] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:31:49] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:31:49] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:31:49] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:31:49] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:31:49] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:31:49] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:31:49] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:31:49] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:31:49] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:31:50] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:31:50] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:31:50] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 12:31:50] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 12:31:50] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 12:31:50] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 12:31:50] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:35:16] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:35:16] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:35:16] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:35:16] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:35:16] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:35:16] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:35:16] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:35:16] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:35:16] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:35:16] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:35:16] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:35:16] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 12:35:16] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 12:35:16] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 12:35:16] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 12:35:16] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:35:16] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 12:39:31] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:39:31] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:39:31] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:39:31] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:39:31] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:39:31] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:39:31] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:39:31] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:39:31] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:39:31] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:39:31] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:39:31] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 12:39:31] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 12:39:31] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 12:39:31] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 12:39:31] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:39:31] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 12:44:32] Info in class 'Document', method 'initialize. Document, Brown, instantiated.
+INFO [2018-01-10 12:44:48] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:44:48] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:44:48] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:44:48] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:44:48] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 12:48:50] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:48:50] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:48:50] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:48:50] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:48:50] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 12:50:35] Info in class 'Document', method 'initialize. Document, Brown, instantiated.
+INFO [2018-01-10 12:50:35] Info in class 'Document', method 'initialize. Document, Brown, instantiated.
+INFO [2018-01-10 12:50:37] Info in class 'Document', method 'initialize. Document, Brown, instantiated.
+INFO [2018-01-10 12:51:34] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:51:34] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:51:34] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:51:34] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:51:34] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:51:34] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:51:34] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:51:34] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:51:34] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:51:34] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:51:34] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:51:34] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 12:51:34] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 12:51:34] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 12:51:34] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 12:51:34] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:51:34] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 12:58:55] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 12:58:55] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 12:58:55] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 12:58:55] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 12:58:55] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 12:58:55] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 12:58:55] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 12:58:55] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 12:58:55] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 12:58:55] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 12:58:55] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 12:58:55] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 12:58:55] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 12:58:55] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 12:58:55] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 12:58:55] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 12:58:55] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:03:13] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 13:03:13] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:03:13] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:03:13] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:03:13] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:03:13] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:03:13] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:03:13] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:03:13] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:03:13] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:03:13] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:03:13] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 13:03:13] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 13:03:13] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 13:03:13] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 13:03:13] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 13:03:13] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:07:18] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 13:07:18] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:07:22] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:07:22] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:07:22] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:07:22] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:07:22] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:07:22] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:07:22] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:07:22] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:07:22] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:07:22] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 13:07:22] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 13:07:22] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 13:07:22] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 13:07:22] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 13:07:22] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:08:51] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 13:09:25] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 13:09:41] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 13:09:41] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:09:41] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:09:41] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:09:41] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:09:41] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:09:41] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:09:41] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:09:41] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:09:41] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:09:41] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:09:41] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 13:09:41] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 13:09:41] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 13:09:41] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 13:09:41] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 13:09:41] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:13:13] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:13:13] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:13:13] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:29:01] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:29:01] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:29:01] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:34:12] Info in class 'Corpus', method 'initialize. Corpus, en_US.blogs, instantiated.
+INFO [2018-01-10 13:34:12] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:34:12] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:34:12] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:34:12] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:34:12] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:34:12] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:34:12] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:34:12] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:34:12] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:34:12] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:34:12] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for en_US.blogs corpus. 
+INFO [2018-01-10 13:34:12] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to en_US.blogs
+INFO [2018-01-10 13:34:12] Info in class 'Corpus', method 'addDocument. Added en_US.news to en_US.blogs
+INFO [2018-01-10 13:34:12] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to en_US.blogs
+INFO [2018-01-10 13:34:12] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to en_US.blogs corpus. 
+INFO [2018-01-10 13:34:12] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:34:42] Info in class 'Corpus', method 'initialize. Corpus, en_US.blogs, instantiated.
+INFO [2018-01-10 13:34:42] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:34:42] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:34:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:34:42] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:34:42] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:34:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:34:42] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:34:42] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:34:42] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:34:42] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:34:43] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for en_US.blogs corpus. 
+INFO [2018-01-10 13:34:43] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to en_US.blogs
+INFO [2018-01-10 13:34:43] Info in class 'Corpus', method 'addDocument. Added en_US.news to en_US.blogs
+INFO [2018-01-10 13:34:43] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to en_US.blogs
+INFO [2018-01-10 13:34:43] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to en_US.blogs corpus. 
+INFO [2018-01-10 13:34:43] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:36:04] Info in class 'Corpus', method 'initialize. Corpus, en_US.blogs, instantiated.
+INFO [2018-01-10 13:36:04] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:36:04] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:36:04] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:36:04] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:36:04] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:36:04] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:36:04] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:36:04] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:36:04] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:36:04] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:36:04] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for en_US.blogs corpus. 
+INFO [2018-01-10 13:36:04] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to en_US.blogs
+INFO [2018-01-10 13:36:04] Info in class 'Corpus', method 'addDocument. Added en_US.news to en_US.blogs
+INFO [2018-01-10 13:36:04] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to en_US.blogs
+INFO [2018-01-10 13:36:04] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to en_US.blogs corpus. 
+INFO [2018-01-10 13:36:04] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:39:29] Info in class 'Corpus', method 'initialize. Corpus, en_US.blogs, instantiated.
+INFO [2018-01-10 13:39:29] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:39:29] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:39:29] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:39:29] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:39:29] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:39:29] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:39:29] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:39:29] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:39:29] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:39:29] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:39:29] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for en_US.blogs corpus. 
+INFO [2018-01-10 13:39:29] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to en_US.blogs
+INFO [2018-01-10 13:39:29] Info in class 'Corpus', method 'addDocument. Added en_US.news to en_US.blogs
+INFO [2018-01-10 13:39:29] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to en_US.blogs
+INFO [2018-01-10 13:39:29] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to en_US.blogs corpus. 
+INFO [2018-01-10 13:39:29] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:43:53] Info in class 'Corpus', method 'initialize. Corpus, Brown, instantiated.
+INFO [2018-01-10 13:43:53] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:43:53] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:43:53] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:43:53] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:43:53] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:43:53] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:43:53] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:43:53] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:43:53] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:43:53] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:43:53] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for Brown corpus. 
+INFO [2018-01-10 13:44:11] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to Brown
+INFO [2018-01-10 13:44:12] Info in class 'Corpus', method 'addDocument. Added en_US.news to Brown
+INFO [2018-01-10 13:44:12] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to Brown
+INFO [2018-01-10 13:44:12] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to Brown corpus. 
+INFO [2018-01-10 13:44:12] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:45:37] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:45:37] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:45:37] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:46:30] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:46:30] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:46:30] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:46:48] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:46:48] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:46:48] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:47:05] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:47:05] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:47:05] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:47:21] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:47:21] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:47:21] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:47:39] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:47:39] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:47:39] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:48:29] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:48:29] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:48:29] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:48:50] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:48:50] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:48:50] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:49:23] Info in class 'Corpus', method 'initialize. Corpus, en_US.blogs, instantiated.
+INFO [2018-01-10 13:49:23] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:49:23] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:49:23] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:49:23] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:49:23] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:49:23] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:49:23] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:49:23] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:49:23] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:49:23] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:49:23] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for en_US.blogs corpus. 
+INFO [2018-01-10 13:49:23] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to en_US.blogs
+INFO [2018-01-10 13:49:23] Info in class 'Corpus', method 'addDocument. Added en_US.news to en_US.blogs
+INFO [2018-01-10 13:49:23] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to en_US.blogs
+INFO [2018-01-10 13:49:23] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to en_US.blogs corpus. 
+INFO [2018-01-10 13:49:23] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 13:50:42] Info in class 'Corpus', method 'initialize. Corpus, en_US.blogs, instantiated.
+INFO [2018-01-10 13:50:42] Info in class 'CorpusBuilderRawText', method 'initialize. CorpusBuilderRawText object instantiated.
+INFO [2018-01-10 13:50:42] Info in class 'Document', method 'initialize. Document, en_US.blogs, instantiated.
+INFO [2018-01-10 13:50:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 13:50:42] Info in class 'Document', method 'load. Read en_US.blogs. 
+INFO [2018-01-10 13:50:42] Info in class 'Document', method 'initialize. Document, en_US.news, instantiated.
+INFO [2018-01-10 13:50:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 13:50:42] Info in class 'Document', method 'load. Read en_US.news. 
+INFO [2018-01-10 13:50:42] Info in class 'Document', method 'initialize. Document, en_US.twitter, instantiated.
+INFO [2018-01-10 13:50:42] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 13:50:42] Info in class 'Document', method 'load. Read en_US.twitter. 
+INFO [2018-01-10 13:50:42] Info in class 'CorpusBuilderRawText', method 'buildDocuments. Built raw documents for en_US.blogs corpus. 
+INFO [2018-01-10 13:50:43] Info in class 'Corpus', method 'addDocument. Added en_US.blogs to en_US.blogs
+INFO [2018-01-10 13:50:43] Info in class 'Corpus', method 'addDocument. Added en_US.news to en_US.blogs
+INFO [2018-01-10 13:50:43] Info in class 'Corpus', method 'addDocument. Added en_US.twitter to en_US.blogs
+INFO [2018-01-10 13:50:43] Info in class 'CorpusBuilderRawText', method 'buildCorpus. Added raw documents to en_US.blogs corpus. 
+INFO [2018-01-10 13:50:43] Info in class 'CorpusBuilderRawText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-10 19:30:01] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:30:01] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:30:01] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:35:19] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:35:19] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:35:19] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:35:39] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:35:39] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:35:39] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:43:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:43:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:43:43] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:44:16] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:44:17] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:44:17] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:44:17] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:44:46] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:44:46] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:44:46] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:45:38] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:45:38] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:45:38] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:46:25] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:46:25] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:46:25] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:59:41] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:59:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:59:42] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 19:59:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:59:50] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 19:59:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 19:59:50] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:01:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:01:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:01:43] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:01:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:02:43] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:02:43] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:02:43] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:02:48] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:02:48] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:02:48] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:03:07] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:04:02] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:04:02] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:04:02] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:04:02] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:04:58] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:04:58] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:04:58] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:04:58] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:06:19] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:06:27] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:06:27] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:06:27] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:06:32] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:10:11] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:10:11] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:10:11] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:10:14] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:11:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:11:42] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:11:42] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:11:42] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:17:00] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:17:00] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:17:00] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:17:05] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:20:21] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:20:21] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:20:21] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:20:25] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:20:56] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:21:47] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:21:47] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:21:47] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:21:50] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:29:00] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:29:00] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:29:00] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:29:03] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:30:41] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:32:50] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:32:50] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:32:50] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:32:53] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:35:27] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:35:27] Info in class '', method '. Successfully read en_US.news.txt.
+INFO [2018-01-10 20:35:27] Info in class '', method '. Successfully read en_US.twitter.txt.
+INFO [2018-01-10 20:35:27] Info in class '', method '. Successfully read en_US.blogs.txt.
+INFO [2018-01-10 20:35:27] Info in class 'DataSource', method 'initialize. test0: DataSourceText, Successfully!

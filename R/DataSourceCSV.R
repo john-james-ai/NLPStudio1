@@ -25,9 +25,9 @@ DataSourceCSV <- R6::R6Class(
       private$..className <- 'DataSourceCSV'
       private$..methodName <- 'initialize'
       private$..state <- paste0("DataSourceCSV object instantiated.")
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
 
       invisible(self)

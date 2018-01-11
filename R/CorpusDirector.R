@@ -76,9 +76,9 @@ PipelineDirectorData <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..state <- paste("PipelineDirectorData", name, "instantiated at", Sys.time())
       private$..logs <- LogR$new()
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
 
       # Validate Pipeline
       v <- Validator$new()
@@ -96,7 +96,7 @@ PipelineDirectorData <- R6::R6Class(
     },
 
     getBuilder = function() private$..builder,
-    getDataSource = function() private$..dataSource,
+    getSource = function() private$..dataSource,
 
     #-------------------------------------------------------------------------#
     #                              Build Method                               #
@@ -141,9 +141,9 @@ PipelineDirectorData <- R6::R6Class(
         methodName = private$..methodName,
         builder = private$..builder,
         state = private$..state,
-        modified = private$..meta[["modified"]],
-        created = private$..meta[["created"]],
-        accessed = private$..meta[["accessed"]]
+        modified = private$..modified,
+        created = private$..created,
+        accessed = private$..accessed
       )
 
       return(director)

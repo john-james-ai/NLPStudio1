@@ -66,16 +66,17 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name) {
+    initialize = function(name, path = NULL) {
 
       # Instantiate variables
       private$..meta[["name"]] <- name
+      private$..meta[["path"]] <- path
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..state <- paste0("Corpus, ", name, ", instantiated.")
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
 
       # Create log entry
@@ -87,7 +88,7 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                    Document Aggregation Methods                         #
     #-------------------------------------------------------------------------#
-    getDocuments = function()  private$..documents,
+    getDocuments = function()  { private$..documents },
 
     addDocument = function(document) {
 
@@ -140,7 +141,7 @@ Corpus <- R6::R6Class(
       content <- lapply(private$..documents, function(d) {
         d$getContent()
       })
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..accessed <- Sys.time()
       return(content)
     },
 
@@ -218,8 +219,8 @@ Corpus <- R6::R6Class(
         path = private$..path,
         logs = private$..logs,
         state = private$..state,
-        modified = private$..meta[["modified"]],
-        created = private$..meta[["created"]],
+        modified = private$..modified,
+        created = private$..created,
         documents = private$..documents,
         docMeta = self$docMeta(),
         corpusDocument0 = self$corpusDocument0()

@@ -55,13 +55,13 @@ Document <- R6::R6Class(
     content = function(value) {
 
       if (missing(value)) {
-        private$..meta[["accessed"]] <- Sys.time()
+        private$..accessed <- Sys.time()
         return(private$..content)
       } else {
-        if (is.null(private$..content)) private$..meta[["created"]] <- Sys.time()
+        if (is.null(private$..content)) private$..created <- Sys.time()
         private$..content <- value
-        private$..meta[["modified"]] <- Sys.time()
-        private$..meta[["accessed"]] <- Sys.time()
+        private$..modified <- Sys.time()
+        private$..accessed <- Sys.time()
       }
     }
   ),
@@ -79,9 +79,9 @@ Document <- R6::R6Class(
       private$..meta[['name']] <- name
       private$..state <- paste0("Document, ", private$..meta[["name"]], ", instantiated.")
       private$..logs <- LogR$new()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
 
       # Create log entry
       self$logIt()
@@ -95,14 +95,14 @@ Document <- R6::R6Class(
     setContent = function(content) {
 
       private$..content <- content
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
 
       invisible(self)
     },
 
     getContent = function() {
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..content
     },
 
@@ -142,9 +142,9 @@ Document <- R6::R6Class(
       private$..meta[["fileName"]] <- basename(path)
       private$..meta[["fileSize"]] <- file.size(path)
       private$..meta[["format"]] <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
-      private$..meta[["created"]] <- file.info(path)[,'ctime']
-      private$..meta[["modified"]] <- file.info(path)[,'mtime']
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..created <- file.info(path)[,'ctime']
+      private$..modified <- file.info(path)[,'mtime']
+      private$..accessed <- Sys.time()
 
       # LogIt
       private$..state <- paste0("Read ", private$..meta[["name"]], ". ")
@@ -193,9 +193,9 @@ Document <- R6::R6Class(
       private$..meta[["fileName"]] <- basename(path)
       private$..meta[["fileSize"]] <- file.size(path)
       private$..meta[["format"]] <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
-      private$..meta[["created"]] <- file.info(path)[,'ctime']
-      private$..meta[["modified"]] <- file.info(path)[,'mtime']
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..created <- file.info(path)[,'ctime']
+      private$..modified <- file.info(path)[,'mtime']
+      private$..accessed <- Sys.time()
 
       # LogIt
       private$..state <- paste0("Wrote ", private$..meta[["name"]], ". ")
@@ -221,9 +221,9 @@ Document <- R6::R6Class(
         meta = self$meta(),
         content = private$..content,
         state = private$..state,
-        created = private$..meta[["created"]],
-        modified = private$..meta[["modified"]],
-        accessed = private$..meta[["accessed"]],
+        created = private$..created,
+        modified = private$..modified,
+        accessed = private$..accessed,
         file = private$..file
       )
       return(document)

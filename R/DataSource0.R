@@ -19,12 +19,13 @@ DataSource0 <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..dataSource = NULL
+    ..dataSource = NULL,
+    ..documents = character()
   ),
 
   public = list(
     initialize = function(dataSource) stop("The method is not implemented for this abstract class."),
-    getDataSource = function() private$..dataSource
+    getSource = function() stop("The method is not implemented for this abstract class.")
   )
 )
 

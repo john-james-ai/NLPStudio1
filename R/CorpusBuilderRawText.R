@@ -29,16 +29,28 @@ CorpusBuilderRawText <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, path, dataSource) {
 
-      private$..corpus <- Corpus$new(name = name, path = path)
+      private$..name <- name
+      private$..path <- path
       private$..dataSource <- dataSource
 
       private$..className <- 'CorpusBuilderRawText'
       private$..methodName <- 'initialize'
       private$..state <- paste0("CorpusBuilderRawText object instantiated.")
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
+
+      # Validate CorpusBuilder
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status[['code']] == FALSE) {
+        private$..state <- status[['msg']]
+        self$logIt(level = 'Error')
+        stop()
+      }
+
+      private$..corpus <- Corpus$new(name = name, path = path)
+
+      # Create log entry
+      self$logIt()
 
       invisible(self)
     },
@@ -49,31 +61,61 @@ CorpusBuilderRawText <- R6::R6Class(
     buildDocuments = function() {
 
       private$..methodName <- "buildDocuments"
-      ds <- private$..dataSource$getDataSource()
+      ds <- private$..dataSource$getSource()
 
       # Create document object and add meta data
       if (isDirectory(ds) == TRUE) {
         files <- list.files(ds, full.names = TRUE)
-        data <- lapply(files, function(f) {
+        private$..documents <- lapply(files, function(f) {
           # Obtain file meta data
-          fileName <- basename(f)
-          filePath <- f
-          fileSize <- file.size(f)
-          created <- file.info(f)[,'ctime']
-          modified <- file.info(f)[,'mtime']
-          created <- file.info(f)[,'ctime']
-          io <- IOFactory$new()$getIOStrategy(f)
-          txt <- io$read(f)
+          name <- tools::file_path_sans_ext(basename(f))
+          Document$new(name)$load(f)$meta(key = "directory", value = private$..path)
+        })
+      } else if (class(ds) == "character") {
+        private$..documents <- lapply(seq_along(ds), function(x) {
+          name <- names(ds[x])
+          if (is.null(name)) paste0("Document", x, collapse = "-")
+          Document$new(name = name)$setContent(ds[x])
         })
       }
+
+      # Logit
+      private$..state <- paste0("Built raw documents for ", private$..name,
+                                " corpus. ")
+      self$logIt()
+
+      invisible(self)
     },
-    buildCorpus = function() { stop("This method is not implemented for this abstract class.") },
-    getResult = function() { stop("This method is not implemented for this abstract class.") },
+
+    buildCorpus = function() {
+
+      private$..methodName <- 'buildCorpus'
+
+      lapply(private$..documents, function(d) {
+        private$..corpus$addDocument(d)
+      })
+
+      # Logit
+      private$..state <- paste0("Added raw documents to ", private$..name,
+                                " corpus. ")
+      self$logIt()
+
+      invisible(self)
+    },
+
+    getResult = function() {
+
+      private$..methodName <- 'getResult'
+      private$..state <- "Returned corpus object to calling environment"
+      self$logIt()
+      return(private$..corpus)
+    },
 
     #-------------------------------------------------------------------------#
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
-    accept = function(visitor)  { stop("This method is not implemented for this abstract class. ") },
-    logIt = function(level = 'Info') { stop("This method is not implemented for this abstract class. ") }
+    accept = function(visitor)  {
+      visitor$corpusBuilder(self)
+    }
   )
 )

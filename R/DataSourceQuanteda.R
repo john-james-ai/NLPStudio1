@@ -25,9 +25,9 @@ DataSourceQuanteda <- R6::R6Class(
       private$..className <- 'DataSourceQuanteda'
       private$..methodName <- 'initialize'
       private$..state <- paste0("DataSourceQuanteda object instantiated.")
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
 
       invisible(self)

@@ -162,8 +162,8 @@ Template <- R6::R6Class(
         desc <- private$..desc,
         path <- private$..path,
         log <- private$..log,
-        created <- private$..meta[["created"]],
-        modified <- private$..meta[["modified"]]
+        created <- private$..created,
+        modified <- private$..modified
       )
       return(o)
     }

@@ -29,7 +29,10 @@ Entity <- R6::R6Class(
     ..className = character(),
     ..methodName = character(),
     ..state = character(),
-    ..logs = character()
+    ..logs = character(),
+    ..created = character(),
+    ..modified = character(),
+    ..accessed = character()
   ),
 
   public = list(

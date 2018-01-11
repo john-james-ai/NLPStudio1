@@ -169,14 +169,22 @@ VValidatorInit <- R6::R6Class(
 
       path <- object$getPath()
 
-      if (dir.exists(path)) {
+      v <- ValidatorPath$new()
+      if (v$validate(value = path, expect = FALSE) == FALSE) {
         status[['code']] <- FALSE
-        status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object. The path already exists. ",
+        status[['msg']] <- paste0("Invalid path parameter. ",
+                                  "The path already exists. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")
+        return(status)
       }
-
+      if (!("character" %in% class(path))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid path parameter. ",
+                                  "See ?", private$..className,
+                                  " for further assistance. ")
+        return(status)
+      }
       return(status)
     },
 
@@ -199,7 +207,7 @@ VValidatorInit <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
 
-      d <- object$getDataSource()
+      d <- object$getSource()
 
       if (!("DataSource0" %in% class(d))) {
         status[['code']] <- FALSE
@@ -227,24 +235,10 @@ VValidatorInit <- R6::R6Class(
       return(status[['code']] <- TRUE)
     },
 
-    pipeline = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      return(private$validatePath(object))
-    },
-
-    pipelineDirectorData = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      if (private$validateBuilder(object)[['code']] == FALSE)
-        return(private$validateBuilder(object))
+    corpusBuilder = function(object) {
+      if (private$validatePath(object)[['code']] == FALSE)
+        return(private$validatePath(object))
       return(private$validateDataSource(object))
-    },
-
-    corpus = function(object) {
-      if (private$validateName(object)[['code']] == FALSE)
-        return(private$validateName(object))
-      return(private$validatePath(object))
     },
 
     document = function(object) {

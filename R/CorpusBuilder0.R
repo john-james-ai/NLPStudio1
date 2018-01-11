@@ -20,32 +20,32 @@ CorpusBuilder0 <- R6::R6Class(
   classname = "CorpusBuilder0",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = Corpus,
 
   private = list(
     ..corpus = character(),
     ..dataSource = character(),
-    ..documents = character()
+    ..documents = character(),
+    ..name = character(),
+    ..path = character()
   ),
 
   public = list(
 
     #-------------------------------------------------------------------------#
-    #                     Pipeline Initialization Method                      #
+    #                             Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function(name, path, dataSource) { stop("This method is not implemented for this abstract class.") },
+    getName = function() private$..name,
+    getPath = function() private$..path,
+    getSource = function() private$..dataSource,
 
     #-------------------------------------------------------------------------#
     #                              Build Methods                              #
     #-------------------------------------------------------------------------#
     buildDocuments = function() { stop("This method is not implemented for this abstract class.") },
     buildCorpus = function() { stop("This method is not implemented for this abstract class.") },
-    getResult = function() { stop("This method is not implemented for this abstract class.") },
+    getResult = function() { stop("This method is not implemented for this abstract class.") }
 
-    #-------------------------------------------------------------------------#
-    #                             Other Methods                               #
-    #-------------------------------------------------------------------------#
-    accept = function(visitor)  { stop("This method is not implemented for this abstract class. ") },
-    logIt = function(level = 'Info') { stop("This method is not implemented for this abstract class. ") }
   )
 )

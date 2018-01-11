@@ -57,9 +57,9 @@ CVHoldOut <- R6::R6Class(
       private$..pTest = pTest
       private$..k <- k
       private$..stratified <- stratified
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..created <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..state <- paste0("Initialized CVHoldOut Class")
       self$logIt()
 

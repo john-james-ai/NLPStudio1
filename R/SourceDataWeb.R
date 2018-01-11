@@ -61,9 +61,9 @@ SourceDataWeb <- R6::R6Class(
       private$..meta[["name"]] <- name
       private$..path <- file.path(NLPStudio$new()$getInstance()$getPath(), 'externalData', name)
       private$..url <- url
-      private$..meta[["modified"]] <- Sys.time()
-      private$..meta[["created"]] <- Sys.time()
-      private$..meta[["accessed"]] <- Sys.time()
+      private$..modified <- Sys.time()
+      private$..created <- Sys.time()
+      private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
 
       # Validation
@@ -117,7 +117,7 @@ SourceDataWeb <- R6::R6Class(
 
       # LogIt
       private$..state <- paste("Sourced Corpus object", private$..meta[["name"]], "from the web.")
-      private$..meta[["modified"]] <- Sys.time()
+      private$..modified <- Sys.time()
       self$logIt()
 
       # Assign its name in the global environment
@@ -152,9 +152,9 @@ SourceDataWeb <- R6::R6Class(
         state	 = 	    private$..state ,
         size = private$..fileSize,
         logs	 = 	    private$..logs ,
-        modified	 = 	private$..meta[["modified"]] ,
-        created	 = 	  private$..meta[["created"]] ,
-        accessed	 = 	private$..meta[["accessed"]]
+        modified	 = 	private$..modified ,
+        created	 = 	  private$..created ,
+        accessed	 = 	private$..accessed
       )
       return(o)
     }
