@@ -209,7 +209,7 @@ VValidatorInit <- R6::R6Class(
 
       d <- object$getSource()
 
-      if (!("DataSource0" %in% class(d))) {
+      if (!(class(d) %in% c("list", "character"))) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Invalid data source object. ",
                                   "See ?", class(object)[1],

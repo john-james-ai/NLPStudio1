@@ -34,29 +34,6 @@ Document0 <- R6::R6Class(
 
   private = list(
 
-    validatePath = function(path) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      if (!("character" %in% class(path))) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Unable to perform read operation.  Invalid ",
-                                  "path parameter.  See ?", private$..className,
-                                  " for further assistance. ")
-        return(status)
-      }
-
-      if (!file.exists(path)) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Unable to perform read operation.  Invalid ",
-                                  "path parameter.  See ?", private$..className,
-                                  " for further assistance. ")
-        return(status)
-      }
-      return(status)
-    },
-
     validateIO = function(io, path) {
 
       status <- list()

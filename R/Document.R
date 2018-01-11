@@ -115,9 +115,10 @@ Document <- R6::R6Class(
       private$..methodName <- 'load'
 
       # Validation Path
-      status <- private$validatePath(path)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
+      if (!file.exists(path)) {
+        private$..state <- paste0("Unable to load file. File does not exist. ",
+                                  "See?", class(self), " for further ",
+                                  "assistance.")
         self$logIt("Error")
         stop()
       }
@@ -156,14 +157,6 @@ Document <- R6::R6Class(
     save = function(path, io = NULL) {
 
       private$..methodName <- 'save'
-
-      # Validation Path
-      status <- private$validatePath(path)
-      if (status[['code']] == FALSE) {
-        private$..state <- status[['msg']]
-        self$logIt("Error")
-        stop()
-      }
 
       # Validate/instantiate IO
       if (is.null(io)) {

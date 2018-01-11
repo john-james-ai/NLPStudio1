@@ -25,7 +25,7 @@ CorpusBuilder0 <- R6::R6Class(
   private = list(
     ..corpus = character(),
     ..dataSource = character(),
-    ..documents = character(),
+    ..documents = list(),
     ..name = character(),
     ..path = character()
   ),
