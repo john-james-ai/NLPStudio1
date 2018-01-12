@@ -66,11 +66,10 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                         Corpus Instantiation                            #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path = NULL) {
+    initialize = function(name) {
 
       # Instantiate variables
-      private$..meta[["name"]] <- name
-      private$..meta[["path"]] <- path
+      private$..meta[['name']] <- name
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
       private$..state <- paste0("Corpus, ", name, ", instantiated.")
@@ -160,6 +159,7 @@ Corpus <- R6::R6Class(
         return(meta)
       }
 
+      # Format key value pairs
       if (is.null(key)) {
         key <- names(value)
       }
@@ -185,7 +185,8 @@ Corpus <- R6::R6Class(
 
       if (length(key) == 1) key <- rep(key, length(value))
 
-      lapply(seq_along(value), function(m) {
+      # Apply meta data to documents
+      private$..documents <- lapply(seq_along(value), function(m) {
         private$..documents[[m]]$meta(key = key[[m]], value = value[[m]])
       })
 

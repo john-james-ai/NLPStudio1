@@ -235,12 +235,6 @@ VValidatorInit <- R6::R6Class(
       return(status[['code']] <- TRUE)
     },
 
-    corpusBuilder = function(object) {
-      if (private$validatePath(object)[['code']] == FALSE)
-        return(private$validatePath(object))
-      return(private$validateDataSource(object))
-    },
-
     document = function(object) {
       return(private$validateStub(object))
     }

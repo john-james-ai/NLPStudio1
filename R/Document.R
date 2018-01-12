@@ -74,9 +74,9 @@ Document <- R6::R6Class(
     initialize = function(name) {
 
       # Instantiate variables
+      private$..meta[["name"]] <- name
       private$..className <- 'Document'
       private$..methodName <- 'initialize'
-      private$..meta[['name']] <- name
       private$..state <- paste0("Document, ", private$..meta[["name"]], ", instantiated.")
       private$..logs <- LogR$new()
       private$..created <- Sys.time()
@@ -210,7 +210,6 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     exposeObject = function() {
       document <- list(
-        name = private$..meta[["name"]],
         meta = self$meta(),
         content = private$..content,
         state = private$..state,

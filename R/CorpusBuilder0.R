@@ -20,14 +20,13 @@ CorpusBuilder0 <- R6::R6Class(
   classname = "CorpusBuilder0",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Corpus,
+  inherit = Entity,
 
   private = list(
     ..corpus = character(),
     ..dataSource = character(),
     ..documents = list(),
-    ..name = character(),
-    ..path = character()
+    ..name = character()
   ),
 
   public = list(
@@ -36,15 +35,7 @@ CorpusBuilder0 <- R6::R6Class(
     #                             Core Methods                                #
     #-------------------------------------------------------------------------#
     initialize = function(name, path, dataSource) { stop("This method is not implemented for this abstract class.") },
-    getName = function() private$..name,
-    getPath = function() private$..path,
-    getSource = function() private$..dataSource,
-
-    #-------------------------------------------------------------------------#
-    #                              Build Methods                              #
-    #-------------------------------------------------------------------------#
-    buildDocuments = function() { stop("This method is not implemented for this abstract class.") },
-    buildCorpus = function() { stop("This method is not implemented for this abstract class.") },
+    build = function() { stop("This method is not implemented for this abstract class.") },
     getResult = function() { stop("This method is not implemented for this abstract class.") }
 
   )

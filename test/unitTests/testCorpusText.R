@@ -18,40 +18,51 @@ testCorpusText <- function() {
 
     # Build Corpus from Vector Flat
     name <- "corpusVecFlat"
-    path <- "./test/testData/corpusBuilderRAwTextSource/corpusVecFlat"
-    news <- readLines("./test/testData/input/en_US.news.txt")
-    dataSource <- news
-    corpusVecFlat <- CorpusText$new(name, path, dataSource, flat = TRUE)$build()$getResult()
+    desc <- "Creating corpus from flat vector"
+    dataSource <- corpus[[2]]
+    corpusVecFlat <- CorpusText$new(name, dataSource, flat = TRUE)$build()$getResult()
     corpusVecFlatContent <- corpusVecFlat$getContent()
-    stopifnot(length(corpusVecFlatContent$corpusVec) == 2000)
-    stopifnot(corpusVecFlatContent$corpusVec == news)
+    stopifnot(length(corpusVecFlatContent[[1]]) == 2000)
     corpusVecFlatDocuments <- corpusVecFlat$getDocuments()
     stopifnot(length(corpusVecFlatDocuments) == 1)
+    corpusVecFlat$meta(key = "name", value = name)
+    corpusVecFlat$meta(key = "desc", value = desc)
+    corpusVecFlat$docMeta(key = "name", value = paste0(name, "document", sep = "."))
     print(corpusVecFlat$meta())
     print(corpusVecFlat$docMeta())
 
     # Build Corpus from vector non-flat
     name <- "corpusVec"
-    path <- "./test/testData/corpusBuilderRAwTextSource/corpusVec"
+    docNames <- c("blogs", "news", "twitter")
+    desc <- "Creating corpus from vector"
     qc <- quanteda::corpus(readtext::readtext("./test/testData/input/*.txt"))
     dataSource <- qc$documents$texts
-    corpusVec <- CorpusText$new(name, path, dataSource)$build()$getResult()
+    corpusVec <- CorpusText$new(name, dataSource)$build()$getResult()
     corpusVecContent <- corpusVec$getContent()
     stopifnot(length(corpusVecContent) == 3)
     corpusVecDocuments <- corpusVec$getDocuments()
     stopifnot(length(corpusVecDocuments) == 3)
+    corpusVec$meta(key = "name", value = name)
+    corpusVec$meta(key = "desc", value = desc)
+    corpusVec$docMeta(key = "name", value = docNames)
     print(corpusVec$meta())
     print(corpusVec$docMeta())
 
     # Build Corpus from list
     name <- "corpusList"
-    path <- "./test/testData/corpusBuilderRAwTextSource/corpusList"
+    desc <- "Creating corpus from list"
     dataSource <- corpus
-    corpusList <- CorpusText$new(name, path, dataSource)$build()$getResult()
+    corpusList <- CorpusText$new(name, dataSource)$build()$getResult()
     corpusListContent <- corpusList$getContent()
     stopifnot(length(corpusListContent) == 3)
+    stopifnot(length(corpusListContent[[1]]) == 2000)
+    stopifnot(length(corpusListContent[[2]]) == 2000)
+    stopifnot(length(corpusListContent[[3]]) == 2000)
     corpusListDocuments <- corpusList$getDocuments()
     stopifnot(length(corpusListDocuments) == 3)
+    corpusList$meta(key = "name", value = name)
+    corpusList$meta(key = "desc", value = desc)
+    corpusList$docMeta(key = "name", value = docNames)
     print(corpusList$meta())
     print(corpusList$docMeta())
 

@@ -71,6 +71,13 @@ Document0 <- R6::R6Class(
       }
 
       private$..meta[[key]] <- value
+
+      # Log it
+      private$..state <- paste0("Added ", key, " with value: ",value,
+                                " to metadata for ",private$..meta[["name"]],
+                                ".")
+      self$logIt()
+
       invisible(self)
     }
   )
