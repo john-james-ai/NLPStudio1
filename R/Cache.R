@@ -5,15 +5,25 @@
 #'
 #' \code{Cache} Class responsible for managing, retrieving from and writing to the cache.
 #'
-#' @template cacheClasses
+#' Class maintains persistence for large memory intensive cacheable components
+#' of objects on NLPStudio. Cacheable objects are characterized by a payload
+#' component which contains the domain content for the object, text for example,
+#' and a metadata component that contains information about the payload. This
+#' class is responsible for caching of the payload components of the objects.
+#' The metadata components are retained in memory.  Object payload components
+#' are stored in the .R_cache subdirectory of the current working
+#' directory. An inventory of "tenants" in the cache is maintained and the size
+#' is controlled based upon a designated maximum size and a least recently
+#' used (LRU) eviction strategy.
+#'
+#' @template cacheClasses.R
 #'
 #' @section Cache methods:
 #' \strong{Core Methods:}
 #'  \itemize{
 #'   \item{\code{new(object)}}{Method for instantiating a Cache object.}
-#'   \item{\code{read()}}{Reads content from the database object. }
-#'   \item{\code{write(content)}}{Method for writing content to the database object. }
-#'   \item{\code{getName()}}{Method returns the name of database object}
+#'   \item{\code{read()}}{Reads the object from the cache. }
+#'   \item{\code{write()}}{Writes objects to the cache. Also performs eviction of objects when the maximum size of the cache has been reached. }
 #'  }
 #'
 #' \strong{Other Methods:}
@@ -23,8 +33,8 @@
 #'  }
 #'
 #' @section Parameters:
-#' @param object Object containing the stored data
-#' @param content List containing character vectors of text.
+#' @param object Object to be written to, or read from the cache.
+#' @return data The cached payload content, if the read method is invoked or the original object sans payload.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -36,10 +46,21 @@ Cache <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..directory = "./NLPStudio/database",
-    ..fileName = character(),
-    ..object = character(),
-    ..path = character()
+    ..directory = ".R_cache",
+    ..inventory = list(),
+    ..maxSize = numeric(),
+    ..currentSize = numeric(),
+    ..item = list(
+      id = character(),
+      expired = logical(),
+      filePath = character(),
+      factory = character(),
+      input = character(),
+      created = character(),
+      modified = character(),
+      accessed = character(),
+      nAccessed = numeric()
+    )
   ),
 
   public = list(
