@@ -1,23 +1,23 @@
 #==============================================================================#
-#                             CorpusBuilder0                                   #
+#                             CorpusImport0                                    #
 #==============================================================================#
-#' CorpusBuilder0
+#' CorpusImport0
 #'
-#' \code{CorpusBuilder0} Abstract class for the Corpusbuilder sub-classes
+#' \code{CorpusImport0} Abstract class for the CorpusImport sub-classes
 #'
-#' @template corpusBuilderClasses
+#' @template corpusImportStrategyClasses
 #'
-#' @section CorpusBuilder0 Methods:
-#' @template corpusBuilderMethods
+#' @section CorpusImport0 Methods:
+#' @template corpusImportStrategyMethods
 #'
-#' @template corpusBuilderParams
+#' @template corpusImportStrategyParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
-#' @family CorpusBuilder family of classes
+#' @family CorpusImport family of classes
 #' @export
-CorpusBuilder0 <- R6::R6Class(
-  classname = "CorpusBuilder0",
+CorpusImport0 <- R6::R6Class(
+  classname = "CorpusImport0",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = Entity,
@@ -34,7 +34,7 @@ CorpusBuilder0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                             Core Methods                                #
     #-------------------------------------------------------------------------#
-    initialize = function(name, path, dataSource) { stop("This method is not implemented for this abstract class.") },
+    initialize = function(name, dataSource) { stop("This method is not implemented for this abstract class.") },
     build = function() { stop("This method is not implemented for this abstract class.") },
     getResult = function() { stop("This method is not implemented for this abstract class.") }
 

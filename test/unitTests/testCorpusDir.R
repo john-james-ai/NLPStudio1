@@ -15,7 +15,7 @@ testCorpusDir <- function() {
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input"
     corpusDir <- CorpusDir$new(name, dataSource)$build()$getResult()
-    corpusDirContent <- corpusDir$getContent()
+    corpusDirContent <- corpusDir$read()
     stopifnot(length(corpusDirContent) == 3)
     corpusDirDocuments <- corpusDir$getDocuments()
     stopifnot(length(corpusDirDocuments) == 3)
@@ -41,7 +41,7 @@ testCorpusDir <- function() {
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input/*s.txt"
     corpusDir <- CorpusDir$new(name, dataSource)$build()$getResult()
-    corpusDirContent <- corpusDir$getContent()
+    corpusDirContent <- corpusDir$read()
     stopifnot(length(corpusDirContent) == 2)
     corpusDirDocuments <- corpusDir$getDocuments()
     stopifnot(length(corpusDirDocuments) == 2)

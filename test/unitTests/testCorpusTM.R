@@ -22,7 +22,7 @@ testCorpusTM <- function() {
     docDesc <- c("Blogs Data", "News of the world", "Tweets and rants")
     dataSource <- tmc
     corpusTM <- CorpusTM$new(name, dataSource)$build()$getResult()
-    corpusTMContent <- corpusTM$getContent()
+    corpusTMContent <- corpusTM$read()
     stopifnot(length(corpusTMContent) == 3)
 
     corpusTMDocuments <- corpusTM$getDocuments()

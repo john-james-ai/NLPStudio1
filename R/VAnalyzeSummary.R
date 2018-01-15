@@ -26,7 +26,7 @@ VAnalyzeSummary <- R6::R6Class(
   private = list(
     analyzeDocument = function(object) {
       name <- object$getName()
-      content <- paste(object$getContent(), collapse = ' ')
+      content <- paste(object$read(), collapse = ' ')
       size <- as.numeric(object.size(content))
       sentences <- quanteda::nsentence(content)
       tokens <- quanteda::ntoken(content)

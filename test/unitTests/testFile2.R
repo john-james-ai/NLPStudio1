@@ -29,17 +29,17 @@ testFile <- function() {
     stopifnot(length(b$content) > 1000)
 
     # Read file
-    blogsContent <- blogs$getContent()
+    blogsContent <- blogs$read()
     stopifnot(length(blogsContent) > 1000)
 
     # Method chaining
-    blogsContent <- File$new(name, path)$loadFile()$getContent()
+    blogsContent <- File$new(name, path)$loadFile()$read()
     stopifnot(length(blogsContent) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized file"))
     FileTest$logs(className = className, methodName = "loadFile", msg = paste("Successfully loaded file"))
-    FileTest$logs(className = className, methodName = "getContent", msg = paste("Successfully obtained content"))
+    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully obtained content"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(blogs)
@@ -51,15 +51,15 @@ testFile <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Update content
-    blogsContent <- blogs$getContent()
+    blogsContent <- blogs$read()
     blogsContent <- blogsContent[1:1000]
     blogs <- blogs$setContent(blogsContent)
-    blogsContent2 <- blogs$getContent()
+    blogsContent2 <- blogs$read()
     stopifnot(length(blogsContent2) == 1000)
 
     # Save and read content
     blogs <- blogs$saveFile()
-    blogsContent3 <- blogs$loadFile()$getContent()
+    blogsContent3 <- blogs$loadFile()$read()
     stopifnot(length(blogsContent3) == 1000)
 
     # Logit
@@ -76,7 +76,7 @@ testFile <- function() {
 
     # Read binary format
     io <- IOBin$new()
-    blogsBin <- File$new(name, path)$loadFile(io)$getContent()
+    blogsBin <- File$new(name, path)$loadFile(io)$read()
     stopifnot(class(blogsBin) == 'raw')
 
     # Write binary format
@@ -87,7 +87,7 @@ testFile <- function() {
     # Logit
     FileTest$logs(className = className, methodName = "loadFile", msg = paste("Successfully loaded binary data"))
     FileTest$logs(className = className, methodName = "saveFile", msg = paste("Successfully saved binary data"))
-    FileTest$logs(className = className, methodName = "getContent", msg = paste("Successfully read binary data"))
+    FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read binary data"))
     FileTest$logs(className = className, methodName = "setContent", msg = paste("Successfully wrote binary data"))
     cat(paste0(test, " Completed: Success!\n"))
 

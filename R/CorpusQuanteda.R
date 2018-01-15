@@ -5,12 +5,12 @@
 #'
 #' \code{CorpusQuanteda} Creates Corpus objects from Quanteda corpus objects.
 #'
-#' @template corpusBuilderClasses
+#' @template corpusImportStrategyClasses
 #'
 #' @section CorpusQuanteda Methods:
-#' @template corpusBuilderMethods
+#' @template corpusImportStrategyMethods
 #'
-#' @template corpusBuilderParams
+#' @template corpusImportStrategyParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -20,7 +20,7 @@ CorpusQuanteda <- R6::R6Class(
   classname = "CorpusQuanteda",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CorpusBuilder0,
+  inherit = CorpusImport0,
 
   public = list(
 

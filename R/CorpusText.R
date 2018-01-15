@@ -5,12 +5,12 @@
 #'
 #' \code{CorpusText} Creates Corpus objects from text sources
 #'
-#' @template corpusBuilderClasses
+#' @template corpusImportStrategyClasses
 #'
 #' @section CorpusText Methods:
-#' @template corpusBuilderMethods
+#' @template corpusImportStrategyMethods
 #'
-#' @template corpusBuilderParams
+#' @template corpusImportStrategyParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -20,7 +20,7 @@ CorpusText <- R6::R6Class(
   classname = "CorpusText",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CorpusBuilder0,
+  inherit = CorpusImport0,
 
   private = list(
     ..flat = FALSE

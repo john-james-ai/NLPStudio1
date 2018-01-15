@@ -20,7 +20,7 @@ testCorpusQuanteda <- function() {
     docDesc <- c("Blogs Data", "News of the world", "Tweets and rants")
     dataSource <- qc
     corpusQuanteda <- CorpusQuanteda$new(name, dataSource)$build()$getResult()
-    corpusQuantedaContent <- corpusQuanteda$getContent()
+    corpusQuantedaContent <- corpusQuanteda$read()
     stopifnot(length(corpusQuantedaContent) == 3)
 
     corpusQuantedaDocuments <- corpusQuanteda$getDocuments()

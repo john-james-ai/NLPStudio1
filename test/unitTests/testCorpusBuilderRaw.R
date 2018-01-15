@@ -22,7 +22,7 @@ testCorpusText <- function() {
     news <- readLines("./test/testData/input/en_US.news.txt")
     dataSource <- news
     corpusVecFlat <- CorpusText$new(name, path, dataSource, flat = TRUE)$build()$getResult()
-    corpusVecFlatContent <- corpusVecFlat$getContent()
+    corpusVecFlatContent <- corpusVecFlat$read()
     stopifnot(length(corpusVecFlatContent$corpusVec) == 2000)
     stopifnot(corpusVecFlatContent$corpusVec == news)
     corpusVecFlatDocuments <- corpusVecFlat$getDocuments()
@@ -36,7 +36,7 @@ testCorpusText <- function() {
     qc <- quanteda::corpus(readtext::readtext("./test/testData/input/*.txt"))
     dataSource <- qc$documents$texts
     corpusVec <- CorpusText$new(name, path, dataSource)$build()$getResult()
-    corpusVecContent <- corpusVec$getContent()
+    corpusVecContent <- corpusVec$read()
     stopifnot(length(corpusVecContent) == 3)
     corpusVecDocuments <- corpusVec$getDocuments()
     stopifnot(length(corpusVecDocuments) == 3)
@@ -48,7 +48,7 @@ testCorpusText <- function() {
     path <- "./test/testData/corpusBuilderRAwTextSource/corpusList"
     dataSource <- corpus
     corpusList <- CorpusText$new(name, path, dataSource)$build()$getResult()
-    corpusListContent <- corpusList$getContent()
+    corpusListContent <- corpusList$read()
     stopifnot(length(corpusListContent) == 3)
     corpusListDocuments <- corpusList$getDocuments()
     stopifnot(length(corpusListDocuments) == 3)

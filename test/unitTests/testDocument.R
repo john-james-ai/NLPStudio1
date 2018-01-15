@@ -58,8 +58,8 @@ testDocument <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Get data
-    blogsTxt <- blogs$load(path = './test/testData/input/en_US.blogs.txt')$getContent()
-    newsTxt <- blogs$load(path = './test/testData/input/en_US.news.txt')$getContent()
+    blogsTxt <- blogs$load(path = './test/testData/input/en_US.blogs.txt')$read()
+    newsTxt <- blogs$load(path = './test/testData/input/en_US.news.txt')$read()
 
     # Add content via active binding
     blogs$content <- blogsTxt
@@ -68,14 +68,14 @@ testDocument <- function() {
 
     # Add content via method
     blogs <- blogs$setContent(newsTxt)
-    bb <- blogs$getContent()
+    bb <- blogs$read()
     stopifnot(bb == newsTxt)
 
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully added content to document"))
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully obtained content from document"))
     DocumentTest$logs(className = className, methodName = "setContent", msg = paste("Successfully added content to document"))
-    DocumentTest$logs(className = className, methodName = "getContent", msg = paste("Successfully obtained content from document"))
+    DocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully obtained content from document"))
 
     cat(paste0(test, " Completed: Success!\n"))
 

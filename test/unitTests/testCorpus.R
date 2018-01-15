@@ -23,9 +23,9 @@ testCorpus <- function() {
     twitter <- Document$new(name = 'twitter')$load(twitterPath)
 
     # Check documents
-    blogsText <- blogs$getContent()
-    newsText <- news$getContent()
-    twitterText <- twitter$getContent()
+    blogsText <- blogs$read()
+    newsText <- news$read()
+    twitterText <- twitter$read()
     stopifnot(length(blogsText) == 2000)
     stopifnot(length(newsText) == 2000)
     stopifnot(length(twitterText) == 2000)
@@ -44,7 +44,7 @@ testCorpus <- function() {
     stanford <- stanford$addDocument(twitter)
 
     # Obtain content
-    content <- stanford$getContent()
+    content <- stanford$read()
 
     # Get Documents
     documents <- stanford$getDocuments()

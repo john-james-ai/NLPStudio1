@@ -5,12 +5,12 @@
 #'
 #' \code{CorpusDir} Creates Corpus object from directory sources.
 #'
-#' @template corpusBuilderClasses
+#' @template corpusImportStrategyClasses
 #'
 #' @section CorpusDir Methods:
-#' @template corpusBuilderMethods
+#' @template corpusImportStrategyMethods
 #'
-#' @template corpusBuilderParams
+#' @template corpusImportStrategyParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -20,7 +20,7 @@ CorpusDir <- R6::R6Class(
   classname = "CorpusDir",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CorpusBuilder0,
+  inherit = CorpusImport0,
 
   public = list(
 
@@ -67,10 +67,16 @@ CorpusDir <- R6::R6Class(
       docNames <- tools::file_path_sans_ext(fileNames)
       source <- dirname(files)
 
+      # Read content
+      content <- lapply(files, function(f) {
+        io <- IOFactory$new(f)$getIOStrategy()
+        io$read(path = f)
+      })
+
       # Create documents
-      docs <- lapply(seq_along(files), function(x) {
+      docs <- lapply(seq_along(content), function(x) {
         doc <- Document$new(name = docNames[x])
-        doc <- doc$load(path = files[x])
+        doc$content <- content[[x]]
         doc$meta(key = "fileName", value = fileNames[x])
         doc$meta(key = "source", value = source[x])
         doc

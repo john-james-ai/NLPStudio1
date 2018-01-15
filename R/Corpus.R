@@ -136,9 +136,9 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                            Content Methods                              #
     #-------------------------------------------------------------------------#
-    getContent = function() {
+    read = function() {
       content <- lapply(private$..documents, function(d) {
-        d$getContent()
+        d$read()
       })
       private$..accessed <- Sys.time()
       return(content)

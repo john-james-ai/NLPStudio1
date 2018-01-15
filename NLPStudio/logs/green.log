@@ -20804,3 +20804,684 @@ INFO [2018-01-12 11:43:14] Info in class 'Corpus', method 'meta. Added desc with
 INFO [2018-01-12 11:43:14] Info in class 'Document', method 'meta. Added desc with value: Blogs Data to metadata for Blogs.
 INFO [2018-01-12 11:43:14] Info in class 'Document', method 'meta. Added desc with value: News of the world to metadata for News.
 INFO [2018-01-12 11:43:14] Info in class 'Document', method 'meta. Added desc with value: Tweets and rants to metadata for Twitter.
+INFO [2018-01-14 01:17:48] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:17:48] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:17:48] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:17:48] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:20:10] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:20:10] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:20:10] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:20:10] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:22:28] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:23:10] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:23:10] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:25:55] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:25:55] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:28:46] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:28:46] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:29:26] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:29:26] Info in class 'Document', method 'initialize. Document, , instantiated.
+INFO [2018-01-14 01:29:31] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:29:31] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:29:33] Info in class '', method '. Successfully wrote Document.corpusVecFlat.2018-01-14.01-29-1515911371.RData.
+INFO [2018-01-14 01:29:33] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:30:38] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:30:38] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:30:38] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:30:38] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:31:29] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:32:43] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:32:43] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:32:43] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:32:43] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:34:14] Info in class '', method '. Successfully wrote Document.corpusVecFlat.2018-01-14.01-29-1515911371.RData.
+INFO [2018-01-14 01:34:14] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:34:17] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:38:23] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.2018-01-14.01-38-1515911903.RData, instantiated.
+INFO [2018-01-14 01:38:23] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:38:25] Info in class '', method '. Successfully wrote Document.corpusVecFlat.2018-01-14.01-38-1515911903.RData.
+INFO [2018-01-14 01:38:25] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:39:02] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:40:02] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:40:02] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:40:02] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:40:02] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:46:50] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:46:50] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:47:06] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:47:06] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:47:06] Info in class 'Database', method 'initialize. Database, , instantiated.
+INFO [2018-01-14 01:47:06] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:48:13] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:48:13] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:48:48] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:48:48] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:48:48] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.2018-01-14.01-48-1515912528.RData, instantiated.
+INFO [2018-01-14 01:48:48] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:49:21] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:49:21] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:49:21] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:49:21] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:49:22] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:49:22] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:49:39] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:49:39] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:49:39] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:49:39] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:49:39] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:49:39] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:50:17] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:50:17] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:50:17] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:50:17] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:50:17] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:50:17] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:50:17] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:51:21] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:51:21] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:51:21] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:51:21] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:51:21] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:51:21] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:51:21] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:51:21] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 01:53:29] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:53:29] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:53:29] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:53:29] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:53:29] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:53:29] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:53:29] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:53:29] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 01:53:45] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:53:45] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:53:45] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:53:45] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:53:45] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:53:45] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:53:45] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:53:45] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 01:54:27] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:54:27] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:54:27] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:54:27] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:54:27] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:54:27] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:54:27] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:54:27] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 01:54:27] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 01:57:22] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:57:22] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:57:22] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:57:22] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:57:22] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:57:23] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:57:23] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:57:23] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 01:59:04] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:59:04] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 01:59:04] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 01:59:04] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 01:59:04] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 01:59:04] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 01:59:04] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 01:59:04] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 01:59:04] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 02:00:29] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 02:00:29] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 02:00:29] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 02:00:29] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 02:00:29] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 02:00:29] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 02:00:29] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 02:00:29] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 02:00:29] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 02:00:29] Info in class 'Document', method 'read. Read Document.corpusVecFlat.RData.
+INFO [2018-01-14 02:00:29] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 02:00:29] Info in class '', method '. Successfully read Document.corpusVecFlat.RData.
+INFO [2018-01-14 02:00:56] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 02:00:56] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 02:00:56] Info in class 'Database', method 'initialize. Database, Document.corpusVecFlat.RData, instantiated.
+INFO [2018-01-14 02:00:56] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 02:00:56] Info in class '', method '. Successfully wrote Document.corpusVecFlat.RData.
+INFO [2018-01-14 02:00:56] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 02:00:56] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 02:00:56] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 02:00:56] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 02:00:56] Info in class 'Document', method 'read. Read Document.corpusVecFlat.RData.
+INFO [2018-01-14 02:00:56] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 02:00:56] Info in class '', method '. Successfully read Document.corpusVecFlat.RData.
+INFO [2018-01-14 02:00:56] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 02:00:56] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 02:00:56] Info in class 'Document', method 'meta. Added name with value: corpusVecFlatdocument. to metadata for corpusVecFlatdocument..
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'initialize. Corpus, corpusVec, instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'initialize. Database, Document.Document1.RData, instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 02:00:57] Info in class '', method '. Successfully wrote Document.Document1.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusVec
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'initialize. Database, Document.Document2.RData, instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 02:00:57] Info in class '', method '. Successfully wrote Document.Document2.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusVec
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'initialize. Database, Document.Document3.RData, instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 02:00:57] Info in class '', method '. Successfully wrote Document.Document3.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusVec
+INFO [2018-01-14 02:00:57] Info in class 'CorpusText', method 'build. Created corpus corpusVec from text.
+INFO [2018-01-14 02:00:57] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'read. Read Document.Document1.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 02:00:57] Info in class '', method '. Successfully read Document.Document1.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'read. Read Document.Document2.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 02:00:57] Info in class '', method '. Successfully read Document.Document2.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'read. Read Document.Document3.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 02:00:57] Info in class '', method '. Successfully read Document.Document3.RData.
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'meta. Added name with value: corpusVec to metadata for corpusVec.
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from vector to metadata for corpusVec.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 02:00:57] Info in class 'Corpus', method 'initialize. Corpus, corpusList, instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'Database', method 'initialize. Database, Document.Document1.RData, instantiated.
+INFO [2018-01-14 02:00:57] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 02:00:58] Info in class '', method '. Successfully wrote Document.Document1.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 02:00:58] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusList
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'initialize. Database, Document.Document2.RData, instantiated.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 02:00:58] Info in class '', method '. Successfully wrote Document.Document2.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 02:00:58] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusList
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'initialize. Database, Document.Document3.RData, instantiated.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 02:00:58] Info in class '', method '. Successfully wrote Document.Document3.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 02:00:58] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusList
+INFO [2018-01-14 02:00:58] Info in class 'CorpusText', method 'build. Created corpus corpusList from text.
+INFO [2018-01-14 02:00:58] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'read. Read Document.Document1.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 02:00:58] Info in class '', method '. Successfully read Document.Document1.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'read. Read Document.Document2.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 02:00:58] Info in class '', method '. Successfully read Document.Document2.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'read. Read Document.Document3.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 02:00:58] Info in class '', method '. Successfully read Document.Document3.RData.
+INFO [2018-01-14 02:00:58] Info in class 'Corpus', method 'meta. Added name with value: corpusList to metadata for corpusList.
+INFO [2018-01-14 02:00:58] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from list to metadata for corpusList.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 02:00:58] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 02:00:58] Info in class 'CorpusText', method 'initiate. Successfully instantiated. 
+INFO [2018-01-14 02:00:58] Info in class 'CorpusText', method 'build. Successfully instantiated. 
+INFO [2018-01-14 02:00:58] Info in class 'CorpusText', method 'getResult. Successfully returned corpus. 
+INFO [2018-01-14 08:54:02] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 08:54:02] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:54:02] Info in class 'Database', method 'initialize. Database, Document-corpusVecFlat-2018-01-14-08-54-02.RData, instantiated.
+INFO [2018-01-14 08:54:02] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 08:54:02] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-08-54-02.RData.
+INFO [2018-01-14 08:54:02] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 08:54:02] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 08:54:02] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 08:54:02] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:54:02] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-08-54-02.RData.
+INFO [2018-01-14 08:54:02] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 08:54:02] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-08-54-02.RData.
+INFO [2018-01-14 08:54:02] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 08:54:02] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 08:54:02] Info in class 'Document', method 'meta. Added name with value: corpusVecFlatdocument. to metadata for corpusVecFlatdocument..
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'initialize. Corpus, corpusVec, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-08-54-03.RData, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusVec
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-08-54-03.RData, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusVec
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-08-54-03.RData, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusVec
+INFO [2018-01-14 08:54:03] Info in class 'CorpusText', method 'build. Created corpus corpusVec from text.
+INFO [2018-01-14 08:54:03] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully read Document-Document1-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully read Document-Document2-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully read Document-Document3-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'meta. Added name with value: corpusVec to metadata for corpusVec.
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from vector to metadata for corpusVec.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'initialize. Corpus, corpusList, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-08-54-03.RData, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 08:54:03] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 08:54:03] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusList
+INFO [2018-01-14 08:54:03] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-08-54-03.RData, instantiated.
+INFO [2018-01-14 08:54:03] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 08:54:04] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 08:54:04] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusList
+INFO [2018-01-14 08:54:04] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-08-54-04.RData, instantiated.
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 08:54:04] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-08-54-04.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 08:54:04] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusList
+INFO [2018-01-14 08:54:04] Info in class 'CorpusText', method 'build. Created corpus corpusList from text.
+INFO [2018-01-14 08:54:04] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 08:54:04] Info in class '', method '. Successfully read Document-Document1-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 08:54:04] Info in class '', method '. Successfully read Document-Document2-2018-01-14-08-54-03.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-08-54-04.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 08:54:04] Info in class '', method '. Successfully read Document-Document3-2018-01-14-08-54-04.RData.
+INFO [2018-01-14 08:54:04] Info in class 'Corpus', method 'meta. Added name with value: corpusList to metadata for corpusList.
+INFO [2018-01-14 08:54:04] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from list to metadata for corpusList.
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 08:54:04] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 08:54:04] Info in class 'CorpusText', method 'initiate. Successfully instantiated. 
+INFO [2018-01-14 08:54:04] Info in class 'CorpusText', method 'build. Successfully instantiated. 
+INFO [2018-01-14 08:54:04] Info in class 'CorpusText', method 'getResult. Successfully returned corpus. 
+INFO [2018-01-14 08:57:49] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 08:57:49] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:57:49] Info in class 'Database', method 'initialize. Database, Document-corpusVecFlat-2018-01-14-08-57-49.RData, instantiated.
+INFO [2018-01-14 08:57:49] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 08:57:49] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-08-57-49.RData.
+INFO [2018-01-14 08:57:49] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 08:57:49] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 08:57:49] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 08:57:49] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:57:49] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-08-57-49.RData.
+INFO [2018-01-14 08:57:49] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 08:57:49] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-08-57-49.RData.
+INFO [2018-01-14 08:57:49] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 08:57:49] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 08:57:49] Info in class 'Document', method 'meta. Added name with value: corpusVecFlat-document to metadata for corpusVecFlat-document.
+INFO [2018-01-14 08:58:35] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 08:58:35] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:58:35] Info in class 'Database', method 'initialize. Database, Document-corpusVecFlat-2018-01-14-08-58-35.RData, instantiated.
+INFO [2018-01-14 08:58:35] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 08:58:35] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-08-58-35.RData.
+INFO [2018-01-14 08:58:35] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 08:58:35] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 08:58:35] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 08:58:35] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:58:35] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-08-58-35.RData.
+INFO [2018-01-14 08:58:35] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 08:58:35] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-08-58-35.RData.
+INFO [2018-01-14 08:58:35] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 08:58:35] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 08:58:35] Info in class 'Document', method 'meta. Added name with value: corpusVecFlat-document to metadata for corpusVecFlat-document.
+INFO [2018-01-14 08:58:35] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for corpusVecFlat-document.
+INFO [2018-01-14 08:58:35] Info in class 'Corpus', method 'initialize. Corpus, corpusVec, instantiated.
+INFO [2018-01-14 08:58:35] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-08-58-36.RData, instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusVec
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-08-58-36.RData, instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusVec
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-08-58-36.RData, instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusVec
+INFO [2018-01-14 08:58:36] Info in class 'CorpusText', method 'build. Created corpus corpusVec from text.
+INFO [2018-01-14 08:58:36] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully read Document-Document1-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully read Document-Document2-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully read Document-Document3-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'meta. Added name with value: corpusVec to metadata for corpusVec.
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from vector to metadata for corpusVec.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'meta. Added desc with value: Blogs for Slogs to metadata for blogs.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for news.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'meta. Added desc with value: Tweets for Twits to metadata for twitter.
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'initialize. Corpus, corpusList, instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-08-58-36.RData, instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 08:58:36] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusList
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-08-58-36.RData, instantiated.
+INFO [2018-01-14 08:58:36] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 08:58:36] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:36] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 08:58:37] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusList
+INFO [2018-01-14 08:58:37] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-08-58-37.RData, instantiated.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 08:58:37] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-08-58-37.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 08:58:37] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusList
+INFO [2018-01-14 08:58:37] Info in class 'CorpusText', method 'build. Created corpus corpusList from text.
+INFO [2018-01-14 08:58:37] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 08:58:37] Info in class '', method '. Successfully read Document-Document1-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 08:58:37] Info in class '', method '. Successfully read Document-Document2-2018-01-14-08-58-36.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-08-58-37.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 08:58:37] Info in class '', method '. Successfully read Document-Document3-2018-01-14-08-58-37.RData.
+INFO [2018-01-14 08:58:37] Info in class 'Corpus', method 'meta. Added name with value: corpusList to metadata for corpusList.
+INFO [2018-01-14 08:58:37] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from list to metadata for corpusList.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'meta. Added desc with value: Blogs for Slogs to metadata for blogs.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for news.
+INFO [2018-01-14 08:58:37] Info in class 'Document', method 'meta. Added desc with value: Tweets for Twits to metadata for twitter.
+INFO [2018-01-14 08:58:37] Info in class 'CorpusText', method 'initiate. Successfully instantiated. 
+INFO [2018-01-14 08:58:37] Info in class 'CorpusText', method 'build. Successfully instantiated. 
+INFO [2018-01-14 08:58:37] Info in class 'CorpusText', method 'getResult. Successfully returned corpus. 
+INFO [2018-01-14 09:01:41] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 09:01:41] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:01:41] Info in class 'Database', method 'initialize. Database, Document-corpusVecFlat-2018-01-14-09-01-41.RData, instantiated.
+INFO [2018-01-14 09:01:41] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 09:01:41] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-01-41.RData.
+INFO [2018-01-14 09:01:41] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 09:01:41] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 09:01:41] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 09:01:41] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:01:41] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-09-01-41.RData.
+INFO [2018-01-14 09:01:41] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:01:41] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-01-41.RData.
+INFO [2018-01-14 09:01:41] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 09:01:41] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 09:01:41] Info in class 'Document', method 'meta. Added name with value: corpusVecFlat-document to metadata for corpusVecFlat-document.
+INFO [2018-01-14 09:01:41] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for corpusVecFlat-document.
+INFO [2018-01-14 09:11:47] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 09:11:47] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:11:47] Info in class 'Database', method 'initialize. Database, Document-corpusVecFlat-2018-01-14-09-11-47.RData, instantiated.
+INFO [2018-01-14 09:11:47] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 09:11:47] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:11:47] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 09:11:47] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 09:11:47] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 09:11:47] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:11:47] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:11:47] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:11:47] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:12:11] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:12:11] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 09:12:11] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:12:11] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:12:14] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:12:14] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:12:17] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:12:17] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 09:12:17] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 09:12:17] Info in class 'Document', method 'meta. Added name with value: corpusVecFlat-document to metadata for corpusVecFlat-document.
+INFO [2018-01-14 09:12:17] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for corpusVecFlat-document.
+INFO [2018-01-14 09:12:40] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:12:40] Info in class 'Database', method 'write. Wrote corpusVecFlat-document. 
+INFO [2018-01-14 09:12:40] Info in class 'Corpus', method 'initialize. Corpus, corpusVec, instantiated.
+INFO [2018-01-14 09:12:40] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:12:40] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-09-12-40.RData, instantiated.
+INFO [2018-01-14 09:12:40] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 09:12:40] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:12:40] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:12:40] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusVec
+INFO [2018-01-14 09:12:40] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-09-12-40.RData, instantiated.
+INFO [2018-01-14 09:12:40] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 09:12:41] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 09:12:41] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusVec
+INFO [2018-01-14 09:12:41] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-09-12-41.RData, instantiated.
+INFO [2018-01-14 09:12:41] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 09:12:41] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-09-12-41.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 09:12:41] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusVec
+INFO [2018-01-14 09:12:41] Info in class 'CorpusText', method 'build. Created corpus corpusVec from text.
+INFO [2018-01-14 09:12:41] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:12:41] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:12:41] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:12:41] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-12-41.RData.
+INFO [2018-01-14 09:12:41] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:12:41] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-12-41.RData.
+INFO [2018-01-14 09:13:05] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:13:05] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:13:05] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:13:05] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:13:08] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:13:08] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:13:08] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:13:08] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:13:08] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-12-41.RData.
+INFO [2018-01-14 09:13:08] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:13:08] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-12-41.RData.
+INFO [2018-01-14 09:13:08] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:13:11] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-12-40.RData.
+INFO [2018-01-14 09:13:11] Info in class 'Corpus', method 'meta. Added name with value: corpusVec to metadata for corpusVec.
+INFO [2018-01-14 09:13:11] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from vector to metadata for corpusVec.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'meta. Added desc with value: Blogs for Slogs to metadata for blogs.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for news.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'meta. Added desc with value: Tweets for Twits to metadata for twitter.
+INFO [2018-01-14 09:13:11] Info in class 'Corpus', method 'initialize. Corpus, corpusList, instantiated.
+INFO [2018-01-14 09:13:11] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-09-13-11.RData, instantiated.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 09:13:11] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:13:11] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusList
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-09-13-11.RData, instantiated.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 09:13:11] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 09:13:11] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusList
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-09-13-11.RData, instantiated.
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 09:13:11] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 09:13:11] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusList
+INFO [2018-01-14 09:13:11] Info in class 'CorpusText', method 'build. Created corpus corpusList from text.
+INFO [2018-01-14 09:13:11] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:13:11] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:11] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:13:12] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:12] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:12] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:13:12] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:12] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:12] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:13:12] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:35] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:35] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:13:35] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:35] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:13:38] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:38] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:38] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:13:38] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:38] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:38] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:13:38] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:38] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:13:41] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-13-11.RData.
+INFO [2018-01-14 09:13:41] Info in class 'Corpus', method 'meta. Added name with value: corpusList to metadata for corpusList.
+INFO [2018-01-14 09:13:41] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from list to metadata for corpusList.
+INFO [2018-01-14 09:13:41] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 09:13:41] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 09:13:41] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 09:13:41] Info in class 'Document', method 'meta. Added desc with value: Blogs for Slogs to metadata for blogs.
+INFO [2018-01-14 09:13:41] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for news.
+INFO [2018-01-14 09:13:41] Info in class 'Document', method 'meta. Added desc with value: Tweets for Twits to metadata for twitter.
+INFO [2018-01-14 09:14:04] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-11-47.RData.
+INFO [2018-01-14 09:14:04] Info in class 'Database', method 'write. Wrote corpusVecFlat-document. 
+INFO [2018-01-14 09:14:04] Info in class 'CorpusText', method 'initiate. Successfully instantiated. 
+INFO [2018-01-14 09:14:04] Info in class 'CorpusText', method 'build. Successfully instantiated. 
+INFO [2018-01-14 09:14:04] Info in class 'CorpusText', method 'getResult. Successfully returned corpus. 
+INFO [2018-01-14 09:44:32] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-14 09:44:32] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:44:32] Info in class 'Database', method 'initialize. Database, Document-corpusVecFlat-2018-01-14-09-44-32.RData, instantiated.
+INFO [2018-01-14 09:44:32] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-14 09:44:32] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:44:32] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 09:44:32] Info in class 'Corpus', method 'addDocument. Added corpusVecFlat to corpusVecFlat
+INFO [2018-01-14 09:44:32] Info in class 'CorpusText', method 'build. Created corpus corpusVecFlat from text.
+INFO [2018-01-14 09:44:32] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:44:32] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:44:32] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:44:32] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:44:56] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:44:56] Info in class 'Database', method 'write. Wrote corpusVecFlat. 
+INFO [2018-01-14 09:44:56] Info in class 'Document', method 'read. Read Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:44:56] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:44:59] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:44:59] Info in class 'Database', method 'read. Read corpusVecFlat. 
+INFO [2018-01-14 09:45:02] Info in class '', method '. Successfully read Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:45:02] Info in class 'Corpus', method 'meta. Added name with value: corpusVecFlat to metadata for corpusVecFlat.
+INFO [2018-01-14 09:45:02] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from flat vector to metadata for corpusVecFlat.
+INFO [2018-01-14 09:45:02] Info in class 'Document', method 'meta. Added name with value: corpusVecFlat-document to metadata for corpusVecFlat-document.
+INFO [2018-01-14 09:45:02] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for corpusVecFlat-document.
+INFO [2018-01-14 09:45:26] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'write. Wrote corpusVecFlat-document. 
+INFO [2018-01-14 09:45:26] Info in class 'Corpus', method 'initialize. Corpus, corpusVec, instantiated.
+INFO [2018-01-14 09:45:26] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-09-45-26.RData, instantiated.
+INFO [2018-01-14 09:45:26] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 09:45:26] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:45:26] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusVec
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-09-45-26.RData, instantiated.
+INFO [2018-01-14 09:45:26] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 09:45:26] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 09:45:26] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusVec
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-09-45-26.RData, instantiated.
+INFO [2018-01-14 09:45:26] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 09:45:26] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 09:45:26] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusVec
+INFO [2018-01-14 09:45:26] Info in class 'CorpusText', method 'build. Created corpus corpusVec from text.
+INFO [2018-01-14 09:45:26] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:45:26] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:45:26] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:26] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:45:27] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:27] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:27] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:45:27] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:50] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:50] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:45:50] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:50] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:45:53] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:53] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:53] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:45:53] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:53] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:53] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:45:53] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:53] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:45:56] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-45-26.RData.
+INFO [2018-01-14 09:45:56] Info in class 'Corpus', method 'meta. Added name with value: corpusVec to metadata for corpusVec.
+INFO [2018-01-14 09:45:56] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from vector to metadata for corpusVec.
+INFO [2018-01-14 09:45:56] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 09:45:56] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 09:45:56] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 09:45:56] Info in class 'Document', method 'meta. Added desc with value: Blogs for Slogs to metadata for blogs.
+INFO [2018-01-14 09:45:56] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for news.
+INFO [2018-01-14 09:45:56] Info in class 'Document', method 'meta. Added desc with value: Tweets for Twits to metadata for twitter.
+INFO [2018-01-14 09:45:56] Info in class 'Corpus', method 'initialize. Corpus, corpusList, instantiated.
+INFO [2018-01-14 09:45:56] Info in class 'CorpusText', method 'initialize. CorpusText object instantiated.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'initialize. Database, Document-Document1-2018-01-14-09-45-56.RData, instantiated.
+INFO [2018-01-14 09:45:57] Info in class 'Document', method 'initialize. Document, Document1, instantiated.
+INFO [2018-01-14 09:45:57] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:45:57] Info in class 'Corpus', method 'addDocument. Added Document1 to corpusList
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'initialize. Database, Document-Document2-2018-01-14-09-45-57.RData, instantiated.
+INFO [2018-01-14 09:45:57] Info in class 'Document', method 'initialize. Document, Document2, instantiated.
+INFO [2018-01-14 09:45:57] Info in class '', method '. Successfully wrote Document-Document2-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'write. Wrote Document2. 
+INFO [2018-01-14 09:45:57] Info in class 'Corpus', method 'addDocument. Added Document2 to corpusList
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'initialize. Database, Document-Document3-2018-01-14-09-45-57.RData, instantiated.
+INFO [2018-01-14 09:45:57] Info in class 'Document', method 'initialize. Document, Document3, instantiated.
+INFO [2018-01-14 09:45:57] Info in class '', method '. Successfully wrote Document-Document3-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'write. Wrote Document3. 
+INFO [2018-01-14 09:45:57] Info in class 'Corpus', method 'addDocument. Added Document3 to corpusList
+INFO [2018-01-14 09:45:57] Info in class 'CorpusText', method 'build. Created corpus corpusList from text.
+INFO [2018-01-14 09:45:57] Info in class 'CorpusText', method 'getResult. Returned corpus object to calling environment
+INFO [2018-01-14 09:45:57] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:45:57] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:45:57] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:45:57] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:45:57] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:46:21] Info in class '', method '. Successfully wrote Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:46:21] Info in class 'Database', method 'write. Wrote Document1. 
+INFO [2018-01-14 09:46:21] Info in class 'Document', method 'read. Read Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:46:21] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:46:24] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:46:24] Info in class 'Document', method 'read. Read Document-Document2-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:46:24] Info in class 'Database', method 'read. Read Document2. 
+INFO [2018-01-14 09:46:24] Info in class '', method '. Successfully read Document-Document2-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:46:24] Info in class 'Document', method 'read. Read Document-Document3-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:46:24] Info in class 'Database', method 'read. Read Document3. 
+INFO [2018-01-14 09:46:24] Info in class '', method '. Successfully read Document-Document3-2018-01-14-09-45-57.RData.
+INFO [2018-01-14 09:46:24] Info in class 'Database', method 'read. Read Document1. 
+INFO [2018-01-14 09:46:27] Info in class '', method '. Successfully read Document-Document1-2018-01-14-09-45-56.RData.
+INFO [2018-01-14 09:46:27] Info in class 'Corpus', method 'meta. Added name with value: corpusList to metadata for corpusList.
+INFO [2018-01-14 09:46:27] Info in class 'Corpus', method 'meta. Added desc with value: Creating corpus from list to metadata for corpusList.
+INFO [2018-01-14 09:46:27] Info in class 'Document', method 'meta. Added name with value: blogs to metadata for blogs.
+INFO [2018-01-14 09:46:27] Info in class 'Document', method 'meta. Added name with value: news to metadata for news.
+INFO [2018-01-14 09:46:27] Info in class 'Document', method 'meta. Added name with value: twitter to metadata for twitter.
+INFO [2018-01-14 09:46:27] Info in class 'Document', method 'meta. Added desc with value: Blogs for Slogs to metadata for blogs.
+INFO [2018-01-14 09:46:27] Info in class 'Document', method 'meta. Added desc with value: News of the World to metadata for news.
+INFO [2018-01-14 09:46:27] Info in class 'Document', method 'meta. Added desc with value: Tweets for Twits to metadata for twitter.
+INFO [2018-01-14 09:46:51] Info in class '', method '. Successfully wrote Document-corpusVecFlat-2018-01-14-09-44-32.RData.
+INFO [2018-01-14 09:46:51] Info in class 'Database', method 'write. Wrote corpusVecFlat-document. 
+INFO [2018-01-14 09:46:51] Info in class 'CorpusText', method 'initiate. Successfully instantiated. 
+INFO [2018-01-14 09:46:51] Info in class 'CorpusText', method 'build. Successfully instantiated. 
+INFO [2018-01-14 09:46:51] Info in class 'CorpusText', method 'getResult. Successfully returned corpus. 

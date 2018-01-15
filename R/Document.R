@@ -16,7 +16,7 @@
 #'   \item{\code{new()}}{Method for instantiating a document. Not implemented for the abstract class.}
 #'   \item{\code{getName()}}{Method that returns the name of the Document object. }
 #'   \item{\code{setContent(content)}}{Method that sets the content of the Document object. }
-#'   \item{\code{getContent()}}{Method that returns the content of the Document object. }
+#'   \item{\code{read()}}{Method that returns the content of the Document object. }
 #'  }
 #'
 #' \strong{IO Methods:}
@@ -48,20 +48,19 @@ Document <- R6::R6Class(
   inherit = Document0,
 
   private = list(
-    ..content = list()
+    ..databaseObject = character()
   ),
 
   active = list(
     content = function(value) {
 
       if (missing(value)) {
-        private$..accessed <- Sys.time()
-        return(private$..content)
+        return(private$..databaseObject$read())
       } else {
-        if (is.null(private$..content)) private$..created <- Sys.time()
-        private$..content <- value
+        private$..databaseObject$write(value)
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
+        invisible(self)
       }
     }
   ),
@@ -82,6 +81,7 @@ Document <- R6::R6Class(
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
+      private$..databaseObject <- File$new(self)
 
       # Create log entry
       self$logIt()
@@ -90,110 +90,22 @@ Document <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                             Content Methods                             #
-    #-------------------------------------------------------------------------#
-    setContent = function(content) {
-
-      private$..content <- content
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
-
-      invisible(self)
-    },
-
-    getContent = function() {
-      private$..accessed <- Sys.time()
-      private$..content
-    },
-
-
-    #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    load = function(path, io = NULL) {
+    read = function() {
 
-      private$..methodName <- 'load'
-
-      # Validation Path
-      if (!file.exists(path)) {
-        private$..state <- paste0("Unable to load file. File does not exist. ",
-                                  "See?", class(self), " for further ",
-                                  "assistance.")
-        self$logIt("Error")
-        stop()
-      }
-
-      # Validate/instantiate IO
-      if (is.null(io)) {
-        io <- IOFactory$new(path)$getIOStrategy()
-      } else {
-        status <- private$validateIO(io)
-        if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
-          self$logIt("Error")
-          stop()
-        }
-      }
-
-      # Read content
-      private$..content <- io$read(path)
-
-      # Format document file meta data
-      private$..meta[["directory"]] <- dirname(path)
-      private$..meta[["fileName"]] <- basename(path)
-      private$..meta[["fileSize"]] <- file.size(path)
-      private$..meta[["format"]] <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
-      private$..created <- file.info(path)[,'ctime']
-      private$..modified <- file.info(path)[,'mtime']
-      private$..accessed <- Sys.time()
-
-      # LogIt
-      private$..state <- paste0("Read ", private$..meta[["name"]], ". ")
+      private$..methodName <- 'read'
+      private$..state <- paste0("Read ", private$..databaseObject$getFileName(), ".")
       self$logIt()
-
-      invisible(self)
+      return(private$..databaseObject$read())
     },
 
-    save = function(path, io = NULL) {
+    write = function(content) {
 
       private$..methodName <- 'save'
-
-      # Validate/instantiate IO
-      if (is.null(io)) {
-        io <- IOFactory$new(path)$getIOStrategy()
-      } else {
-        status <- private$validateIO(io)
-        if (status[['code']] == FALSE) {
-          private$..state <- status[['msg']]
-          self$logIt("Error")
-          stop()
-        }
-      }
-
-      # Validate content
-      if (is.null(private$..content)) {
-        private$..state <- paste0("Unable to save document. Content is NULL. ",
-                                  "See ?", class(self)[1], "for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
-
-      # Write data
-      io$write(path, private$..content)
-
-      # Format document file meta data
-      private$..meta[["directory"]] <- dirname(path)
-      private$..meta[["fileName"]] <- basename(path)
-      private$..meta[["fileSize"]] <- file.size(path)
-      private$..meta[["format"]] <- ifelse(class(private$..content) == 'raw', "bin", tools::file_ext(path))
-      private$..created <- file.info(path)[,'ctime']
-      private$..modified <- file.info(path)[,'mtime']
-      private$..accessed <- Sys.time()
-
-      # LogIt
-      private$..state <- paste0("Wrote ", private$..meta[["name"]], ". ")
+      private$..databaseObject$write(content)
+      private$..state <- paste0("Wrote ", private$..databaseObject$getFileName(), ". ")
       self$logIt()
-
       invisible(self)
     },
 
@@ -211,12 +123,11 @@ Document <- R6::R6Class(
     exposeObject = function() {
       document <- list(
         meta = self$meta(),
-        content = private$..content,
         state = private$..state,
         created = private$..created,
         modified = private$..modified,
         accessed = private$..accessed,
-        file = private$..file
+        databaseObject = private$..databaseObject
       )
       return(document)
     }
