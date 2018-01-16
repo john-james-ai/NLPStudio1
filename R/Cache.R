@@ -57,13 +57,14 @@ Cache <- R6::R6Class(
           ..className = "Cache",
           ..methodName = character(),
           ..directory = ".R_cache",
-          ..inventory = list(),
+          ..inventory = data.frame(),
           ..maxSize = 2000,
           ..currentSize = 0,
           ..trimPolicy = "LRU",
           ..item = list(
             id = character(),
             name = character(),
+            size = numeric(),
             expired = FALSE,
             filePath = character(),
             created = character(),
@@ -71,6 +72,84 @@ Cache <- R6::R6Class(
             accessed = character(),
             nAccessed = numeric()
           ),
+
+          trim = function(objectId, size) {
+
+            private$..methodName <- "trim"
+
+            while(private$..currentSize + size > private$..maxSize) {
+              if (private$..trimPolicy == "LRU") {
+                oldest <- subset(private$..inventory, subset(accessed == min(accessed) & id != objectId))
+                expire <- subset(oldest, subset(size == max(size)))
+                private$..inventory[id == expire$id[1], expired := TRUE]
+                filePath <- expire$filePath[1]
+                file.remove(filePath)
+                private$..currentSize <- private$..currentSize - expire$size[1]
+              } else {
+                leastUsed <- subset(private$..inventory, subset(nAccessed == min(nAccessed) & id != objectId))
+                expire <- subset(leastUsed, subset(size == max(size)))
+                private$..inventory[id == expire$id[1], expired := TRUE]
+                filePath <- expire$filePath[1]
+                file.remove(filePath)
+                private$..currentSize <- private$..currentSize - expire$size[1]
+              }
+            }
+          },
+
+          register = function(object, content) {
+
+            private$..methodName <- 'register'
+
+            objectId <- object$getId()
+
+            if (nrow(private$..inventory[id == objectId]) == 0) {
+              if (private$..maxSize < private$..currentSize + object.size(content)) {
+                private$trim(objectId, object.size(content))
+              }
+
+              # Set item parameters
+              private$..item$id <- id
+              private$..item$name <- object$getName()
+              private$..item$size <- object.size(content)
+              private$..item$expired <- FALSE
+              private$..item$filePath <- file.path(private$..directory,
+                                                   paste0(class(object)[1],"-",
+                                                          private$..item$name, "-",
+                                                          private$..item$id, ".rdata"))
+              private$..item$created  <- Sys.time()
+              private$..item$modified <- Sys.time()
+              private$..item$accessed <- Sys.time()
+              private$..item$nAccessed <- 0
+
+              # Add item to inventory
+              private$..inventory <- rbind(as.data.frame(private$..item))
+
+              # Return Filepath
+              return(private$..item$filePath)
+
+            } else {
+              size <- subset(private$..inventory, subset(id == objectId), select(size))
+              if (private$..maxSize < private$..currentSize + object.size(content) - size) {
+                private$trim(objectId, object.size(content))
+              }
+
+              # Set item parameters
+              private$..inventory[id == objectId, name := object$getName()]
+              private$..inventory[id == objectId, size := object.size(content)]
+              private$..inventory[id == objectId, expired := FALSE]
+              private$..inventory[id == objectId, filePath :=
+                                    file.path(private$..directory,
+                                              paste0(class(object)[1],"-",
+                                                     private$..item$name, "-",
+                                                     private$..item$id, ".rdata"))]
+              private$..inventory[id == objectId, modified := Sys.time()]
+
+              # Return filepath
+              return(subset(private$..inventory, subset(id == objectId), select(filePath)))
+            }
+          }
+        ),
+        active = list(
           maxSize = function(value) {
 
             private$..methodName <- "maxSize"
@@ -104,28 +183,12 @@ Cache <- R6::R6Class(
           #-------------------------------------------------------------------------#
           #                           Core Methods                                  #
           #-------------------------------------------------------------------------#
-          initialize = function(object) {
+          initialize = function() {
 
             # Set log parameters
             private$..className <- "Cache"
             private$..methodName <- "initialize"
             private$..logs <- LogR$new()
-
-            # Set item parameters
-            private$..item$id <- object$getId()
-            private$..item$name <- object$getName()
-            private$..item$expired <- FALSE
-            private$..item$filePath <- file.path(private$..directory,
-                                                 paste0(class(object)[1],"-",
-                                                        private$..item$name, "-",
-                                                        private$..item$id, ".rdata"))
-            private$..item$created  <- Sys.time()
-            private$..item$modified <- Sys.time()
-            private$..item$accessed <- Sys.time()
-            private$..item$nAccessed = 0
-
-            # Add item to inventory
-            private$..inventory[[id]] <- private$..item
 
             # Create database folder (if it doesn't already exists)
             dir.create(private$..directory, showWarnings = FALSE, recursive = TRUE)
@@ -140,9 +203,13 @@ Cache <- R6::R6Class(
           #-------------------------------------------------------------------------#
           #                             IO Methods                                  #
           #-------------------------------------------------------------------------#
-          read = function(id) {
+          read = function(object) {
 
             private$..methodName <- 'read'
+
+            #TODO: check for expiration
+
+            id <- object$getId()
 
             if (is.null(private$..inventory[[id]])) {
               private$..state <- paste0("Cache object, ", id, "does not exist.",
@@ -168,27 +235,19 @@ Cache <- R6::R6Class(
             return(data)
           },
 
-          write = function(id, content) {
-
-            #TODO: check sizes of object, add to current size, compare to max size, if over
-            # invoke trim method, delete files until available size plus new object size
-            # is below maximum. Save object, update current size and other variables.
+          write = function(object, content) {
 
             private$..methodName <- 'write'
 
-            # Set write method
-            io <- IOFactory$new(private$..path)$getIOStrategy()
+            # Register write
+            filePath <- private$register(object, content)
 
-            # Update meta data
-            if (!file.exists(private$..path)) private$..created <- Sys.time()
-            private$..modified <- Sys.time()
-            private$..accessed <- Sys.time()
-
-            # Write
-            io$write(path = private$..path, content = content)
+            # Write to cache
+            io <- IOFactory$new(filePath)$getIOStrategy()
+            io$write(path = filePath, content = content)
 
             # Log
-            private$..state <- paste0("Wrote ", private$..object$getName(), ". ")
+            private$..state <- paste0("Wrote ", object$getName(), " to cache. ")
             self$logIt()
 
             invisible(self)
