@@ -1,13 +1,13 @@
 #==============================================================================#
-#                                CorpusText                                    #
+#                                CorpusImportText                              #
 #==============================================================================#
-#' CorpusText
+#' CorpusImportText
 #'
-#' \code{CorpusText} Creates Corpus objects from text sources
+#' \code{CorpusImportText} Creates Corpus objects from text sources
 #'
 #' @template corpusImportStrategyClasses
 #'
-#' @section CorpusText Methods:
+#' @section CorpusImportText Methods:
 #' @template corpusImportStrategyMethods
 #'
 #' @template corpusImportStrategyParams
@@ -16,8 +16,8 @@
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family CorpusBuilder family of classes
 #' @export
-CorpusText <- R6::R6Class(
-  classname = "CorpusText",
+CorpusImportText <- R6::R6Class(
+  classname = "CorpusImportText",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = CorpusImport0,
@@ -37,9 +37,9 @@ CorpusText <- R6::R6Class(
       private$..dataSource <- dataSource
       private$..flat <- flat
 
-      private$..className <- 'CorpusText'
+      private$..className <- 'CorpusImportText'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("CorpusText object instantiated.")
+      private$..state <- paste0("CorpusImportText object instantiated.")
       private$..logs <- LogR$new()
 
       private$..corpus <- Corpus$new(name)

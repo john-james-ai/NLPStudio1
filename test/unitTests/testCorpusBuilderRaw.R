@@ -1,9 +1,9 @@
-testCorpusText <- function() {
+testCorpusImportText <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     unlink("./test/testCorpus/data", recursive = TRUE)
-    CorpusTextTest <<- LogTest$new()
+    CorpusImportTextTest <<- LogTest$new()
     files <- list.files(path = "./test/testData/input", full.names = TRUE)
     corpus <<- lapply(files, function(f) {
       readLines(f)
@@ -13,7 +13,7 @@ testCorpusText <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: CorpusText"
+    test <- "test0: CorpusImportText"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from Vector Flat
@@ -21,7 +21,7 @@ testCorpusText <- function() {
     path <- "./test/testData/corpusBuilderRAwTextSource/corpusVecFlat"
     news <- readLines("./test/testData/input/en_US.news.txt")
     dataSource <- news
-    corpusVecFlat <- CorpusText$new(name, path, dataSource, flat = TRUE)$build()$getResult()
+    corpusVecFlat <- CorpusImportText$new(name, path, dataSource, flat = TRUE)$build()$getResult()
     corpusVecFlatContent <- corpusVecFlat$read()
     stopifnot(length(corpusVecFlatContent$corpusVec) == 2000)
     stopifnot(corpusVecFlatContent$corpusVec == news)
@@ -35,7 +35,7 @@ testCorpusText <- function() {
     path <- "./test/testData/corpusBuilderRAwTextSource/corpusVec"
     qc <- quanteda::corpus(readtext::readtext("./test/testData/input/*.txt"))
     dataSource <- qc$documents$texts
-    corpusVec <- CorpusText$new(name, path, dataSource)$build()$getResult()
+    corpusVec <- CorpusImportText$new(name, path, dataSource)$build()$getResult()
     corpusVecContent <- corpusVec$read()
     stopifnot(length(corpusVecContent) == 3)
     corpusVecDocuments <- corpusVec$getDocuments()
@@ -47,7 +47,7 @@ testCorpusText <- function() {
     name <- "corpusList"
     path <- "./test/testData/corpusBuilderRAwTextSource/corpusList"
     dataSource <- corpus
-    corpusList <- CorpusText$new(name, path, dataSource)$build()$getResult()
+    corpusList <- CorpusImportText$new(name, path, dataSource)$build()$getResult()
     corpusListContent <- corpusList$read()
     stopifnot(length(corpusListContent) == 3)
     corpusListDocuments <- corpusList$getDocuments()
@@ -55,9 +55,9 @@ testCorpusText <- function() {
     print(corpusList$meta())
     print(corpusList$docMeta())
 
-    CorpusTextTest$logs(className = "CorpusText", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusTextTest$logs(className = "CorpusText", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusTextTest$logs(className = "CorpusText", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    CorpusImportTextTest$logs(className = "CorpusImportText", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    CorpusImportTextTest$logs(className = "CorpusImportText", methodName = "build", msg = paste("Successfully instantiated. "))
+    CorpusImportTextTest$logs(className = "CorpusImportText", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -65,10 +65,10 @@ testCorpusText <- function() {
 
 
   testn <- function() {
-    test <- "testn: CorpusText: Unzip"
+    test <- "testn: CorpusImportText: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
 
-    CorpusTextTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    CorpusImportTextTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -83,6 +83,6 @@ raw <- test0()
 
 
 }
-className <- "CorpusText"
-#source('./test/unitTests/testCorpusText.R')
-testCorpusText()
+className <- "CorpusImportText"
+#source('./test/unitTests/testCorpusImportText.R')
+testCorpusImportText()

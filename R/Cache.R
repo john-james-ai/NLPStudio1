@@ -16,14 +16,16 @@
 #' is controlled based upon a designated maximum size and a least recently
 #' used (LRU) eviction strategy.
 #'
-#' @template cacheClasses.R
-#'
 #' @section Cache methods:
 #' \strong{Core Methods:}
 #'  \itemize{
 #'   \item{\code{new(object)}}{Method for instantiating a Cache object.}
 #'   \item{\code{read()}}{Reads the object from the cache. }
 #'   \item{\code{write()}}{Writes objects to the cache. Also performs eviction of objects when the maximum size of the cache has been reached. }
+#'   \item{\code{maxSize()}}{Sets the maximum size of the file cache on disk.}
+#'   \item{\code{trim(policy)}}{Trims the cache according to the policy parameter. Policy parameters are c("LFU", "LRU"), for least frequently used and least recently used, respectively}
+#'   \item{\code{policy()}}{Sets trim policy. Valid value are c("LFU", "LRU"), for least frequently used and least recently used, respectively}
+#'   \item{\code{print()}}{Prints the inventory of the cache.}
 #'  }
 #'
 #' \strong{Other Methods:}
@@ -32,134 +34,190 @@
 #'   \item{\code{logIt(level = 'Info')}}{Logs events relating to the document.}
 #'  }
 #'
-#' @section Parameters:
+#' @param id Character string containing the unique identifier for a cacheable object
+#' @param content Content to be written to cache.
 #' @param object Object to be written to, or read from the cache.
+#' @param policy Character string indicating the trim policy. Valid values are c("LFU", "LRU"), for least frequently used and least recently used, respectively
 #' @return data The cached payload content, if the read method is invoked or the original object sans payload.
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @export
 Cache <- R6::R6Class(
-  classname = "Cache",
+  "SingletonContainer",
+  portable = FALSE,
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
-
-  private = list(
-    ..directory = ".R_cache",
-    ..inventory = list(),
-    ..maxSize = numeric(),
-    ..currentSize = numeric(),
-    ..item = list(
-      id = character(),
-      expired = logical(),
-      filePath = character(),
-      factory = character(),
-      input = character(),
-      created = character(),
-      modified = character(),
-      accessed = character(),
-      nAccessed = numeric()
-    )
-  ),
-
+  inherit = Singleton,
   public = list(
+    initialize = function(...) {
+      Class <<- R6::R6Class(
+        classname = "Cache",
+        private = list(
+          ..className = "Cache",
+          ..methodName = character(),
+          ..directory = ".R_cache",
+          ..inventory = list(),
+          ..maxSize = 2000,
+          ..currentSize = 0,
+          ..trimPolicy = "LRU",
+          ..item = list(
+            id = character(),
+            name = character(),
+            expired = FALSE,
+            filePath = character(),
+            created = character(),
+            modified = character(),
+            accessed = character(),
+            nAccessed = numeric()
+          ),
+          maxSize = function(value) {
 
-    #-------------------------------------------------------------------------#
-    #                           Core Methods                                  #
-    #-------------------------------------------------------------------------#
-    initialize = function(object) {
+            private$..methodName <- "maxSize"
 
-      # Extract data from object parameters
-      name <- object$getName()
-      className <- class(object)[1]
-      timeStamp <- format(Sys.time(), "%Y-%m-%d-%H-%M-%S")
-      private$..fileName <- paste0(className, "-", name, "-", timeStamp, ".RData")
-      private$..path <- file.path(private$..directory, private$..fileName)
-      private$..object <- object
+            if (missing(value)) {
+              return(private$..maxSize)
+            } else {
+              if (class(value) != "integer") {
 
-      # Create database folder (if it doesn't already exists)
-      dir.create(private$..directory, showWarnings = FALSE, recursive = TRUE)
+                private$..state <- paste0("Maximum size should be an integer. ",
+                                          "See ?", class(self)[1], " for ",
+                                          "further assistance. ")
+                self$logIt("Error")
+                stop()
+              } else if (value < 1000 | value > 10000) {
+                private$..state <- paste("Maximum cache size must be integer and",
+                                         "between 1000 and 10000 megabytes. ",
+                                         "See ?", class(self)[1], " for ",
+                                         "further assistance. ")
+                self$logIt("Error")
+                stop()
+              } else {
+                private$..maxSize <- value
+              }
+            }
+          }
+        ),
 
-      # Instantiate variables
-      private$..className <- 'Cache'
-      private$..methodName <- 'initialize'
-      private$..state <- paste0("Cache, ", private$..fileName, ", instantiated.")
-      private$..logs <- LogR$new()
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+        public = list(
 
-      # Create log entry
-      self$logIt()
+          #-------------------------------------------------------------------------#
+          #                           Core Methods                                  #
+          #-------------------------------------------------------------------------#
+          initialize = function(object) {
 
-      invisible(self)
-    },
+            # Set log parameters
+            private$..className <- "Cache"
+            private$..methodName <- "initialize"
+            private$..logs <- LogR$new()
 
-    getCacheName = function() private$..fileName,
+            # Set item parameters
+            private$..item$id <- object$getId()
+            private$..item$name <- object$getName()
+            private$..item$expired <- FALSE
+            private$..item$filePath <- file.path(private$..directory,
+                                                 paste0(class(object)[1],"-",
+                                                        private$..item$name, "-",
+                                                        private$..item$id, ".rdata"))
+            private$..item$created  <- Sys.time()
+            private$..item$modified <- Sys.time()
+            private$..item$accessed <- Sys.time()
+            private$..item$nAccessed = 0
 
-    #-------------------------------------------------------------------------#
-    #                             IO Methods                                  #
-    #-------------------------------------------------------------------------#
-    read = function() {
+            # Add item to inventory
+            private$..inventory[[id]] <- private$..item
 
-      private$..methodName <- 'read'
+            # Create database folder (if it doesn't already exists)
+            dir.create(private$..directory, showWarnings = FALSE, recursive = TRUE)
 
-      # Set read method
-      io <- IOFactory$new(private$..path)$getIOStrategy()
+            # Log it
+            private$..state <- paste0("Cache object for ", private$..item$name, ", instantiated.")
+            self$logIt()
 
-      # Update metadata
-      private$..accessed <- Sys.time()
+            invisible(self)
+          },
 
-      # Log
-      private$..state <- paste0("Read ", private$..object$getName(), ". ")
-      self$logIt()
+          #-------------------------------------------------------------------------#
+          #                             IO Methods                                  #
+          #-------------------------------------------------------------------------#
+          read = function(id) {
 
-      return(io$read(private$..path))
-    },
+            private$..methodName <- 'read'
 
-    write = function(content) {
+            if (is.null(private$..inventory[[id]])) {
+              private$..state <- paste0("Cache object, ", id, "does not exist.",
+                                        "See ?", class(self)[1], " for ",
+                                        "further assistance. ")
+              self$logIt("Error")
+              stop()
+            }
 
-      private$..methodName <- 'write'
+            # Read data
+            item <- private$..inventory[[id]]
+            io <- IOFactory$new(item$filePath)$getIOStrategy()
+            data <- io$read(item$filePath)
 
-      # Set write method
-      io <- IOFactory$new(private$..path)$getIOStrategy()
+            # Update metadata
+            private$..item[[id]]$accessed <- Sys.time()
+            private$..item[[id]]$nAccessed <- private$..item[[id]]$nAccessed + 1
 
-      # Update meta data
-      if (!file.exists(private$..path)) private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+            # Log
+            private$..state <- paste0("Read ", item$name, " from cache. ")
+            self$logIt()
 
-      # Write
-      io$write(path = private$..path, content = content)
+            return(data)
+          },
 
-      # Log
-      private$..state <- paste0("Wrote ", private$..object$getName(), ". ")
-      self$logIt()
+          write = function(id, content) {
 
-      invisible(self)
-    },
+            #TODO: check sizes of object, add to current size, compare to max size, if over
+            # invoke trim method, delete files until available size plus new object size
+            # is below maximum. Save object, update current size and other variables.
 
-    #-------------------------------------------------------------------------#
-    #                           Visitor Methods                               #
-    #-------------------------------------------------------------------------#
-    accept = function(visitor)  {
-      visitor$database(self)
-    },
+            private$..methodName <- 'write'
 
-    #-------------------------------------------------------------------------#
-    #                            Test Methods                                 #
-    #-------------------------------------------------------------------------#
-    exposeObject = function() {
-      databaseObject <- list(
-        object <- private$..object,
-        path <- private$..path,
-        state = private$..state,
-        created = private$..created,
-        modified = private$..modified,
-        accessed = private$..accessed
+            # Set write method
+            io <- IOFactory$new(private$..path)$getIOStrategy()
+
+            # Update meta data
+            if (!file.exists(private$..path)) private$..created <- Sys.time()
+            private$..modified <- Sys.time()
+            private$..accessed <- Sys.time()
+
+            # Write
+            io$write(path = private$..path, content = content)
+
+            # Log
+            private$..state <- paste0("Wrote ", private$..object$getName(), ". ")
+            self$logIt()
+
+            invisible(self)
+          },
+
+          #-------------------------------------------------------------------------#
+          #                           Visitor Methods                               #
+          #-------------------------------------------------------------------------#
+          accept = function(visitor)  {
+            visitor$database(self)
+          },
+
+          #-------------------------------------------------------------------------#
+          #                            Test Methods                                 #
+          #-------------------------------------------------------------------------#
+          exposeObject = function() {
+            documentCache <- list(
+              object <- private$..object,
+              path <- private$..path,
+              state = private$..state,
+              created = private$..created,
+              modified = private$..modified,
+              accessed = private$..accessed
+            )
+            return(documentCache)
+          }
+        )
       )
-      return(databaseObject)
+      super$initialize(...)
     }
   )
-)
+)#$new()

@@ -1,13 +1,13 @@
 #==============================================================================#
-#                                  CorpusQuanteda                              #
+#                            CorpusImportQuanteda                              #
 #==============================================================================#
-#' CorpusQuanteda
+#' CorpusImportQuanteda
 #'
-#' \code{CorpusQuanteda} Creates Corpus objects from Quanteda corpus objects.
+#' \code{CorpusImportQuanteda} Creates Corpus objects from Quanteda corpus objects.
 #'
 #' @template corpusImportStrategyClasses
 #'
-#' @section CorpusQuanteda Methods:
+#' @section CorpusImportQuanteda Methods:
 #' @template corpusImportStrategyMethods
 #'
 #' @template corpusImportStrategyParams
@@ -16,8 +16,8 @@
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family CorpusBuilder family of classes
 #' @export
-CorpusQuanteda <- R6::R6Class(
-  classname = "CorpusQuanteda",
+CorpusImportQuanteda <- R6::R6Class(
+  classname = "CorpusImportQuanteda",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = CorpusImport0,
@@ -32,9 +32,9 @@ CorpusQuanteda <- R6::R6Class(
       private$..name <- name
       private$..dataSource <- dataSource
 
-      private$..className <- 'CorpusQuanteda'
+      private$..className <- 'CorpusImportQuanteda'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("CorpusQuanteda object instantiated.")
+      private$..state <- paste0("CorpusImportQuanteda object instantiated.")
       private$..logs <- LogR$new()
 
       # Create log entry
@@ -56,7 +56,7 @@ CorpusQuanteda <- R6::R6Class(
       metaData$fileName <- rownames(metaData)
 
       # Create corpus
-      corpus <-  CorpusText$new(name = private$..name, dataSource = texts)$build()$getResult()
+      corpus <-  CorpusImportText$new(name = private$..name, dataSource = texts)$build()$getResult()
 
       # Add metadata
       for (i in 1:length(metaData)) {

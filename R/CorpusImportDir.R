@@ -1,13 +1,13 @@
 #==============================================================================#
-#                                  CorpusDir                                   #
+#                               CorpusImportDir                                #
 #==============================================================================#
-#' CorpusDir
+#' CorpusImportDir
 #'
-#' \code{CorpusDir} Creates Corpus object from directory sources.
+#' \code{CorpusImportDir} Creates Corpus object from directory sources.
 #'
 #' @template corpusImportStrategyClasses
 #'
-#' @section CorpusDir Methods:
+#' @section CorpusImportDir Methods:
 #' @template corpusImportStrategyMethods
 #'
 #' @template corpusImportStrategyParams
@@ -16,8 +16,8 @@
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family CorpusBuilder family of classes
 #' @export
-CorpusDir <- R6::R6Class(
-  classname = "CorpusDir",
+CorpusImportDir <- R6::R6Class(
+  classname = "CorpusImportDir",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = CorpusImport0,
@@ -32,9 +32,9 @@ CorpusDir <- R6::R6Class(
       private$..name <- name
       private$..dataSource <- dataSource
 
-      private$..className <- 'CorpusDir'
+      private$..className <- 'CorpusImportDir'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("CorpusDir object instantiated.")
+      private$..state <- paste0("CorpusImportDir object instantiated.")
       private$..logs <- LogR$new()
 
       private$..corpus <- Corpus$new(name = name)

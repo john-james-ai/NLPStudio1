@@ -55,7 +55,7 @@ Corpus <- R6::R6Class(
   classname = "Corpus",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Document0,
+  inherit = Entity,
 
   private = list(
     ..documents = list()
@@ -77,6 +77,7 @@ Corpus <- R6::R6Class(
       private$..created <- Sys.time()
       private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
+      private$..id <- private$createId()
 
       # Create log entry
       self$logIt()

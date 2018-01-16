@@ -1,58 +1,58 @@
-testCorpusDir <- function() {
+testCorpusImportDir <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     unlink("./test/testCorpus/data", recursive = TRUE)
-    CorpusDirTest <<- LogTest$new()
+    CorpusImportDirTest <<- LogTest$new()
   }
 
   test0 <- function() {
-    test <- "test0: CorpusDir: Directory"
+    test <- "test0: CorpusImportDir: Directory"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "corpusDir"
+    name <- "CorpusImportDir"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input"
-    corpusDir <- CorpusDir$new(name, dataSource)$build()$getResult()
-    corpusDirContent <- corpusDir$read()
-    stopifnot(length(corpusDirContent) == 3)
-    corpusDirDocuments <- corpusDir$getDocuments()
-    stopifnot(length(corpusDirDocuments) == 3)
-    corpusDir$meta(key = "desc", value = desc)
-    corpusDir$docMeta(key = "year", value = "2018")
-    print(corpusDir$meta())
-    print(corpusDir$docMeta())
+    CorpusImportDir <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    CorpusImportDirContent <- CorpusImportDir$read()
+    stopifnot(length(CorpusImportDirContent) == 3)
+    CorpusImportDirDocuments <- CorpusImportDir$getDocuments()
+    stopifnot(length(CorpusImportDirDocuments) == 3)
+    CorpusImportDir$meta(key = "desc", value = desc)
+    CorpusImportDir$docMeta(key = "year", value = "2018")
+    print(CorpusImportDir$meta())
+    print(CorpusImportDir$docMeta())
 
-    CorpusDirTest$logs(className = "CorpusDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusDirTest$logs(className = "CorpusDir", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusDirTest$logs(className = "CorpusDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "build", msg = paste("Successfully instantiated. "))
+    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
   }
 
   test1 <- function() {
-    test <- "test1: CorpusDir: WildCard"
+    test <- "test1: CorpusImportDir: WildCard"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from Vector Flat
-    name <- "corpusDir"
+    name <- "CorpusImportDir"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input/*s.txt"
-    corpusDir <- CorpusDir$new(name, dataSource)$build()$getResult()
-    corpusDirContent <- corpusDir$read()
-    stopifnot(length(corpusDirContent) == 2)
-    corpusDirDocuments <- corpusDir$getDocuments()
-    stopifnot(length(corpusDirDocuments) == 2)
-    corpusDir$meta(key = "desc", value = desc)
-    corpusDir$docMeta(key = "year", value = "2018")
-    print(corpusDir$meta())
-    print(corpusDir$docMeta())
+    CorpusImportDir <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    CorpusImportDirContent <- CorpusImportDir$read()
+    stopifnot(length(CorpusImportDirContent) == 2)
+    CorpusImportDirDocuments <- CorpusImportDir$getDocuments()
+    stopifnot(length(CorpusImportDirDocuments) == 2)
+    CorpusImportDir$meta(key = "desc", value = desc)
+    CorpusImportDir$docMeta(key = "year", value = "2018")
+    print(CorpusImportDir$meta())
+    print(CorpusImportDir$docMeta())
 
-    CorpusDirTest$logs(className = "CorpusDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusDirTest$logs(className = "CorpusDir", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusDirTest$logs(className = "CorpusDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "build", msg = paste("Successfully instantiated. "))
+    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -60,10 +60,10 @@ testCorpusDir <- function() {
 
 
   testn <- function() {
-    test <- "testn: CorpusDir: Unzip"
+    test <- "testn: CorpusImportDir: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
 
-    CorpusDirTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    CorpusImportDirTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -78,6 +78,6 @@ test1()
 
 
 }
-className <- "CorpusDir"
-#source('./test/unitTests/testCorpusDir.R')
-testCorpusDir()
+className <- "CorpusImportDir"
+#source('./test/unitTests/testCorpusImportDir.R')
+testCorpusImportDir()

@@ -128,7 +128,7 @@ File <- R6::R6Class(
     #                            Test Methods                                 #
     #-------------------------------------------------------------------------#
     exposeObject = function() {
-      databaseObject <- list(
+      documentCache <- list(
         object <- private$..object,
         path <- private$..path,
         state = private$..state,
@@ -136,7 +136,7 @@ File <- R6::R6Class(
         modified = private$..modified,
         accessed = private$..accessed
       )
-      return(databaseObject)
+      return(documentCache)
     }
   )
 )

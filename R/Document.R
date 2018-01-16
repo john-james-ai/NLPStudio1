@@ -45,19 +45,19 @@ Document <- R6::R6Class(
   classname = "Document",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Document0,
+  inherit = Entity,
 
   private = list(
-    ..databaseObject = character()
+    ..documentCache = character()
   ),
 
   active = list(
     content = function(value) {
 
       if (missing(value)) {
-        return(private$..databaseObject$read())
+        return(private$..documentCache$read())
       } else {
-        private$..databaseObject$write(value)
+        private$..documentCache$write(value)
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
         invisible(self)
@@ -81,7 +81,8 @@ Document <- R6::R6Class(
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
-      private$..databaseObject <- File$new(self)
+      private$..id <- private$createId()
+      private$..documentCache <- Cache$new(self)
 
       # Create log entry
       self$logIt()
@@ -95,16 +96,19 @@ Document <- R6::R6Class(
     read = function() {
 
       private$..methodName <- 'read'
-      private$..state <- paste0("Read ", private$..databaseObject$getFileName(), ".")
+      private$..state <- paste0("Read ", private$..documentCache$getFileName(), ".")
+      private$..accessed <- Sys.time()
       self$logIt()
-      return(private$..databaseObject$read())
+      return(private$..documentCache$read())
     },
 
     write = function(content) {
 
       private$..methodName <- 'save'
-      private$..databaseObject$write(content)
-      private$..state <- paste0("Wrote ", private$..databaseObject$getFileName(), ". ")
+      private$..documentCache$write(content)
+      private$..modified <- Sys.time()
+      private$..accessed <- Sys.time()
+      private$..state <- paste0("Wrote ", private$..documentCache$getFileName(), ". ")
       self$logIt()
       invisible(self)
     },
@@ -127,7 +131,7 @@ Document <- R6::R6Class(
         created = private$..created,
         modified = private$..modified,
         accessed = private$..accessed,
-        databaseObject = private$..databaseObject
+        documentCache = private$..documentCache
       )
       return(document)
     }
