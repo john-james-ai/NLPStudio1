@@ -18,10 +18,9 @@ testCorpusImportText <- function() {
 
     # Build Corpus from Vector Flat
     name <- "corpusVecFlat"
-    path <- "./test/testData/corpusBuilderRAwTextSource/corpusVecFlat"
     news <- readLines("./test/testData/input/en_US.news.txt")
     dataSource <- news
-    corpusVecFlat <- CorpusImportText$new(name, path, dataSource, flat = TRUE)$build()$getResult()
+    corpusVecFlat <- CorpusImportText$new(name, dataSource, flat = TRUE)$build()$getResult()
     corpusVecFlatContent <- corpusVecFlat$read()
     stopifnot(length(corpusVecFlatContent$corpusVec) == 2000)
     stopifnot(corpusVecFlatContent$corpusVec == news)
@@ -32,10 +31,9 @@ testCorpusImportText <- function() {
 
     # Build Corpus from vector non-flat
     name <- "corpusVec"
-    path <- "./test/testData/corpusBuilderRAwTextSource/corpusVec"
     qc <- quanteda::corpus(readtext::readtext("./test/testData/input/*.txt"))
     dataSource <- qc$documents$texts
-    corpusVec <- CorpusImportText$new(name, path, dataSource)$build()$getResult()
+    corpusVec <- CorpusImportText$new(name, dataSource)$build()$getResult()
     corpusVecContent <- corpusVec$read()
     stopifnot(length(corpusVecContent) == 3)
     corpusVecDocuments <- corpusVec$getDocuments()
@@ -45,9 +43,8 @@ testCorpusImportText <- function() {
 
     # Build Corpus from list
     name <- "corpusList"
-    path <- "./test/testData/corpusBuilderRAwTextSource/corpusList"
     dataSource <- corpus
-    corpusList <- CorpusImportText$new(name, path, dataSource)$build()$getResult()
+    corpusList <- CorpusImportText$new(name, dataSource)$build()$getResult()
     corpusListContent <- corpusList$read()
     stopifnot(length(corpusListContent) == 3)
     corpusListDocuments <- corpusList$getDocuments()

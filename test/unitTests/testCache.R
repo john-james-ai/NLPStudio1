@@ -1,69 +1,135 @@
-testCorpusImportDir <- function() {
+testCacheManager <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     unlink("./test/testCorpus/data", recursive = TRUE)
-    CorpusImportDirTest <<- LogTest$new()
+    files <- list.files("./test/testData/hc", full.names = TRUE)
+    hc <<- lapply(files, function(f) {
+      readLines(f)
+    })
+
+    CacheManagerTest <<- LogTest$new()
+    directory <<- ".R_CacheManager"
   }
 
   test0 <- function() {
-    test <- "test0: CorpusImportDir: Directory"
-    cat(paste0("\n",test, " Commencing\n"))
 
-    # Build Corpus from directory source
-    name <- "CorpusImportDir"
-    desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input"
-    CorpusImportDir <- CorpusImportDir$new(name, dataSource)$build()$getResult()
-    CorpusImportDirContent <- CorpusImportDir$read()
-    stopifnot(length(CorpusImportDirContent) == 3)
-    CorpusImportDirDocuments <- CorpusImportDir$getDocuments()
-    stopifnot(length(CorpusImportDirDocuments) == 3)
-    CorpusImportDir$meta(key = "desc", value = desc)
-    CorpusImportDir$docMeta(key = "year", value = "2018")
-    print(CorpusImportDir$meta())
-    print(CorpusImportDir$docMeta())
+    cache <- CacheManager$new()$exposeObject()
+    cache$getInstance()
+    cache$maxSize <- 5 # Should fail
+    cache$maxSize <- 500000 # Should fail
+    cache$maxSize <- '1000' # Should fail
+    cache$maxSize <- 1000 # Should be ok
 
-    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+
+    CacheManagerTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
   }
 
   test1 <- function() {
-    test <- "test1: CorpusImportDir: WildCard"
+    test <- "test1: CacheManager: Write"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Build Corpus from Vector Flat
-    name <- "CorpusImportDir"
+    # Build Corpus from directory source
+    name <- "Blogs"
     desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input/*s.txt"
-    CorpusImportDir <- CorpusImportDir$new(name, dataSource)$build()$getResult()
-    CorpusImportDirContent <- CorpusImportDir$read()
-    stopifnot(length(CorpusImportDirContent) == 2)
-    CorpusImportDirDocuments <- CorpusImportDir$getDocuments()
-    stopifnot(length(CorpusImportDirDocuments) == 2)
-    CorpusImportDir$meta(key = "desc", value = desc)
-    CorpusImportDir$docMeta(key = "year", value = "2018")
-    print(CorpusImportDir$meta())
-    print(CorpusImportDir$docMeta())
+    text <- readLines("./test/testData/input/en_US.blogs.txt")
+    blogs <- Document$new(name = name)
+    blogs$content <- text
+    filePath <- file.path(directory,
+                          paste0(class(blogs)[1],"-",
+                                 name, "-",
+                                 blogs$getId(), ".rdata"))
 
-    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    # Get cache
+    cache <- CacheManager$new()$printCache()
+
+    # Check cache item variable (last item written to cache)
+    stopifnot(nrow(cache$inventory) == 1)
+    stopifnot(cache$maxSize == 2000)
+    stopifnot(cache$currentSize == file.size(filePath) / 1000000)
+    stopifnot(cache$item$id == blogs$getId())
+    stopifnot(cache$item$name == name)
+    stopifnot(cache$item$size == file.size(filePath) / 1000000)
+    stopifnot(cache$item$expired == FALSE)
+    stopifnot(cache$item$filePath == filePath)
+    stopifnot(cache$item$nAccessed == 0)
+
+    # Check inventory data frame
+    stopifnot(nrow(cache$inventory) == 1)
+    inventory <- subset(cache$inventory, id == blogs$getId())
+    stopifnot(inventory$id == blogs$getId())
+    stopifnot(inventory$name == name)
+    stopifnot(inventory$size == file.size(filePath) / 1000000)
+    stopifnot(inventory$expired == FALSE)
+    stopifnot(inventory$filePath == filePath)
+    stopifnot(inventory$nAccessed == 0)
+
+    # Confirm file exists
+    stopifnot(file.exists(filePath))
+
+    name <- "MIT"
+    dataSource <- "./test/testData/hc"
+    corpus <- Corpus$new(name, dataSource)$build()$getResult()
+    CacheManagerContent <- CacheManager$read()
+    stopifnot(length(CacheManagerContent) == 3)
+    CacheManagerDocuments <- CacheManager$getDocuments()
+    stopifnot(length(CacheManagerDocuments) == 3)
+    CacheManager$meta(key = "desc", value = desc)
+    CacheManager$docMeta(key = "year", value = "2018")
+    print(CacheManager$meta())
+    print(CacheManager$docMeta())
+
+    CacheManagerTest$logs(className = "CacheManager", methodName = "initiate", msg = paste("Successfully intantiated cache object. "))
+    CacheManagerTest$logs(className = "CacheManager", methodName = "write", msg = paste("Successfully saved to cache. "))
+    CacheManagerTest$logs(className = "CacheManager", methodName = "save", msg = paste("Successfully saved to cache. "))
+    CacheManagerTest$logs(className = "CacheManager", methodName = "register", msg = paste("Successfully registered item to cache inventory. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
   }
 
-
-  testn <- function() {
-    test <- "testn: CorpusImportDir: Unzip"
+  test2 <- function() {
+    test <- "test2: CacheManager: Write Large Corpus Files"
     cat(paste0("\n",test, " Commencing\n"))
 
-    CorpusImportDirTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    name <- "MIT"
+    dataSource <- "./test/testData/hc"
+    corpus <- Corpus$new(name, dataSource)$build()$getResult()
+    documents <- corpus$getDocuments
+    ids <- lapply(documents, function(d) {
+      d$getId()
+    })
+
+
+
+
+
+    CacheManagerContent <- CacheManager$read()
+    stopifnot(length(CacheManagerContent) == 3)
+    CacheManagerDocuments <- CacheManager$getDocuments()
+    stopifnot(length(CacheManagerDocuments) == 3)
+    CacheManager$meta(key = "desc", value = desc)
+    CacheManager$docMeta(key = "year", value = "2018")
+    print(CacheManager$meta())
+    print(CacheManager$docMeta())
+
+    CacheManagerTest$logs(className = "CacheManager", methodName = "initiate", msg = paste("Successfully intantiated cache object. "))
+    CacheManagerTest$logs(className = "CacheManager", methodName = "write", msg = paste("Successfully saved to cache. "))
+    CacheManagerTest$logs(className = "CacheManager", methodName = "save", msg = paste("Successfully saved to cache. "))
+    CacheManagerTest$logs(className = "CacheManager", methodName = "register", msg = paste("Successfully registered item to cache inventory. "))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return()
+  }
+
+  testn <- function() {
+    test <- "testn: CacheManager: Unzip"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    CacheManagerTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -78,6 +144,6 @@ test1()
 
 
 }
-className <- "CorpusImportDir"
-#source('./test/unitTests/testCorpusImportDir.R')
-testCorpusImportDir()
+className <- "CacheManager"
+#source('./test/unitTests/testCacheManager.R')
+testCacheManager()

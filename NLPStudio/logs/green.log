@@ -21485,3 +21485,150 @@ INFO [2018-01-14 09:46:51] Info in class 'Database', method 'write. Wrote corpus
 INFO [2018-01-14 09:46:51] Info in class 'CorpusText', method 'initiate. Successfully instantiated. 
 INFO [2018-01-14 09:46:51] Info in class 'CorpusText', method 'build. Successfully instantiated. 
 INFO [2018-01-14 09:46:51] Info in class 'CorpusText', method 'getResult. Successfully returned corpus. 
+INFO [2018-01-16 21:57:21] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-16 21:57:21] Info in class 'CorpusImportText', method 'initialize. CorpusImportText object instantiated.
+INFO [2018-01-16 21:57:21] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-16 21:57:31] Info in class 'Corpus', method 'initialize. Corpus, corpusVecFlat, instantiated.
+INFO [2018-01-16 21:57:31] Info in class 'CorpusImportText', method 'initialize. CorpusImportText object instantiated.
+INFO [2018-01-16 21:57:31] Info in class 'Document', method 'initialize. Document, corpusVecFlat, instantiated.
+INFO [2018-01-16 22:32:33] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 22:35:15] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 22:42:35] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 22:43:23] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 22:43:23] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 22:46:18] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 22:46:18] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 22:46:19] Info in class '', method '. Successfully wrote Document-Blogs-dassa.rdata.
+INFO [2018-01-16 22:46:19] Info in class 'Cache', method 'trim. Wrote Blogs to cache. 
+INFO [2018-01-16 23:06:39] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:06:39] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:06:39] Info in class '', method '. Successfully wrote Document-Blogs-dassa.rdata.
+INFO [2018-01-16 23:06:39] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:08:35] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:08:35] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:08:36] Info in class '', method '. Successfully wrote Document-Blogs-dassa.rdata.
+INFO [2018-01-16 23:08:36] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:11:33] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:11:33] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:11:33] Info in class '', method '. Successfully wrote Document-Blogs-dassa.rdata.
+INFO [2018-01-16 23:11:33] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:12:42] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:12:42] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:12:42] Info in class '', method '. Successfully wrote Document-Blogs-dassa.rdata.
+INFO [2018-01-16 23:12:42] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:21:38] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:21:38] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:21:38] Info in class '', method '. Successfully wrote Document-Blogs-dassa.rdata.
+INFO [2018-01-16 23:21:38] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:23:11] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:23:11] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:23:11] Info in class '', method '. Successfully wrote Document-Blogs-5OJAZVJEJ.rdata.
+INFO [2018-01-16 23:23:11] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:32:15] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:32:15] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:32:15] Info in class '', method '. Successfully wrote Document-Blogs-5OJAZ6M4O.rdata.
+INFO [2018-01-16 23:32:15] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-16 23:34:43] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-16 23:34:43] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-16 23:34:43] Info in class '', method '. Successfully wrote Document-Blogs-5OJAZKV3J.rdata.
+INFO [2018-01-16 23:34:43] Info in class 'Cache', method 'register. Wrote Blogs to cache. 
+INFO [2018-01-17 12:31:11] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:32:13] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:33:20] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:36:04] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:36:11] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:37:52] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:37:52] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:37:52] Info in class '', method '. Successfully wrote Document-Blogs-5OJAY37BW.rdata.
+INFO [2018-01-17 12:38:22] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:38:22] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:38:22] Info in class '', method '. Successfully wrote Document-Blogs-5OJAY3YKQ.rdata.
+INFO [2018-01-17 12:39:35] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:39:35] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:39:35] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYYK2D.rdata.
+INFO [2018-01-17 12:39:47] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:39:47] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:39:47] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYYYYQ.rdata.
+INFO [2018-01-17 12:43:40] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:43:48] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:43:48] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:43:48] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYR6OD.rdata.
+INFO [2018-01-17 12:50:28] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:50:28] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:50:28] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYLXLP.rdata.
+INFO [2018-01-17 12:53:27] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:53:27] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:53:27] Info in class '', method '. Successfully wrote Document-Blogs-5OJAY7DPW.rdata.
+INFO [2018-01-17 12:54:29] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 12:54:29] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 12:54:29] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYVQKQ.rdata.
+INFO [2018-01-17 12:54:29] Info in class 'Cache', method 'trim. Saved Blogs to cache. 
+INFO [2018-01-17 13:07:44] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:11:14] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:11:14] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 13:11:14] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYN1VW.rdata.
+INFO [2018-01-17 13:11:15] Info in class 'Cache', method 'trim. Saved Blogs to cache. 
+INFO [2018-01-17 13:11:15] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:13:48] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:14:37] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:14:37] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 13:14:37] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYYPPQ.rdata.
+INFO [2018-01-17 13:14:37] Info in class 'Cache', method 'trim. Saved Blogs to cache. 
+INFO [2018-01-17 13:14:37] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:15:24] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 13:15:24] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 13:15:24] Info in class '', method '. Successfully wrote Document-Blogs-5OJAYYLQP.rdata.
+INFO [2018-01-17 13:15:24] Info in class 'Cache', method 'trim. Saved Blogs to cache. 
+INFO [2018-01-17 13:15:24] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 14:51:37] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 14:52:16] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 14:52:16] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 14:52:16] Info in class '', method '. Successfully wrote Document-Blogs-5OJAVK9ME.rdata.
+INFO [2018-01-17 14:52:16] Info in class 'Cache', method 'trim. Saved Blogs to cache. 
+INFO [2018-01-17 14:53:08] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:07:47] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:07:47] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:07:47] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 16:07:48] Info in class '', method '. Successfully wrote Document-Blogs-5OJAPWXOW.rdata.
+INFO [2018-01-17 16:07:48] Info in class 'Cache', method 'trim. Saved Blogs to cache. 
+INFO [2018-01-17 16:07:48] Info in class 'CacheManager', method 'write. Saved Blogs to CacheManager. 
+INFO [2018-01-17 16:09:35] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:09:35] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:10:39] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:10:39] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:10:49] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:10:49] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:11:45] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:11:45] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:13:11] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:13:11] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:13:35] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:21:00] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:21:00] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:21:12] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:21:12] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 16:21:12] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 16:21:12] Info in class '', method '. Successfully wrote Document-Blogs-5OJAP4ZLX.rdata.
+INFO [2018-01-17 16:21:12] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 16:21:12] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:45:50] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:45:50] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:46:29] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:46:29] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:47:43] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:47:43] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:51:35] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:51:35] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:51:51] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:52:36] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:52:36] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:52:36] Info in class 'Document', method 'initialize. Document, Blogs, instantiated.
+INFO [2018-01-17 19:52:54] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:52:55] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:53:40] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:53:40] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:53:46] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:53:46] Info in class 'CacheManager', method 'initialize. CacheManager object instantiated.
+INFO [2018-01-17 19:55:39] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:55:54] Info in class 'Cache', method 'initialize. Cache object for , instantiated.
+INFO [2018-01-17 19:56:21] Info in class '', method '. Successfully wrote Document-Blogs-5OJA1QKWJ.rdata.

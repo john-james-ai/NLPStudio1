@@ -57,7 +57,7 @@ Document <- R6::R6Class(
       if (missing(value)) {
         return(private$..documentCache$read())
       } else {
-        private$..documentCache$write(value)
+        private$..documentCache$write(self, value)
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
         invisible(self)
@@ -82,7 +82,7 @@ Document <- R6::R6Class(
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..id <- private$createId()
-      private$..documentCache <- Cache$new(self)
+      private$..documentCache <- CacheManager$new()
 
       # Create log entry
       self$logIt()
@@ -99,16 +99,16 @@ Document <- R6::R6Class(
       private$..state <- paste0("Read ", private$..documentCache$getFileName(), ".")
       private$..accessed <- Sys.time()
       self$logIt()
-      return(private$..documentCache$read())
+      return(private$..documentCache$read(self))
     },
 
     write = function(content) {
 
       private$..methodName <- 'save'
-      private$..documentCache$write(content)
+      private$..documentCache$write(self, content)
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
-      private$..state <- paste0("Wrote ", private$..documentCache$getFileName(), ". ")
+      private$..state <- paste0("Saved ", private$..name, " to cache. ")
       self$logIt()
       invisible(self)
     },
@@ -126,6 +126,7 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     exposeObject = function() {
       document <- list(
+        id = private$..id,
         meta = self$meta(),
         state = private$..state,
         created = private$..created,
