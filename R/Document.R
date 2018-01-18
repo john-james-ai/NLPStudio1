@@ -82,7 +82,7 @@ Document <- R6::R6Class(
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..id <- private$createId()
-      private$..documentCache <- CacheManager$new()
+      private$..documentCache <- Cache$new()
 
       # Create log entry
       self$logIt()
@@ -96,7 +96,7 @@ Document <- R6::R6Class(
     read = function() {
 
       private$..methodName <- 'read'
-      private$..state <- paste0("Read ", private$..documentCache$getFileName(), ".")
+      private$..state <- paste0("Read ", private$..name, " from cache.")
       private$..accessed <- Sys.time()
       self$logIt()
       return(private$..documentCache$read(self))

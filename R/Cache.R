@@ -76,14 +76,50 @@ Cache <- R6::R6Class(
     getCacheState = function() {
 
       private$..methodName <- "getCacheState"
+
+      # Obtain cache state
       cacheStatePath <- file.path(private$..cacheDir, private$..cacheStateFile)
+
       if (file.exists(cacheStatePath)) {
         io <- IOFactory$new()$getIOStrategy(cacheStatePath)
         private$..cacheState <- io$read(cacheStatePath)
-        private$..cacheState$settings$currentSize <-
-          sum(file.info(list.files(private$..cacheDir, all.files = TRUE,
-                                   full.names = TRUE, recursive = TRUE))$size) / 1000000
       }
+
+      # Sync cache state with file directory
+      files <- list.files(private$..cacheDir, all.files = TRUE,
+                            full.names = TRUE, recursive = TRUE)
+      for (i in 1:length(files)) {
+
+        # Obtain cache state for file
+        fileName <- basename(files[i])
+        fileName <- strsplit(fileName, split = "-")
+        private$..cacheState$item$id <- fileName[[1]][3]
+        private$..cacheState$item$name <- fileName[[1]][2]
+        private$..cacheState$item$size <- file.size(files[i]) / 1000000
+        private$..cacheState$item$expired <- FALSE
+        private$..cacheState$item$filePath <- files[i]
+        private$..cacheState$item$created <- file.info(files[i])$ctime
+        private$..cacheState$item$modified <- file.info(files[i])$mtime
+        private$..cacheState$item$accessed <- file.info(files[i])$atime
+        private$..cacheState$item$nAccessed <- 0
+
+        # Get the number of times the file was accessed
+        if(nrow(private$..cacheState$inventory) > 0) {
+          if(nrow(subset(private$..cacheState$inventory, id == fileName[[1]][3])) > 0) {
+            private$..cacheState$item$nAccessed <-
+              subset(private$..cacheState$inventory, id == fileName[[1]][3],
+                     select = nAccessed)
+            private$..cacheState$inventory <-
+              private$..cacheState$inventory[private$..cacheState$inventory$id != fileName[[1]][3]]
+          }
+        }
+
+        # Update row
+        private$..cacheState$inventory <- rbind(as.data.frame(private$..cacheState$item))
+      })
+
+      private$..cacheState$settings$currentSize <-
+        sum(file.info(files)$size) / 1000000
     },
 
     putCacheState = function() {
@@ -178,11 +214,14 @@ Cache <- R6::R6Class(
       objectId <- object$getId()
 
       print("*******************************************")
-      print(paste("Current size:", private$..currentSize))
-      print(paste("Maxmum size:", private$..maxSize))
+      print(paste("Current size:", private$..cacheState$settings$currentSize))
+      print(paste("Maxmum size:", private$..cacheState$settings$maxSize))
 
       while(private$..cacheState$settings$currentSize  >
             private$..cacheState$settings$maxSize) {
+        print("**** TRIMMING ")
+        print(paste("Current size:", private$..cacheState$settings$currentSize))
+        print(paste("Maxmum size:", private$..cacheState$settings$maxSize))
         if (private$..cacheState$settings$trimPolicy == "LRU") {
           oldest <- subset(private$..cacheState$inventory, accessed == min(accessed) & id != objectId)
           expire <- subset(oldest, size == max(size))
@@ -231,6 +270,27 @@ Cache <- R6::R6Class(
           private$..cacheState$settings$maxSize <- value
         }
       }
+    },
+
+    policy = function(value) {
+
+      private$..methodName <- "policy"
+
+      if (missing(value)) {
+        return(private$..cacheState$settings$trimPolicy)
+      } else {
+        if (!(value) %in% c("LFU", "LRU")) {
+          private$..state <- paste0("Invalid trim policy. Valid values are ",
+                                    "c('LRU', 'LFU'), for least recently used ",
+                                    "and least frequently used, respectively. ",
+                                    "See ?", class(self)[1], " for ",
+                                    "further assistance. ")
+          self$logIt("Error")
+          stop()
+        } else {
+          private$..cacheState$settings$trimPolicy <- value
+        }
+      }
     }
   ),
 
@@ -260,6 +320,11 @@ Cache <- R6::R6Class(
       invisible(self)
     },
 
+    getSettings = function() {
+      private$getCacheState()
+      return(private$..cacheState$settings)
+    },
+
     getInventory = function() {
       private$getCacheState()
       return(private$..cacheState$inventory)
@@ -284,7 +349,7 @@ Cache <- R6::R6Class(
       private$logReadCache(object)
 
       # Log
-      private$..state <- paste0("Read ", basename(filePath), " from cache. ")
+      private$..state <- paste0("Read ", object$getName(), " from cache. ")
       self$logIt()
 
       return(data)
