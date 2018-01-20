@@ -58,9 +58,10 @@ testCache <- function() {
     desc <- "Creating corpus from directory sources"
     text <- readLines("./test/testData/input/en_US.blogs.txt")
     blogs <- Document$new(name = name)
-    filePath <- file.path(paste0(class(blogs)[1], "-",
+    cacheDir <- ".R_Cache"
+    filePath <- file.path(cacheDir, paste0(class(blogs)[1], "-",
                                  blogs$getName(), "-",
-                                 blogs$getId(), ".rdata"))
+                                 blogs$getId(), ".RData"))
 
     # Creete and read cache
     cache <- Cache$new()
@@ -68,7 +69,7 @@ testCache <- function() {
     nFiles <- nrow(inv)
 
     # Write to cache
-    cache <- cache$write(blogs, text)
+    cache$write(blogs, text)
 
     # Check current size and inventory
     cs2 <- cache$getSettings()
@@ -88,10 +89,10 @@ testCache <- function() {
     # Check inventory data frame
     inv <- cache$getInventory()
     stopifnot(nrow(inv) > 10)
-    inventory <- subset(cache$inventory, id == blogs$getId())
+    inventory <- subset(inv, id == blogs$getId())
     stopifnot(inventory$id == blogs$getId())
     stopifnot(inventory$name == blogs$getName())
-    stopifnot(inventory$size == file.size(filePath) / 1000000)
+    stopifnot(inventory$size == file.size(file.path(filePath)) / 1000000)
     stopifnot(inventory$expired == FALSE)
     stopifnot(inventory$filePath == filePath)
     stopifnot(inventory$nAccessed == 0)
@@ -117,7 +118,7 @@ testCache <- function() {
     size <- subset(inv, id == blogs$getId(), select = size)
 
     # Update cache
-    cache <- cache$write(blogs, hc[[1]])
+    cache$write(blogs, hc[[1]])
 
     # Get updated state of cache
     cs2 <- cache$getSettings()
@@ -125,7 +126,7 @@ testCache <- function() {
     size2 <- subset(inv, id == blogs$getId(), select = size)
 
     # Check values updated correctly
-    stopifnot(cs$currentSize <- cs2$currentSize)
+    stopifnot(cs$currentSize < cs2$currentSize)
     stopifnot(nrow(cs) == nrow(cs2))
     stopifnot(size < size2)
 
@@ -134,6 +135,24 @@ testCache <- function() {
     CacheTest$logs(className = "Cache", methodName = "save", msg = paste("Successfully saved to cache. "))
     CacheTest$logs(className = "Cache", methodName = "getCacheState", msg = paste("Successfully registered item to cache inventory. "))
     CacheTest$logs(className = "Cache", methodName = "putCacheState", msg = paste("Successfully registered item to cache inventory. "))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return()
+  }
+
+
+  test3 <- function(blogs) {
+    test <- "testn: Cache: Read"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    cache <- Cache$new()
+    blogsText <- cache$read(blogs)
+    stopifnot(blogsText == hc[[1]])
+    inv <- cache$getInventory()
+    blogsEntry <- subset(inv, id == blogs$getId())
+    print(blogsEntry)
+
+    CacheTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -156,6 +175,7 @@ downloadPath <- "./test/testCorpus/swiftKey/data/external"
 cs <- test0()
 blogs <- test1(cs)
 test2(blogs)
+blogsText <- test3(blogs)
 
 
 }

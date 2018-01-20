@@ -52,14 +52,14 @@ Cache <- R6::R6Class(
     ..className = "Cache",
     ..methodName = character(),
     ..cacheDir = ".R_Cache",
-    ..cacheStateFile = "cacheState.rdata",
+    ..cacheStateFile = "cacheState.RData",
     ..cacheState = list(
       settings = list(
         maxSize = 2000,
         currentSize = 0,
         trimPolicy = "LRU"
       ),
-      inventory = data.table(),
+      inventory = data.table::data.table(),
       item = list(
         id = character(),
         name = character(),
@@ -73,62 +73,89 @@ Cache <- R6::R6Class(
       )
     ),
 
+    updateCacheInventoryFromFile = function() {
+
+      private$..methodName <- "updateCacheInventoryFromFile"
+
+      private$..cacheState$inventory[id == private$..cacheState$item$id, name := private$..cacheState$item$name]
+      private$..cacheState$inventory[id == private$..cacheState$item$id, size := private$..cacheState$item$size]
+      private$..cacheState$inventory[id == private$..cacheState$item$id, expired := private$..cacheState$item$expired]
+      private$..cacheState$inventory[id == private$..cacheState$item$id, filePath := private$..cacheState$item$filePath]
+      private$..cacheState$inventory[id == private$..cacheState$item$id, created := private$..cacheState$item$created]
+      private$..cacheState$inventory[id == private$..cacheState$item$id, modified := private$..cacheState$item$modified]
+      private$..cacheState$inventory[id == private$..cacheState$item$id, accessed := private$..cacheState$item$accessed]
+      private$putCacheState()
+    },
+
+    addCacheInventoryFromFile = function() {
+      private$..cacheState$inventory <- rbind(private$..cacheState$inventory,
+                                              private$..cacheState$item)
+      private$putCacheState()
+    },
+
     getCacheState = function() {
 
       private$..methodName <- "getCacheState"
 
       # Obtain cache state
-      cacheStatePath <- file.path(private$..cacheDir, private$..cacheStateFile)
-
-      if (file.exists(cacheStatePath)) {
-        io <- IOFactory$new()$getIOStrategy(cacheStatePath)
-        private$..cacheState <- io$read(cacheStatePath)
+      if (file.exists(private$..cacheStateFile)) {
+        io <- IOFactory$new(private$..cacheStateFile)$getIOStrategy()
+        private$..cacheState <- io$read(private$..cacheStateFile)
       }
 
       # Sync cache state with file directory
       files <- list.files(private$..cacheDir, all.files = TRUE,
-                            full.names = TRUE, recursive = TRUE)
-      for (i in 1:length(files)) {
+                          full.names = TRUE, recursive = TRUE)
+      if (length(files) > 0) {
+        for (i in 1:length(files)) {
 
-        # Obtain cache state for file
-        fileName <- basename(files[i])
-        fileName <- strsplit(fileName, split = "-")
-        private$..cacheState$item$id <- fileName[[1]][3]
-        private$..cacheState$item$name <- fileName[[1]][2]
-        private$..cacheState$item$size <- file.size(files[i]) / 1000000
-        private$..cacheState$item$expired <- FALSE
-        private$..cacheState$item$filePath <- files[i]
-        private$..cacheState$item$created <- file.info(files[i])$ctime
-        private$..cacheState$item$modified <- file.info(files[i])$mtime
-        private$..cacheState$item$accessed <- file.info(files[i])$atime
-        private$..cacheState$item$nAccessed <- 0
+          # Get id from cache file name
+          fileName <- tools::file_path_sans_ext(basename(files[i]))
+          fileName <- strsplit(fileName, split = "-")
+          private$..cacheState$item$id <- fileName[[1]][3]
+          private$..cacheState$item$name <- fileName[[1]][2]
+          private$..cacheState$item$size <- private$getFileSize(files[i])
+          private$..cacheState$item$expired <- FALSE
+          private$..cacheState$item$filePath <- files[i]
+          private$..cacheState$item$created <- file.info(files[i])$ctime
+          private$..cacheState$item$modified <- file.info(files[i])$mtime
+          private$..cacheState$item$accessed <- file.info(files[i])$atime
+          private$..cacheState$item$nAccessed <- 0
 
-        # Get the number of times the file was accessed
-        if(nrow(private$..cacheState$inventory) > 0) {
-          if(nrow(subset(private$..cacheState$inventory, id == fileName[[1]][3])) > 0) {
-            private$..cacheState$item$nAccessed <-
-              subset(private$..cacheState$inventory, id == fileName[[1]][3],
-                     select = nAccessed)
-            private$..cacheState$inventory <-
-              private$..cacheState$inventory[private$..cacheState$inventory$id != fileName[[1]][3]]
+          # Process update if entry exists in cache inventory table
+          if (nrow(private$..cacheState$inventory) > 0) {
+            if (nrow(subset(private$..cacheState$inventory,
+                            id == private$..cacheState$item$id)) > 0) {
+              private$updateCacheInventoryFromFile()
+            } else {
+              private$addCacheInventoryFromFile()
+            }
+          } else {
+            private$addCacheInventoryFromFile()
           }
         }
 
-        # Update row
-        private$..cacheState$inventory <- rbind(as.data.frame(private$..cacheState$item))
-      })
+        private$..cacheState$settings$currentSize <-
+          sum(file.info(files)$size) / 1000000
+      }
 
-      private$..cacheState$settings$currentSize <-
-        sum(file.info(files)$size) / 1000000
+      # Expire files not in cache
+      private$..cacheState$inventory[!(filePath %in% files), expired := TRUE]
+      private$..cacheState$inventory[!(filePath %in% files), modified := Sys.time()]
+
+      return(private$..cacheState)
     },
 
     putCacheState = function() {
 
       private$..methodName <- "putCacheState"
-      cacheStatePath <- file.path(private$..cacheDir, private$..cacheStateFile)
-      io <- IOFactory$new()$getIOStrategy(cacheStatePath)
-      io$write(path = cacheStatePath, content = private$..cacheState)
+      io <- IOFactory$new(private$..cacheStateFile)$getIOStrategy()
+      io$write(path = private$..cacheStateFile, content = private$..cacheState)
 
+    },
+
+    getFileSize = function(filePath) {
+      return(file.size(filePath) / 1000000)
     },
 
     getFilePath = function(object) {
@@ -138,7 +165,7 @@ Cache <- R6::R6Class(
       filePath <- file.path(private$..cacheDir,
                             paste0(class(object)[1],"-",
                                    name, "-",
-                                   id, ".rdata"))
+                                   id, ".RData"))
       return(filePath)
     },
 
@@ -164,37 +191,27 @@ Cache <- R6::R6Class(
 
     logWriteCache = function(object) {
       private$..methodName <- "logWriteCache"
+
+      # Obtain key variables
       objectId <- object$getId()
       name <- object$getName()
       filePath <- private$getFilePath(object)
-      fileSize <- file.size(filePath) / 1000000
-      if (is.null(subset(private$..cacheState$inventory, id == objectId))) {
-        private$..cacheState$settings$currentSize <-
-          private$..cacheState$settings$currentSize + fileSize
-        private$..cacheState$item$id <- objectId
-        private$..cacheState$item$name <- name
-        private$..cacheState$item$size <- fileSize
-        private$..cacheState$item$expired <- FALSE
-        private$..cacheState$item$filePath <- filePath
-        private$..cacheState$item$created <- Sys.time()
-        private$..cacheState$item$modified <- Sys.time()
-        private$..cacheState$item$accessed <- Sys.time()
-        private$..cacheState$item$nAccessed <- 0
-        private$..cacheState$inventory <-
-          rbind(as.data.frame(private$..cacheState$item))
-        private$putCacheState()
+      size <- private$getFileSize(filePath)
+      private$..cacheState$item$id <- objectId
+      private$..cacheState$item$name <- name
+      private$..cacheState$item$filePath <- filePath
+      private$..cacheState$item$size <- size
+      private$..cacheState$item$expired <- FALSE
+      private$..cacheState$item$created <- Sys.time()
+      private$..cacheState$item$modified <- Sys.time()
+      private$..cacheState$item$accessed <- Sys.time()
+      private$..cacheState$item$nAccessed <- 0
+
+
+      if (nrow(subset(private$..cacheState$inventory, id == objectId)) == 0) {
+        private$addCacheInventoryFromFile()
       } else {
-        priorSize <- subset(private$..cacheState, id == objectId, select = size)
-        private$..cacheState$settings$currentSize <-
-          private$..cacheState$settings$currentSize + fileSize - priorSize
-        private$..cacheState$inventory[id == objectId, name := name]
-        private$..cacheState$inventory[id == objectId, size := fileSize]
-        private$..cacheState$inventory[id == objectId, expired := FALSE]
-        private$..cacheState$inventory[id == objectId, filePath := filePath]
-        private$..cacheState$inventory[id == objectId, updated := updated]
-        private$..cacheState$inventory[id == objectId, accessed := accessed]
-        private$..cacheState$inventory[id == objectId, nAccessed := nAccessed + 1]
-        private$putCacheState()
+        private$updateCacheInventoryFromFile()
       }
       return(private$..cacheState$inventory[id == objectId])
     },
@@ -266,9 +283,9 @@ Cache <- R6::R6Class(
                                     "further assistance. ")
           self$logIt("Error")
           stop()
-        } else {
-          private$..cacheState$settings$maxSize <- value
         }
+        private$..cacheState$settings$maxSize <- value
+        private$putCacheState()
       }
     },
 
@@ -289,6 +306,7 @@ Cache <- R6::R6Class(
           stop()
         } else {
           private$..cacheState$settings$trimPolicy <- value
+          private$putCacheState()
         }
       }
     }
