@@ -17,6 +17,8 @@ testCache <- function() {
 
     # Get new cache
     cache <- Cache$new()
+    inv <- cache$getInventory()
+    inv2 <- cache$resetInventory()
 
     # Test validation logic
     #cache$maxSize <- 5 # Should fail
@@ -25,16 +27,16 @@ testCache <- function() {
     #cache$policy <- 2
 
     # Test effective setting
-    cache$maxSize <- 1000
-    cache$policy <- "LFU"
+    cache$maxSize <- 10000
+    cache$policy <- "LRU"
     cs <- cache$getSettings()
     stopifnot(cs$maxSize == 1000)
     stopifnot(cs$currentSize > 0)
-    stopifnot(cs$trimPolicy == "LFU")
+    stopifnot(cs$trimPolicy == "LRU")
 
     # Test getInventory
     inv <- cache$getInventory()
-    stopifnot(nrow(inv) > 10)
+    #stopifnot(nrow(inv) > 3)
     print(inv)
 
 
@@ -77,18 +79,18 @@ testCache <- function() {
     stopifnot(cs$currentSize < cs2$currentSize)
     stopifnot(nrow(inv2) == nrow(inv) + 1)
     stopifnot(cs2$maxSize == 1000)
-    stopifnot(cs2$trimPolicy == "LFU")
+    stopifnot(cs2$trimPolicy == "LRU")
 
     # Test persistence of cache state
     cache <- Cache$new()
     cs2 <- cache$getSettings()
     stopifnot(cs$currentSize < cs2$currentSize)
     stopifnot(cs2$maxSize == 1000)
-    stopifnot(cs2$trimPolicy == "LFU")
+    stopifnot(cs2$trimPolicy == "LRU")
 
     # Check inventory data frame
     inv <- cache$getInventory()
-    stopifnot(nrow(inv) > 10)
+    stopifnot(nrow(inv) > 3)
     inventory <- subset(inv, id == blogs$getId())
     stopifnot(inventory$id == blogs$getId())
     stopifnot(inventory$name == blogs$getName())
@@ -158,6 +160,60 @@ testCache <- function() {
     return()
   }
 
+  test4 <- function() {
+    test <- "test4: Cache: Fill Cache"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    cache <- Cache$new()
+    inv <- cache$getInventory()
+    blogs <- Document$new(name = "Blogo")
+    news <- Document$new(name = "News")
+    twitter <- Document$new(name = "Twitter")
+
+    i <- 0
+    while(cache$maxSize - cache$getSettings()$currentSize > 0) {
+      i <- i + 1
+      name <- paste0("news-", i)
+      news <- Document$new(name = name)
+      cache$write(news, hc[3])
+      cache$read(news)
+      print(paste0("Max size:", cache$maxSize))
+      print(paste0("Current Size:", cache$getSettings()$currentSize))
+    }
+
+    twitter <- Document$new(name = "Tweets-for-twits")
+    cache <- Cache$new()
+    cache <- cache$write(twitter, hc[3])
+
+    print(cache$getInventory())
+
+
+    CacheTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(news)
+  }
+
+  test5 <- function(news) {
+    test <- "test5: Cache: Accessed"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    cache <- Cache$new()
+
+    for (i in 1:10) {
+      newsText <- cache$read(news)
+    }
+
+    print(cache$getInventory())
+
+    CacheTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return()
+  }
+
+
+
   testn <- function() {
     test <- "testn: Cache: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
@@ -176,7 +232,8 @@ cs <- test0()
 blogs <- test1(cs)
 test2(blogs)
 blogsText <- test3(blogs)
-
+news <- test4()
+test5(news)
 
 }
 className <- "Cache"

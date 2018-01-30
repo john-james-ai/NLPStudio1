@@ -88,19 +88,24 @@ Cache <- R6::R6Class(
     },
 
     addCacheInventoryFromFile = function() {
+      item <- as.data.table(private$..cacheState$item)
       private$..cacheState$inventory <- rbind(private$..cacheState$inventory,
-                                              private$..cacheState$item)
+                                              item)
       private$putCacheState()
     },
 
-    getCacheState = function() {
+    getCacheState = function(reset = FALSE) {
 
       private$..methodName <- "getCacheState"
 
       # Obtain cache state
-      if (file.exists(private$..cacheStateFile)) {
+      if (file.exists(private$..cacheStateFile) & reset == FALSE) {
         io <- IOFactory$new(private$..cacheStateFile)$getIOStrategy()
         private$..cacheState <- io$read(private$..cacheStateFile)
+      }
+
+      if (reset == TRUE) {
+        private$..cacheState$inventory <- data.table::data.table()
       }
 
       # Sync cache state with file directory
@@ -111,9 +116,13 @@ Cache <- R6::R6Class(
 
           # Get id from cache file name
           fileName <- tools::file_path_sans_ext(basename(files[i]))
-          fileName <- strsplit(fileName, split = "-")
-          private$..cacheState$item$id <- fileName[[1]][3]
-          private$..cacheState$item$name <- fileName[[1]][2]
+          id <- sub('.*\\-', '', fileName)
+          cls <- sub("-.*", "", fileName)
+          name <- sub(paste0("-",id), "", fileName)
+          name <- sub(paste0(cls, "-"), "", name)
+
+          private$..cacheState$item$id <- id
+          private$..cacheState$item$name <- name
           private$..cacheState$item$size <- private$getFileSize(files[i])
           private$..cacheState$item$expired <- FALSE
           private$..cacheState$item$filePath <- files[i]
@@ -122,7 +131,7 @@ Cache <- R6::R6Class(
           private$..cacheState$item$accessed <- file.info(files[i])$atime
           private$..cacheState$item$nAccessed <- 0
 
-          # Process update if entry exists in cache inventory table
+          # Process update if entry exists in cache inventory table, otherwise add
           if (nrow(private$..cacheState$inventory) > 0) {
             if (nrow(subset(private$..cacheState$inventory,
                             id == private$..cacheState$item$id)) > 0) {
@@ -173,7 +182,7 @@ Cache <- R6::R6Class(
       private$..methodName <- "checkFileExists"
       fileName <- basename(filePath)
       if (!file.exists(filePath)) {
-        private$..state <- paste0("Cache object, ", fileName, "does not exist.",
+        private$..state <- paste0("Cache object, ", fileName, " does not exist. ",
                                   "See ?", class(self)[1], " for ",
                                   "further assistance. ")
         self$logIt("Error")
@@ -230,32 +239,27 @@ Cache <- R6::R6Class(
 
       objectId <- object$getId()
 
-      print("*******************************************")
-      print(paste("Current size:", private$..cacheState$settings$currentSize))
-      print(paste("Maxmum size:", private$..cacheState$settings$maxSize))
-
       while(private$..cacheState$settings$currentSize  >
             private$..cacheState$settings$maxSize) {
-        print("**** TRIMMING ")
-        print(paste("Current size:", private$..cacheState$settings$currentSize))
-        print(paste("Maxmum size:", private$..cacheState$settings$maxSize))
         if (private$..cacheState$settings$trimPolicy == "LRU") {
-          oldest <- subset(private$..cacheState$inventory, accessed == min(accessed) & id != objectId)
+          oldest <- subset(private$..cacheState$inventory, accessed == min(accessed) & id != objectId & expired == FALSE)
           expire <- subset(oldest, size == max(size))
 
         } else {
-          leastUsed <- subset(private$..cacheState$inventory, nAccessed == min(nAccessed) & id != objectId)
+          leastUsed <- subset(private$..cacheState$inventory, nAccessed == min(nAccessed) & id != objectId & expired == FALSE)
           expire <- subset(leastUsed, size == max(size))
+          expire <- subset(leastUsed, accessed == min(accessed))
         }
-        private$..cacheState$inventory[id == expire[1]$id, size := 0]
-        private$..cacheState$inventory[id == expire[1]$id, expired := TRUE]
-        private$..cacheState$inventory[id == expire[1]$id, filePath := NULL]
-        private$..cacheState$inventory[id == expire[1]$id, modified := Sys.time()]
-        private$..cacheState$inventory[id == expire[1]$id, accessed := Sys.time()]
-        private$..cacheState$inventory[id == expire[1]$id, nAccessed := 0]
-        filePath <- expire[1]$filePath
+        private$..cacheState$inventory[id == expire$id, size := 0]
+        private$..cacheState$inventory[id == expire$id, expired := TRUE]
+        private$..cacheState$inventory[id == expire$id, filePath := "NA"]
+        private$..cacheState$inventory[id == expire$id, modified := Sys.time()]
+        private$..cacheState$inventory[id == expire$id, accessed := Sys.time()]
+        private$..cacheState$inventory[id == expire$id, nAccessed := 0]
+        filePath <- expire$filePath
         file.remove(filePath)
-        private$..currentSize <- private$..currentSize - expire[1]$size
+        private$..cacheState$settings$currentSize <-
+          private$..cacheState$settings$currentSize - expire$size
       }
       private$putCacheState()
     }
@@ -348,10 +352,15 @@ Cache <- R6::R6Class(
       return(private$..cacheState$inventory)
     },
 
+    resetInventory = function() {
+      private$getCacheState(reset = TRUE)
+      return(private$..cacheState$inventory)
+    },
+
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(object) {
+    read = function(object, io = NULL) {
 
       private$..methodName <- 'read'
 
@@ -360,8 +369,8 @@ Cache <- R6::R6Class(
       private$checkFileExists(filePath)
 
       # Read data
-      io <- IOFactory$new(filePath)$getIOStrategy()
-      data <- io$read(filePath)
+      if (is.null(io)) io <- IOFactory$new(filePath)$getIOStrategy()
+      data <- io$read(path = filePath)
 
       # Update cache state
       private$logReadCache(object)
@@ -373,12 +382,16 @@ Cache <- R6::R6Class(
       return(data)
     },
 
-    write = function(object, content) {
+    write = function(object, content, io = NULL) {
 
       private$..methodName <- 'write'
 
-      # Save the file to cache
-      private$save(object, content)
+      # Get file path
+      filePath <- private$getFilePath(object)
+
+      # Write data
+      if (is.null(io)) io <- IOFactory$new(filePath)$getIOStrategy()
+      io$write(path = filePath, content = content)
 
       # Trim if cache is full
       private$trim(object)
@@ -390,7 +403,7 @@ Cache <- R6::R6Class(
       private$..state <- paste0("Saved ", object$getName(), " to cache. ")
       self$logIt()
 
-      invisible(cache)
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#

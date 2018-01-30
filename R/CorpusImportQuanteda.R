@@ -36,6 +36,7 @@ CorpusImportQuanteda <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..state <- paste0("CorpusImportQuanteda object instantiated.")
       private$..logs <- LogR$new()
+      private$..corpus <- Corpus$new(name = name)
 
       # Create log entry
       self$logIt()
@@ -50,20 +51,35 @@ CorpusImportQuanteda <- R6::R6Class(
 
       private$..methodName <- "build"
 
-      # Extract data
+      # Extract data and metadata
       texts <- private$..dataSource$documents[["texts"]]
       metaData <- private$..dataSource$documents[-which(names(private$..dataSource$documents) == "texts")]
-      metaData$fileName <- rownames(metaData)
+      rownames(metaData) <- NULL
 
-      # Create corpus
-      corpus <-  CorpusImportText$new(name = private$..name, dataSource = texts)$build()$getResult()
-
-      # Add metadata
-      for (i in 1:length(metaData)) {
-        corpus <- corpus$docMeta(key = names(metaData)[i], value = as.vector(metaData[,i]))
+      # Extract a name variable
+      if (is.null(metaData$name)) {
+        if (is.null(metaData$doc_id)) {
+          names <- paste0(private$..name, "-document-", seq(1:length(texts)))
+        } else {
+          names <- metaData$doc_id
+          metaData <- metaData %>% select(-doc_id)
+        }
+      } else {
+        names <- metaData$name
+        metaData <- metaData %>% select(-name)
       }
 
-      private$..corpus <- corpus
+      # Create corpus
+      for (i in 1:length(texts)) {
+        doc <- Document$new(name = names[i])  # Create document
+        keys <- names(metaData[i,])                   # Format metadata key value pairs
+        values <- metaData[i,]
+        for (j in 1:length(keys)) {                   # Update metadata for document
+          doc <- doc$meta(key = keys[j], value = values[j])
+        }
+        doc$content <- texts[i]                       # Add content
+        private$..corpus <- private$..corpus$addDocument(doc)  # Add document to corpus
+      }
 
       private$..state <- paste0("Created corpus ", private$..name, " from a Quanteda corpus object.")
       self$logIt()

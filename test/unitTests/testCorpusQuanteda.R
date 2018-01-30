@@ -18,7 +18,7 @@ testCorpusImportQuanteda <- function() {
     name <- "CorpusImportQuanteda"
     desc <- "Creating corpus from Quanteda corpus object"
     docDesc <- c("Blogs Data", "News of the world", "Tweets and rants")
-    dataSource <- qc
+    private$..dataSource <- qc
     CorpusImportQuanteda <- CorpusImportQuanteda$new(name, dataSource)$build()$getResult()
     CorpusImportQuantedaContent <- CorpusImportQuanteda$read()
     stopifnot(length(CorpusImportQuantedaContent) == 3)

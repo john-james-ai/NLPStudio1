@@ -42,7 +42,7 @@ CorpusImportText <- R6::R6Class(
       private$..state <- paste0("CorpusImportText object instantiated.")
       private$..logs <- LogR$new()
 
-      private$..corpus <- Corpus$new(name)
+      private$..corpus <- Corpus$new(name = name)
 
       # Create log entry
       self$logIt()

@@ -55,13 +55,13 @@ Document <- R6::R6Class(
     content = function(value) {
 
       if (missing(value)) {
-        return(private$..documentCache$read())
+        return(private$..documentCache$read(object = self))
       } else {
-        private$..documentCache$write(self, value)
+        private$..documentCache$write(object = self, content = value)
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
-        invisible(self)
       }
+      invisible(self)
     }
   ),
 
@@ -93,19 +93,19 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function() {
+    read = function(io = NULL) {
 
       private$..methodName <- 'read'
       private$..state <- paste0("Read ", private$..name, " from cache.")
       private$..accessed <- Sys.time()
       self$logIt()
-      return(private$..documentCache$read(self))
+      return(private$..documentCache$read(self, io))
     },
 
-    write = function(content) {
+    write = function(content, io = NULL) {
 
       private$..methodName <- 'save'
-      private$..documentCache$write(self, content)
+      private$..documentCache$write(self, content, io)
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..state <- paste0("Saved ", private$..name, " to cache. ")

@@ -1,12 +1,11 @@
-testDocument <- function() {
+testCloneDocument <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("blogs", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("blogs", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     blogsTxt <<- readLines("./test/testData/input/en_US.blogs.txt")
     newsTxt <<- readLines("./test/testData/input/en_US.news.txt")
-    twitterTxt <<- readLines("./test/testData/input/en_US.twitter.txt")
-    DocumentTest <<- LogTest$new()
+    CloneDocumentTest <<- LogTest$new()
   }
 
   test0 <- function() {
@@ -18,11 +17,12 @@ testDocument <- function() {
 
     # Instantiate
     blogs <- Document$new(name = 'blogs')
+    blogs$content <- blogsTxt
     d <- blogs$exposeObject()
     stopifnot(d$name == 'blogs')
 
     # Logit
-    DocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized document"))
+    CloneDocumentTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized document"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(blogs)
@@ -46,7 +46,7 @@ testDocument <- function() {
     print(blogs$meta())
 
     # Logit
-    DocumentTest$logs(className = className, methodName = "metadata", msg = paste("Successfully updated meta data on a document"))
+    CloneDocumentTest$logs(className = className, methodName = "metadata", msg = paste("Successfully updated meta data on a document"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -54,51 +54,48 @@ testDocument <- function() {
   }
 
   test2 <- function(blogs) {
-    test <- "test2: Document: Get / Set  content"
+    test <- "test2: Clone meta data"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Add content via active binding
-    blogs$content <- blogsTxt
-    bc3 <- blogs$content
-    blogsTxt <- blogs$read()
-    stopifnot(blogsTxt == bc3)
+    blogs2 <- Document$new(name = 'blogs2')
+    d <- blogs2$exposeObject()
+    stopifnot(d$name == 'blogs2')
 
+    # Clone meta data
+    keys <- names(as.list(blogs$meta()))
+    keys <- keys[keys!= "name"]
+    values <- as.list(blogs$meta())
+    values["name"] <- NULL
+    blogs2$content <- blogs$content
+    lapply(seq_along(keys), function(k) {
+      blogs2$meta(key = keys[[k]], value = values[[k]])
+    })
+
+    meta1 <- blogs2$meta()
+    meta2 <- blogs$meta()
+    content1 <- blogs$content
+    content2 <- blogs2$content
+    stopifnot(identical(meta1, meta2))
+    stopifnot(identical(content1, content2))
 
     # Logit
-    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully added content to document"))
-    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully obtained content from document"))
-    DocumentTest$logs(className = className, methodName = "setContent", msg = paste("Successfully added content to document"))
-    DocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully obtained content from document"))
+    CloneDocumentTest$logs(className = className, methodName = "cloneDocument", msg = paste("Successfully cloned to document"))
+    CloneDocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully obtained content from document"))
+    CloneDocumentTest$logs(className = className, methodName = "setContent", msg = paste("Successfully added content to document"))
+    CloneDocumentTest$logs(className = className, methodName = "read", msg = paste("Successfully obtained content from document"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
     return(blogs)
   }
 
-  test3 <- function(blogs) {
-    test <- "Test3: Document: Read File"
+  testn <- function(blogs) {
+    test <- "Testn: Document: Write File"
     cat(paste0("\n",test, " Commencing\n"))
 
-    blogsTxt <<- blogs$read()
-    blogsBin <<- blogs$read(io = IOBin$new())
-
     # Logit
-    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
-
-    cat(paste0(test, " Completed: Success!\n"))
-
-    return(blogs)
-  }
-
-  test4 <- function(blogs) {
-    test <- "Test4: Document: Write File"
-    cat(paste0("\n",test, " Commencing\n"))
-
-    blogs1 <- blogs$write(content = blogsTxt)
-    blogs2 <- blogs$write(io = IOBin$new(), content = blogsBin)
-
-    # Logit
-    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
+    CloneDocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -110,10 +107,9 @@ init()
 blogs <- test0()
 blogs <<- test1(blogs)
 blogs <<- test2(blogs)
-blogs <<- test3(blogs)
-blogs <<- test4(blogs)
+
 
 }
 className <- "Document"
 
-testDocument()
+testCloneDocument()
