@@ -368,6 +368,10 @@ Cache <- R6::R6Class(
       filePath <- private$getFilePath(object)
       private$checkFileExists(filePath)
 
+      print("***********************************")
+      print(paste("File path is ", filePath))
+
+
       # Read data
       if (is.null(io)) io <- IOFactory$new(filePath)$getIOStrategy()
       data <- io$read(path = filePath)

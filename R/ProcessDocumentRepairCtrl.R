@@ -20,9 +20,22 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
   classname = "ProcessDocumentRepairCtrl",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = ProcessDocument0,
 
   private = list(
+    cloneDocument = function(inDocument, outDocument) {
+
+      keys <- names(as.list(inDocument$meta()))
+      keys <- keys[keys!= "name"]
+      values <- as.list(inDocument$meta())
+      values["name"] <- NULL
+      outDocument$content <- inDocument$content
+      lapply(seq_along(keys), function(k) {
+        outDocument$meta(key = keys[[k]], value = values[[k]])
+      })
+
+      return(outDocument)
+    },
     ..ctrl = data.frame(dec = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
                                 16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31, 127),
                         id = c("NUL","SOH","STX","ETX","EOT","ENQ","ACK","BEL",
@@ -61,7 +74,7 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
 
       private$..className <- "ProcessDocumentRepairCtrl"
       private$..methodName <- "initialize"
-      private$..inObject <- object
+      private$..in <- object
       private$..logs <- LogR$new()
 
       # Validate input
@@ -88,27 +101,29 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
 
     process = function() {
 
-      ioBin <- ioBin$new()
-      ioTxt <- ioText$new()
+      ioBin <- IOBin$new()
+      ioText <- IOText$new()
 
       # Obtain patterns to repair
-      patterns <- as.list(subset(private$..ctrl, flag == TRUE, select = dec))
+      patterns <- subset(private$..ctrl, flag == TRUE, select = dec)
 
       # Obtain content
-      content <- private$..outDocument$read(io = ioBin)
+      content <- private$..out$read()
+
+      # Save binary data to temp file and re-read
+      d <- tempfile(fileext = '.txt')
+      writeBin(content, d)
+      content <- ioBin$read(path = d)
 
       # Repair content
-      for (i in length(patterns)) {
-        content[content == as.raw(patterns[[i]])] = as.raw(0x20)
+      for (i in 1:length(patterns$dec)) {
+        content[content == as.raw(patterns$dec[i])] = as.raw(0x20)
       }
 
-      # Save as binary
-      d <- tempfile(fileext = '.txt')
-      ioBin$write(path = d, content = content)
-
-      # Reread as text and save
-      content <- ioText$read(path = d)
-      private$..outDocument$write(content = content)
+      # Write repaired binary data, read, then save as text data
+      writeBin(content, d)
+      content <- ioBin$read(path = d)
+      private$..out$write(content = content)
 
       # log
       private$..state <- paste0("Successfully performed ProcessDocumentRepairCtrl.")
@@ -119,7 +134,7 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
 
 
     getResult = function() {
-      return(private$..outDocument)
+      return(private$..out)
     },
 
     #-------------------------------------------------------------------------#
