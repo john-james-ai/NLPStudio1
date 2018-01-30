@@ -1,0 +1,4 @@
+pattern,replace
+0,0x20
+26,0x20
+127,0x20

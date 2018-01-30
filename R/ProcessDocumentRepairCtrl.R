@@ -35,42 +35,12 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
       })
 
       return(outDocument)
-    },
-    ..ctrl = data.frame(dec = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
-                                16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31, 127),
-                        id = c("NUL","SOH","STX","ETX","EOT","ENQ","ACK","BEL",
-                               "BS","HT","LF","VT","FF","CR","SO","SI","DLE","DC1",
-                               "DC2","DC3","DC4","NAK","SYN","ETB","CAN","EM","SUB",
-                               "ESC","FS","GS","RS","US","DEL"),
-                        flag = c(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-                                 FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-                                 FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)
-                        ),
-    setPatterns = function(patterns) {
-
-      if (!is.null(patterns)) {
-        private$..ctrl$flag <- FALSE
-        if ("numeric" %in% class(patterns)) {
-          private$..ctrl$flag[private$..ctrl$dec %in% patterns] <- TRUE
-        } else if ("character" %in% class(patterns)) {
-          private$..ctrl$flag[private$..ctrl$id %in% patterns] <- TRUE
-        } else {
-          private$..state <- paste0("Unable to repair ASCII patterns  ", patterns,
-                                    ". Patterns must be decimal numeric c(0:31), or ",
-                                    private$..ctrl$id, ". See ?", class(self)[1],
-                                    " for further assistance.")
-          self$logIt("Error")
-          stop()
-        }
-      }
-      return(private$..ctrl)
     }
   ),
 
   public = list(
 
-    initialize = function(object, name, patterns = NULL) {
+    initialize = function(object, name, substitutions = NULL) {
 
       private$..className <- "ProcessDocumentRepairCtrl"
       private$..methodName <- "initialize"
@@ -86,7 +56,13 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
         self$logIt("Error")
         stop()
       }
-      private$..ctrl <- private$setPatterns(patterns)
+
+      if (is.null(substitutions)) {
+        private$..substitutions <- NLPStudio:::ctrl
+      } else {
+        private$..substitutions <- substitutions
+      }
+
 
       # Create new Document object
       private$..out <- Document$new(name = name)
@@ -104,9 +80,6 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
       ioBin <- IOBin$new()
       ioText <- IOText$new()
 
-      # Obtain patterns to repair
-      patterns <- subset(private$..ctrl, flag == TRUE, select = dec)
-
       # Obtain content
       content <- private$..out$read()
 
@@ -116,8 +89,8 @@ ProcessDocumentRepairCtrl <- R6::R6Class(
       content <- ioBin$read(path = d)
 
       # Repair content
-      for (i in 1:length(patterns$dec)) {
-        content[content == as.raw(patterns$dec[i])] = as.raw(0x20)
+      for (i in 1:nrow(private$..substitutions)) {
+        content[content == as.raw(private$..substitutions[[1]][i])] = as.raw(private$..substitutions[[2]][i])
       }
 
       # Write repaired binary data, read, then save as text data

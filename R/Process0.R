@@ -23,7 +23,8 @@ Process0 <- R6::R6Class(
 
   private = list(
     ..in = character(),
-    ..out = character()
+    ..out = character(),
+    ..substitutions = data.frame()
   ),
 
   public = list(
