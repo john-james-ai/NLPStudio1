@@ -216,7 +216,7 @@ Corpus <- R6::R6Class(
 
       #TODO: Remove after testing
 
-      corpus = list(
+      corpus <- list(
         name = private$..meta[["name"]],
         path = private$..path,
         logs = private$..logs,
@@ -224,8 +224,7 @@ Corpus <- R6::R6Class(
         modified = private$..modified,
         created = private$..created,
         documents = private$..documents,
-        docMeta = self$docMeta(),
-        corpusDocument0 = self$corpusDocument0()
+        docMeta = self$docMeta()
       )
 
       return(corpus)
