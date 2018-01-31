@@ -21,13 +21,15 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Imports:
-    R6,
     doParallel,
     hashids,
     Hmisc,
     installr,
+    NLP,
+    openNLP,
     parsedate,  
     quanteda,
+    R6,
     readtext,
     tools
 RoxygenNote: 6.0.1
