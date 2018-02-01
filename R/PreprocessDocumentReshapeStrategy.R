@@ -10,8 +10,6 @@
 #' @template processClasses.R
 #' @template processMethods.R
 #' @template processParams.R
-#' @template processRepairParams.R
-#' @param unit Character string indicating the units by which the Document will be reshaped c("character", "word", "sentence")
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -38,7 +36,7 @@ PreprocessDocumentReshapeStrategy <- R6::R6Class(
 
   public = list(
 
-    initialize = function(object, name) {
+    initialize = function(object, name = NULL) {
 
       private$..className <- "PreprocessDocumentReshapeStrategy"
       private$..methodName <- "initialize"
@@ -48,7 +46,7 @@ PreprocessDocumentReshapeStrategy <- R6::R6Class(
       # Validate input
       if (!("Document" %in% class(object))) {
         private$..state <- paste0("Invalid object for this Preprocess Class.  ",
-                                  "This class repairs objects of the Document ",
+                                  "This class preprocesses objects of the Document ",
                                   "class only.  See ?", class(self)[1],
                                   " for further assistance.")
         self$logIt("Error")
@@ -56,6 +54,7 @@ PreprocessDocumentReshapeStrategy <- R6::R6Class(
       }
 
       # Create new Document object
+      if (is.null(name)) name <- object$getName()
       private$..out <- Document$new(name = name)
       private$..out <- private$cloneDocument(private$..in, private$..out)
 
@@ -69,7 +68,7 @@ PreprocessDocumentReshapeStrategy <- R6::R6Class(
     preprocess = function() {
 
       # Obtain content
-      content <- private$..out$read()
+      content <- private$..in$read()
 
       # Reshape content
       content <- private$reshapeSent(content)

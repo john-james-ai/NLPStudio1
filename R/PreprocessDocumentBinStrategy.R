@@ -10,7 +10,6 @@
 #' @template preprocessClasses.R
 #' @template preprocessMethods.R
 #' @template preprocessParams.R
-#' @template preprocessRepairParams.R
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -24,7 +23,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
 
   public = list(
 
-    initialize = function(object, name, substitutions = NULL) {
+    initialize = function(object, name = NULL, substitutions = NULL) {
 
       private$..className <- "PreprocessDocumentBinStrategy"
       private$..methodName <- "initialize"
@@ -34,7 +33,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
       # Validate input
       if (!("Document" %in% class(object))) {
         private$..state <- paste0("Invalid object for this Preprocess Class.  ",
-                                  "This class repairs objects of the Document ",
+                                  "This class preprocesses objects of the Document ",
                                   "class only.  See ?", class(self)[1],
                                   " for further assistance.")
         self$logIt("Error")
@@ -49,6 +48,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
 
 
       # Create new Document object
+      if (is.null(name))  name <- object$getName()
       private$..out <- Document$new(name = name)
       private$..out <- private$cloneDocument(private$..in, private$..out)
 
@@ -65,7 +65,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
       ioText <- IOText$new()
 
       # Obtain content
-      content <- private$..out$read()
+      content <- private$..in$read()
 
       # Save binary data to temp file and re-read
       d <- tempfile(fileext = '.txt')

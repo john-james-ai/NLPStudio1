@@ -24,7 +24,7 @@ PreprocessCorpusBinStrategy <- R6::R6Class(
 
   public = list(
 
-    initialize = function(object, name, substitutions = NULL) {
+    initialize = function(object, name = NULL, substitutions = NULL) {
 
       private$..className <- "PreprocessCorpusBinStrategy"
       private$..methodName <- "initialize"
@@ -49,6 +49,7 @@ PreprocessCorpusBinStrategy <- R6::R6Class(
 
 
       # Create new Corpus object
+      if (is.null(name))  name <- object$getName()
       private$..out <- Corpus$new(name = name)
       private$..out <- private$cloneCorpus(private$..in, private$..out)
 

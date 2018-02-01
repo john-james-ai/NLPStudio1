@@ -24,7 +24,7 @@ PreprocessCorpusReshapeStrategy <- R6::R6Class(
 
   public = list(
 
-    initialize = function(object, name) {
+    initialize = function(object, name = NULL) {
 
       private$..className <- "PreprocessCorpusReshapeStrategy"
       private$..methodName <- "initialize"
@@ -42,6 +42,7 @@ PreprocessCorpusReshapeStrategy <- R6::R6Class(
       }
 
       # Create new Corpus object
+      if (is.null(name)) name <- object$getName()
       private$..out <- Corpus$new(name = name)
       private$..out <- private$cloneCorpus(private$..in, private$..out)
 

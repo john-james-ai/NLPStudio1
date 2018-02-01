@@ -28,7 +28,6 @@ PreprocessDocumentStrategy0 <- R6::R6Class(
       keys <- keys[keys!= "name"]
       values <- as.list(inDocument$meta())
       values["name"] <- NULL
-      outDocument$content <- inDocument$content
       lapply(seq_along(keys), function(k) {
         outDocument$meta(key = keys[[k]], value = values[[k]])
       })
@@ -39,8 +38,11 @@ PreprocessDocumentStrategy0 <- R6::R6Class(
 
   public = list(
 
-    initialize = function(object, name, ...) { stop("This method is not implemented for this abstract class") },
-    process = function() { stop("This method is not implemented for this abstract class") },
+    initialize = function(object, name = NULL, substitutions = NULL, splits = NULL) {
+      stop("This method is not implemented for this abstract class")
+    },
+    preprocess = function() { stop("This method is not implemented for this abstract class") },
+    getResult = function() { stop("This method is not implemented for this abstract class") },
     #-------------------------------------------------------------------------#
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#

@@ -29,7 +29,7 @@ PreprocessStrategy0 <- R6::R6Class(
 
   public = list(
 
-    initialize = function(object, name, ...) { stop("This method is not implemented for this abstract class") },
+    initialize = function(object, ...) { stop("This method is not implemented for this abstract class") },
     getInObject = function() private$..in,
     Preprocess = function() { stop("This method is not implemented for this abstract class") },
     #-------------------------------------------------------------------------#
