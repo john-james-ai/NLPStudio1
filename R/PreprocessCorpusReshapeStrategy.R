@@ -7,10 +7,10 @@
 #'
 #' Class reshapes Corpus object text into sentence vectors.
 #'
-#' @template preprocessClasses.R
-#' @template preprocessMethods.R
-#' @template preprocessParams.R
-#' @template preprocessPreprocessParams.R
+#' @template preprocessClasses
+#' @template preprocessMethods
+#' @template preprocessParams
+#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}

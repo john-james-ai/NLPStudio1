@@ -7,10 +7,9 @@
 #'
 #' Class repairs control character representations in Corpus objects.
 #'
-#' @template preprocessClasses.R
-#' @template preprocessMethods.R
-#' @template preprocessParams.R
-#' @template preprocessPreprocessParams.R
+#' @template preprocessClasses
+#' @template preprocessMethods
+#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}

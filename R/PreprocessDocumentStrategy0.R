@@ -5,11 +5,11 @@
 #'
 #' \code{PreprocessDocumentStrategy0} Abstract superclass that defines the methods common to all Document Process family classes.
 #'
-#' This abstract defines the methods and interfaces common to the Process family classes which operate on Document objects. It inherits from the Process0 class.
+#' This abstract defines the methods and interfaces common to the Process family classes which operate on Document objects. It inherits from the Preprocess0 class.
 #'
-#' @template processClasses.R
-#' @template processMethods.R
-#' @template processParams.R
+#' @template preprocessClasses
+#' @template preprocessMethods
+#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
@@ -19,7 +19,7 @@ PreprocessDocumentStrategy0 <- R6::R6Class(
   classname = "PreprocessDocumentStrategy0",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Process0,
+  inherit = PreprocessStrategy0,
 
   private = list(
     cloneDocument = function(inDocument, outDocument) {

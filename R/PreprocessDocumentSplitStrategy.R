@@ -7,10 +7,9 @@
 #'
 #' Class responsible for reshaping a Document class object into tokens, sentences, or paragraphs.
 #'
-#' @template processClasses.R
-#' @template processMethods.R
-#' @template processParams.R
-#' @template processRepairParams.R
+#' @template preprocessClasses
+#' @template preprocessMethods
+#' @template preprocessParams
 #' @param trainSize Numeric between 0 and 1, indicating the proportion of the data set to include in the training set
 #' @param valSize Numeric between 0 and 1, indicating the proportion of the data set to include in the validation set
 #' @param testSize Numeric between 0 and 1, indicating the proportion of the data set to include in the test set
@@ -28,7 +27,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
 
   private = list(
     ..train = character(),
-    ..validation = character(),
+    ..validation = NULL,
     ..test = character(),
     ..trainSize = numeric(),
     ..valSize = numeric(),

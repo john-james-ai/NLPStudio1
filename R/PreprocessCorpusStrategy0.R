@@ -7,9 +7,9 @@
 #'
 #' This abstract defines the methods and interfaces common to all Preprocess family classes which operate on Corpus objects. It inherits from the Preprocess0 class.
 #'
-#' @template preprocessClasses.R
-#' @template preprocessMethods.R
-#' @template preprocessParams.R
+#' @template preprocessClasses
+#' @template preprocessMethods
+#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}

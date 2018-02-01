@@ -3,7 +3,7 @@ testPreprocessDocumentBin <- function() {
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    newsTxt <<- readLines("./test/testData/hc/en_US.news.txt")
+    newsTxt <<- readLines("./test/testData/input/en_US.news.txt")
     PreprocessDocumentBinTest <<- LogTest$new()
   }
 
@@ -50,7 +50,7 @@ testPreprocessDocumentBin <- function() {
     test <- "test1: Document: Repair document with defaults"
     cat(paste0("\n",test, " Commencing\n"))
 
-    news2 <- PreprocessDocumentBin$new(news, "news2")$preprocess()$getResult()
+    news2 <- PreprocessDocumentBinStrategy$new(news, "news2")$preprocess()$getResult()
 
     # Get news document data
     d <- news$exposeObject()
@@ -91,7 +91,7 @@ testPreprocessDocumentBin <- function() {
     replace = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
     subs = data.frame(pattern, replace)
 
-    news3 <- PreprocessDocumentBin$new(news2, "news3", substitutions = subs)$preprocess()$getResult()
+    news3 <- PreprocessDocumentBinStrategy$new(news2, "news3", substitutions = subs)$preprocess()$getResult()
 
     # Get news document data
     d2 <- news2$exposeObject()
@@ -122,6 +122,46 @@ testPreprocessDocumentBin <- function() {
     return(news3)
   }
 
+  test2 <- function(news) {
+    test <- "test2: Document: Create object with same name as source"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    # Initialize parameters
+    pattern = c(0,1,3,5,7,9,24,26, 127)
+    replace = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
+    subs = data.frame(pattern, replace)
+
+    news2 <- PreprocessDocumentBinStrategy$new(object = news, substitutions = subs)$preprocess()$getResult()
+
+    # Get news document data
+    d1 <- news$exposeObject()
+    d2 <- news2$exposeObject()
+    stopifnot(d1$meta$name == 'news')
+    stopifnot(d2$meta$name == 'news')
+    stopifnot(d1$meta$title == d2$meta$title)
+    stopifnot(d1$meta$description == d2$meta$description)
+    stopifnot(d1$meta$language == d2$meta$language)
+    stopifnot(d1$meta$creator == d2$meta$creator)
+    stopifnot(d1$meta$dateCreated == d2$meta$dateCreated)
+    stopifnot(d1$meta$source == d2$meta$source)
+    stopifnot(d1$meta$format == d2$meta$format)
+    stopifnot(!identical(news$content, news2$content))
+
+    # Check content
+    c1 <- news$content
+    c2 <- news2$content
+    print(paste0("Length of old content is ", length(c1)))
+    print(paste0("Length of new content is ", length(c2)))
+
+    # Logit
+    PreprocessDocumentBinTest$logs(className = className, methodName = "process", msg = paste("Successfully processed repair"))
+    PreprocessDocumentBinTest$logs(className = className, methodName = "process", msg = paste("Successfully returned repaired object"))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(news3)
+  }
+
   testn <- function(news) {
     test <- "Testn: Document: Write File"
     cat(paste0("\n",test, " Commencing\n"))
@@ -139,6 +179,7 @@ init()
 news <- test0()
 news2 <- test1(news)
 news3 <- test2(news)
+news4 <- test3(news)
 
 }
 className <- "PreprocessDocumentBin"

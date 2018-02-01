@@ -7,9 +7,9 @@
 #'
 #' Class corrects common encoding errors and converts UTF-8 to ASCII encoding. Replaces
 #'
-#' @template processClasses.R
-#' @template processMethods.R
-#' @template processParams.R
+#' @template preprocessClasses
+#' @template preprocessMethods
+#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
