@@ -39,7 +39,7 @@
 #' \strong{Concrete Document Preprocess Classes:}
 #'  \itemize{
 #'   \item PreprocessDocumentBin: Concrete class responsible for repairing control character presentations in Document objects.
-#'   \item PreprocessDocumentEncode: Concrete class responsible for repairing non-UTF8 character presentations in Document objects.
+#'   \item PreprocessDocumentEncodeStrategy: Concrete class responsible for repairing non-UTF8 character presentations in Document objects.
 #'   \item PreprocessDocumentReshape: Concrete class responsible for reshaping Document objects into tokens, sentences and/or paragraphs.
 #'   \item PreprocessDocumentSplit: Concrete class responsible for splitting a Document object for cross-validation purposes.
 #'   \item PreprocessDocumentParse: Concrete class responsible for parsing specified content types, such as URLs from text in Document objects.

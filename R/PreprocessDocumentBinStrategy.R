@@ -61,7 +61,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
 
     preprocess = function() {
 
-      ioBinStrategy <- IOBinStrategy$new()
+      ioBin <- IOBin$new()
       ioText <- IOText$new()
 
       # Obtain content
@@ -69,8 +69,8 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
 
       # Save binary data to temp file and re-read
       d <- tempfile(fileext = '.txt')
-      writeBinStrategy(content, d)
-      content <- ioBinStrategy$read(path = d)
+      writeBin(content, d)
+      content <- ioBin$read(path = d)
 
       # Repair content
       for (i in 1:nrow(private$..substitutions)) {
@@ -78,8 +78,8 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
       }
 
       # Write repaired binary data, read, then save as text data
-      writeBinStrategy(content, d)
-      content <- ioBinStrategy$read(path = d)
+      writeBin(content, d)
+      content <- ioBin$read(path = d)
       private$..out$write(content = content)
 
       # log

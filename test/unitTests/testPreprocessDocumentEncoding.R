@@ -1,10 +1,10 @@
-testPreprocessDocumentEncoding <- function() {
+testPreprocessDocumentEncodeStrategy <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("news", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("news", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    newsTxt <<- readLines("./test/testData/hc/en_US.news.txt")
-    PreprocessDocumentEncodingTest <<- LogTest$new()
+    newsTxt <<- readLines("./test/testData/input/en_US.news.txt")
+    PreprocessDocumentEncodeStrategyTest <<- LogTest$new()
   }
 
   test0 <- function() {
@@ -40,7 +40,7 @@ testPreprocessDocumentEncoding <- function() {
     stopifnot(d$meta$format == 'txt')
 
     # Logit
-    PreprocessDocumentEncodingTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized document"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized document"))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(news)
@@ -50,7 +50,7 @@ testPreprocessDocumentEncoding <- function() {
     test <- "test1: Document: Repair document with defaults"
     cat(paste0("\n",test, " Commencing\n"))
 
-    news2 <- PreprocessDocumentEncoding$new(news, "news2")$preprocess()$getResult()
+    news2 <- PreprocessDocumentEncodeStrategy$new(news, "news2")$preprocess()$getResult()
 
     # Get news document data
     d <- news$exposeObject()
@@ -73,8 +73,8 @@ testPreprocessDocumentEncoding <- function() {
     print(paste0("Length of new content is ", length(c2)))
 
     # Logit
-    PreprocessDocumentEncodingTest$logs(className = className, methodName = "process", msg = paste("Successfully processed repair"))
-    PreprocessDocumentEncodingTest$logs(className = className, methodName = "process", msg = paste("Successfully returned repaired object"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "process", msg = paste("Successfully processed repair"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "process", msg = paste("Successfully returned repaired object"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -91,7 +91,7 @@ testPreprocessDocumentEncoding <- function() {
     replace = c('"', '"',"'")
     subs = data.frame(pattern, replace)
 
-    news3 <- PreprocessDocumentEncoding$new(news2, "news3", substitutions = subs)$preprocess()$getResult()
+    news3 <- PreprocessDocumentEncodeStrategy$new(news2, "news3", substitutions = subs)$preprocess()$getResult()
 
     # Get news document data
     d2 <- news2$exposeObject()
@@ -114,8 +114,48 @@ testPreprocessDocumentEncoding <- function() {
     print(paste0("Length of new content is ", length(c3)))
 
     # Logit
-    PreprocessDocumentEncodingTest$logs(className = className, methodName = "process", msg = paste("Successfully processed repair"))
-    PreprocessDocumentEncodingTest$logs(className = className, methodName = "process", msg = paste("Successfully returned repaired object"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "process", msg = paste("Successfully processed repair"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "process", msg = paste("Successfully returned repaired object"))
+
+    cat(paste0(test, " Completed: Success!\n"))
+
+    return(news3)
+  }
+
+  test3 <- function(news) {
+    test <- "test3: Document: Repair document same name as source"
+    cat(paste0("\n",test, " Commencing\n"))
+
+    # Initialize parameters
+    pattern = c("â€œ","â€","â€™")
+    replace = c('"', '"',"'")
+    subs = data.frame(pattern, replace)
+
+    news2 <- PreprocessDocumentEncodeStrategy$new(object = news, substitutions = subs)$preprocess()$getResult()
+
+    # Get news document data
+    d2 <- news$exposeObject()
+    d3 <- news2$exposeObject()
+    stopifnot(d2$meta$name == 'news')
+    stopifnot(d3$meta$name == 'news')
+    stopifnot(d3$meta$title == d2$meta$title)
+    stopifnot(d3$meta$description == d2$meta$description)
+    stopifnot(d3$meta$language == d2$meta$language)
+    stopifnot(d3$meta$creator == d2$meta$creator)
+    stopifnot(d3$meta$dateCreated == d2$meta$dateCreated)
+    stopifnot(d3$meta$source == d2$meta$source)
+    stopifnot(d3$meta$format == d2$meta$format)
+    stopifnot(!identical(news$content, news2$content))
+
+    # Check content
+    c2 <- news$content
+    c3 <- news2$content
+    print(paste0("Length of old content is ", length(c2)))
+    print(paste0("Length of new content is ", length(c3)))
+
+    # Logit
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "process", msg = paste("Successfully processed repair"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "process", msg = paste("Successfully returned repaired object"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -127,7 +167,7 @@ testPreprocessDocumentEncoding <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Logit
-    PreprocessDocumentEncodingTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
+    PreprocessDocumentEncodeStrategyTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
 
     cat(paste0(test, " Completed: Success!\n"))
 
@@ -139,8 +179,9 @@ init()
 news <- test0()
 news2 <- test1(news)
 news3 <- test2(news)
+news4 <- test3(news)
 
 }
-className <- "PreprocessDocumentEncoding"
+className <- "PreprocessDocumentEncodeStrategy"
 
-testPreprocessDocumentEncoding()
+testPreprocessDocumentEncodeStrategy()

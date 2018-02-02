@@ -26,13 +26,11 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
   inherit = PreprocessDocumentStrategy0,
 
   private = list(
-    ..train = character(),
-    ..validation = NULL,
-    ..test = character(),
     ..trainSize = numeric(),
     ..valSize = numeric(),
     ..testSize = numeric(),
-    ..seed = numeric()
+    ..seed = numeric(),
+    ..cvSet = list()
   ),
 
   public = list(
@@ -90,21 +88,24 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
       ss <- sample(x, size = length(content), replace = TRUE, prob = proportions)
 
       # Create training set
-      private$..train <- Document$new(name = private$..in$getName())
-      private$..train <- private$cloneDocument(private$..in, private$..train)
-      private$..train$content <- content[ss==1]
+      train <- Document$new(name = private$..in$getName())
+      train <- private$cloneDocument(private$..in, train)
+      train$content <- content[ss==1]
+      private$..cvSet[["train"]] <- train
 
       # Create validation set
       if (private$..valSize > 0) {
-        private$..validation <- Document$new(name = private$..in$getName())
-        private$..validation <- private$cloneDocument(private$..in, private$..validation)
-        private$..validation$content <- content[ss==2]
+        val <- Document$new(name = private$..in$getName())
+        val <- private$cloneDocument(private$..in, val)
+        val$content <- content[ss==2]
+        private$..cvSet[["validation"]] <- val
       }
 
       # Create test set
-      private$..test <- Document$new(name = private$..in$getName())
-      private$..test <- private$cloneDocument(private$..in, private$..test)
-      private$..test$content <- content[ss==3]
+      test <- Document$new(name = private$..in$getName())
+      test <- private$cloneDocument(private$..in, test)
+      test$content <- content[ss==3]
+      private$..cvSet[["test"]] <- test
 
       # log
       private$..state <- paste0("Successfully split Document")
@@ -115,12 +116,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
 
 
     getResult = function() {
-      sets  = list(
-        train = private$..train,
-        validation = private$..validation,
-        test = private$..test
-      )
-      return(sets)
+      return(private$..cvSet)
     },
 
     #-------------------------------------------------------------------------#

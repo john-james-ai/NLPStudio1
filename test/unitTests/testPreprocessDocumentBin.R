@@ -159,7 +159,7 @@ testPreprocessDocumentBin <- function() {
 
     cat(paste0(test, " Completed: Success!\n"))
 
-    return(news3)
+    return(news2)
   }
 
   testn <- function(news) {
@@ -177,9 +177,8 @@ testPreprocessDocumentBin <- function() {
 
 init()
 news <- test0()
-news2 <- test1(news)
-news3 <- test2(news)
-news4 <- test3(news)
+news3 <- test1(news)
+news2 <- test2(news)
 
 }
 className <- "PreprocessDocumentBin"
