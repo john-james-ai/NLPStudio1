@@ -10,7 +10,6 @@
 #' @template preprocessClasses
 #' @template preprocessMethods
 #' @template preprocessParams
-#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}

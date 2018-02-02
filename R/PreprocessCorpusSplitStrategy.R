@@ -1,34 +1,45 @@
 #==============================================================================#
-#                       PreprocessCorpusReshapeStrategy                        #
+#                       PreprocessCorpusSplitStrategy                          #
 #==============================================================================#
-#' PreprocessCorpusReshapeStrategy
+#' PreprocessCorpusSplitStrategy
 #'
-#' \code{PreprocessCorpusReshapeStrategy} Class responsible for reshaping a Corpus into sentences.
+#' \code{PreprocessCorpusSplitStrategy} Class responsible for reshaping a Corpus into sentences.
 #'
 #' Class reshapes Corpus object text into sentence vectors.
 #'
 #' @template preprocessClasses
 #' @template preprocessMethods
 #' @template preprocessParams
-#' @template preprocessParams
 #'
 #' @docType class
 #' @author John James, \email{jjames@@datasciencesalon.org}
 #' @family Preprocess Family of Classes
 #' @export
-PreprocessCorpusReshapeStrategy <- R6::R6Class(
-  classname = "PreprocessCorpusReshapeStrategy",
+PreprocessCorpusSplitStrategy <- R6::R6Class(
+  classname = "PreprocessCorpusSplitStrategy",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = PreprocessCorpusStrategy0,
 
+  private = list(
+    ..trainSize = 0,
+    ..valSize = 0,
+    ..testSize = 0,
+    ..seed = numeric()
+  ),
+
   public = list(
 
-    initialize = function(object, name = NULL) {
+    initialize = function(object, trainSize, valSize = 0, testSize, name = NULL, seed = NULL) {
 
-      private$..className <- "PreprocessCorpusReshapeStrategy"
+      private$..className <- "PreprocessCorpusSplitStrategy"
+      private$..methodName <- "initialize"
       private$..methodName <- "initialize"
       private$..in <- object
+      private$..trainSize <- trainSize
+      private$..valSize <- valSize
+      private$..testSize <- testSize
+      private$..seed <- seed
       private$..logs <- LogR$new()
 
       # Validate input
@@ -41,13 +52,16 @@ PreprocessCorpusReshapeStrategy <- R6::R6Class(
         stop()
       }
 
-      # Create new Corpus object
-      if (is.null(name)) name <- object$getName()
-      private$..out <- Corpus$new(name = name)
-      private$..out <- private$cloneCorpus(private$..in, private$..out)
-
+      # Confirm splits sum to one.
+      if (sum(trainSize, valSize, testSize) != 1) {
+        private$..state <- paste0("Unable to perform split operation. ",
+                                  "The sum of proportions must equal one. ",
+                                  "See ?", class(self)[1], " for further assistance.")
+        self$logIt("Error")
+        stop()
+      }
       # log
-      private$..state <- paste0("Successfully initialized PreprocessCorpusReshapeStrategy class object.")
+      private$..state <- paste0("Successfully initialized PreprocessCorpusSplitStrategy class object.")
       self$logIt()
 
       invisible(self)
@@ -57,16 +71,40 @@ PreprocessCorpusReshapeStrategy <- R6::R6Class(
 
       private$..methodName <- "preprocess"
 
+      # Split Documents
       docs <- private$..in$getDocuments()
-      lapply(docs, function(d) {
-        name <- d$getName()
-        doc <- PreprocessDocumentReshapeStrategy$new(object = d,
-                                                 name = name)$preprocess()$getResult()
-        private$..out$addDocument(doc)
+      cvSets <- lapply(docs, function(d) {
+        cvSet <- PreprocessDocumentSplitStrategy$new(object = d,
+                                                   trainSize = private$..trainSize,
+                                                   valSize = private$..valSize,
+                                                   testSize = private$..testSize,
+                                                   seed = private$..seed)$preprocess()$getResult()
+        names(cvSet) <- d$getName()
+        cvSet
       })
 
+      # Create new corpora
+      if (private$..trainSize > 0 ) {
+        trainCorpus <- Corpus$new(name = private$..in$getName)
+        for (i in 1:length(cvSets)) {
+          private$..out[["train"]] <- trainCorpus$addDocument(cvSets[[i]]$train)
+        }
+      }
+      if (private$..valSize > 0 ) {
+        validationCorpus <- Corpus$new(name = private$..in$getName)
+        for (i in 1:length(cvSets)) {
+          private$..out[["validation"]] <- validationCorpus$addDocument(cvSets[[i]]$validation)
+        }
+      }
+      if (private$..testSize > 0 ) {
+        testCorpus <- Corpus$new(name = private$..in$getName)
+        for (i in 1:length(cvSets)) {
+          private$..out[["test"]] <- testCorpus$addDocument(cvSets[[i]]$test)
+        }
+      }
+
       # log
-      private$..state <- paste0("Successfully performed PreprocessCorpusReshapeStrategy.")
+      private$..state <- paste0("Successfully performed PreprocessCorpusSplitStrategy.")
       self$logIt()
 
       invisible(self)
@@ -81,7 +119,7 @@ PreprocessCorpusReshapeStrategy <- R6::R6Class(
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$preprocessCorpusReshapeStrategy(self)
+      visitor$preprocessCorpusSplitStrategy(self)
     }
   )
 )

@@ -26,16 +26,15 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
   inherit = PreprocessDocumentStrategy0,
 
   private = list(
-    ..trainSize = numeric(),
-    ..valSize = numeric(),
-    ..testSize = numeric(),
-    ..seed = numeric(),
-    ..cvSet = list()
+    ..trainSize = 0,
+    ..valSize = 0,
+    ..testSize = 0,
+    ..seed = numeric()
   ),
 
   public = list(
 
-    initialize = function(object, name = NULL, seed = NULL, trainSize, valSize = 0, testSize) {
+    initialize = function(object, trainSize, valSize = 0, testSize, name = NULL, seed = NULL)  {
 
       private$..className <- "PreprocessDocumentSplitStrategy"
       private$..methodName <- "initialize"
@@ -91,21 +90,21 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
       train <- Document$new(name = private$..in$getName())
       train <- private$cloneDocument(private$..in, train)
       train$content <- content[ss==1]
-      private$..cvSet[["train"]] <- train
+      private$..out[["train"]] <- train
 
       # Create validation set
       if (private$..valSize > 0) {
         val <- Document$new(name = private$..in$getName())
         val <- private$cloneDocument(private$..in, val)
         val$content <- content[ss==2]
-        private$..cvSet[["validation"]] <- val
+        private$..out[["validation"]] <- val
       }
 
       # Create test set
       test <- Document$new(name = private$..in$getName())
       test <- private$cloneDocument(private$..in, test)
       test$content <- content[ss==3]
-      private$..cvSet[["test"]] <- test
+      private$..out[["test"]] <- test
 
       # log
       private$..state <- paste0("Successfully split Document")
@@ -116,7 +115,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
 
 
     getResult = function() {
-      return(private$..cvSet)
+      return(private$..out)
     },
 
     #-------------------------------------------------------------------------#
