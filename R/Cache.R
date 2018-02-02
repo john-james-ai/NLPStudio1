@@ -62,7 +62,6 @@ Cache <- R6::R6Class(
       inventory = data.table::data.table(),
       item = list(
         id = character(),
-        name = character(),
         size = numeric(),
         expired = FALSE,
         filePath = character(),
@@ -77,7 +76,6 @@ Cache <- R6::R6Class(
 
       private$..methodName <- "updateCacheInventoryFromFile"
 
-      private$..cacheState$inventory[id == private$..cacheState$item$id, name := private$..cacheState$item$name]
       private$..cacheState$inventory[id == private$..cacheState$item$id, size := private$..cacheState$item$size]
       private$..cacheState$inventory[id == private$..cacheState$item$id, expired := private$..cacheState$item$expired]
       private$..cacheState$inventory[id == private$..cacheState$item$id, filePath := private$..cacheState$item$filePath]
@@ -117,12 +115,8 @@ Cache <- R6::R6Class(
           # Get id from cache file name
           fileName <- tools::file_path_sans_ext(basename(files[i]))
           id <- sub('.*\\-', '', fileName)
-          cls <- sub("-.*", "", fileName)
-          name <- sub(paste0("-",id), "", fileName)
-          name <- sub(paste0(cls, "-"), "", name)
 
           private$..cacheState$item$id <- id
-          private$..cacheState$item$name <- name
           private$..cacheState$item$size <- private$getFileSize(files[i])
           private$..cacheState$item$expired <- FALSE
           private$..cacheState$item$filePath <- files[i]
@@ -170,10 +164,8 @@ Cache <- R6::R6Class(
     getFilePath = function(object) {
       private$..methodName <- "getFilePath"
       id <- object$getId()
-      name <- object$getName()
       filePath <- file.path(private$..cacheDir,
                             paste0(class(object)[1],"-",
-                                   name, "-",
                                    id, ".RData"))
       return(filePath)
     },
@@ -203,11 +195,9 @@ Cache <- R6::R6Class(
 
       # Obtain key variables
       objectId <- object$getId()
-      name <- object$getName()
       filePath <- private$getFilePath(object)
       size <- private$getFileSize(filePath)
       private$..cacheState$item$id <- objectId
-      private$..cacheState$item$name <- name
       private$..cacheState$item$filePath <- filePath
       private$..cacheState$item$size <- size
       private$..cacheState$item$expired <- FALSE
@@ -215,7 +205,6 @@ Cache <- R6::R6Class(
       private$..cacheState$item$modified <- Sys.time()
       private$..cacheState$item$accessed <- Sys.time()
       private$..cacheState$item$nAccessed <- 0
-
 
       if (nrow(subset(private$..cacheState$inventory, id == objectId)) == 0) {
         private$addCacheInventoryFromFile()

@@ -21,13 +21,6 @@ PreprocessCorpusSplitStrategy <- R6::R6Class(
   lock_class = FALSE,
   inherit = PreprocessCorpusStrategy0,
 
-  private = list(
-    ..trainSize = 0,
-    ..valSize = 0,
-    ..testSize = 0,
-    ..seed = numeric()
-  ),
-
   public = list(
 
     initialize = function(object, trainSize, valSize = 0, testSize, name = NULL, seed = NULL) {
@@ -79,27 +72,28 @@ PreprocessCorpusSplitStrategy <- R6::R6Class(
                                                    valSize = private$..valSize,
                                                    testSize = private$..testSize,
                                                    seed = private$..seed)$preprocess()$getResult()
-        names(cvSet) <- d$getName()
-        cvSet
       })
 
       # Create new corpora
       if (private$..trainSize > 0 ) {
-        trainCorpus <- Corpus$new(name = private$..in$getName)
+        trainCorpus <- Corpus$new(name = private$..in$getName())
+        trainCorpus <- private$cloneCorpus(private$..in, trainCorpus)
         for (i in 1:length(cvSets)) {
-          private$..out[["train"]] <- trainCorpus$addDocument(cvSets[[i]]$train)
+          private$..cvSet[["train"]] <- trainCorpus$addDocument(cvSets[[i]]$train)
         }
       }
       if (private$..valSize > 0 ) {
-        validationCorpus <- Corpus$new(name = private$..in$getName)
+        validationCorpus <- Corpus$new(name = private$..in$getName())
+        validationCorpus <- private$cloneCorpus(private$..in, validationCorpus)
         for (i in 1:length(cvSets)) {
-          private$..out[["validation"]] <- validationCorpus$addDocument(cvSets[[i]]$validation)
+          private$..cvSet[["validation"]] <- validationCorpus$addDocument(cvSets[[i]]$validation)
         }
       }
       if (private$..testSize > 0 ) {
-        testCorpus <- Corpus$new(name = private$..in$getName)
+        testCorpus <- Corpus$new(name = private$..in$getName())
+        testCorpus <- private$cloneCorpus(private$..in, testCorpus)
         for (i in 1:length(cvSets)) {
-          private$..out[["test"]] <- testCorpus$addDocument(cvSets[[i]]$test)
+          private$..cvSet[["test"]] <- testCorpus$addDocument(cvSets[[i]]$test)
         }
       }
 
@@ -112,7 +106,7 @@ PreprocessCorpusSplitStrategy <- R6::R6Class(
 
 
     getResult = function() {
-      return(private$..out)
+      return(private$..cvSet)
     },
 
     #-------------------------------------------------------------------------#

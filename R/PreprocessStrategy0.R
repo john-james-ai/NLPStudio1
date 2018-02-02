@@ -24,7 +24,12 @@ PreprocessStrategy0 <- R6::R6Class(
   private = list(
     ..in = character(),
     ..out = character(),
-    ..substitutions = NULL
+    ..substitutions = NULL,
+    ..trainSize = 0,
+    ..valSize = 0,
+    ..testSize = 0,
+    ..seed = numeric(),
+    ..cvSet = list()
   ),
 
   public = list(

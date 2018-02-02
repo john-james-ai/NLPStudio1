@@ -26,9 +26,9 @@ PreprocessDocumentReshapeStrategy <- R6::R6Class(
     reshapeSent = function(content) {
 
       s <- paste(content, collapse = " ")
-      s <- as.String(s)
-      sent_token_annotator <- Maxent_Sent_Token_Annotator()
-      a1 <- annotate(s, sent_token_annotator)
+      s <- NLP::as.String(s)
+      sent_token_annotator <- openNLP::Maxent_Sent_Token_Annotator()
+      a1 <- NLP::annotate(s, sent_token_annotator)
       sentences <- s[a1]
       return(sentences)
     }
