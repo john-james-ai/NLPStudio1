@@ -135,14 +135,31 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                            Content Methods                              #
+    #                               IO Methods                                #
     #-------------------------------------------------------------------------#
     read = function() {
+
+      private$..methodName <- "read"
+
       content <- lapply(private$..documents, function(d) {
-        d$read()
+        d$content
       })
       private$..accessed <- Sys.time()
       return(content)
+    },
+
+    write = function(path) {
+      lapply(private$..documents, function(d) {
+        if (!is.null(d$getFileName())) {
+          fileName <- d$getFileName()
+        } else {
+          fileName <- paste0(private$..meta["name"], ".txt")
+          d$meta(key = "fileName", value = fileName)
+        }
+        path <- file.path(path, fileName)
+        d$write(path, io = IOText$new())
+      })
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#

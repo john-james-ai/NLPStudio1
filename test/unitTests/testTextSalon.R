@@ -6,20 +6,30 @@ testTextSalon <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: TextSalon: Directory"
+    test <- "test0: TextSalon"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
     name <- "Corpus"
     desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input"
+    dataSource <- "./test/testData/fast"
     corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
     ts <- TextSalon$new(corpus)
     acs <- AddCommaSpace$new()
     ame <- AddEndMark$new()
+    re <- RemoveEmail$new()
+    rh <- RemoveHyphens$new()
+    rn <- RemoveNumbers$new()
     ts <- ts$addCommand(acs)
     ts <- ts$addCommand(ame)
+    ts <- ts$addCommand(re)
+    ts <- ts$addCommand(rh)
+    ts <- ts$addCommand(rn)
     corpus2 <- ts$execute()$getResult()
+    docs <- corpus2$getDocuments()
+    print(head(docs[[1]]$content, 2))
+    print(head(docs[[2]]$content, 2))
+    print(head(docs[[3]]$content, 2))
 
 
 

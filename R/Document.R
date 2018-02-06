@@ -47,17 +47,21 @@ Document <- R6::R6Class(
   lock_class = FALSE,
   inherit = Entity,
 
+  private = list(
+    ..content = character()
+  ),
+
   active = list(
     content = function(value) {
 
       if (missing(value)) {
-        return(private$..cache$read(object = self))
+        return(private$..content)
       } else {
-        private$..cache$write(object = self, content = value)
+        private$..content <- value
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
+        invisible(self)
       }
-      invisible(self)
     }
   ),
 
@@ -78,7 +82,6 @@ Document <- R6::R6Class(
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..id <- private$createId()
-      private$..cache <- Cache$new()$getInstance()
 
       # Create log entry
       self$logIt()
@@ -86,30 +89,57 @@ Document <- R6::R6Class(
       invisible(self)
     },
 
+    getFileName = function() {
+      private$..methodName <- "getFileName"
+      if (!is.null(private$..meta$fileName)) {
+        return(private$..meta$fileName)
+      } else {
+        return(NULL)
+      }
+    },
 
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(io = NULL) {
+    read = function(path = NULL) {
 
       private$..methodName <- 'read'
-      private$..state <- paste0("Read ", private$..name, " from cache.")
+
+      if (!is.null(path)) {
+        if (file.exists(path)) {
+          created <- file.ctime(path)
+          modified <- file.mtime(path)
+          if (private$..accessed <- created | private$..accessed <- modified) {
+            io <- IOFactory$new(path)$getIOStrategy()
+            private$..content <- io$read(path)
+            private$..state <- paste0("Read ", private$..meta["name"], " from ", path, ".")
+          }
+        } else {
+          private$..state <- paste0("Unable to read document from file.  Path ",
+                                    path, " does not exist. For further assistance, ",
+                                    "See ?", class(self)[1], ". ")
+          self$logIt("Error")
+          stop()
+        }
+      }
+
       private$..accessed <- Sys.time()
       self$logIt()
-      return(private$..cache$read(self, io))
+      return(private$..content)
     },
 
-    write = function(content, io = NULL) {
+    write = function(path, io = NULL) {
 
-      private$..methodName <- 'save'
-      private$..cache$write(self, content, io)
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
-      private$..state <- paste0("Saved ", private$..name, " to cache. ")
+      private$..methodName <- 'write'
+
+      if (is.null(io)) io <- IOText$new()
+
+      io$write(path = path, content = private$..content)
+
+      private$..state <- paste0("Saved ", private$..meta["name"], " to ", path, ". ")
       self$logIt()
       invisible(self)
     },
-
 
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
@@ -128,8 +158,7 @@ Document <- R6::R6Class(
         state = private$..state,
         created = private$..created,
         modified = private$..modified,
-        accessed = private$..accessed,
-        cache = private$..cache
+        accessed = private$..accessed
       )
       return(document)
     }
