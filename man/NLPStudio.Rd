@@ -4,7 +4,7 @@
 \name{NLPStudio}
 \alias{NLPStudio}
 \title{NLPStudio}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
+\format{An object of class \code{Package} (inherits from \code{Object}) of length 1.}
 \usage{
 NLPStudio
 }

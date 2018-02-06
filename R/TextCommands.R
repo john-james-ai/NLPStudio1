@@ -1,0 +1,92 @@
+#==============================================================================#
+#                               TextCommands                                   #
+#==============================================================================#
+#' TextCommand0
+#'
+#' \code{TextCommand0} Command interface class.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+TextCommand0 <- R6::R6Class(
+  classname = "TextCommand0",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = Entity,
+
+  private = list(
+    ..object = character()
+  ),
+
+  public = list(
+    initialize = function(object, ...) { stop("Not implemented for this abstract/interface class.") },
+    execute = function() { stop("Not implemented for this abstract/interface class.") }
+  )
+)
+#------------------------------------------------------------------------------#
+#                              Add Comma Space                                 #
+#------------------------------------------------------------------------------#
+#' AddCommaSpace
+#'
+#' \code{AddCommaSpace} Adds space after comma.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+AddCommaSpace <- R6::R6Class(
+  classname = "AddCommaSpace",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  private = list(
+    processDocument = function(document) {
+      document$content <- textclean::add_comma_space(document$content)
+      return(document)
+    }
+  ),
+
+  public = list(
+    initialize = function() {
+      private$..className <- "AddCommaSpace"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "AddCommmaSpace"
+      private$..logs  <- LogR$new()
+      invisible(self)
+    },
+    execute = function(object) {
+
+      private$..methodName <- "execute"
+
+      if ("Corpus" %in% class(object)) {
+        documents <- object$getDocuments()
+        for (i in 1:length(documents)) {
+          doc <- private$processDocument(documents[[i]])
+          object$addDocument(doc)
+        }
+      } else {
+        object <- private$processDocument(object)
+      }
+      # Log it
+      private$..state <- paste0("Executed ", class(self)[1], " on ",
+                                object$getName(), ". ")
+      self$logIt()
+
+      return(object)
+      }
+  )
+)
+
+

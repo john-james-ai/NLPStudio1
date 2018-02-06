@@ -177,9 +177,9 @@ init()
 corpus <- test0()
 corpus <- test1(corpus)
 splits <- test2(corpus)
-splits <- test3(corpus)
+splits <<- test3(corpus)
 
 }
 className <- "PreprocessCorpusSplitStrategy"
 
-testPreprocessCorpusSplitStrategy()
+  testPreprocessCorpusSplitStrategy()

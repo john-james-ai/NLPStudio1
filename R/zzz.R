@@ -1,5 +1,9 @@
 .onLoad <- function(libname, pkgname) {
 
+  ns <- getNamespace(pkgname);
+  pkg <- Package(pkgname);
+  assign(pkgname, pkg, envir=ns);
+
   packageStartupMessage(paste0("#=========================================================================================#"))
   packageStartupMessage(paste0("#                                                                                         #"))
   packageStartupMessage(paste0("#                           Welcome to the NLPStudio (Beta)!                              #"))

@@ -47,17 +47,13 @@ Document <- R6::R6Class(
   lock_class = FALSE,
   inherit = Entity,
 
-  private = list(
-    ..documentCache = character()
-  ),
-
   active = list(
     content = function(value) {
 
       if (missing(value)) {
-        return(private$..documentCache$read(object = self))
+        return(private$..cache$read(object = self))
       } else {
-        private$..documentCache$write(object = self, content = value)
+        private$..cache$write(object = self, content = value)
         private$..modified <- Sys.time()
         private$..accessed <- Sys.time()
       }
@@ -82,7 +78,7 @@ Document <- R6::R6Class(
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..id <- private$createId()
-      private$..documentCache <- Cache$new()
+      private$..cache <- Cache$new()$getInstance()
 
       # Create log entry
       self$logIt()
@@ -100,13 +96,13 @@ Document <- R6::R6Class(
       private$..state <- paste0("Read ", private$..name, " from cache.")
       private$..accessed <- Sys.time()
       self$logIt()
-      return(private$..documentCache$read(self, io))
+      return(private$..cache$read(self, io))
     },
 
     write = function(content, io = NULL) {
 
       private$..methodName <- 'save'
-      private$..documentCache$write(self, content, io)
+      private$..cache$write(self, content, io)
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..state <- paste0("Saved ", private$..name, " to cache. ")
@@ -133,7 +129,7 @@ Document <- R6::R6Class(
         created = private$..created,
         modified = private$..modified,
         accessed = private$..accessed,
-        documentCache = private$..documentCache
+        cache = private$..cache
       )
       return(document)
     }
