@@ -89,4 +89,64 @@ AddCommaSpace <- R6::R6Class(
   )
 )
 
+#------------------------------------------------------------------------------#
+#                              Add Missing Endmark                             #
+#------------------------------------------------------------------------------#
+#' AddEndMark
+#'
+#' \code{AddEndMark} Adds space after comma.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+AddEndMark <- R6::R6Class(
+  classname = "AddEndMark",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  private = list(
+    processDocument = function(document) {
+      document$content <- textclean::add_missing_endmark(document$content)
+      return(document)
+    }
+  ),
+
+  public = list(
+    initialize = function() {
+      private$..className <- "AddEndMark"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "AddEndMark"
+      private$..logs  <- LogR$new()
+      invisible(self)
+    },
+    execute = function(object) {
+
+      private$..methodName <- "execute"
+
+      if ("Corpus" %in% class(object)) {
+        documents <- object$getDocuments()
+        for (i in 1:length(documents)) {
+          doc <- private$processDocument(documents[[i]])
+          object$addDocument(doc)
+        }
+      } else {
+        object <- private$processDocument(object)
+      }
+      # Log it
+      private$..state <- paste0("Executed ", class(self)[1], " on ",
+                                object$getName(), ". ")
+      self$logIt()
+
+      return(object)
+    }
+  )
+)
+
 
