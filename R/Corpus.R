@@ -137,28 +137,44 @@ Corpus <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                               IO Methods                                #
     #-------------------------------------------------------------------------#
-    read = function() {
+    read = function(path = NULL, io = NULL) {
 
       private$..methodName <- "read"
 
       content <- lapply(private$..documents, function(d) {
-        d$content
+        if (!is.null(path)) {
+          path <- file.path(path, d$getFileName())
+        }
+        d$read(path = path, io = io)
       })
       private$..accessed <- Sys.time()
+      private$..state <- paste0("Read corpus documents")
+      self$logIt()
+
       return(content)
     },
 
-    write = function(path) {
+    write = function(path, io = NULL) {
+
+      private$..methodName <- "write"
+
       lapply(private$..documents, function(d) {
         if (!is.null(d$getFileName())) {
           fileName <- d$getFileName()
         } else {
-          fileName <- paste0(private$..meta["name"], ".txt")
+          fileName <- paste0(d$getName(), ".txt")
           d$meta(key = "fileName", value = fileName)
         }
         path <- file.path(path, fileName)
-        d$write(path, io = IOText$new())
+
+        if (is.null(io))   io <- IOText$new()
+
+        d$write(path = path, io = io)
       })
+
+      private$..state <- paste0("Write corpus to ", path, ".")
+      self$logIt()
+
       invisible(self)
     },
 

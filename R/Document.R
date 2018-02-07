@@ -106,31 +106,42 @@ Document <- R6::R6Class(
       private$..methodName <- 'read'
 
       if (!is.null(path)) {
-        if (file.exists(path)) {
-          if (is.null(io))  io <- IOFactory$new(path)$getIOStrategy()
-          private$..content <- io$read(path)
-          private$..state <- paste0("Read ", private$..meta["name"], " from ", path, ".")
-        } else {
-          private$..state <- paste0("Unable to read document from file.  Path ",
-                                    path, " does not exist. For further assistance, ",
-                                    "See ?", class(self)[1], ". ")
-          self$logIt("Error")
-          stop()
-        }
+        private$..meta[["filePath"]] <- path
+        private$..meta[["fileName"]] <- basename(path)
       }
 
+      if (!is.null(private$..meta[["filePath"]])) {
+        if (is.null(io))  io <- IOFactory$new(private$..meta[["filePath"]])$getIOStrategy()
+        private$..content <- io$read(path = private$..meta[["filePath"]])
+        private$..state <- paste0("Read ", private$..meta[["name"]], " from ",
+                                  private$..meta[["filePath"]], ".")
+      }
       private$..accessed <- Sys.time()
       self$logIt()
       return(private$..content)
     },
 
-    write = function(path, io = NULL) {
+    write = function(path = NULL, io = NULL) {
 
       private$..methodName <- 'write'
 
-      if (is.null(io)) io <- IOText$new()
+      if (!is.null(path)) {
+        private$..meta[["filePath"]] <- path
+        private$..meta[["fileName"]] <- basename(path)
+      }
 
-      io$write(path = path, content = private$..content)
+      if (is.null(private$..meta[["filePath"]])) {
+        private$..state <- paste0("Unable to write document. The file path ",
+                                  "parameter must be designated the first ",
+                                  "time a file is read from or written to file. ",
+                                  "See ?", class(self)[1], " for further assistance.")
+        self$logIt("Error")
+        stop()
+      }
+
+      if (is.null(io))  io <- IOFactory$new(private$..[["filePath"]])$getIOStrategy()
+
+      io$write(path = private$..meta[["filePath"]], content = private$..content)
 
       private$..state <- paste0("Saved ", private$..meta["name"], " to ", path, ". ")
       self$logIt()

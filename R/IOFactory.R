@@ -50,7 +50,7 @@ IOFactory <- R6::R6Class(
                    csv = IOCSV$new(),
                    rdata = IORdata$new(),
                    rds = IORDS$new(),
-                   NULL)
+                   IOText$new())
 
       return(io)
     },
