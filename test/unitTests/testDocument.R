@@ -41,6 +41,16 @@ testDocument <- function() {
     blogs <- blogs$meta(key = "source", value = "www.hc.com")
     blogs <- blogs$meta(key = "format", value = "txt")
 
+    # Check meta data
+    blogsMeta <- blogs$meta()
+    stopifnot(blogsMeta$title == "Blogs")
+    stopifnot(blogsMeta$subject == "Technology Blogs")
+    stopifnot(blogsMeta$description == "Blogs about technology and business")
+    stopifnot(blogsMeta$language == "en")
+    stopifnot(blogsMeta$creator == "Hans Christensen")
+    stopifnot(blogsMeta$dateCreated == "12/22/2014")
+    stopifnot(blogsMeta$source == "www.hc.com")
+    stopifnot(blogsMeta$format == "txt")
 
     # Test
     print(blogs$meta())
@@ -63,7 +73,6 @@ testDocument <- function() {
     blogsTxt <- blogs$read()
     stopifnot(blogsTxt == bc3)
 
-
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully added content to document"))
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully obtained content from document"))
@@ -76,26 +85,54 @@ testDocument <- function() {
   }
 
   test3 <- function(blogs) {
-    test <- "Test3: Document: Read File"
+    test <- "Test3: Document: Read / Write File"
     cat(paste0("\n",test, " Commencing\n"))
 
+    path <- "./test/testData/output"
+    blogsTxtFileName <- "blogs.txt"
+    blogsBinFileName <- "blogs.RData"
+    blogsTxtFilePath <- file.path(path, blogsTxtFileName)
+    blogsBinFilePath <- file.path(path, blogsBinFileName)
+
+    # Read no path
     blogsTxt <<- blogs$read()
-    blogsBin <<- blogs$read(io = IOBin$new())
+    stopifnot(length(blogsTxt) == 2000)
+    print(head(blogsTxt), 2)
 
-    # Logit
-    DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
+    # Write binary file
+    blogs$content <- newsTxt
+    blogs$write(blogsBinFilePath, io = IOBin$new())
+    stopifnot(file.exists(blogsBinFilePath))
 
-    cat(paste0(test, " Completed: Success!\n"))
+    # Write Text File
+    blogs$write(blogsTxtFilePath)
+    stopifnot(file.exists(blogsTxtFilePath))
 
-    return(blogs)
-  }
+    # Read Binary file
+    blogsBinContent <- blogs$read(blogsBinFilePath, io = IOBin$new())
+    stopifnot(length(blogsBinContent) > 2000)
+    stopifnot(blogsBinContent == blogs$content)
+    print(head(blogsBinContent), 2)
 
-  test4 <- function(blogs) {
-    test <- "Test4: Document: Write File"
-    cat(paste0("\n",test, " Commencing\n"))
+    # Read Txt File from File
+    start <- Sys.time()
+    blogsTxtContent <- blogs$read(blogsTxtFilePath)
+    stopifnot(length(blogsTxtContent) == 2000)
+    stopifnot(blogsTxtContent == blogs$content)
+    end <- Sys.time()
+    readTime1 <- difftime(end, start)
+    print(paste("Readtime1: ", readTime1))
 
-    blogs1 <- blogs$write(content = blogsTxt)
-    blogs2 <- blogs$write(io = IOBin$new(), content = blogsBin)
+    # Read Txt Memory
+    start <- Sys.time()
+    blogsTxtContent <- blogs$read(blogsTxtFilePath)
+    stopifnot(length(blogsTxtContent) == 2000)
+    stopifnot(blogsTxtContent == blogs$content)
+    end <- Sys.time()
+    readTime2 <- difftime(end, start)
+    print(paste("Readtime2: ", readTime2))
+    stopifnot(readTime2 < readTime1)
+
 
     # Logit
     DocumentTest$logs(className = className, methodName = "content", msg = paste("Successfully instantiated document with file"))
@@ -111,7 +148,6 @@ blogs <- test0()
 blogs <<- test1(blogs)
 blogs <<- test2(blogs)
 blogs <<- test3(blogs)
-blogs <<- test4(blogs)
 
 }
 className <- "Document"

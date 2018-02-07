@@ -101,19 +101,15 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
     #-------------------------------------------------------------------------#
-    read = function(path = NULL) {
+    read = function(path = NULL, io = NULL) {
 
       private$..methodName <- 'read'
 
       if (!is.null(path)) {
         if (file.exists(path)) {
-          created <- file.ctime(path)
-          modified <- file.mtime(path)
-          if (private$..accessed <- created | private$..accessed <- modified) {
-            io <- IOFactory$new(path)$getIOStrategy()
-            private$..content <- io$read(path)
-            private$..state <- paste0("Read ", private$..meta["name"], " from ", path, ".")
-          }
+          if (is.null(io))  io <- IOFactory$new(path)$getIOStrategy()
+          private$..content <- io$read(path)
+          private$..state <- paste0("Read ", private$..meta["name"], " from ", path, ".")
         } else {
           private$..state <- paste0("Unable to read document from file.  Path ",
                                     path, " does not exist. For further assistance, ",
