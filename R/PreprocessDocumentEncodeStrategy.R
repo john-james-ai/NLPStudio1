@@ -30,15 +30,7 @@ PreprocessDocumentEncodeStrategy <- R6::R6Class(
       private$..in <- object
       private$..logs <- LogR$new()
 
-      # Validate input
-      if (!("Document" %in% class(object))) {
-        private$..state <- paste0("Invalid object for this Preprocess Class.  ",
-                                  "This class preprocesses objects of the Document ",
-                                  "class only.  See ?", class(self)[1],
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
+      if (private$validateParams()$code == FALSE) stop()
 
       if (is.null(substitutions)) {
         private$..substitutions <- NLPStudio:::encodings
@@ -73,11 +65,7 @@ PreprocessDocumentEncodeStrategy <- R6::R6Class(
       }
 
       # convert UTF-8 to ASCII
-      content <- iconv(content, "UTF-8", "ASCII", sub = "")
-
-
-      # Write content to file
-      private$..out$write(content = content)
+      private$..out$content <- iconv(content, "UTF-8", "ASCII", sub = "")
 
       # log
       private$..state <- paste0("Successfully performed PreprocessDocumentEncodeStrategy.")
@@ -95,7 +83,7 @@ PreprocessDocumentEncodeStrategy <- R6::R6Class(
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$processDocumentEncodeStrategy(self)
+      visitor$preprocessDocumentEncodeStrategy(self)
     }
   )
 )

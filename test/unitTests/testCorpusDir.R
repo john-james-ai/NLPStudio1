@@ -10,26 +10,42 @@ testCorpusImportDir <- function() {
     test <- "test0: CorpusImportDir: Directory"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Build Corpus from directory source
-    name <- "CorpusImportDir"
+    # Init params
+    name <- "corpus"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input"
-    CorpusImportDir <- CorpusImportDir$new(name, dataSource)$build()$getResult()
-    CorpusImportDirContent <- CorpusImportDir$read()
-    stopifnot(length(CorpusImportDirContent) == 3)
-    CorpusImportDirDocuments <- CorpusImportDir$getDocuments()
-    stopifnot(length(CorpusImportDirDocuments) == 3)
-    CorpusImportDir$meta(key = "desc", value = desc)
-    CorpusImportDir$docMeta(key = "year", value = "2018")
-    print(CorpusImportDir$meta())
-    print(CorpusImportDir$docMeta())
+
+    # Validation
+    #corpus <- CorpusImportDir$new() # missing params
+    #corpus <- CorpusImportDir$new("foo") # missing param data source
+    #corpus <- CorpusImportDir$new(222, "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new("foo bar", "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new(TRUE, "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new(Entity, "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new(222, "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new(newsTxt, "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new(start, "dataSource") # invalid name
+    #corpus <- CorpusImportDir$new(name, 22) # invalid data source
+    #corpus <- CorpusImportDir$new(name, TRUE) # invalid data source
+    corpus <- CorpusImportDir$new(name, "test/testfoo")$build()$getResult() # invalid data source
+
+    # Build Corpus from directory source
+    corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    corpusContent <- corpus$read()
+    stopifnot(length(corpusContent) == 3)
+    docs <- corpus$getDocuments()
+    stopifnot(length(docs) == 3)
+    corpus$meta(key = "desc", value = desc)
+    corpus$docMeta(key = "year", value = "2018")
+    print(corpus$meta())
+    print(corpus$docMeta())
 
     CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
     CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "build", msg = paste("Successfully instantiated. "))
     CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return()
+    return(corpus)
   }
 
   test1 <- function() {
@@ -40,15 +56,15 @@ testCorpusImportDir <- function() {
     name <- "CorpusImportDir"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input/*s.txt"
-    CorpusImportDir <- CorpusImportDir$new(name, dataSource)$build()$getResult()
-    CorpusImportDirContent <- CorpusImportDir$read()
-    stopifnot(length(CorpusImportDirContent) == 2)
-    CorpusImportDirDocuments <- CorpusImportDir$getDocuments()
-    stopifnot(length(CorpusImportDirDocuments) == 2)
-    CorpusImportDir$meta(key = "desc", value = desc)
-    CorpusImportDir$docMeta(key = "year", value = "2018")
-    print(CorpusImportDir$meta())
-    print(CorpusImportDir$docMeta())
+    corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    corpusContent <- corpus$read()
+    stopifnot(length(corpusContent) == 2)
+    docs <- corpus$getDocuments()
+    stopifnot(length(docs) == 2)
+    corpus$meta(key = "desc", value = desc)
+    corpus$docMeta(key = "year", value = "2018")
+    print(corpus$meta())
+    print(corpus$docMeta())
 
     CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
     CorpusImportDirTest$logs(className = "CorpusImportDir", methodName = "build", msg = paste("Successfully instantiated. "))
@@ -73,8 +89,8 @@ testCorpusImportDir <- function() {
 downloadPath <- "./test/testCorpus/swiftKey/data/external"
 
 init()
-test0()
-test1()
+corpus0 <- test0()
+corpus1 <- test1()
 
 
 }

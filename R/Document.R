@@ -76,14 +76,16 @@ Document <- R6::R6Class(
       private$..meta[["name"]] <- name
       private$..className <- 'Document'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("Document, ", private$..meta[["name"]], ", instantiated.")
       private$..logs <- LogR$new()
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
       private$..id <- private$createId()
 
+      if (private$validateParams()$code == FALSE) stop()
+
       # Create log entry
+      private$..state <- paste0("Document, ", private$..meta[["name"]], ", instantiated.")
       self$logIt()
 
       invisible(self)
@@ -106,6 +108,7 @@ Document <- R6::R6Class(
       private$..methodName <- 'read'
 
       if (!is.null(path)) {
+
         private$..meta[["filePath"]] <- path
         private$..meta[["fileName"]] <- basename(path)
       }

@@ -29,16 +29,18 @@ CorpusImportQuanteda <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, dataSource) {
 
-      private$..name <- name
       private$..dataSource <- dataSource
 
       private$..className <- 'CorpusImportQuanteda'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("CorpusImportQuanteda object instantiated.")
       private$..logs <- LogR$new()
+
+      if (private$validateParams()$code == FALSE) stop()
+
       private$..corpus <- Corpus$new(name = name)
 
       # Create log entry
+      private$..state <- paste0("Corpus Quanteda Import object instantiated")
       self$logIt()
 
       invisible(self)
@@ -99,7 +101,7 @@ CorpusImportQuanteda <- R6::R6Class(
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$corpusBuilder(self)
+      visitor$corpusImportQuanteda(self)
     }
   )
 )

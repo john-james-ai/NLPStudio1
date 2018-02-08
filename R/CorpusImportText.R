@@ -33,18 +33,19 @@ CorpusImportText <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, dataSource, flat = FALSE) {
 
-      private$..name <- name
       private$..dataSource <- dataSource
       private$..flat <- flat
 
       private$..className <- 'CorpusImportText'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("CorpusImportText object instantiated.")
       private$..logs <- LogR$new()
+
+      if (private$validateParams()$code == FALSE) stop()
 
       private$..corpus <- Corpus$new(name = name)
 
       # Create log entry
+      private$..state <- paste0("Corpus Text Import object instantiated")
       self$logIt()
 
       invisible(self)
@@ -62,7 +63,7 @@ CorpusImportText <- R6::R6Class(
       if (class(docs) == "character" &  private$..flat == TRUE) {
 
         # Create document and add content
-        doc <- Document$new(private$..name)
+        doc <- Document$new(paste0(private$..corpus$getName(), "-Document"))
         doc$content <- docs
 
         # Add document to corpus
@@ -108,7 +109,7 @@ CorpusImportText <- R6::R6Class(
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$corpusBuilder(self)
+      visitor$corpusImportText(self)
     }
   )
 )

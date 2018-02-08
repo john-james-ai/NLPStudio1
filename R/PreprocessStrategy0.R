@@ -37,11 +37,16 @@ PreprocessStrategy0 <- R6::R6Class(
     initialize = function(object, ...) { stop("This method is not implemented for this abstract class") },
     getInObject = function() private$..in,
     Preprocess = function() { stop("This method is not implemented for this abstract class") },
+
+    #-------------------------------------------------------------------------#
+    #                             Getter Methods                              #
+    #-------------------------------------------------------------------------#
+    getInput = function() private$..in,
     #-------------------------------------------------------------------------#
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$PreprocessStrategy0(self)
+      visitor$preprocessStrategy0(self)
     }
   )
 )

@@ -36,6 +36,31 @@ VValidatorInit <- R6::R6Class(
     ..object = character(),
     ..parent = character(),
 
+    validateDirGlob = function(path) {
+
+      status <- list()
+      status[['code']] <- TRUE
+
+      if (!isDirectory(path) & !isDirectory(dirname(path))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid path. ", path, " does not exist. ")
+      }
+      return(status)
+    },
+
+    validateClass = function(object, param, cls) {
+
+      status <- list()
+      status[['code']] <- TRUE
+
+      if (!(class(param)[1] %in% cls)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid class. Object must be of ", cls, " class. ",
+                                  "See ?", class(object)[1], " for further assistance.")
+      }
+      return(status)
+    },
+
     validateName = function(object) {
 
       status <- list()
@@ -43,33 +68,22 @@ VValidatorInit <- R6::R6Class(
 
       name <- object$getName()
 
-      # Confirm not missing
-      if (is.null(name) | is.na(name)) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Name parameter is missing with no default. ",
-                                  "See ?", class(object)[1], " for further assistance.")
-        return(status)
-      }
-
-      # Confirm object doesn't already exist.
-      v <- ValidatorExists$new()
-      if (v$validate(value = name, expect = FALSE) == FALSE) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object. ", name, " already exists. ",
-                                  "See ?", class(object)[1],
-                                  " for further assistance")
-        return(status)
-      }
-
       # Validate name is well-formed
       v <- ValidatorString$new()
       if (v$validate(value = name, expect = NULL) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                  " object. ", name, " must be a character ",
-                                  "string.  See ?", class(object)[1],
+                                  " object. ", "Object name, must be a character ",
+                                  "string with no spaces.  See ?", class(object)[1],
                                   " for further assistance")
+        return(status)
+      }
+
+      # Confirm not missing
+      if (is.null(name) | is.na(name)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Name parameter is missing with no default. ",
+                                  "See ?", class(object)[1], " for further assistance.")
         return(status)
       }
       return(status)
@@ -95,7 +109,7 @@ VValidatorInit <- R6::R6Class(
       }
 
       # Confirm parent is valid class
-      v <- ValidatorClass$new()
+      v = ValidatorClass$new()
       if (v$validate(value = parent, expect = parentClass) == FALSE) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot create ", class(object)[1],
@@ -141,83 +155,6 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-    validateFile = function(object) {
-
-      status <- list()
-      status[['code']] <- TRUE
-
-      file <- object$getFile()
-
-      if (!is.null(file)) {
-
-        v <- ValidatorClass$new()
-        if (v$validate(value = file, expect = 'File') == FALSE) {
-          status[['code']] <- FALSE
-          status[['msg']] <- paste0("Cannot create ", class(object)[1],
-                                    " object. The file parameter is not ",
-                                    "a valid File object. ",
-                                    "See ?", class(object)[1],
-                                    " for further assistance")
-        }
-      }
-      return(status)
-    },
-
-    validatePath = function(object) {
-      status <- list()
-      status[['code']] <- TRUE
-
-      path <- object$getPath()
-
-      v <- ValidatorPath$new()
-      if (v$validate(value = path, expect = FALSE) == FALSE) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Invalid path parameter. ",
-                                  "The path already exists. ",
-                                  "See ?", class(object)[1],
-                                  " for further assistance")
-        return(status)
-      }
-      if (!("character" %in% class(path))) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Invalid path parameter. ",
-                                  "See ?", private$..className,
-                                  " for further assistance. ")
-        return(status)
-      }
-      return(status)
-    },
-
-    validateBuilder = function(object) {
-      status <- list()
-      status[['code']] <- TRUE
-
-      b <- object$getBuilder()
-
-      if (!("PipelineBuilder0" %in% class(b))) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Invalid builder object. ",
-                                  "See ?", class(object)[1],
-                                  " for further assistance")
-      }
-      return(status)
-    },
-
-    validateDataSource = function(object) {
-      status <- list()
-      status[['code']] <- TRUE
-
-      d <- object$getSource()
-
-      if (!(class(d) %in% c("list", "character"))) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Invalid data source object. ",
-                                  "See ?", class(object)[1],
-                                  " for further assistance")
-      }
-      return(status)
-    },
-
     validateStub = function(object) {
       status <- list()
       status[['code']] <- TRUE
@@ -230,13 +167,57 @@ VValidatorInit <- R6::R6Class(
     initialize = function() {
       invisible(self)
     },
-
     nlpStudio = function(object) {
       return(status[['code']] <- TRUE)
     },
-
+    corpus = function(object) {
+      return(private$validateName(object))
+    },
     document = function(object) {
-      return(private$validateStub(object))
+      return(private$validateName(object))
+    },
+
+    #-------------------------------------------------------------------------#
+    #                      Corpus Import Validation                           #
+    #-------------------------------------------------------------------------#
+    corpusImportDir = function(object) {
+      return(private$validateClass(object, object$getDataSource(), "character"))
+    },
+    corpusImportQuanteda = function(object) {
+      return(private$validateClass(object, object$getDataSource(),
+                                   "corpus"))
+    },
+    corpusImportText = function(object) {
+      return(private$validateClass(object, object$getDataSource(),
+                                   c("character", "list")))
+    },
+
+    #-------------------------------------------------------------------------#
+    #                      Preprocessing Validation                           #
+    #-------------------------------------------------------------------------#
+    preprocessCorpusBinStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Corpus")))
+    },
+    preprocessCorpusEncodeStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Corpus")))
+    },
+    preprocessCorpusReshapeStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Corpus")))
+    },
+    preprocessCorpusSplitStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Corpus")))
+    },
+    preprocessDocumentBinStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Document")))
+    },
+    preprocessDocumentEncodeStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Document")))
+    },
+    preprocessDocumentReshapeStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Document")))
+    },
+    preprocessDocumentSplitStrategy = function(object) {
+      return(private$validateClass(object, object$getInput(), c("Document")))
     }
   )
 )

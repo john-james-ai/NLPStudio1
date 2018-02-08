@@ -41,6 +41,21 @@ Entity <- R6::R6Class(
       hashid <- hashids::encode(as.integer(private$..created) * 1000, settings)
       id <- toupper(hashid)
       return(id)
+    },
+
+    #-------------------------------------------------------------------------#
+    #           Instantiation Parameter Validation Method                     #
+    #-------------------------------------------------------------------------#
+    validateParams = function() {
+
+      private$..methodName <- "initialize"
+      v <- Validator$new()
+      status <- v$init(self)
+      if (status$code == FALSE) {
+        private$..state <- status$msg
+        self$logIt("Error")
+      }
+      return(status)
     }
   ),
 

@@ -35,16 +35,15 @@ ValidatorString <- R6::R6Class(
     initialize = function() invisible(self),
     validate = function(value, expect = NULL) {
 
-      if (exists('value') & length(value) != 0) {
-        if (is.na(value) | is.null(value) | !is.character(value)
-            | is.logical(value) | value == "" ) {
-          return(FALSE)
-        } else {
-          return(TRUE)
-        }
-      } else {
-        return(FALSE)
-      }
+      if (!("character" %in% class(value)))  return(FALSE)
+      if (!exists('value')) return(FALSE)
+      if (length(value) != 1) return(FALSE)
+      if (is.na(value)) return(FALSE)
+      if (is.null(value)) return(FALSE)
+      if (is.logical(value)) return(FALSE)
+      if (value == "") return(FALSE)
+      if (grepl("\\s+", value) == TRUE) return(FALSE)
+      return(TRUE)
     }
   )
 )

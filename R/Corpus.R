@@ -72,14 +72,17 @@ Corpus <- R6::R6Class(
       private$..meta[['name']] <- name
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
-      private$..state <- paste0("Corpus, ", name, ", instantiated.")
       private$..modified <- Sys.time()
       private$..created <- Sys.time()
       private$..accessed <- Sys.time()
       private$..logs <- LogR$new()
+
+      if (private$validateParams()$code == FALSE) stop()
+
       private$..id <- private$createId()
 
       # Create log entry
+      private$..state <- paste0("Corpus, ", name, ", instantiated.")
       self$logIt()
 
       invisible(self)

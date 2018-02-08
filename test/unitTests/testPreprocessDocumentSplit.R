@@ -142,11 +142,11 @@ testPreprocessDocumentSplitStrategy <- function() {
   }
 
 
-#tweets <- init()
-#twitter <- test0(tweets)
+tweets <- init()
+twitter <- test0(tweets)
 twitter <- test1(twitter)
 splits <- test2(twitter)
-splits <- test3(twitter)
+splits <<- test3(twitter)
 
 }
 className <- "PreprocessDocumentSplitStrategy"

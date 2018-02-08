@@ -96,7 +96,7 @@ testPreprocessCorpusSplitStrategy <- function() {
 
     # Check document contents
     lapply(seq_along(origDocs), function(d) {
-      print(paste("\nAnalyzing document:", origDocs[[d]]$getName()))
+      print(paste("     Analyzing document:", origDocs[[d]]$getName()))
       print(paste("Original content length:", length(origDocs[[d]]$content)))
       print(paste("Training content length:", length(trainDocs[[d]]$content)))
       print(paste("    Test content length:", length(testDocs[[d]]$content)))

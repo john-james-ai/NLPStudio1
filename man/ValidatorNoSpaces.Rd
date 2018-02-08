@@ -41,7 +41,6 @@ Other Validation Classes: \code{\link{IOFactory}},
   \code{\link{ValidatorLogical}},
   \code{\link{ValidatorNotEmpty}},
   \code{\link{ValidatorNumeric}},
-  \code{\link{ValidatorPath}},
   \code{\link{ValidatorString}},
   \code{\link{ValidatorUrl}}, \code{\link{Validator}}
 }

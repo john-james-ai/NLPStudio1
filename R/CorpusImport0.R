@@ -36,7 +36,12 @@ CorpusImport0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     initialize = function(name, dataSource) { stop("This method is not implemented for this abstract class.") },
     build = function() { stop("This method is not implemented for this abstract class.") },
-    getResult = function() { stop("This method is not implemented for this abstract class.") }
+    getResult = function() { stop("This method is not implemented for this abstract class.") },
+
+    #-------------------------------------------------------------------------#
+    #                             Getter Methods                              #
+    #-------------------------------------------------------------------------#
+    getDataSource = function() private$..dataSource
 
   )
 )

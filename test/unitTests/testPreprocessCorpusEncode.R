@@ -57,6 +57,9 @@ testPreprocessCorpusEncodeStrategy <- function() {
     test <- "test1: Corpus: Repair document with defaults"
     cat(paste0("\n",test, " Commencing\n"))
 
+    # Validate
+    #ct <- PreprocessCorpusEncodeStrategy$new(blogsTxt, "Caltech")$preprocess()$getResult()
+
     ct <- PreprocessCorpusEncodeStrategy$new(cb, "Caltech")$preprocess()$getResult()
 
     # Get news Corpus meta data

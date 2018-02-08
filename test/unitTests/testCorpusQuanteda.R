@@ -18,17 +18,32 @@ testCorpusImportQuanteda <- function() {
     name <- "CorpusImportQuanteda"
     desc <- "Creating corpus from Quanteda corpus object"
     docDesc <- c("Blogs Data", "News of the world", "Tweets and rants")
-    private$..dataSource <- qc
-    CorpusImportQuanteda <- CorpusImportQuanteda$new(name, dataSource)$build()$getResult()
-    CorpusImportQuantedaContent <- CorpusImportQuanteda$read()
-    stopifnot(length(CorpusImportQuantedaContent) == 3)
 
-    CorpusImportQuantedaDocuments <- CorpusImportQuanteda$getDocuments()
-    stopifnot(length(CorpusImportQuantedaDocuments) == 3)
-    CorpusImportQuanteda$meta(key = "desc", value = desc)
-    CorpusImportQuanteda$docMeta(key = "desc", value = docDesc)
-    print(CorpusImportQuanteda$meta())
-    print(CorpusImportQuanteda$docMeta())
+
+    # Validation
+    #corpus <- CorpusImportQuanteda$new() # missing params
+    #corpus <- CorpusImportQuanteda$new("foo") # missing param data source
+    #corpus <- CorpusImportQuanteda$new(222, "dataSource") # invalid name
+    #corpus <- CorpusImportQuanteda$new("foo bar", "dataSource") # invalid name
+    #corpus <- CorpusImportQuanteda$new(TRUE, "dataSource") # invalid name
+    #corpus <- CorpusImportQuanteda$new(Entity, "dataSource") # invalid name
+    #corpus <- CorpusImportQuanteda$new(222, "dataSource") # invalid name
+    # corpus <- CorpusImportQuanteda$new(newsTxt, "dataSource") # invalid name
+    # corpus <- CorpusImportQuanteda$new(start, "dataSource") # invalid name
+    #corpus <- CorpusImportQuanteda$new(name, 22) # invalid data source
+    #corpus <- CorpusImportQuanteda$new(name, TRUE) # invalid data source
+
+    dataSource <- qc
+    corpus <- CorpusImportQuanteda$new(name, dataSource)$build()$getResult()
+    content <- corpus$read()
+    stopifnot(length(content) == 3)
+
+    docs <- corpus$getDocuments()
+    stopifnot(length(docs) == 3)
+    corpus$meta(key = "desc", value = desc)
+    corpus$docMeta(key = "desc", value = docDesc)
+    print(corpus$meta())
+    print(corpus$docMeta())
 
     CorpusImportQuantedaTest$logs(className = "CorpusImportQuanteda", methodName = "initiate", msg = paste("Successfully instantiated. "))
     CorpusImportQuantedaTest$logs(className = "CorpusImportQuanteda", methodName = "build", msg = paste("Successfully instantiated. "))

@@ -42,8 +42,7 @@ Other Validation Classes: \code{\link{IOFactory}},
   \code{\link{ValidatorNoSpaces}},
   \code{\link{ValidatorNotEmpty}},
   \code{\link{ValidatorNumeric}},
-  \code{\link{ValidatorPath}}, \code{\link{ValidatorUrl}},
-  \code{\link{Validator}}
+  \code{\link{ValidatorUrl}}, \code{\link{Validator}}
 }
 \author{
 John James, \email{jjames@datasciencesalon.org}

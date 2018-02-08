@@ -30,15 +30,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
       private$..in <- object
       private$..logs <- LogR$new()
 
-      # Validate input
-      if (!("Document" %in% class(object))) {
-        private$..state <- paste0("Invalid object for this Preprocess Class.  ",
-                                  "This class preprocesses objects of the Document ",
-                                  "class only.  See ?", class(self)[1],
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
+      if (private$validateParams()$code == FALSE) stop()
 
       if (is.null(substitutions)) {
         private$..substitutions <- NLPStudio:::ctrl
@@ -65,7 +57,7 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
       ioText <- IOText$new()
 
       # Obtain content
-      content <- private$..in$read()
+      content <- private$..in$content
 
       # Save binary data to temp file and re-read
       d <- tempfile(fileext = '.txt')
@@ -79,8 +71,8 @@ PreprocessDocumentBinStrategy <- R6::R6Class(
 
       # Write repaired binary data, read, then save as text data
       writeBin(content, d)
-      content <- ioBin$read(path = d)
-      private$..out$write(content = content)
+      private$..out$content <- ioText$read(path = d)
+      unlink(d)
 
       # log
       private$..state <- paste0("Successfully performed PreprocessDocumentBinStrategy.")

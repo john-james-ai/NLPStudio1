@@ -43,11 +43,12 @@ PreprocessCorpusStrategy0 <- R6::R6Class(
     },
     preprocess = function() { stop("This method is not implemented for this abstract class") },
     getResult = function() { stop("This method is not implemented for this abstract class") },
+
     #-------------------------------------------------------------------------#
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$processCorpusStrategy0(self)
+      visitor$preprocessCorpusStrategy0(self)
     }
   )
 )

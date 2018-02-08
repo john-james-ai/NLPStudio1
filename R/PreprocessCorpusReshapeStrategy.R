@@ -30,15 +30,7 @@ PreprocessCorpusReshapeStrategy <- R6::R6Class(
       private$..in <- object
       private$..logs <- LogR$new()
 
-      # Validate input
-      if (!("Corpus" %in% class(object))) {
-        private$..state <- paste0("Invalid object for this Preprocess Class.  ",
-                                  "This class preprocesses objects of the Corpus ",
-                                  "class only.  See ?", class(self)[1],
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
+      if (private$validateParams()$code == FALSE) stop()
 
       # Create new Corpus object
       if (is.null(name)) name <- object$getName()

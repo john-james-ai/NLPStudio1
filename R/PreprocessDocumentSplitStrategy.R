@@ -38,15 +38,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
       private$..seed <- seed
       private$..logs <- LogR$new()
 
-      # Validate input
-      if (!("Document" %in% class(object))) {
-        private$..state <- paste0("Invalid object for this Preprocess Class.  ",
-                                  "This class preprocesses objects of the Document ",
-                                  "class only.  See ?", class(self)[1],
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
+      if (private$validateParams()$code == FALSE) stop()
 
       # Confirm splits sum to one.
       if (sum(trainSize, valSize, testSize) != 1) {
@@ -67,7 +59,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
     preprocess = function() {
 
       # Obtain content
-      content <- private$..in$read()
+      content <- private$..content
 
       # Set seed
       if (!is.null(private$..seed)) {
@@ -119,7 +111,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
     #                             Other Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$processDocumentSplitStrategy(self)
+      visitor$preprocessDocumentSplitStrategy(self)
     }
   )
 )

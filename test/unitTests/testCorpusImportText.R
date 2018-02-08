@@ -16,8 +16,14 @@ testCorpusImportText <- function() {
     test <- "test0: CorpusImportText"
     cat(paste0("\n",test, " Commencing\n"))
 
-    # Build Corpus from Vector Flat
     name <- "corpusVecFlat"
+
+    # Validation
+    #corpus <- CorpusImportText$new() # missing params
+    #corpus <- CorpusImportText$new("foo") # missing param data source
+    corpus <- CorpusImportText$new("foo", "dataSource") # invalid name
+
+    # Build Corpus from Vector Flat
     news <- readLines("./test/testData/input/en_US.news.txt")
     dataSource <- news
     corpusVecFlat <- CorpusImportText$new(name, dataSource, flat = TRUE)$build()$getResult()
@@ -43,7 +49,7 @@ testCorpusImportText <- function() {
 
     # Build Corpus from list
     name <- "corpusList"
-    dataSource <- corpus
+    dataSource <- corpusList
     corpusList <- CorpusImportText$new(name, dataSource)$build()$getResult()
     corpusListContent <- corpusList$read()
     stopifnot(length(corpusListContent) == 3)

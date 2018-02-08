@@ -57,6 +57,10 @@ testPreprocessCorpusReshape <- function() {
     test <- "test1: Corpus: Reshape Corpus"
     cat(paste0("\n",test, " Commencing\n"))
 
+    # Validation
+    #ct <- PreprocessCorpusReshapeStrategy$new(start, "Caltech")$preprocess()$getResult()
+
+
     ct <- PreprocessCorpusReshapeStrategy$new(cb, "Caltech")$preprocess()$getResult()
 
     # Get news Corpus meta data
