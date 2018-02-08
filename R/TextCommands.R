@@ -177,7 +177,7 @@ RemoveEmail <- R6::R6Class(
 #------------------------------------------------------------------------------#
 #' RemoveHyphens
 #'
-#' \code{RemoveHyphens} Removes email addresses from text.
+#' \code{RemoveHyphens} Removes hyphens from text.
 #'
 #' @template textCommandClasses
 #' @template textCommandMethods
@@ -212,7 +212,7 @@ RemoveHyphens <- R6::R6Class(
 #------------------------------------------------------------------------------#
 #' RemoveNumbers
 #'
-#' \code{RemoveNumbers} Removes email addresses from text.
+#' \code{RemoveNumbers} Removes numbers from text.
 #'
 #' @template textCommandClasses
 #' @template textCommandMethods
@@ -241,4 +241,214 @@ RemoveNumbers <- R6::R6Class(
     }
   )
 )
+
+#------------------------------------------------------------------------------#
+#                              Remove Punctuation                              #
+#------------------------------------------------------------------------------#
+#' RemovePunctuation
+#'
+#' \code{RemovePunctuation} Removes punctuation from text.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#' @param endmark Logical indicating whether to remove endmarks.
+#' @param apostrophe Logical indicating whether to remove apostrophes.
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+RemovePunctuation <- R6::R6Class(
+  classname = "RemovePunctuation",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  public = list(
+    initialize = function(endmark = FALSE, apostrophe = FALSE) {
+      private$..className <- "RemovePunctuation"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "RemovePunctuation"
+
+      if (endmark == FALSE & apostrophe == FALSE) {
+        private$..regex <- "(?![.?!'])[[:punct:]]"
+      } else if (endmark == FALSE) {
+        private$..regex <- "(?![.?!])[[:punct:]]"
+      } else if (apostrophe == FALSE) {
+        private$..regex <- "(?!['])[[:punct:]]"
+      } else {
+        private$..regex <- "[[:punct:]]"
+      }
+      private$..replace <- ""
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+#------------------------------------------------------------------------------#
+#                              Remove Symbols                                  #
+#------------------------------------------------------------------------------#
+#' RemoveSymbols
+#'
+#' \code{RemoveSymbols} Removes symbols (all non-alphanumeric characters) from text.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+RemoveSymbols <- R6::R6Class(
+  classname = "RemoveSymbols",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  public = list(
+    initialize = function() {
+      private$..className <- "RemoveSymbols"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "RemoveSymbols"
+      private$..regex <- "[^[:alnum:]]"
+      private$..replace <- " "
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+#------------------------------------------------------------------------------#
+#                              Remove Twitter                                  #
+#------------------------------------------------------------------------------#
+#' RemoveTwitter
+#'
+#' \code{RemoveTwitter} Removes twitter hnadles from text.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+RemoveTwitter <- R6::R6Class(
+  classname = "RemoveTwitter",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  public = list(
+    initialize = function() {
+      private$..className <- "RemoveTwitter"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "RemoveTwitter"
+      private$..regex <- '\\B#\\w*[a-zA-Z]+\\w*'
+      private$..replace <- " "
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+#------------------------------------------------------------------------------#
+#                              Remove URL                                      #
+#------------------------------------------------------------------------------#
+#' RemoveURL
+#'
+#' \code{RemoveURL} Removes URLs from text.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+RemoveURL <- R6::R6Class(
+  classname = "RemoveURL",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  public = list(
+    initialize = function() {
+      private$..className <- "RemoveURL"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "RemoveURL"
+      private$..regex <- "(?:(?:https?:\\/\\/)|(?:www\\.))[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b(?:[-a-zA-Z0-9@:%_\\+.~#?&/=]*)"
+
+      private$..replace <- " "
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+#------------------------------------------------------------------------------#
+#                         Remove Abbreviations                                 #
+#------------------------------------------------------------------------------#
+#' RemoveAbbreviations
+#'
+#' \code{RemoveAbbreviations} Replaces abbreviations with long form.
+#'
+#' This is a wrapper for the replace_abbreviations function in the QDAP package. https://cran.r-project.org/web/packages/qdap/qdap.pdf
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#' @param abbreviation A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations. Default is to use qdapDictionaries's abbreviations data set.
+#' @param replace Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
+#' @param ignorCase Logical. If TRUE replaces without regard to capitalization.
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+RemoveAbbreviations <- R6::R6Class(
+  classname = "RemoveAbbreviations",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  private = list(
+    ..abbreviation = character(),
+    ..replace = character(),
+    ..ignoreCase = character(),
+
+    processDocument = function(document) {
+      document$content <- qdap::remove_abbreviation(document$content,
+                                                    private$..abbreviation,
+                                                    private$..replace,
+                                                    private$..ignoreCase)
+      return(document)
+    }
+  ),
+
+  public = list(
+    initialize = function(abbreviation = qdapDictionaries::abbreviations,
+                          replace = NULL, ignoreCase = TRUE) {
+      private$..className <- "RemoveAbbreviations"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "RemoveAbbreviations"
+      private$..abbreviation <- abbreviation
+      private$..replace <- replace
+      private$..ignoreCase <- ignoreCase
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+
 

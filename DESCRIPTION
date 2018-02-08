@@ -28,6 +28,8 @@ Imports:
     NLP,
     openNLP,
     parsedate,  
+    qdap,
+    qdapDictionaries,
     quanteda,
     R6,
     readtext,

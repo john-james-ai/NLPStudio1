@@ -56,7 +56,7 @@ CorpusImportDir <- R6::R6Class(
       # Extract file names
       if (isDirectory(private$..dataSource)) {
         files <- list.files(private$..dataSource, full.names = TRUE)
-      } else if (class(private$..dataSource) == "character") {
+      } else if ("character" %in% class(private$..dataSource)) {
         path <- private$..dataSource
         glob <- basename(path)
         dir <- dirname(path)
