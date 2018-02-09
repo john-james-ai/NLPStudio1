@@ -427,7 +427,7 @@ RemoveAbbreviations <- R6::R6Class(
     ..ignoreCase = character(),
 
     processDocument = function(document) {
-      document$content <- qdap::remove_abbreviation(document$content,
+      document$content <- qdap::replace_abbreviation(document$content,
                                                     private$..abbreviation,
                                                     private$..replace,
                                                     private$..ignoreCase)
@@ -450,5 +450,40 @@ RemoveAbbreviations <- R6::R6Class(
   )
 )
 
+#------------------------------------------------------------------------------#
+#                              Replace Backtick                                #
+#------------------------------------------------------------------------------#
+#' ReplaceBacktick
+#'
+#' \code{ReplaceBacktick} Removes URLs from text.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#'
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+ReplaceBacktick <- R6::R6Class(
+  classname = "ReplaceBacktick",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
+
+  public = list(
+    initialize = function() {
+      private$..className <- "ReplaceBacktick"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "ReplaceBacktick"
+      private$..regex <- "\`"
+
+      private$..replace <- "'"
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
 
 

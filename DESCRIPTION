@@ -27,7 +27,7 @@ Imports:
     installr,
     NLP,
     openNLP,
-    parsedate,  
+    parsedate,
     qdap,
     qdapDictionaries,
     quanteda,
@@ -35,4 +35,5 @@ Imports:
     readtext,
     textclean,
     tools
+Remotes: DataScienceSalon/NLPLists
 RoxygenNote: 6.0.1

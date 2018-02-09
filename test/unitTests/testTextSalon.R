@@ -29,7 +29,7 @@ testTextSalon <- function() {
 
     # Preprocess
     ts <- TextSalon$new(corpus)
-    cmd <- RemoveAbbreviations$new()
+    cmd <- ReplaceBacktick$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
