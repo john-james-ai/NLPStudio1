@@ -25,35 +25,43 @@ TextCommand0 <- R6::R6Class(
     ..regex = character(),
     ..replace = character(),
 
-    processDocument = function(document) {
-      document$content <- gsub(private$..regex,
-                               private$..replace,
-                               document$content, perl = TRUE)
-      return(document)
+    processText = function(content) {
+      content <- gsub(private$..regex,
+                      private$..replace,
+                      document$content, perl = TRUE)
+      return(content)
     }
   ),
 
   public = list(
     initialize = function(object, ...) { stop("Not implemented for this abstract/interface class.") },
-    execute = function(object) {
+
+    execute = function() {
 
       private$..methodName <- "execute"
 
-      if ("Corpus" %in% class(object)) {
-        documents <- object$getDocuments()
+      if ("Corpus" %in% class(private$..object)) {
+        documents <- private$..object$getDocuments()
         for (i in 1:length(documents)) {
-          doc <- private$processDocument(documents[[i]])
-          object$addDocument(doc)
+          documents[[i]]$content <- private$processText(documents[[i]]$content)
+          private$..object$addDocument(documents[[i]])
+        }
+      } else if ("Document" %in% class(private$..object)) {
+        private$..object$content <- private$processText(private$..object$content)
+      } else if ("list" %in% class(private$..object)) {
+        for (i in 1:length(private$..object)) {
+          private$..object[[i]] <- private$processText(private$..object[[i]])
         }
       } else {
-        object <- private$processDocument(object)
+        private$..object <- private$processText(private$..object)
       }
+
       # Log it
       private$..state <- paste0("Executed ", class(self)[1], " on ",
                                 object$getName(), ". ")
       self$logIt()
 
-      return(object)
+      return(private$..object)
     }
   )
 )
@@ -80,9 +88,9 @@ AddCommaSpace <- R6::R6Class(
   inherit = TextCommand0,
 
   private = list(
-    processDocument = function(document) {
-      document$content <- textclean::add_comma_space(document$content)
-      return(document)
+    processText = function(content) {
+      content <- textclean::add_comma_space(content)
+      return(content)
     }
   ),
 
@@ -120,9 +128,9 @@ AddEndMark <- R6::R6Class(
   inherit = TextCommand0,
 
   private = list(
-    processDocument = function(document) {
-      document$content <- textclean::add_missing_endmark(document$content)
-      return(document)
+    processText = function(content) {
+      content <- textclean::add_missing_endmark(content)
+      return(content)
     }
   ),
 
@@ -426,12 +434,12 @@ RemoveAbbreviations <- R6::R6Class(
     ..replace = character(),
     ..ignoreCase = character(),
 
-    processDocument = function(document) {
-      document$content <- qdap::replace_abbreviation(document$content,
-                                                    private$..abbreviation,
-                                                    private$..replace,
-                                                    private$..ignoreCase)
-      return(document)
+    processText = function(content) {
+      content <- qdap::replace_abbreviation(content,
+                                            private$..abbreviation,
+                                            private$..replace,
+                                            private$..ignoreCase)
+      return(content)
     }
   ),
 
@@ -486,4 +494,87 @@ ReplaceBacktick <- R6::R6Class(
   )
 )
 
+#------------------------------------------------------------------------------#
+#                         Replace Patterns                                     #
+#------------------------------------------------------------------------------#
+#' ReplacePatterns
+#'
+#' \code{ReplacePatterns}  - A wrapper for \code{\link[textclean]{mgsub}} that takes a vector
+#' of search terms and a vector or single value of replacements.
+#'
+#' @template textCommandClasses
+#' @template textCommandMethods
+#'
+#' @template textCommandParams
+#' @param x A character vector.
+#' @param pattern Character string to be matched in the given character vector.
+#' @param replacement Character string equal in length to pattern or of length
+#' one which are  a replacement for matched pattern.
+#' @param leadspace logical.  If \code{TRUE} inserts a leading space in the
+#' replacements.
+#' @param trailspace logical.  If \code{TRUE} inserts a trailing space in the
+#' replacements.
+#' @param fixed logical. If \code{TRUE}, pattern is a string to be matched as is.
+#' Overrides all conflicting arguments.
+#' @param trim logical.  If \code{TRUE} leading and trailing white spaces are
+#' removed and multiple white spaces are reduced to a single white space.
+#' @param order.pattern logical.  If \code{TRUE} and \code{fixed = TRUE}, the
+#' \code{pattern} string is sorted by number of characters to prevent substrings
+#' replacing meta strings (e.g., \code{pattern = c("the", "then")} resorts to
+#' search for "then" first).
+#' @param \dots Additional arguments passed to \code{\link[base]{gsub}}.
+#'
+#' @return \code{ReplacePatterns} - Returns a vector with the pattern replaced.
+#' @docType class
+#' @author John James, \email{jjames@@datascienceCommands.org}
+#' @family TextCommands classes
+#' @export
+ReplacePatterns <- R6::R6Class(
+  classname = "ReplacePatterns",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextCommand0,
 
+  private = list(
+    ..x = character(),
+    ..pattern = character(),
+    ..replacement = character(),
+    ..leadspace = logical(),
+    ..trailspace = logical(),
+    ..fixed = logical(),
+    ..trim = logical(),
+    ..orderPattern = character(),
+
+    processText = function(content) {
+      content <- textclean::mgsub(x = content,
+                                  pattern = private$..pattern,
+                                  replacement = private$..replacement,
+                                  leadspace = private$..leadspace,
+                                  trailspace = private$..trailspace,
+                                  fixed = private$..fixed,
+                                  trim = private$..trim,
+                                  order.pattern = private$..orderPattern)
+      return(content)
+    }
+  ),
+
+  public = list(
+    initialize = function(x, pattern, replacement, leadspace = FALSE,
+                          trailspace = FALSE, fixed = TRUE, trim = FALSE,
+                          order.pattern = fixed, ...) {
+      private$..className <- "ReplacePatterns"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "ReplacePatterns"
+      private$..x <- x
+      private$..pattern <- pattern
+      private$..replacement <- replacement
+      private$..leadspace <- leadspace
+      private$..trailspace <- trailspace
+      private$..fixed <- fixed
+      private$..trim <- trim
+      private$..orderPattern <- order.pattern
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)

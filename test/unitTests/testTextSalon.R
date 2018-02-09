@@ -29,7 +29,7 @@ testTextSalon <- function() {
 
     # Preprocess
     ts <- TextSalon$new(corpus)
-    cmd <- ReplaceBacktick$new()
+    cmd <- ReplacePatterns$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
