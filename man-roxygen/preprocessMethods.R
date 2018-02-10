@@ -1,4 +1,4 @@
-#'  @section Prepreprocess Family of Classes Methods
+#'  @section Prepreprocess Family of Classes Methods:
 #'  \describe{
 #'   \item{\code{new(object, name, ...)}}{Instantiates the Preprocess object.}
 #'   \item{\code{preprocess()}}{Executes the process on the object.}

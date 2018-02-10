@@ -1,18 +1,9 @@
-#' @section TextCommand Class Overview:
-#' The TextCommand family of classes includes the interface and
+#' @section TextClean Family of Classes Overview:
+#' The TextClean family of classes includes the interface and
 #' concrete classes, each of which perform a single text preprocessing
-#' task. This family of classes is a component of a variation on the command
-#' design pattern, as described in the book "Design Patterns: Elements of Reusable
-#' Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
-#' and John Vlissides (hence Gang of Four). The command pattern encapsulates
-#' all information required to perform an action or trigger an event
-#' for a later time. Rather than invoking a method on the receiver,
-#' the Invoker accepts the receiver and the commands from the client.
-#' When the "execute" is invoked, the Invoker (TextSalon) processes the
-#' commands against the receiver, then returns the result to
-#' the client upon completion of the commands.
+#' task.
 #'
-#' \strong{TextCommand Classes:}
+#' \strong{TextClean Classes:}
 #' \itemize{
 #'  \item addCommaSpace: Adds space after comma.
 #'  \item addEndMark: Detects missing endmarks and replaces with the desired symbol.

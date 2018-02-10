@@ -38,7 +38,7 @@ TextSalon <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..object = character(),
+    ..x = character(),
     ..jobQueue = list()
   ),
 
@@ -47,7 +47,7 @@ TextSalon <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(object) {
+    initialize = function(x) {
 
       # Instantiate variables
       private$..className <- 'TextSalon'
@@ -59,7 +59,7 @@ TextSalon <- R6::R6Class(
       private$..accessed <- Sys.time()
 
       # Validation
-      if (!class(object)[1] %in% c("Document", "Corpus")) {
+      if (!class(x)[1] %in% c("Document", "Corpus")) {
         private$..state <- paste0("Invalid object. Object must be of the ",
                                   "Document or Corpus class.  See ?", class(self)[1],
                                   " for further assistance.")
@@ -68,7 +68,7 @@ TextSalon <- R6::R6Class(
       }
 
       # Load object
-      private$..object <- object
+      private$..x <- object
 
       # Create log entry
       self$logIt()
@@ -94,7 +94,7 @@ TextSalon <- R6::R6Class(
       name <- cmd$getName()
       private$..jobQueue[[name]] <- cmd
 
-      private$..state <- paste0("Added ", cmd$getName(), " to ", private$..object$getName(),
+      private$..state <- paste0("Added ", cmd$getName(), " to ", private$..x$getName(),
                                 " job queue." )
       self$logIt()
 
@@ -116,7 +116,7 @@ TextSalon <- R6::R6Class(
       name <- cmd$getName()
       private$..jobQueue[[name]] <- NULL
 
-      private$..state <- paste0("Removed ", cmd$getName(), " from ", private$..object$getName(),
+      private$..state <- paste0("Removed ", cmd$getName(), " from ", private$..x$getName(),
                                 " job queue." )
       self$logIt()
 
@@ -129,11 +129,11 @@ TextSalon <- R6::R6Class(
       private$..methodName <- "execute"
 
       for (i in 1:length(private$..jobQueue)) {
-        private$..object <- private$..jobQueue[[i]]$execute(private$..object)
+        private$..x <- private$..jobQueue[[i]]$new(private$..x)$execute()
       }
 
       private$..state <- paste0("Processed text processing commands on ",
-                                private$..object$getName(), "." )
+                                private$..x$getName(), "." )
       self$logIt()
 
       invisible(self)
@@ -141,7 +141,7 @@ TextSalon <- R6::R6Class(
     },
 
     getResult = function() {
-      return(private$..object)
+      return(private$..x)
     },
 
     #-------------------------------------------------------------------------#
@@ -156,7 +156,7 @@ TextSalon <- R6::R6Class(
     #-------------------------------------------------------------------------#
     exposeObject = function() {
       TextSalon <- list(
-        object = private$..object,
+        x = private$..x,
         jobQueue = private$..jobQueue
       )
       return(TextSalon)
