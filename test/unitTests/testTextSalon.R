@@ -23,32 +23,27 @@ testTextSalon <- function() {
     # Import corpus and get contents
     corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
     docs <- corpus$getDocuments()
-    d11 <- docs[[1]]$content
-    d12 <- docs[[2]]$content
-    d13 <- docs[[3]]$content
+    docs1 <- lapply(docs, function(d) {
+      d$content
+    })
 
     # Preprocess
     ts <- TextSalon$new(corpus)
-    cmd <- ReplacePatterns$new()
+    cmd <- CmdAddCommaSpace$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
     # Get Documents
-    docs <- corpus$getDocuments()
-    d21 <- docs[[1]]$content
-    d22 <- docs[[2]]$content
-    d23 <- docs[[3]]$content
+    docs <- corpus2$getDocuments()
+    docs2 <- lapply(docs, function(d) {
+      d$content
+    })
 
-    # Print documents
-    cat("\nDocument 1\n")
-    print(head(d11, 2))
-    print(head(d21, 2))
-    cat("\nDocument 2\n")
-    print(head(d12, 2))
-    print(head(d22, 2))
-    cat("\nDocument 3\n")
-    print(head(d13, 2))
-    print(head(d23, 2))
+    for (i in 1:length(docs)) {
+      cat(paste("\nDocument", i, "\n"))
+      print(head(docs1[[i]], 2))
+      print(head(docs2[[i]], 2))
+    }
 
     TextSalonTest$logs(className = "TextSalon", methodName = "initiate", msg = paste("Successfully instantiated. "))
     TextSalonTest$logs(className = "TextSalon", methodName = "execute", msg = paste("Processing successfully executed."))

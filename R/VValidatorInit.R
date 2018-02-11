@@ -58,6 +58,15 @@ VValidatorInit <- R6::R6Class(
         status[['msg']] <- paste0("Invalid class. Object must be of ", cls, " class. ",
                                   "See ?", class(object)[1], " for further assistance.")
       }
+
+      if (class(param)[1] == "list") {
+        element <- param[[1]]
+        if (!("character" %in% class(element))) {
+          status[['code']] <- FALSE
+          status[['msg']] <- paste0("Invalid list class. List must contain character vectors. ",
+                                    "See ?", class(object)[1], " for further assistance.")
+        }
+      }
       return(status)
     },
 
@@ -218,6 +227,11 @@ VValidatorInit <- R6::R6Class(
     },
     preprocessDocumentSplitStrategy = function(object) {
       return(private$validateClass(object, object$getInput(), c("Document")))
+    },
+    textSalon = function(object) {
+      return(private$validateClass(object, object$getInput(),
+                                   c("Corpus", "Document", "character", "list")))
+
     }
   )
 )

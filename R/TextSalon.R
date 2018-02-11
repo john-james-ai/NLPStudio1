@@ -54,27 +54,21 @@ TextSalon <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..state <- paste0("TextSalon, ", private$..meta[["name"]], ", instantiated.")
       private$..logs <- LogR$new()
+      private$..x <- x
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()
 
       # Validation
-      if (!class(x)[1] %in% c("Document", "Corpus")) {
-        private$..state <- paste0("Invalid object. Object must be of the ",
-                                  "Document or Corpus class.  See ?", class(self)[1],
-                                  " for further assistance.")
-        self$logIt("Error")
-        stop()
-      }
-
-      # Load object
-      private$..x <- object
+      if (private$validateParams()$code == FALSE) stop()
 
       # Create log entry
       self$logIt()
 
       invisible(self)
     },
+
+    getInput = function() return(private$..x),
 
     #-------------------------------------------------------------------------#
     #                           Command Management                            #
@@ -83,9 +77,9 @@ TextSalon <- R6::R6Class(
 
       private$..methodName <- "addCommand"
 
-      if (!c("TextCommand0") %in% class(cmd)) {
+      if (!c("CmdText0") %in% class(cmd)) {
         private$..state <- paste0("Invalid text command object. Object must be ",
-                                  "of the TextCmd classes.  See ?", class(self)[1],
+                                  "of the CmdText0 classes.  See ?", class(self)[1],
                                   " for further assistance.")
         self$logIt("Error")
         stop()
@@ -105,9 +99,9 @@ TextSalon <- R6::R6Class(
 
       private$..methodName <- "removeCommand"
 
-      if (!c("TextCommand0") %in% class(cmd)) {
+      if (!c("CmdText0") %in% class(cmd)) {
         private$..state <- paste0("Invalid text command object. Object must be ",
-                                  "of the TextCmd classes.  See ?", class(self)[1],
+                                  "of the CmdText0 classes.  See ?", class(self)[1],
                                   " for further assistance.")
         self$logIt("Error")
         stop()
@@ -129,7 +123,7 @@ TextSalon <- R6::R6Class(
       private$..methodName <- "execute"
 
       for (i in 1:length(private$..jobQueue)) {
-        private$..x <- private$..jobQueue[[i]]$new(private$..x)$execute()
+        private$..x <- private$..jobQueue[[i]]$execute(private$..x)
       }
 
       private$..state <- paste0("Processed text processing commands on ",
@@ -148,7 +142,7 @@ TextSalon <- R6::R6Class(
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
-      visitor$TextSalon(self)
+      visitor$textSalon(self)
     },
 
     #-------------------------------------------------------------------------#
