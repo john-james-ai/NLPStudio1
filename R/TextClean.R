@@ -117,11 +117,12 @@ AddCommaSpace <- R6::R6Class(
 #'
 #' A wrapper for \code{\link[textclean]{add_missing_endmark}}, this class
 #' detects missing endmarks and replaces them with the desired symbol.
+#' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage AddEndMark$new(x, replacement = "|", endmarks = c("?", ".", "!"), ...)$execute()
+#' @usage AddEndMark$new(x, replace = "|", endmarks = c("?", ".", "!"), ...)$execute()
 #'
 #' @template textCleanParams
-#' @param replacement Symbol added for missing endmarks
+#' @param replace Symbol added for missing endmarks
 #' @param endmarks List of endmark symbols to detect
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -149,13 +150,13 @@ AddEndMark <- R6::R6Class(
   ),
 
   public = list(
-    initialize = function(x, replacement = "|", endmarks = c("?", ".", "!"), ...) {
+    initialize = function(x, replace = "|", endmarks = c("?", ".", "!"), ...) {
 
       private$..className <- "AddEndMark"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "AddEndMark"
       private$..x <- x
-      private$..replace <- replacement
+      private$..replace <- replace
       private$..endmarks <- endmarks
       private$..logs  <- LogR$new()
       invisible(self)
@@ -447,18 +448,16 @@ RemoveURL <- R6::R6Class(
 )
 
 #------------------------------------------------------------------------------#
-#                         Remove Abbreviations                                 #
+#                        Replace Abbreviations                                 #
 #------------------------------------------------------------------------------#
-#' RemoveAbbreviations
+#' ReplaceAbbreviations
 #'
-#' \code{RemoveAbbreviations} Replaces abbreviations with long form.
+#' \code{ReplaceAbbreviations} Replaces abbreviations with long form.
 #'
 #' This is a wrapper for the replace_abbreviations function in the QDAP package.
 #' Source \url{https://cran.r-project.org/web/packages/qdap/qdap.pdf}
 #'
-#' Removes twitter handles from text.
-#'
-#' @usage RemoveTwitter$new(x)$execute()
+#' @usage ReplaceAbbreviations$new(x, replace, ignoreCase = TRUE)$execute()
 #'
 #' @template textCleanParams
 #' @param abbreviation A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations. Default is to use qdapDictionaries's abbreviations data set.
@@ -473,8 +472,8 @@ RemoveURL <- R6::R6Class(
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-RemoveAbbreviations <- R6::R6Class(
-  classname = "RemoveAbbreviations",
+ReplaceAbbreviations <- R6::R6Class(
+  classname = "ReplaceAbbreviations",
   lock_objects = FALSE,
   lock_class = FALSE,
   inherit = TextClean0,
@@ -496,9 +495,9 @@ RemoveAbbreviations <- R6::R6Class(
   public = list(
     initialize = function(x, abbreviation = qdapDictionaries::abbreviations,
                           replace = NULL, ignoreCase = TRUE) {
-      private$..className <- "RemoveAbbreviations"
+      private$..className <- "ReplaceAbbreviations"
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <-  "RemoveAbbreviations"
+      private$..meta[["name"]] <-  "ReplaceAbbreviations"
       private$..x <- x
       private$..abbreviation <- abbreviation
       private$..replace <- replace
@@ -518,7 +517,7 @@ RemoveAbbreviations <- R6::R6Class(
 #'
 #' Replaces backticks with single quotes.
 #'
-#' @usage ReplaceBackTick$new(x)$execute()
+#' @usage ReplaceBacktick$new(x)$execute()
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -544,94 +543,6 @@ ReplaceBacktick <- R6::R6Class(
       private$..regex <- "\`"
 
       private$..replace <- "'"
-      private$..logs  <- LogR$new()
-      invisible(self)
-    }
-  )
-)
-
-#------------------------------------------------------------------------------#
-#                         Replace Patterns                                     #
-#------------------------------------------------------------------------------#
-#' ReplacePatterns
-#'
-#' \code{ReplacePatterns}  Replace
-#'
-#' A wrapper for \code{\link[textclean]{mgsub}} that takes a vector
-#' of search terms and a vector or single value of replacements.
-#' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
-#'
-#' @template textCleanParams
-#' @param pattern Character string to be matched in the given character vector.
-#' @param replacement Character string equal in length to pattern or of length
-#' one which are  a replacement for matched pattern.
-#' @param leadspace logical.  If \code{TRUE} inserts a leading space in the
-#' replacements.
-#' @param trailspace logical.  If \code{TRUE} inserts a trailing space in the
-#' replacements.
-#' @param fixed logical. If \code{TRUE}, pattern is a string to be matched as is.
-#' Overrides all conflicting arguments.
-#' @param trim logical.  If \code{TRUE} leading and trailing white spaces are
-#' removed and multiple white spaces are reduced to a single white space.
-#' @param order.pattern logical.  If \code{TRUE} and \code{fixed = TRUE}, the
-#' \code{pattern} string is sorted by number of characters to prevent substrings
-#' replacing meta strings (e.g., \code{pattern = c("the", "then")} resorts to
-#' search for "then" first).
-#' @param \dots Additional arguments passed to \code{\link[base]{gsub}}.
-#'
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
-#'
-#' @return \code{ReplacePatterns} - Returns a vector with the pattern replaced.
-#' @docType class
-#' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
-#' @export
-ReplacePatterns <- R6::R6Class(
-  classname = "ReplacePatterns",
-  lock_objects = FALSE,
-  lock_class = FALSE,
-  inherit = TextClean0,
-
-  private = list(
-    ..x = character(),
-    ..pattern = character(),
-    ..replacement = character(),
-    ..leadspace = logical(),
-    ..trailspace = logical(),
-    ..fixed = logical(),
-    ..trim = logical(),
-    ..orderPattern = character(),
-
-    processText = function(content) {
-      content <- textclean::mgsub(x = content,
-                                  pattern = private$..pattern,
-                                  replacement = private$..replacement,
-                                  leadspace = private$..leadspace,
-                                  trailspace = private$..trailspace,
-                                  fixed = private$..fixed,
-                                  trim = private$..trim,
-                                  order.pattern = private$..orderPattern)
-      return(content)
-    }
-  ),
-
-  public = list(
-    initialize = function(x, pattern, replacement, leadspace = FALSE,
-                          trailspace = FALSE, fixed = TRUE, trim = FALSE,
-                          order.pattern = fixed, ...) {
-      private$..className <- "ReplacePatterns"
-      private$..methodName <- "initialize"
-      private$..meta[["name"]] <-  "ReplacePatterns"
-      private$..x <- x
-      private$..pattern <- pattern
-      private$..replacement <- replacement
-      private$..leadspace <- leadspace
-      private$..trailspace <- trailspace
-      private$..fixed <- fixed
-      private$..trim <- trim
-      private$..orderPattern <- order.pattern
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -1289,6 +1200,94 @@ ReplaceOrdinal <- R6::R6Class(
       private$..x <- x
       private$..joinOrdinal <- joinOrdinal
       private$..remove <- remove
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+#------------------------------------------------------------------------------#
+#                         Replace Patterns                                     #
+#------------------------------------------------------------------------------#
+#' ReplacePatterns
+#'
+#' \code{ReplacePatterns}  Replace
+#'
+#' A wrapper for \code{\link[textclean]{mgsub}} that takes a vector
+#' of search terms and a vector or single value of replacements.
+#' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
+#'
+#' @template textCleanParams
+#' @param pattern Character string to be matched in the given character vector.
+#' @param replacement Character string equal in length to pattern or of length
+#' one which are  a replacement for matched pattern.
+#' @param leadspace logical.  If \code{TRUE} inserts a leading space in the
+#' replacements.
+#' @param trailspace logical.  If \code{TRUE} inserts a trailing space in the
+#' replacements.
+#' @param fixed logical. If \code{TRUE}, pattern is a string to be matched as is.
+#' Overrides all conflicting arguments.
+#' @param trim logical.  If \code{TRUE} leading and trailing white spaces are
+#' removed and multiple white spaces are reduced to a single white space.
+#' @param order.pattern logical.  If \code{TRUE} and \code{fixed = TRUE}, the
+#' \code{pattern} string is sorted by number of characters to prevent substrings
+#' replacing meta strings (e.g., \code{pattern = c("the", "then")} resorts to
+#' search for "then" first).
+#' @param \dots Additional arguments passed to \code{\link[base]{gsub}}.
+#'
+#' @template textCleanMethods
+#' @template textCleanClasses
+#' @template textCleanDesign
+#'
+#' @return \code{ReplacePatterns} - Returns a vector with the pattern replaced.
+#' @docType class
+#' @author John James, \email{jjames@@dataScienceSalon.org}
+#' @family TextClean Classes
+#' @export
+ReplacePatterns <- R6::R6Class(
+  classname = "ReplacePatterns",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextClean0,
+
+  private = list(
+    ..x = character(),
+    ..pattern = character(),
+    ..replacement = character(),
+    ..leadspace = logical(),
+    ..trailspace = logical(),
+    ..fixed = logical(),
+    ..trim = logical(),
+    ..orderPattern = character(),
+
+    processText = function(content) {
+      content <- textclean::mgsub(x = content,
+                                  pattern = private$..pattern,
+                                  replacement = private$..replacement,
+                                  leadspace = private$..leadspace,
+                                  trailspace = private$..trailspace,
+                                  fixed = private$..fixed,
+                                  trim = private$..trim,
+                                  order.pattern = private$..orderPattern)
+      return(content)
+    }
+  ),
+
+  public = list(
+    initialize = function(x, pattern, replacement, leadspace = FALSE,
+                          trailspace = FALSE, fixed = TRUE, trim = FALSE,
+                          order.pattern = fixed, ...) {
+      private$..className <- "ReplacePatterns"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "ReplacePatterns"
+      private$..x <- x
+      private$..pattern <- pattern
+      private$..replacement <- replacement
+      private$..leadspace <- leadspace
+      private$..trailspace <- trailspace
+      private$..fixed <- fixed
+      private$..trim <- trim
+      private$..orderPattern <- order.pattern
       private$..logs  <- LogR$new()
       invisible(self)
     }
