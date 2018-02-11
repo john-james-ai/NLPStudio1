@@ -646,7 +646,7 @@ ReplacePatterns <- R6::R6Class(
 #'
 #' \code{ReplaceContractions}  Replace contractions.
 #'
-#' A wrapper for \code{\link[textclean]{replace_contractions}} that
+#' A wrapper for \code{\link[textclean]{replace_contraction}} that
 #' replaces contractions with long form.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
@@ -681,7 +681,7 @@ ReplaceContractions <- R6::R6Class(
     ..ignoreCase = logical(),
 
     processText = function(content) {
-      content <- textclean::replace_contractions(x = content,
+      content <- textclean::replace_contraction(x = content,
                                                  contraction.key = private$..contractions,
                                                  ignore.case = private$..ignoreCase)
       return(content)
@@ -702,6 +702,63 @@ ReplaceContractions <- R6::R6Class(
     }
   )
 )
+
+
+#------------------------------------------------------------------------------#
+#                           Replace Curly Quotes                               #
+#------------------------------------------------------------------------------#
+#' ReplaceCurlyQuotes
+#'
+#' \code{ReplaceCurlyQuotes}  Replaces curly single and double quotes.
+#'
+#' A wrapper for \code{\link[textclean]{replace_curly_quote}}
+#' Replaces curly single and double quotes.
+#' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
+#'
+#' @usage ReplaceCurlyQuotes$new(x)$execute()
+#'
+#' @template textCleanParams
+#' @template textCleanMethods
+#' @template textCleanClasses
+#' @template textCleanDesign
+#'
+#' @examples
+#'
+#' @return \code{ReplaceCurlyQuotes} Returns a vector with curly quotes replaced.
+#'
+#' @docType class
+#' @author John James, \email{jjames@@dataScienceSalon.org}
+#' @family TextClean Classes
+#' @export
+ReplaceCurlyQuotes <- R6::R6Class(
+  classname = "ReplaceCurlyQuotes",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextClean0,
+
+  private = list(
+
+    processText = function(content) {
+      Encoding(content) <- "latin1"
+      content <- textclean::replace_curly_quote(x = content)
+      return(content)
+    }
+  ),
+
+  public = list(
+    initialize = function(x, removeNonConverted = TRUE) {
+      private$..className <- "ReplaceCurlyQuotes"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "ReplaceCurlyQuotes"
+      private$..x <- x
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+
+
 #------------------------------------------------------------------------------#
 #                         Replace Emoji                                        #
 #------------------------------------------------------------------------------#
@@ -709,7 +766,7 @@ ReplaceContractions <- R6::R6Class(
 #'
 #' \code{ReplaceEmoji}  Replace emojis with the words they represent.
 #'
-#' A wrapper for \code{\link[textclean]{replace_emojis}} that replaces
+#' A wrapper for \code{\link[textclean]{replace_emoji}} that replaces
 #' emojis with the words they represent.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
@@ -768,7 +825,7 @@ ReplaceEmoji <- R6::R6Class(
 #'
 #' \code{ReplaceEmoticon}  Replace emoticons with the words they represent.
 #'
-#' A wrapper for \code{\link[textclean]{replace_emoticons}} that replaces
+#' A wrapper for \code{\link[textclean]{replace_emoticon}} that replaces
 #' emoticons with the words they represent.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
@@ -1121,7 +1178,7 @@ ReplaceNonAscii <- R6::R6Class(
 #'
 #' \code{ReplaceNumbers}  Replace Numbers With Text Representation.
 #'
-#' A wrapper for \code{\link[textclean]{replace_numbers}} Replaces numeric represented numbers with words (e.g., 1001 becomes one thousand one).
+#' A wrapper for \code{\link[textclean]{replace_number}} Replaces numeric represented numbers with words (e.g., 1001 becomes one thousand one).
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
 #' @usage ReplaceNumbers$new(x)$execute()
@@ -1154,7 +1211,7 @@ ReplaceNumbers <- R6::R6Class(
     ..remove = logical(),
 
     processText = function(content) {
-      content <- textclean::replace_numbers(x = content,
+      content <- textclean::replace_number(x = content,
                                             num.paste = private$..joinNumbers,
                                             remove = private$..remove)
       return(content)
@@ -1217,7 +1274,7 @@ ReplaceOrdinal <- R6::R6Class(
     ..remove = logical(),
 
     processText = function(content) {
-      content <- textclean::replace_numbers(x = content,
+      content <- textclean::replace_number(x = content,
                                             num.paste = private$..joinOrdinal,
                                             remove = private$..remove)
       return(content)
@@ -1253,11 +1310,11 @@ ReplaceOrdinal <- R6::R6Class(
 #' @usage ReplaceSymbol$new(x, dollar = FALSE, percent = TRUE)$execute()
 #'
 #' @template textCleanParams
-#' @param dollar logical. If TRUE replaces dollar sign ($) with "dollar".
-#' @param percent logical. If TRUE replaces percent sign (%) with "percent".
-#' @param pound logical. If TRUE replaces pound sign (#) with "number".
-#' @param at logical. If TRUE replaces at sign (@) with "at".
-#' @param and logical. If TRUE replaces and sign (&) with "and".
+#' @param dollar logical. If TRUE replaces dollar sign (\$) with "dollar".
+#' @param percent logical. If TRUE replaces percent sign (\%) with "percent".
+#' @param pound logical. If TRUE replaces pound sign (\#) with "number".
+#' @param at logical. If TRUE replaces at sign (\@) with "at".
+#' @param and logical. If TRUE replaces and sign (\&) with "and".
 #' @param  with logical. If TRUE replaces with sign (w/) with "with"
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -1429,7 +1486,7 @@ RemoveWhiteSpace <- R6::R6Class(
 #'
 #' \code{ReplaceWordElongation}  Replace Word Elongations.
 #'
-#' A wrapper for \code{\link[textclean]{replace_numbers}} In informal writing
+#' A wrapper for \code{\link[textclean]{replace_word_elongation}} In informal writing
 #' people may use a form of text embellishment to emphasize or alter word meanings
 #' called elongation (a.k.a. "word lengthening"). For example, the use of "Whyyyyy" conveys
 #' frustration. Other times the usage may be to be more sexy (e.g., "Heyyyy there"). Other times it
@@ -1484,6 +1541,132 @@ ReplaceWordElongation <- R6::R6Class(
       private$..meta[["name"]] <-  "ReplaceWordElongation"
       private$..x <- x
       private$..impartMeaning <- impartMeaning
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+#------------------------------------------------------------------------------#
+#                                Strip Text                                    #
+#------------------------------------------------------------------------------#
+#' StripText
+#'
+#' \code{StripText}  Removes Unwanted Text
+#'
+#' A wrapper for \code{\link[textclean]{strip}} which strips text of unwanted characters.
+#' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
+#'
+#' @usage StripText$new(x, keepChars = NULL, removeDigits = TRUE, removeApostrophe = TRUE, lowerCase = TRUE)$execute()
+#'
+#' @template textCleanParams
+#' @param keepChars A character vector of symbols (i.e., punctuation) that
+#' strip should keep. The default is to strip every symbol except apostrophes
+#' and a double tilde "~~". The double tilde "~~" is included for a
+#' convenient means of keeping word groups together in functions that
+#' split text apart based on space To remove double tildes "~~" set
+#' char.keep to NULL.
+#' @param removeDigits Logical. If TRUE, digits are removed from the text.
+#' @param removeApostrophe Logical. If TRUE, digits are removed from the text.
+#' @param lowerCase Logical.  If TRUE, forces all alphabetic characters to lower case.
+#' @template textCleanMethods
+#' @template textCleanClasses
+#' @template textCleanDesign
+#'
+#' @examples
+#'
+#' @return \code{StripText} Returns a vector with unwanted characters removed.
+#'
+#' @docType class
+#' @author John James, \email{jjames@@dataScienceSalon.org}
+#' @family TextClean Classes
+#' @export
+StripText <- R6::R6Class(
+  classname = "StripText",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextClean0,
+
+  private = list(
+
+    ..keepChars = character(),
+    ..removeDigits = logical(),
+    ..removeApostrophe = logical(),
+    ..lowerCase = logical(),
+
+    processText = function(content) {
+      content <- textclean::replace_strip(x = content,
+                                          char.keep = private$..keepChars,
+                                          digit.remove = private$..removeDigits,
+                                          apostrophe.remove = private$..removeApostrophe,
+                                          lower.case = private$..lowerCase)
+      return(content)
+    }
+  ),
+
+  public = list(
+    initialize = function(x, keepChars = NULL, removeDigits = TRUE,
+                          removeApostrophe = TRUE, lowerCase = TRUE) {
+      private$..className <- "StripText"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "StripText"
+      private$..x <- x
+      private$..keepChars <- keepChars
+      private$..removeDigits <- removeDigits
+      private$..removeApostrophe <- removeApostrophe
+      private$..lowerCase = lowerCase
+      private$..logs  <- LogR$new()
+      invisible(self)
+    }
+  )
+)
+
+
+#------------------------------------------------------------------------------#
+#                                Lower Case                                    #
+#------------------------------------------------------------------------------#
+#' LowerCase
+#'
+#' \code{LowerCase}  Converts all alphabetic characters to lower case.
+#'
+#' A wrapper for \code{\link[base]{tolower}} which converts alphabetic characters
+#' to lower case.
+#'
+#' @usage LowerCase$new(x)$execute()
+#'
+#' @template textCleanParams
+#' @template textCleanMethods
+#' @template textCleanClasses
+#' @template textCleanDesign
+#'
+#' @examples
+#'
+#' @return \code{LowerCase} Returns a vector with alphabetic characters converted to lower case.
+#'
+#' @docType class
+#' @author John James, \email{jjames@@dataScienceSalon.org}
+#' @family TextClean Classes
+#' @export
+LowerCase <- R6::R6Class(
+  classname = "LowerCase",
+  lock_objects = FALSE,
+  lock_class = FALSE,
+  inherit = TextClean0,
+
+  private = list(
+
+    processText = function(content) {
+      content <- tolower(x = content)
+      return(content)
+    }
+  ),
+
+  public = list(
+    initialize = function(x) {
+      private$..className <- "LowerCase"
+      private$..methodName <- "initialize"
+      private$..meta[["name"]] <-  "LowerCase"
+      private$..x <- x
       private$..logs  <- LogR$new()
       invisible(self)
     }
