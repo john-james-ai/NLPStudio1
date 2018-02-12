@@ -2,11 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
-.R_Cache
-inst/doc
 NLPStudio
-test/testData
-data
 notes
-lab
+test/testData
+test/logs
 man

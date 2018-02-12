@@ -19,6 +19,8 @@ testTextSalon <- function() {
     name <- "Corpus"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/fast"
+    terms <- c("You", "you", "plant", "Been", "been", "home")
+    replace <- c("BITCH")
 
     # Import corpus and get contents
     corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
@@ -29,7 +31,7 @@ testTextSalon <- function() {
 
     # Preprocess
     ts <- TextSalon$new(corpus)
-    cmd <- CmdAddCommaSpace$new()
+    cmd <- CmdStripText$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
