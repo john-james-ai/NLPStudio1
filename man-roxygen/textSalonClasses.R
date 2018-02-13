@@ -1,5 +1,5 @@
-#' @section TextSalon Class Overview:
-#' The TextSalon class is a modification to the command design pattern,
+#' @section TextStudio Class Overview:
+#' The TextStudio class is a modification to the command design pattern,
 #' as described in the book "Design Patterns: Elements of Reusable
 #' Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson
 #' and John Vlissides (hence Gang of Four). The command pattern encapsulates
@@ -10,9 +10,9 @@
 #' commands against the receiver, then returns the result to
 #' the client upon completion of the commands.
 #'
-#' \strong{TextSalon Classes:}
+#' \strong{TextStudio Classes:}
 #' \itemize{
-#'  \item TextSalon: The class responsible for executing commands upon a Corpus object.
+#'  \item TextStudio: The class responsible for executing commands upon a Corpus object.
 #'  \item TextCheck: The class responsible for auditing text, discovering problems and recommending solutions#'
 #'  }
 #'

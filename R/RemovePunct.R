@@ -22,7 +22,7 @@ RemovePunct <- R6::R6Class(
   classname = "RemovePunct",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextClean0,
+  inherit = Text0,
 
   public = list(
     initialize = function(x, endmark = FALSE, apostrophe = FALSE) {
@@ -40,7 +40,7 @@ RemovePunct <- R6::R6Class(
       } else {
         private$..regex <- "[[:punct:]]"
       }
-      private$..replacement <- ""
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }

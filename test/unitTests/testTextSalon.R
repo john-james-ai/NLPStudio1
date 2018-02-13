@@ -1,8 +1,8 @@
-testTextSalon <- function() {
+testTextStudio <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
-    TextSalonTest <<- LogTest$new()
+    TextStudioTest <<- LogTest$new()
     bf <- "./test/testData/fast/en_US.blogs.txt"
     nf <- "./test/testData/fast/en_US.news.txt"
     tf <- "./test/testData/fast/en_US.twitter.txt"
@@ -12,15 +12,15 @@ testTextSalon <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: TextSalon"
+    test <- "test0: TextStudio"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
     name <- "Corpus"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/fast"
-    terms <- c("You", "you", "plant", "Been", "been", "home")
-    replace <- c("BITCH")
+    tokens <- c("You", "you", "plant", "Been", "been", "home")
+    replace <- c("BITCH", "BOAT", "DANCE", "LOVE", "PARTY", "HOPE")
     
 
     # Import corpus and get contents
@@ -31,8 +31,8 @@ testTextSalon <- function() {
     })
 
     # Preprocess
-    ts <- TextSalon$new(corpus)
-    cmd <- CmdReplaceToken$new(tokens = terms, replacement = replace)
+    ts <- TextStudio$new(corpus)
+    cmd <- CmdReplaceAbbreviations$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
@@ -48,9 +48,9 @@ testTextSalon <- function() {
       print(head(docs2[[i]], 2))
     }
 
-    TextSalonTest$logs(className = "TextSalon", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    TextSalonTest$logs(className = "TextSalon", methodName = "execute", msg = paste("Processing successfully executed."))
-    TextSalonTest$logs(className = "TextSalon", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    TextStudioTest$logs(className = "TextStudio", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    TextStudioTest$logs(className = "TextStudio", methodName = "execute", msg = paste("Processing successfully executed."))
+    TextStudioTest$logs(className = "TextStudio", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(corpus2)
@@ -58,10 +58,10 @@ testTextSalon <- function() {
 
 
   testn <- function() {
-    test <- "testn: TextSalon: Unzip"
+    test <- "testn: TextStudio: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
 
-    TextSalonTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    TextStudioTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -84,6 +84,6 @@ corpus2 <<- test0()
 
 
 }
-className <- "TextSalon"
-#source('./test/unitTests/testTextSalon.R')
-testTextSalon()
+className <- "TextStudio"
+#source('./test/unitTests/testTextStudio.R')
+testTextStudio()

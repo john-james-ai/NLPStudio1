@@ -22,7 +22,7 @@ RemoveURL <- R6::R6Class(
   classname = "RemoveURL",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextClean0,
+  inherit = Text0,
 
   public = list(
     initialize = function(x) {

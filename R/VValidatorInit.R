@@ -163,6 +163,49 @@ VValidatorInit <- R6::R6Class(
       }
       return(status)
     },
+    
+    validatePatternReplacement = function(object) {
+      
+      status <- list()
+      status[['code']] <- TRUE
+      
+      params <- object$getParams()
+      pattern <- params$pattern
+      replacement <- params$replacement
+      
+      if (("data.frame" %in% class(pattern)) & (ncol(pattern) == 2)) {
+        return(status)
+      }
+      
+      # Validate classes
+      if ((!(class(pattern) %in% c("data.frame", "character"))) |
+          (!(class(replacement) %in% c("data.frame", "character")))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot process ", class(object)[1],
+                                  ". Pattern and replacement variables ",
+                                  "must be data.frames or character  ",
+                                  "vectors. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance")    
+        return(status)
+      }
+      
+      if ("data.frame" %in% class(pattern))  pattern <- as.character(pattern[,1])
+      if ("data.frame" %in% class(replacement))  replacement <- as.character(replacement[,1])
+      
+      if ((length(pattern) != length(replacement)) & (length(replacement) != 1)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot process ", class(object)[1],
+                                  ". The replacement variable must be of ",
+                                  "length = 1 or a length equal to that of ",
+                                  "the pattern variable. ",
+                                  "See ?", class(object)[1],
+                                  " for further assistance") 
+        return(status)
+      }
+      
+      return(status)
+    },
 
     validateStub = function(object) {
       status <- list()
@@ -228,10 +271,20 @@ VValidatorInit <- R6::R6Class(
     preprocessDocumentSplitStrategy = function(object) {
       return(private$validateClass(object, object$getInput(), c("Document")))
     },
+    
+    #-------------------------------------------------------------------------#
+    #                      TextStudio Validation                              #
+    #-------------------------------------------------------------------------#
     textSalon = function(object) {
       return(private$validateClass(object, object$getInput(),
                                    c("Corpus", "Document", "character", "list")))
-
+    },
+    
+    replaceAbbreviations = function(object) {
+      params <- object$getParams()
+      status <- private$validateClass(object, params$x, c("character"))
+      if (status$code == FALSE) return(status)
+      return(private$validatePatternReplacement(object))
     }
   )
 )

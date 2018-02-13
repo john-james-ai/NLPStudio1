@@ -26,7 +26,7 @@ AddEndMark <- R6::R6Class(
   classname = "AddEndMark",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextClean0,
+  inherit = Text0,
 
   private = list(
     ..endmarks = character(),

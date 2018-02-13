@@ -26,11 +26,10 @@ ReplaceAbbreviations <- R6::R6Class(
   classname = "ReplaceAbbreviations",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextClean0,
+  inherit = Text0,
 
   private = list(
     ..abbreviations = character(),
-    ..ignoreCase = character(),
 
     processText = function(content) {
       if (is.null(private$..abbreviations)) {
@@ -44,20 +43,10 @@ ReplaceAbbreviations <- R6::R6Class(
             replacement <- as.character(private$..abbreviations[,2])
           } else if (ncol(private$..abbreviations) == 1) {
             replacement <- as.character(private$..replacement)
-            if (length(pattern) != length(replacement)) {
-              private$..state <- "Abbreviations and replacement vectors must be of equal length."
-              self$logIt("Error")
-              stop()
-            }
           }
         } else {
           pattern <- private$..abbreviations
           replacement <- private$..replacement
-          if (length(pattern) != length(replacement)) {
-            private$..state <- "Abbreviations and replacement vectors must be of equal length."
-            self$logIt("Error")
-            stop()
-          }
         }
           
         content <- textclean::mgsub(x = content,  pattern = pattern,
@@ -70,16 +59,27 @@ ReplaceAbbreviations <- R6::R6Class(
 
   public = list(
     initialize = function(x, abbreviations = NULL,
-                          replacement = NULL, ignoreCase = TRUE) {
+                          replacement = NULL) {
       private$..className <- "ReplaceAbbreviations"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceAbbreviations"
       private$..x <- x
       private$..abbreviations <- abbreviations
       private$..replacement <- replacement
-      private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)
+    },
+    
+    getParams = function() {
+      input <- list(
+        x = private$..x,
+        pattern = private$..abbreviations,
+        replacement = private$..replacement
+      )
+      return(input)
+    },
+    accept = function(visitor)  {
+      visitor$replaceAbbreviations(self)
     }
   )
 )
