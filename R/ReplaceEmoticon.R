@@ -36,8 +36,12 @@ ReplaceEmoticon <- R6::R6Class(
     ..emoticons = data.table(),
 
     processText = function(content) {
-      content <- textclean::replace_emoticon(x = content,
-                                             emoticon_dt = private$..emoticons)
+      if (is.null(private$..emoticons)) {
+        content <- textclean::replace_emoticon(x = content)  
+      } else {
+        content <- textclean::replace_emoticon(x = content,
+                                               emoticon_dt = private$..emoticons)
+      }
       return(content)
     }
   ),

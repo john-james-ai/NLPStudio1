@@ -16,7 +16,7 @@ Depends:
     parallel,
     R (>= 3.4.1),
     R.utils
-Suggests: 
+Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
@@ -34,6 +34,7 @@ Imports:
     R6,
     readtext,
     textclean,
-    tools
+    tools,
+    NLPLists
 Remotes: github::DataScienceSalon/NLPLists
 RoxygenNote: 6.0.1

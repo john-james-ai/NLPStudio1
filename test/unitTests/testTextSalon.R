@@ -21,6 +21,7 @@ testTextSalon <- function() {
     dataSource <- "./test/testData/fast"
     terms <- c("You", "you", "plant", "Been", "been", "home")
     replace <- c("BITCH")
+    
 
     # Import corpus and get contents
     corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
@@ -31,8 +32,7 @@ testTextSalon <- function() {
 
     # Preprocess
     ts <- TextSalon$new(corpus)
-    cmd <- CmdReplaceContractions$new(pattern = as.character(NLPLists::contractions[,1]),
-                                      replacement = as.character(NLPLists::contractions[,2]))
+    cmd <- CmdReplaceToken$new(tokens = terms, replacement = replace)
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
