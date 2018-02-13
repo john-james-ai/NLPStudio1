@@ -31,7 +31,8 @@ testTextSalon <- function() {
 
     # Preprocess
     ts <- TextSalon$new(corpus)
-    cmd <- CmdStripText$new()
+    cmd <- CmdReplaceContractions$new(pattern = as.character(NLPLists::contractions[,1]),
+                                      replacement = as.character(NLPLists::contractions[,2]))
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 

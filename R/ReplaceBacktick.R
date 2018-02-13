@@ -32,7 +32,7 @@ ReplaceBacktick <- R6::R6Class(
       private$..x <- x
       private$..regex <- "\`"
 
-      private$..replace <- "'"
+      private$..replacement <- "'"
       private$..logs  <- LogR$new()
       invisible(self)
     }

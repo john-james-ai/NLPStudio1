@@ -69,7 +69,7 @@ PreprocessDocumentSplitStrategy <- R6::R6Class(
       # Establish sample indices
       proportions <- c(private$..trainSize, private$..valSize, private$..testSize)
       x <- c(1:length(proportions))
-      ss <- sample(x, size = length(content), replace = TRUE, prob = proportions)
+      ss <- sample(x, size = length(content), replacement = TRUE, prob = proportions)
 
       # Create training set
       if (private$..trainSize > 0) {

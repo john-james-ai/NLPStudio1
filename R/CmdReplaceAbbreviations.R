@@ -8,12 +8,12 @@
 #' Class that encapsulates the command to execute an object of the ReplaceAbbreviations
 #' class
 #'
-#' @usage CmdReplaceAbbreviations$new(abbreviation, replace = NULL, ignoreCase = TRUE )
+#' @usage CmdReplaceAbbreviations$new(abbreviation, replacement = NULL, ignoreCase = TRUE )
 #'
 #' @template textCleanParams
 #' @param abbreviation A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations.
 #' Default is to use qdapDictionaries's abbreviations data set.
-#' @param replace Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
+#' @param replacement Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
 #' @param ignoreCase Logical. If TRUE replaces without regard to capitalization.
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -31,7 +31,7 @@ CmdReplaceAbbreviations <- R6::R6Class(
 
   private = list(
     ..abbreviation = character(),
-    ..replace = character(),
+    ..replacement = character(),
     ..ignoreCase = logical()
   ),
 
@@ -40,14 +40,14 @@ CmdReplaceAbbreviations <- R6::R6Class(
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "CmdReplaceAbbreviations"
       private$..abbreviation <- abbreviation
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
       x <- ReplaceAbbreviations$new(x, abbreviation = private$..abbreviation,
-                                   replace = private$..replace,
+                                   replacement = private$..replacement,
                                    ignoreCase = private$..ignoreCase)$execute()
       return(x)
     }

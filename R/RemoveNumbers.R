@@ -29,7 +29,7 @@ RemoveNumbers <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveNumbers"
       private$..x <- x
       private$..regex <- '[[:digit:]]'
-      private$..replace <- ""
+      private$..replacement <- ""
       private$..logs  <- LogR$new()
       invisible(self)
     }

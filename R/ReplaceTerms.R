@@ -13,7 +13,7 @@
 #'
 #' @template textCleanParams
 #' @param terms Character string(s) to be matched in the given character vector.
-#' @param replacement Character string equal in length to pattern or of length
+#' @param replacementment Character string equal in length to pattern or of length
 #' one which are  a replacement for matched pattern.
 #' @param leadspace logical.  If \code{TRUE} inserts a leading space in the
 #' replacements.
@@ -54,7 +54,7 @@ ReplaceTerms <- R6::R6Class(
     processText = function(content) {
       content <- textclean::mgsub(x = content,
                                   pattern = private$..terms,
-                                  replacement = private$..replace,
+                                  replacement = private$..replacement,
                                   leadspace = private$..leadspace,
                                   trailspace = private$..trailspace,
                                   fixed = private$..fixed,
@@ -73,7 +73,7 @@ ReplaceTerms <- R6::R6Class(
       private$..meta[["name"]] <-  "ReplaceTerms"
       private$..x <- x
       private$..terms <- terms
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..leadspace <- leadspace
       private$..trailspace <- trailspace
       private$..fixed <- fixed

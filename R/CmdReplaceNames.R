@@ -8,11 +8,11 @@
 #' Class that encapsulates the command to execute an object of the ReplaceNames
 #' class
 #'
-#' @usage CmdReplaceNames$new(names = NULL, replace = NULL)
+#' @usage CmdReplaceNames$new(names = NULL, replacement = NULL)
 #'
 #' @template textCleanParams
 #' @param names Vector of names to replace.
-#' @param replace A string with which to replace names.
+#' @param replacement A string with which to replace names.
 #' @template textCleanMethods
 #' @template textCleanClasses
 #' @template textCleanDesign
@@ -32,17 +32,17 @@ CmdReplaceNames <- R6::R6Class(
   ),
 
   public = list(
-    initialize = function(names = NULL, replace = NULL) {
+    initialize = function(names = NULL, replacement = NULL) {
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "CmdReplaceNames"
       private$..names <- names
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
       x <- ReplaceNames$new(x, names = private$..names,
-                            replace = private$..replace)$execute()
+                            replacement = private$..replacement)$execute()
       return(x)
     }
   )

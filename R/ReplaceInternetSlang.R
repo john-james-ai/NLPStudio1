@@ -9,11 +9,11 @@
 #' replaces internet slang.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage ReplaceInternetSlang$new(x, slang = NULL, replace = NULL, ignoreCase = TRUE)$execute()
+#' @usage ReplaceInternetSlang$new(x, slang = NULL, replacement = NULL, ignoreCase = TRUE)$execute()
 #'
 #' @template textCleanParams
 #' @param slang A vector of slang strings to replace.
-#' @param replace A vector of strings with which to replace slang
+#' @param replacement A vector of strings with which to replace slang
 #' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case)
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -40,20 +40,20 @@ ReplaceInternetSlang <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_internet_slang(x = content,
                                          slang = private$..slang,
-                                         replacement = private$..replace,
+                                         replacement = private$..replacement,
                                          ignore.case = private$..ignoreCase)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, slang = NULL, replace = NULL, ignoreCase = TRUE) {
+    initialize = function(x, slang = NULL, replacement = NULL, ignoreCase = TRUE) {
       private$..className <- "ReplaceInternetSlang"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceInternetSlang"
       private$..x <- x
       private$..slang <- slang
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)

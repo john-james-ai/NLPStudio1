@@ -31,7 +31,7 @@ AddCommaSpace <- R6::R6Class(
       private$..x <- x
       private$..meta[["name"]] <-  "AddCommmaSpace"
       private$..regex <- "(,)([^ ])"
-      private$..replace <- "\\1 \\2"
+      private$..replacement <- "\\1 \\2"
       private$..logs  <- LogR$new()
       invisible(self)
     }

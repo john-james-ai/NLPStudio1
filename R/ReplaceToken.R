@@ -15,7 +15,7 @@
 #'
 #' @template textCleanParams
 #' @param tokens A vector of token to be replaced.
-#' @param replace A single character string to replace the tokens with. The default, NULL, replaces the tokens with nothing.
+#' @param replacement A single character string to replace the tokens with. The default, NULL, replaces the tokens with nothing.
 #' @param ignoreCase logical. If TRUE the case of the tokens will be ignored.
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -43,20 +43,20 @@ ReplaceToken <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_symbol(x = content,
                                            tokens = private$..tokens,
-                                           replacement = private$..replace,
+                                           replacement = private$..replacement,
                                            ignore.case = private$..ignoreCase)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, tokens, replace = NULL, ignoreCase = TRUE) {
+    initialize = function(x, tokens, replacement = NULL, ignoreCase = TRUE) {
       private$..className <- "ReplaceToken"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceToken"
       private$..x <- x
       private$..tokens <- tokens
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)

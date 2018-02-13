@@ -32,7 +32,7 @@ RemoveURL <- R6::R6Class(
       private$..x <- x
       private$..regex <- "(?:(?:https?:\\/\\/)|(?:www\\.))[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b(?:[-a-zA-Z0-9@:%_\\+.~#?&/=]*)"
 
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }

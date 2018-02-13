@@ -30,7 +30,7 @@ RemoveSymbols <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveSymbols"
       private$..x <- x
       private$..regex <- "[^[:alnum:]]"
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }

@@ -12,7 +12,7 @@
 #'
 #' @template textCleanParams
 #' @param terms Character string(s) to be matched in the given character vector.
-#' @param replacement Character string equal in length to pattern or of length
+#' @param replacementment Character string equal in length to pattern or of length
 #' one which are  a replacement for matched pattern.
 #' @param leadspace logical.  If \code{TRUE} inserts a leading space in the
 #' replacements.
@@ -55,7 +55,7 @@ CmdReplaceTerms <- R6::R6Class(
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "CmdReplaceTerms"
       private$..terms <- terms
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..leadspace <- leadspace
       private$..trailspace <- trailspace
       private$..fixed <- fixed
@@ -66,7 +66,7 @@ CmdReplaceTerms <- R6::R6Class(
     },
     execute = function(x) {
       x <- ReplaceTerms$new(x, terms = private$..terms,
-                            replace = private$..replace,
+                            replacement = private$..replacement,
                             leadspace = private$..leadspace,
                             trailspace = private$..trailspace,
                             fixed = private$..fixed,

@@ -25,7 +25,7 @@ CmdText0 <- R6::R6Class(
 
   private = list(
     ..x = character(),
-    ..replace = character()
+    ..replacement = character()
   ),
 
   public = list(

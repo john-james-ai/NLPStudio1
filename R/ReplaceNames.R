@@ -9,11 +9,11 @@
 #' Replaces first and last names.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage ReplaceNames$new(x, names = NULL, replace = NULL)$execute()
+#' @usage ReplaceNames$new(x, names = NULL, replacement = NULL)$execute()
 #'
 #' @template textCleanParams
 #' @param names Vector of names to replace.
-#' @param replace A string with which to replace names.
+#' @param replacement A string with which to replace names.
 #' @template textCleanMethods
 #' @template textCleanClasses
 #' @template textCleanDesign
@@ -39,19 +39,19 @@ ReplaceNames <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_names(x = content,
                                           names = private$..names,
-                                          replacement = private$..replace)
+                                          replacement = private$..replacement)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, names = NULL, replace = NULL) {
+    initialize = function(x, names = NULL, replacement = NULL) {
       private$..className <- "ReplaceNames"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceNames"
       private$..x <- x
       private$..names <- names
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..logs  <- LogR$new()
       invisible(self)
     }

@@ -31,7 +31,7 @@ RemoveTwitter <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveTwitter"
       private$..x <- x
       private$..regex <- '\\B#\\w*[a-zA-Z]+\\w*'
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }

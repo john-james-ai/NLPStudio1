@@ -88,7 +88,7 @@ testPreprocessDocumentBin <- function() {
 
     # Initialize parameters
     pattern = c(0,1,3,5,7,9,24,26, 127)
-    replace = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
+    replacement = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
     subs = data.frame(pattern, replace)
 
     news3 <- PreprocessDocumentBinStrategy$new(news2, "news3", substitutions = subs)$preprocess()$getResult()
@@ -128,7 +128,7 @@ testPreprocessDocumentBin <- function() {
 
     # Initialize parameters
     pattern = c(0,1,3,5,7,9,24,26, 127)
-    replace = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
+    replacement = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
     subs = data.frame(pattern, replace)
 
     news2 <- PreprocessDocumentBinStrategy$new(object = news, substitutions = subs)$preprocess()$getResult()

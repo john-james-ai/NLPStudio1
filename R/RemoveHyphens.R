@@ -29,7 +29,7 @@ RemoveHyphens <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveHyphens"
       private$..x <- x
       private$..regex <- '[-]'
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }

@@ -29,7 +29,7 @@ RemoveEmail <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveEmail"
       private$..x <- x
       private$..regex <- "[a-zA-Z0-9\\-_~]+(\\.[a-zA-Z0-9\\-_~]+)*@[a-zA-Z0-9\\-_~]+(\\.[a-zA-Z0-9\\-_~]+)*\\.[a-zA-Z]{2,}"
-      private$..replace <- ""
+      private$..replacement <- ""
       private$..logs  <- LogR$new()
       invisible(self)
     }

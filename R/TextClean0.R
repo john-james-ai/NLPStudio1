@@ -26,11 +26,11 @@ TextClean0 <- R6::R6Class(
   private = list(
     ..x = character(),
     ..regex = character(),
-    ..replace = character(),
+    ..replacement = character(),
 
     processText = function(content) {
       content <- gsub(private$..regex,
-                      private$..replace,
+                      private$..replacement,
                       content, perl = TRUE)
       return(content)
     }
@@ -101,7 +101,7 @@ AddCommaSpace <- R6::R6Class(
       private$..x <- x
       private$..meta[["name"]] <-  "AddCommmaSpace"
       private$..regex <- "(,)([^ ])"
-      private$..replace <- "\\1 \\2"
+      private$..replacement <- "\\1 \\2"
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -119,10 +119,10 @@ AddCommaSpace <- R6::R6Class(
 #' detects missing endmarks and replaces them with the desired symbol.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage AddEndMark$new(x, replace = "|", endmarks = c("?", ".", "!"), ...)$execute()
+#' @usage AddEndMark$new(x, replacement = "|", endmarks = c("?", ".", "!"), ...)$execute()
 #'
 #' @template textCleanParams
-#' @param replace Symbol added for missing endmarks
+#' @param replacement Symbol added for missing endmarks
 #' @param endmarks List of endmark symbols to detect
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -143,20 +143,20 @@ AddEndMark <- R6::R6Class(
 
     processText = function(content) {
       content <- textclean::add_missing_endmark(x = content,
-                                                replacement = private$..replace,
+                                                replacement = private$..replacement,
                                                 endmarks = private$..endmarks)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, replace = "|", endmarks = c("?", ".", "!"), ...) {
+    initialize = function(x, replacement = "|", endmarks = c("?", ".", "!"), ...) {
 
       private$..className <- "AddEndMark"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "AddEndMark"
       private$..x <- x
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..endmarks <- endmarks
       private$..logs  <- LogR$new()
       invisible(self)
@@ -195,7 +195,7 @@ RemoveEmail <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveEmail"
       private$..x <- x
       private$..regex <- "[a-zA-Z0-9\\-_~]+(\\.[a-zA-Z0-9\\-_~]+)*@[a-zA-Z0-9\\-_~]+(\\.[a-zA-Z0-9\\-_~]+)*\\.[a-zA-Z]{2,}"
-      private$..replace <- ""
+      private$..replacement <- ""
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -233,7 +233,7 @@ RemoveHyphens <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveHyphens"
       private$..x <- x
       private$..regex <- '[-]'
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -271,7 +271,7 @@ RemoveNumbers <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveNumbers"
       private$..x <- x
       private$..regex <- '[[:digit:]]'
-      private$..replace <- ""
+      private$..replacement <- ""
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -320,7 +320,7 @@ RemovePunct <- R6::R6Class(
       } else {
         private$..regex <- "[[:punct:]]"
       }
-      private$..replace <- ""
+      private$..replacement <- ""
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -359,7 +359,7 @@ RemoveSymbols <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveSymbols"
       private$..x <- x
       private$..regex <- "[^[:alnum:]]"
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -399,7 +399,7 @@ RemoveTwitter <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveTwitter"
       private$..x <- x
       private$..regex <- '\\B#\\w*[a-zA-Z]+\\w*'
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -440,7 +440,7 @@ RemoveURL <- R6::R6Class(
       private$..x <- x
       private$..regex <- "(?:(?:https?:\\/\\/)|(?:www\\.))[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b(?:[-a-zA-Z0-9@:%_\\+.~#?&/=]*)"
 
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -478,7 +478,7 @@ RemoveWhiteSpace <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveWhiteSpace"
       private$..x <- x
       private$..regex <- "\\s+"
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -499,7 +499,7 @@ RemoveWhiteSpace <- R6::R6Class(
 #'
 #' @template textCleanParams
 #' @param abbreviation A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations. Default is to use qdapDictionaries's abbreviations data set.
-#' @param replace Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
+#' @param replacement Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
 #' @param ignoreCase Logical. If TRUE replaces without regard to capitalization.
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -518,13 +518,13 @@ ReplaceAbbreviations <- R6::R6Class(
 
   private = list(
     ..abbreviation = character(),
-    ..replace = character(),
+    ..replacement = character(),
     ..ignoreCase = character(),
 
     processText = function(content) {
       content <- qdap::replace_abbreviation(content,
                                             private$..abbreviation,
-                                            private$..replace,
+                                            private$..replacement,
                                             private$..ignoreCase)
       return(content)
     }
@@ -532,13 +532,13 @@ ReplaceAbbreviations <- R6::R6Class(
 
   public = list(
     initialize = function(x, abbreviation = NULL,
-                          replace = NULL, ignoreCase = TRUE) {
+                          replacement = NULL, ignoreCase = TRUE) {
       private$..className <- "ReplaceAbbreviations"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceAbbreviations"
       private$..x <- x
       private$..abbreviation <- abbreviation
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)
@@ -580,7 +580,7 @@ ReplaceBacktick <- R6::R6Class(
       private$..x <- x
       private$..regex <- "\`"
 
-      private$..replace <- "'"
+      private$..replacement <- "'"
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -894,11 +894,11 @@ ReplaceHTML <- R6::R6Class(
 #' replaces internet slang.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage ReplaceInternetSlang$new(x, slang = NULL, replace = NULL, ignoreCase = TRUE)$execute()
+#' @usage ReplaceInternetSlang$new(x, slang = NULL, replacement = NULL, ignoreCase = TRUE)$execute()
 #'
 #' @template textCleanParams
 #' @param slang A vector of slang strings to replace.
-#' @param replace A vector of strings with which to replace slang
+#' @param replacement A vector of strings with which to replace slang
 #' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case)
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -925,20 +925,20 @@ ReplaceInternetSlang <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_internet_slang(x = content,
                                          slang = private$..slang,
-                                         replacement = private$..replace,
+                                         replacement = private$..replacement,
                                          ignore.case = private$..ignoreCase)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, slang = NULL, replace = NULL, ignoreCase = TRUE) {
+    initialize = function(x, slang = NULL, replacement = NULL, ignoreCase = TRUE) {
       private$..className <- "ReplaceInternetSlang"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceInternetSlang"
       private$..x <- x
       private$..slang <- slang
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)
@@ -1013,11 +1013,11 @@ ReplaceKern <- R6::R6Class(
 #' Replaces first and last names.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage ReplaceNames$new(x, names = NULL, replace = NULL)$execute()
+#' @usage ReplaceNames$new(x, names = NULL, replacement = NULL)$execute()
 #'
 #' @template textCleanParams
 #' @param names Vector of names to replace.
-#' @param replace A string with which to replace names.
+#' @param replacement A string with which to replace names.
 #' @template textCleanMethods
 #' @template textCleanClasses
 #' @template textCleanDesign
@@ -1043,19 +1043,19 @@ ReplaceNames <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_names(x = content,
                                           names = private$..names,
-                                          replacement = private$..replace)
+                                          replacement = private$..replacement)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, names = NULL, replace = NULL) {
+    initialize = function(x, names = NULL, replacement = NULL) {
       private$..className <- "ReplaceNames"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceNames"
       private$..x <- x
       private$..names <- names
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..logs  <- LogR$new()
       invisible(self)
     }
@@ -1338,7 +1338,7 @@ ReplaceSymbol <- R6::R6Class(
 #'
 #' @template textCleanParams
 #' @param terms Character string(s) to be matched in the given character vector.
-#' @param replacement Character string equal in length to pattern or of length
+#' @param replacementment Character string equal in length to pattern or of length
 #' one which are  a replacement for matched pattern.
 #' @param leadspace logical.  If \code{TRUE} inserts a leading space in the
 #' replacements.
@@ -1379,7 +1379,7 @@ ReplaceTerms <- R6::R6Class(
     processText = function(content) {
       content <- textclean::mgsub(x = content,
                                   pattern = private$..terms,
-                                  replacement = private$..replace,
+                                  replacement = private$..replacement,
                                   leadspace = private$..leadspace,
                                   trailspace = private$..trailspace,
                                   fixed = private$..fixed,
@@ -1398,7 +1398,7 @@ ReplaceTerms <- R6::R6Class(
       private$..meta[["name"]] <-  "ReplaceTerms"
       private$..x <- x
       private$..terms <- terms
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..leadspace <- leadspace
       private$..trailspace <- trailspace
       private$..fixed <- fixed
@@ -1427,7 +1427,7 @@ ReplaceTerms <- R6::R6Class(
 #'
 #' @template textCleanParams
 #' @param tokens A vector of token to be replaced.
-#' @param replace A single character string to replace the tokens with. The default, NULL, replaces the tokens with nothing.
+#' @param replacement A single character string to replace the tokens with. The default, NULL, replaces the tokens with nothing.
 #' @param ignoreCase logical. If TRUE the case of the tokens will be ignored.
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -1455,20 +1455,20 @@ ReplaceToken <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_symbol(x = content,
                                            tokens = private$..tokens,
-                                           replacement = private$..replace,
+                                           replacement = private$..replacement,
                                            ignore.case = private$..ignoreCase)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, tokens, replace = NULL, ignoreCase = TRUE) {
+    initialize = function(x, tokens, replacement = NULL, ignoreCase = TRUE) {
       private$..className <- "ReplaceToken"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceToken"
       private$..x <- x
       private$..tokens <- tokens
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)

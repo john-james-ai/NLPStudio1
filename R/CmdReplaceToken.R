@@ -8,11 +8,11 @@
 #' Class that encapsulates the command to execute an object of the ReplaceToken
 #' class
 #'
-#' @usage CmdReplaceToken$new(tokens,  replace = NULL, ignoreCase = TRUE)
+#' @usage CmdReplaceToken$new(tokens,  replacement = NULL, ignoreCase = TRUE)
 #'
 #' @template textCleanParams
 #' @param tokens A vector of token to be replaced.
-#' @param replace A single character string to replace the tokens with. The default, NULL, replaces the tokens with nothing.
+#' @param replacement A single character string to replace the tokens with. The default, NULL, replaces the tokens with nothing.
 #' @param ignoreCase logical. If TRUE the case of the tokens will be ignored.
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -34,18 +34,18 @@ CmdReplaceToken <- R6::R6Class(
   ),
 
   public = list(
-    initialize = function(tokens, replace = NULL, ignoreCase = TRUE) {
+    initialize = function(tokens, replacement = NULL, ignoreCase = TRUE) {
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "CmdReplaceToken"
       private$..tokens <- tokens
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
       x <- ReplaceToken$new(x, tokens = private$..tokens,
-                            replace = private$..replace,
+                            replacement = private$..replacement,
                             ignoreCase = private$..ignoreCase)$execute()
       return(x)
     }

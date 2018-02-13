@@ -88,7 +88,7 @@ testPreprocessDocumentEncodeStrategy <- function() {
 
     # Initialize parameters
     pattern = c("â€œ","â€","â€™")
-    replace = c('"', '"',"'")
+    replacement = c('"', '"',"'")
     subs = data.frame(pattern, replace)
 
     news3 <- PreprocessDocumentEncodeStrategy$new(news2, "news3", substitutions = subs)$preprocess()$getResult()
@@ -128,7 +128,7 @@ testPreprocessDocumentEncodeStrategy <- function() {
 
     # Initialize parameters
     pattern = c("â€œ","â€","â€™")
-    replace = c('"', '"',"'")
+    replacement = c('"', '"',"'")
     subs = data.frame(pattern, replace)
 
     news2 <- PreprocessDocumentEncodeStrategy$new(object = news, substitutions = subs)$preprocess()$getResult()

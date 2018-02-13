@@ -40,7 +40,7 @@ RemovePunct <- R6::R6Class(
       } else {
         private$..regex <- "[[:punct:]]"
       }
-      private$..replace <- ""
+      private$..replacement <- ""
       private$..logs  <- LogR$new()
       invisible(self)
     }

@@ -105,7 +105,7 @@ testPreprocessCorpusEncodeStrategy <- function() {
 
     # Initialize parameters
     pattern = c(0,1,3,5,7,9,24,26, 127)
-    replace = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
+    replacement = c(0x20, 0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20)
     subs = data.frame(pattern, replace)
 
     ct <- PreprocessCorpusEncodeStrategy$new(cb, "Caltech", substitutions = subs)$preprocess()$getResult()

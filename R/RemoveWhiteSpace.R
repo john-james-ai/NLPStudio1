@@ -29,7 +29,7 @@ RemoveWhiteSpace <- R6::R6Class(
       private$..meta[["name"]] <-  "RemoveWhiteSpace"
       private$..x <- x
       private$..regex <- "\\s+"
-      private$..replace <- " "
+      private$..replacement <- " "
       private$..logs  <- LogR$new()
       invisible(self)
     }

@@ -9,10 +9,10 @@
 #' detects missing endmarks and replaces them with the desired symbol.
 #' Source \url{https://cran.r-project.org/web/packages/textclean/textclean.pdf}
 #'
-#' @usage AddEndMark$new(x, replace = "|", endmarks = c("?", ".", "!"), ...)$execute()
+#' @usage AddEndMark$new(x, replacement = "|", endmarks = c("?", ".", "!"), ...)$execute()
 #'
 #' @template textCleanParams
-#' @param replace Symbol added for missing endmarks
+#' @param replacement Symbol added for missing endmarks
 #' @param endmarks List of endmark symbols to detect
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -33,20 +33,20 @@ AddEndMark <- R6::R6Class(
 
     processText = function(content) {
       content <- textclean::add_missing_endmark(x = content,
-                                                replacement = private$..replace,
+                                                replacement = private$..replacement,
                                                 endmarks = private$..endmarks)
       return(content)
     }
   ),
 
   public = list(
-    initialize = function(x, replace = "|", endmarks = c("?", ".", "!"), ...) {
+    initialize = function(x, replacement = "|", endmarks = c("?", ".", "!"), ...) {
 
       private$..className <- "AddEndMark"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "AddEndMark"
       private$..x <- x
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..endmarks <- endmarks
       private$..logs  <- LogR$new()
       invisible(self)

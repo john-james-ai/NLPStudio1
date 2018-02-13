@@ -8,11 +8,11 @@
 #' Class that encapsulates the command to execute an object of the ReplaceInternetSlang
 #' class
 #'
-#' @usage CmdReplaceInternetSlang$new(slang = NULL, replace = NULL, ignoreCase = TRUE)
+#' @usage CmdReplaceInternetSlang$new(slang = NULL, replacement = NULL, ignoreCase = TRUE)
 #'
 #' @template textCleanParams
 #' @param slang A vector of slang strings to replace.
-#' @param replace A vector of strings with which to replace slang
+#' @param replacement A vector of strings with which to replace slang
 #' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case)
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -34,18 +34,18 @@ CmdReplaceInternetSlang <- R6::R6Class(
   ),
 
   public = list(
-    initialize = function(slang = NULL, replace = NULL, ignoreCase = TRUE) {
+    initialize = function(slang = NULL, replacement = NULL, ignoreCase = TRUE) {
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "CmdReplaceInternetSlang"
       private$..slang <- slang
-      private$..replace <- replace
+      private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
       x <- ReplaceInternetSlang$new(x, slang = private$..slang,
-                                    replace = private$..replace,
+                                    replacement = private$..replacement,
                                     ignoreCase = private$..ignoreCase)$execute()
       return(x)
     }
