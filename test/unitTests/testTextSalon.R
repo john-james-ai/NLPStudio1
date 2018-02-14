@@ -32,7 +32,7 @@ testTextStudio <- function() {
 
     # Preprocess
     ts <- TextStudio$new(corpus)
-    cmd <- ReplaceAbbreviationsCmd$new()
+    cmd <- ReplaceInternetSlangCmd$new(slang = tokens, replacement = replace, ignoreCase = TRUE)
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 

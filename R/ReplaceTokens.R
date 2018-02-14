@@ -52,14 +52,6 @@ ReplaceTokens <- R6::R6Class(
     ..orderPattern = character(),
 
     processText = function(content) {
-      if ((length(private$..replacement) != 1) & 
-          (length(private$..tokens) != length(private$..replacement))) {
-        private$..state <- paste0("The replacement vector must be ",
-                                  "length 1 or a length equal to the ",
-                                  "length of the tokens vector.")
-        self$logIt("Error")
-        stop()
-      }
       
       content <- textclean::mgsub(x = content,
                                   pattern = private$..tokens,
@@ -89,7 +81,29 @@ ReplaceTokens <- R6::R6Class(
       private$..trim <- trim
       private$..orderPattern <- orderPattern
       private$..logs  <- LogR$new()
+      
+      if (private$validateParams()$code == FALSE) stop()
+      
       invisible(self)
+    },
+    
+    getParams = function() {
+      input <- list(
+        x = private$..x,
+        pattern = private$..tokens,
+        replacement = private$..replacement,
+        leadspace = private$..leadspace,
+        trailspace = private$..trailspace,
+        fixed = private$..fixed,
+        trim = private$..trim,
+        orderPattern = private$..orderPattern
+      )
+      return(input)
+    },
+    
+    accept = function(visitor)  {
+      visitor$replaceTokens(self)
     }
+    
   )
 )

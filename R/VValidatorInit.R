@@ -35,6 +35,18 @@ VValidatorInit <- R6::R6Class(
     ..name = "VValidatorInit",
     ..object = character(),
     ..parent = character(),
+    
+    validateLogical = function(object, param, name) {
+      status <- list()
+      status[['code']] <- TRUE
+      
+      if (!(is.logical(param))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid logical, ", name, " must be TRUE or FALSE. ",
+                                  "See ?", class(object)[1], " for further assistance.")
+      }
+      return(status)
+    },
 
     validateDirGlob = function(path) {
 
@@ -55,7 +67,8 @@ VValidatorInit <- R6::R6Class(
 
       if (!(class(param)[1] %in% cls)) {
         status[['code']] <- FALSE
-        status[['msg']] <- paste0("Invalid class. Object must be of ", cls, " class. ",
+        status[['msg']] <- paste0("Invalid object class. Object is of the ", class(param)[1],
+                                  " class, but must be of the ", cls, " classes. ",
                                   "See ?", class(object)[1], " for further assistance.")
       }
 
@@ -173,17 +186,18 @@ VValidatorInit <- R6::R6Class(
       pattern <- params$pattern
       replacement <- params$replacement
       
-      if (("data.frame" %in% class(pattern)) & (ncol(pattern) == 2)) {
-        return(status)
+      if ("data.frame" %in% class(pattern)) {
+        if (ncol(pattern) == 2)  return(status)
       }
+    
       
       # Validate classes
-      if ((!(class(pattern) %in% c("data.frame", "character"))) |
-          (!(class(replacement) %in% c("data.frame", "character")))) {
+      if ((!(class(pattern)[1] %in% c("data.frame", "character"))) |
+          (!(class(replacement)[1] %in% c("data.frame", "character")))) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Cannot process ", class(object)[1],
                                   ". Pattern and replacement variables ",
-                                  "must be data.frames or character  ",
+                                  "must be data.frames or character ",
                                   "vectors. ",
                                   "See ?", class(object)[1],
                                   " for further assistance")    
@@ -281,9 +295,74 @@ VValidatorInit <- R6::R6Class(
     },
     
     replaceAbbreviations = function(object) {
+      classes <- c("Corpus", "Document", "list", "character")
       params <- object$getParams()
-      status <- private$validateClass(object, params$x, c("character"))
+      status <- private$validateClass(object, params$x, classes)
       if (status$code == FALSE) return(status)
+      if (!is.null(params$ignoreCase)) {
+        status <- private$validateLogical(object, params$ignoreCase, "ignoreCase")
+        if (status$code == FALSE) return(status)
+      }
+      return(private$validatePatternReplacement(object))
+    },
+    
+    replaceContractions = function(object) {
+      classes <- c("Corpus", "Document", "list", "character")
+      params <- object$getParams()
+      status <- private$validateClass(object, params$x, classes)
+      if (status$code == FALSE) return(status)
+      if (!is.null(params$leadspace)) {
+        status <- private$validateLogical(object, params$leadspace, "leadspace")
+        if (status$code == FALSE) return(status)
+      }
+      if (!is.null(params$trailspace)) {
+        status <- private$validateLogical(object, params$trailspace, "trailspace")
+        if (status$code == FALSE) return(status)
+      }
+      if (!is.null(params$fixed)) {
+        status <- private$validateLogical(object, params$fixed, "fixed")
+        if (status$code == FALSE) return(status)
+      }
+      if (!is.null(params$trim)) {
+        status <- private$validateLogical(object, params$trim, "trim")
+        if (status$code == FALSE) return(status)
+      }
+      return(private$validatePatternReplacement(object))
+    },
+    
+    replaceInternetSlang = function(object) {
+      classes <- c("Corpus", "Document", "list", "character")
+      params <- object$getParams()
+      status <- private$validateClass(object, params$x, classes)
+      if (status$code == FALSE) return(status)
+      if (!is.null(params$ignoreCase)) {
+        status <- private$validateLogical(object, params$ignoreCase, "ignoreCase")
+        if (status$code == FALSE) return(status)
+      }
+      return(private$validatePatternReplacement(object))
+    },
+    
+    replaceTokens = function(object) {
+      classes <- c("Corpus", "Document", "list", "character")
+      params <- object$getParams()
+      status <- private$validateClass(object, params$x, classes)
+      if (status$code == FALSE) return(status)
+      if (!is.null(params$leadspace)) {
+        status <- private$validateLogical(object, params$leadspace, "leadspace")
+        if (status$code == FALSE) return(status)
+      }
+      if (!is.null(params$trailspace)) {
+        status <- private$validateLogical(object, params$trailspace, "trailspace")
+        if (status$code == FALSE) return(status)
+      }
+      if (!is.null(params$fixed)) {
+        status <- private$validateLogical(object, params$fixed, "fixed")
+        if (status$code == FALSE) return(status)
+      }
+      if (!is.null(params$trim)) {
+        status <- private$validateLogical(object, params$trim, "trim")
+        if (status$code == FALSE) return(status)
+      }
       return(private$validatePatternReplacement(object))
     }
   )

@@ -14,7 +14,8 @@
 #' @template textCleanParams
 #' @param slang A vector of slang strings to replace.
 #' @param replacement A vector of strings with which to replace slang
-#' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case)
+#' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case). 
+#' Applies to default internet slang only.
 #' @template textCleanMethods
 #' @template textCleanClasses
 #' @template textCleanDesign
@@ -56,7 +57,23 @@ ReplaceInternetSlang <- R6::R6Class(
       private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
+      
+      if (private$validateParams()$code == FALSE) stop()
+      
       invisible(self)
+    },
+    
+    getParams = function() {
+      input <- list(
+        x = private$..x,
+        pattern = private$..slang,
+        replacement = private$..replacement,
+        ignoreCase = private$..ignoreCase
+      )
+      return(input)
+    },
+    accept = function(visitor)  {
+      visitor$replaceInternetSlang(self)
     }
   )
 )

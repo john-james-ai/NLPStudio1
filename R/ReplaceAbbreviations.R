@@ -13,6 +13,7 @@
 #' @template textCleanParams
 #' @param abbreviations A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations. Default is to use qdapDictionaries's abbreviations data set.
 #' @param replacement Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
+#' @param ignoreCase Should case be ignored? Only applies to default dictionary.
 #' @template textCleanMethods
 #' @template textCleanClasses
 #' @template textCleanDesign
@@ -30,6 +31,7 @@ ReplaceAbbreviations <- R6::R6Class(
 
   private = list(
     ..abbreviations = character(),
+    ..ignoreCase = logical(),
 
     processText = function(content) {
       if (is.null(private$..abbreviations)) {
@@ -59,14 +61,18 @@ ReplaceAbbreviations <- R6::R6Class(
 
   public = list(
     initialize = function(x, abbreviations = NULL,
-                          replacement = NULL) {
+                          replacement = NULL, ignoreCase = TRUE) {
       private$..className <- "ReplaceAbbreviations"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceAbbreviations"
       private$..x <- x
       private$..abbreviations <- abbreviations
       private$..replacement <- replacement
+      private$..ignoreCase <- ignoreCase
       private$..logs  <- LogR$new()
+      
+      if (private$validateParams()$code == FALSE) stop()
+      
       invisible(self)
     },
     
@@ -74,7 +80,8 @@ ReplaceAbbreviations <- R6::R6Class(
       input <- list(
         x = private$..x,
         pattern = private$..abbreviations,
-        replacement = private$..replacement
+        replacement = private$..replacement,
+        ignoreCase = private$..ignoreCase
       )
       return(input)
     },
