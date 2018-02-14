@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                           CmdReplaceEmoji                                    #
+#                           ReplaceEmojiCmd                                    #
 #------------------------------------------------------------------------------#
-#' CmdReplaceEmoji
+#' ReplaceEmojiCmd
 #'
-#' \code{CmdReplaceEmoji} Command for the ReplaceEmoji class.
+#' \code{ReplaceEmojiCmd} Command for the ReplaceEmoji class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceEmoji
 #' class
 #'
-#' @usage CmdReplaceEmoji$new(emojis = NULL)
+#' @usage ReplaceEmojiCmd$new(emojis = NULL)
 #'
 #' @template textCleanParams
 #' @param emojis A data.table of emojis (ASCII byte representations) and
@@ -21,11 +21,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceEmoji <- R6::R6Class(
-  classname = "CmdReplaceEmoji",
+ReplaceEmojiCmd <- R6::R6Class(
+  classname = "ReplaceEmojiCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..emojis = data.table()
@@ -34,7 +34,7 @@ CmdReplaceEmoji <- R6::R6Class(
   public = list(
     initialize = function(emojis = NULL) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceEmoji"
+      private$..meta[["name"]] <- "ReplaceEmojiCmd"
       private$..emojis <- emojis
       private$..logs  <- LogR$new()
       invisible(self)

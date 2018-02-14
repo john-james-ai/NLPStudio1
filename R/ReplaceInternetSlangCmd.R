@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                          CmdReplaceInternetSlang                             #
+#                          ReplaceInternetSlangCmd                             #
 #------------------------------------------------------------------------------#
-#' CmdReplaceInternetSlang
+#' ReplaceInternetSlangCmd
 #'
-#' \code{CmdReplaceInternetSlang} Command for the ReplaceInternetSlang class.
+#' \code{ReplaceInternetSlangCmd} Command for the ReplaceInternetSlang class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceInternetSlang
 #' class
 #'
-#' @usage CmdReplaceInternetSlang$new(slang = NULL, replacement = NULL, ignoreCase = TRUE)
+#' @usage ReplaceInternetSlangCmd$new(slang = NULL, replacement = NULL, ignoreCase = TRUE)
 #'
 #' @template textCleanParams
 #' @param slang A vector of slang strings to replace.
@@ -22,11 +22,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceInternetSlang <- R6::R6Class(
-  classname = "CmdReplaceInternetSlang",
+ReplaceInternetSlangCmd <- R6::R6Class(
+  classname = "ReplaceInternetSlangCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..slang = character(),
@@ -36,7 +36,7 @@ CmdReplaceInternetSlang <- R6::R6Class(
   public = list(
     initialize = function(slang = NULL, replacement = NULL, ignoreCase = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceInternetSlang"
+      private$..meta[["name"]] <- "ReplaceInternetSlangCmd"
       private$..slang <- slang
       private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase

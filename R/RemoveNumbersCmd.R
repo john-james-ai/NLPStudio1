@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                           CmdReplaceCurlyQuotes                              #
+#                            RemoveNumbersCmd                                  #
 #------------------------------------------------------------------------------#
-#' CmdReplaceCurlyQuotes
+#' RemoveNumbersCmd
 #'
-#' \code{CmdReplaceCurlyQuotes} Command for the ReplaceCurlyQuotes class.
+#' \code{RemoveNumbersCmd} Command for the RemoveNumbers class.
 #'
-#' Class that encapsulates the command to execute an object of the ReplaceCurlyQuotes
+#' Class that encapsulates the command to execute an object of the RemoveNumbers
 #' class
 #'
-#' @usage CmdReplaceCurlyQuotes$new()
+#' @usage RemoveNumbersCmd$new()
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -19,21 +19,21 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceCurlyQuotes <- R6::R6Class(
-  classname = "CmdReplaceCurlyQuotes",
+RemoveNumbersCmd <- R6::R6Class(
+  classname = "RemoveNumbersCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   public = list(
     initialize = function() {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceCurlyQuotes"
+      private$..meta[["name"]] <- "RemoveNumbersCmd"
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- ReplaceCurlyQuotes$new(x)$execute()
+      x <- RemoveNumbers$new(x)$execute()
       return(x)
     }
   )

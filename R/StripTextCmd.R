@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                               CmdStripText                                   #
+#                               StripTextCmd                                   #
 #------------------------------------------------------------------------------#
-#' CmdStripText
+#' StripTextCmd
 #'
-#' \code{CmdStripText} Command for the StripText class.
+#' \code{StripTextCmd} Command for the StripText class.
 #'
 #' Class that encapsulates the command to execute an object of the StripText
 #' class
 #'
-#' @usage CmdStripText$new(keepChars = NULL, removeDigits = TRUE, lowerCase = TRUE)
+#' @usage StripTextCmd$new(keepChars = NULL, removeDigits = TRUE, lowerCase = TRUE)
 #'
 #' @template textCleanParams
 #' @param keepChars A character vector of symbols (i.e., punctuation) that
@@ -28,11 +28,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdStripText <- R6::R6Class(
-  classname = "CmdStripText",
+StripTextCmd <- R6::R6Class(
+  classname = "StripTextCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..keepChars = character(),
@@ -45,7 +45,7 @@ CmdStripText <- R6::R6Class(
     initialize = function(keepChars = NULL, removeDigits = TRUE,
                           removeApostrophe = TRUE, lowerCase = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdStripText"
+      private$..meta[["name"]] <- "StripTextCmd"
       private$..keepChars <- keepChars
       private$..removeDigits <- removeDigits
       private$..removeApostrophe <- removeApostrophe

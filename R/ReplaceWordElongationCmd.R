@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                           CmdReplaceWordElongation                           #
+#                           ReplaceWordElongationCmd                           #
 #------------------------------------------------------------------------------#
-#' CmdReplaceWordElongation
+#' ReplaceWordElongationCmd
 #'
-#' \code{CmdReplaceWordElongation} Command for the ReplaceWordElongation class.
+#' \code{ReplaceWordElongationCmd} Command for the ReplaceWordElongation class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceWordElongation
 #' class
 #'
-#' @usage CmdReplaceWordElongation$new(impartMeaning = TRUE)
+#' @usage ReplaceWordElongationCmd$new(impartMeaning = TRUE)
 #'
 #' @template textCleanParams
 #' @param impartMeaning logical. If TRUE, known elongation semantics are used as replacements
@@ -21,11 +21,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceWordElongation <- R6::R6Class(
-  classname = "CmdReplaceWordElongation",
+ReplaceWordElongationCmd <- R6::R6Class(
+  classname = "ReplaceWordElongationCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..impartMeaning = logical()
@@ -34,7 +34,7 @@ CmdReplaceWordElongation <- R6::R6Class(
   public = list(
     initialize = function(impartMeaning = FALSE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceWordElongation"
+      private$..meta[["name"]] <- "ReplaceWordElongationCmd"
       private$..impartMeaning <- impartMeaning
       private$..logs  <- LogR$new()
       invisible(self)

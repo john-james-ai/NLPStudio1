@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                               CmdReplaceNames                                #
+#                               ReplaceNamesCmd                                #
 #------------------------------------------------------------------------------#
-#' CmdReplaceNames
+#' ReplaceNamesCmd
 #'
-#' \code{CmdReplaceNames} Command for the ReplaceNames class.
+#' \code{ReplaceNamesCmd} Command for the ReplaceNames class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceNames
 #' class
 #'
-#' @usage CmdReplaceNames$new(names = NULL, replacement = NULL)
+#' @usage ReplaceNamesCmd$new(names = NULL, replacement = NULL)
 #'
 #' @template textCleanParams
 #' @param names Vector of names to replace.
@@ -21,11 +21,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceNames <- R6::R6Class(
-  classname = "CmdReplaceNames",
+ReplaceNamesCmd <- R6::R6Class(
+  classname = "ReplaceNamesCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..names = character()
@@ -34,7 +34,7 @@ CmdReplaceNames <- R6::R6Class(
   public = list(
     initialize = function(names = NULL, replacement = NULL) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceNames"
+      private$..meta[["name"]] <- "ReplaceNamesCmd"
       private$..names <- names
       private$..replacement <- replacement
       private$..logs  <- LogR$new()

@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                            CmdRemovePunct                                    #
+#                            RemovePunctCmd                                    #
 #------------------------------------------------------------------------------#
-#' CmdRemovePunct
+#' RemovePunctCmd
 #'
-#' \code{CmdRemovePunct} Command for the RemovePunct class.
+#' \code{RemovePunctCmd} Command for the RemovePunct class.
 #'
 #' Class that encapsulates the command to execute an object of the RemovePunct
 #' class
 #'
-#' @usage CmdRemovePunct$new(endmark = FALSE, apostrophe = FALSE)
+#' @usage RemovePunctCmd$new(endmark = FALSE, apostrophe = FALSE)
 #'
 #' @template textCleanParams
 #' @param endmark Logical indicating whether to remove endmarks.
@@ -21,11 +21,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdRemovePunct <- R6::R6Class(
-  classname = "CmdRemovePunct",
+RemovePunctCmd <- R6::R6Class(
+  classname = "RemovePunctCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..endmark = logical(),
@@ -35,7 +35,7 @@ CmdRemovePunct <- R6::R6Class(
   public = list(
     initialize = function(endmark = FALSE, apostrophe = FALSE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdRemovePunct"
+      private$..meta[["name"]] <- "RemovePunctCmd"
       private$..endmark <- endmark
       private$..apostrophe <- apostrophe
 

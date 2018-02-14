@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                            CmdRemoveEmail                                    #
+#                               LowerCaseCmd                                   #
 #------------------------------------------------------------------------------#
-#' CmdRemoveEmail
+#' LowerCaseCmd
 #'
-#' \code{CmdRemoveEmail} Command for the RemoveEmail class.
+#' \code{LowerCaseCmd} Command for the LowerCase class.
 #'
-#' Class that encapsulates the command to execute an object of the RemoveEmail
+#' Class that encapsulates the command to execute an object of the LowerCase
 #' class
 #'
-#' @usage CmdRemoveEmail$new()
+#' @usage LowerCaseCmd$new(keepChars = NULL, removeDigits = TRUE, lowerCase = TRUE)
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -19,21 +19,22 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdRemoveEmail <- R6::R6Class(
-  classname = "CmdRemoveEmail",
+LowerCaseCmd <- R6::R6Class(
+  classname = "LowerCaseCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   public = list(
-    initialize = function() {
+    initialize = function(keepChars = NULL, removeDigits = TRUE,
+                          removeApostrophe = TRUE, lowerCase = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdRemoveEmail"
+      private$..meta[["name"]] <- "LowerCaseCmd"
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- RemoveEmail$new(x)$execute()
+      x <- LowerCase$new(x)$execute()
       return(x)
     }
   )

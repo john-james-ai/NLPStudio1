@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                            CmdRemoveWhiteSpace                               #
+#                               ReplaceKernCmd                                 #
 #------------------------------------------------------------------------------#
-#' CmdRemoveWhiteSpace
+#' ReplaceKernCmd
 #'
-#' \code{CmdRemoveWhiteSpace} Command for the RemoveWhiteSpace class.
+#' \code{ReplaceKernCmd} Command for the ReplaceKern class.
 #'
-#' Class that encapsulates the command to execute an object of the RemoveWhiteSpace
+#' Class that encapsulates the command to execute an object of the ReplaceKern
 #' class
 #'
-#' @usage CmdRemoveWhiteSpace$new()
+#' @usage ReplaceKernCmd$new()
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -19,21 +19,21 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdRemoveWhiteSpace <- R6::R6Class(
-  classname = "CmdRemoveWhiteSpace",
+ReplaceKernCmd <- R6::R6Class(
+  classname = "ReplaceKernCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   public = list(
     initialize = function() {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdRemoveWhiteSpace"
+      private$..meta[["name"]] <- "ReplaceKernCmd"
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- RemoveWhiteSpace$new(x)$execute()
+      x <- ReplaceKern$new(x)$execute()
       return(x)
     }
   )

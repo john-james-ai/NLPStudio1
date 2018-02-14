@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                               CmdReplaceKern                                 #
+#                            RemoveSymbolsCmd                                  #
 #------------------------------------------------------------------------------#
-#' CmdReplaceKern
+#' RemoveSymbolsCmd
 #'
-#' \code{CmdReplaceKern} Command for the ReplaceKern class.
+#' \code{RemoveSymbolsCmd} Command for the RemoveSymbols class.
 #'
-#' Class that encapsulates the command to execute an object of the ReplaceKern
+#' Class that encapsulates the command to execute an object of the RemoveSymbols
 #' class
 #'
-#' @usage CmdReplaceKern$new()
+#' @usage RemoveSymbolsCmd$new()
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -19,21 +19,21 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceKern <- R6::R6Class(
-  classname = "CmdReplaceKern",
+RemoveSymbolsCmd <- R6::R6Class(
+  classname = "RemoveSymbolsCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   public = list(
     initialize = function() {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceKern"
+      private$..meta[["name"]] <- "RemoveSymbolsCmd"
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- ReplaceKern$new(x)$execute()
+      x <- RemoveSymbols$new(x)$execute()
       return(x)
     }
   )

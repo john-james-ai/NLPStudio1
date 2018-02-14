@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                               CmdReplaceSymbol                               #
+#                               ReplaceSymbolCmd                               #
 #------------------------------------------------------------------------------#
-#' CmdReplaceSymbol
+#' ReplaceSymbolCmd
 #'
-#' \code{CmdReplaceSymbol} Command for the ReplaceSymbol class.
+#' \code{ReplaceSymbolCmd} Command for the ReplaceSymbol class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceSymbol
 #' class
 #'
-#' @usage CmdReplaceSymbol$new(dollar = FALSE, percent = TRUE)
+#' @usage ReplaceSymbolCmd$new(dollar = FALSE, percent = TRUE)
 #'
 #' @template textCleanParams
 #' @param dollar logical. If TRUE replaces dollar sign (\$) with "dollar".
@@ -25,11 +25,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceSymbol <- R6::R6Class(
-  classname = "CmdReplaceSymbol",
+ReplaceSymbolCmd <- R6::R6Class(
+  classname = "ReplaceSymbolCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..dollar = logical(),
@@ -44,7 +44,7 @@ CmdReplaceSymbol <- R6::R6Class(
     initialize = function(dollar = TRUE, percent = TRUE, pound = TRUE,
                           at = TRUE, and = TRUE, with = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceSymbol"
+      private$..meta[["name"]] <- "ReplaceSymbolCmd"
       private$..dollar <- dollar
       private$..percent <- percent
       private$..pound <- pound

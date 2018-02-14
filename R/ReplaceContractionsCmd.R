@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                           CmdReplaceContractions                             #
+#                           ReplaceContractionsCmd                             #
 #------------------------------------------------------------------------------#
-#' CmdReplaceContractions
+#' ReplaceContractionsCmd
 #'
-#' \code{CmdReplaceContractions} Command for the ReplaceContractions class.
+#' \code{ReplaceContractionsCmd} Command for the ReplaceContractions class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceContractions
 #' class
 #'
-#' @usage CmdReplaceContractions$new(contractions = NULL, ignoreCase = TRUE)
+#' @usage ReplaceContractionsCmd$new(contractions = NULL, ignoreCase = TRUE)
 #'
 #' @template textCleanParams
 #' @param pattern Character string of contractions to be matched in the 
@@ -36,11 +36,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceContractions <- R6::R6Class(
-  classname = "CmdReplaceContractions",
+ReplaceContractionsCmd <- R6::R6Class(
+  classname = "ReplaceContractionsCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
   
   private = list(
     ..pattern = character(),
@@ -56,7 +56,7 @@ CmdReplaceContractions <- R6::R6Class(
                           trailspace = FALSE, fixed = TRUE, trim = FALSE, 
                           orderPattern = fixed) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceContractions"
+      private$..meta[["name"]] <- "ReplaceContractionsCmd"
       private$..pattern <- pattern
       private$..replacement <- replacement
       private$..leadspace <- leadspace

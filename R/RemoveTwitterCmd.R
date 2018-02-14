@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                            CmdAddCommaSpace                                  #
+#                            RemoveTwitterCmd                                  #
 #------------------------------------------------------------------------------#
-#' CmdAddCommaSpace
+#' RemoveTwitterCmd
 #'
-#' \code{CmdAddCommaSpace} Command for the AddCommaSpace class.
+#' \code{RemoveTwitterCmd} Command for the RemoveTwitter class.
 #'
-#' Class that encapsulates the command to execute an object of the AddCommaSpace
+#' Class that encapsulates the command to execute an object of the RemoveTwitter
 #' class
 #'
-#' @usage CmdAddCommaSpace$new()
+#' @usage RemoveTwitterCmd$new()
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -19,21 +19,21 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdAddCommaSpace <- R6::R6Class(
-  classname = "CmdAddCommaSpace",
+RemoveTwitterCmd <- R6::R6Class(
+  classname = "RemoveTwitterCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   public = list(
     initialize = function() {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdAddCommaSpace"
+      private$..meta[["name"]] <- "RemoveTwitterCmd"
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- AddCommaSpace$new(x)$execute()
+      x <- RemoveTwitter$new(x)$execute()
       return(x)
     }
   )

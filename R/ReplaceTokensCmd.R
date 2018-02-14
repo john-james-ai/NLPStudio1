@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                               CmdReplaceTokens                                #
+#                               ReplaceTokensCmd                                #
 #------------------------------------------------------------------------------#
-#' CmdReplaceTokens
+#' ReplaceTokensCmd
 #'
-#' \code{CmdReplaceTokens} Command for the ReplaceTokens class.
+#' \code{ReplaceTokensCmd} Command for the ReplaceTokens class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceTokens
 #' class
 #'
-#' @usage CmdReplaceTokens$new(joinTokens = FALSE, remove = FALSE)
+#' @usage ReplaceTokensCmd$new(joinTokens = FALSE, remove = FALSE)
 #'
 #' @template textCleanParams
 #' @param tokens Character string(s) to be matched in the given character vector.
@@ -34,11 +34,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceTokens <- R6::R6Class(
-  classname = "CmdReplaceTokens",
+ReplaceTokensCmd <- R6::R6Class(
+  classname = "ReplaceTokensCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..tokens = character(),
@@ -53,7 +53,7 @@ CmdReplaceTokens <- R6::R6Class(
     initialize = function(tokens, replacement, leadspace = FALSE, trailspace = FALSE,
                           fixed = TRUE, trim = FALSE, orderPattern = fixed) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceTokens"
+      private$..meta[["name"]] <- "ReplaceTokensCmd"
       private$..tokens <- tokens
       private$..replacement <- replacement
       private$..leadspace <- leadspace

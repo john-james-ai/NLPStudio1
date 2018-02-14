@@ -1,17 +1,17 @@
 #------------------------------------------------------------------------------#
-#                               CmdReplaceNumbers                              #
+#                               ReplaceOrdinalCmd                              #
 #------------------------------------------------------------------------------#
-#' CmdReplaceNumbers
+#' ReplaceOrdinalCmd
 #'
-#' \code{CmdReplaceNumbers} Command for the ReplaceNumbers class.
+#' \code{ReplaceOrdinalCmd} Command for the ReplaceOrdinal class.
 #'
-#' Class that encapsulates the command to execute an object of the ReplaceNumbers
+#' Class that encapsulates the command to execute an object of the ReplaceOrdinal
 #' class
 #'
-#' @usage CmdReplaceNumbers$new(joinNumbers = FALSE, remove = FALSE)
+#' @usage ReplaceOrdinalCmd$new(joinOrdinal = FALSE, remove = FALSE)
 #'
 #' @template textCleanParams
-#' @param joinNumbers Logical. If FALSE the elements of larger numbers are separated with spaces. If TRUE the elements will be joined without spaces.
+#' @param joinOrdinal Logical. If FALSE the elements of larger numbers are separated with spaces. If TRUE the elements will be joined without spaces.
 #' @param remove Logical. If TRUE numbers are removed from the text.
 #' @template textCleanMethods
 #' @template textCleanClasses
@@ -21,28 +21,28 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceNumbers <- R6::R6Class(
-  classname = "CmdReplaceNumbers",
+ReplaceOrdinalCmd <- R6::R6Class(
+  classname = "ReplaceOrdinalCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
-    ..joinNumbers = logical(),
+    ..joinOrdinal = logical(),
     ..remove = logical()
   ),
 
   public = list(
-    initialize = function(joinNumbers = FALSE, remove = FALSE) {
+    initialize = function(joinOrdinal = FALSE, remove = FALSE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceNumbers"
-      private$..joinNumbers <- joinNumbers
+      private$..meta[["name"]] <- "ReplaceOrdinalCmd"
+      private$..joinOrdinal <- joinOrdinal
       private$..remove <- remove
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- ReplaceNumbers$new(x, joinNumbers = private$..joinNumbers,
+      x <- ReplaceOrdinal$new(x, joinOrdinal = private$..joinOrdinal,
                               remove = private$..remove)$execute()
       return(x)
     }

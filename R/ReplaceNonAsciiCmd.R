@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                               CmdReplaceNonAscii                             #
+#                               ReplaceNonAsciiCmd                             #
 #------------------------------------------------------------------------------#
-#' CmdReplaceNonAscii
+#' ReplaceNonAsciiCmd
 #'
-#' \code{CmdReplaceNonAscii} Command for the ReplaceNonAscii class.
+#' \code{ReplaceNonAsciiCmd} Command for the ReplaceNonAscii class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceNonAscii
 #' class
 #'
-#' @usage CmdReplaceNonAscii$new(removeNonConverted = FALSE)
+#' @usage ReplaceNonAsciiCmd$new(removeNonConverted = FALSE)
 #'
 #' @template textCleanParams
 #' @param removeNonConverted Logical. If TRUE unmapped encodings are deleted from the string.
@@ -20,11 +20,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceNonAscii <- R6::R6Class(
-  classname = "CmdReplaceNonAscii",
+ReplaceNonAsciiCmd <- R6::R6Class(
+  classname = "ReplaceNonAsciiCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..removeNonConverted = logical()
@@ -33,7 +33,7 @@ CmdReplaceNonAscii <- R6::R6Class(
   public = list(
     initialize = function(removeNonConverted = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceNonAscii"
+      private$..meta[["name"]] <- "ReplaceNonAsciiCmd"
       private$..removeNonConverted <- removeNonConverted
       private$..logs  <- LogR$new()
       invisible(self)

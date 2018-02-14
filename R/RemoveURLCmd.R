@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                            CmdRemoveHyphens                                  #
+#                             RemoveURLCmd                                     #
 #------------------------------------------------------------------------------#
-#' CmdRemoveHyphens
+#' RemoveURLCmd
 #'
-#' \code{CmdRemoveHyphens} Command for the RemoveHyphens class.
+#' \code{RemoveURLCmd} Command for the RemoveURL class.
 #'
-#' Class that encapsulates the command to execute an object of the RemoveHyphens
+#' Class that encapsulates the command to execute an object of the RemoveURL
 #' class
 #'
-#' @usage CmdRemoveHyphens$new()
+#' @usage RemoveURLCmd$new()
 #'
 #' @template textCleanParams
 #' @template textCleanMethods
@@ -19,21 +19,21 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdRemoveHyphens <- R6::R6Class(
-  classname = "CmdRemoveHyphens",
+RemoveURLCmd <- R6::R6Class(
+  classname = "RemoveURLCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   public = list(
     initialize = function() {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdRemoveHyphens"
+      private$..meta[["name"]] <- "RemoveURLCmd"
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- RemoveHyphens$new(x)$execute()
+      x <- RemoveURL$new(x)$execute()
       return(x)
     }
   )

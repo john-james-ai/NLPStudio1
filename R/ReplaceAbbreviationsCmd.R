@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                           CmdReplaceAbbreviations                            #
+#                           ReplaceAbbreviationsCmd                            #
 #------------------------------------------------------------------------------#
-#' CmdReplaceAbbreviations
+#' ReplaceAbbreviationsCmd
 #'
-#' \code{CmdReplaceAbbreviations} Command for the ReplaceAbbreviations class.
+#' \code{ReplaceAbbreviationsCmd} Command for the ReplaceAbbreviations class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceAbbreviations
 #' class
 #'
-#' @usage CmdReplaceAbbreviations$new(abbreviation, replacement = NULL, ignoreCase = TRUE )
+#' @usage ReplaceAbbreviationsCmd$new(abbreviation, replacement = NULL, ignoreCase = TRUE )
 #'
 #' @template textCleanParams
 #' @param abbreviations A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations.
@@ -22,11 +22,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceAbbreviations <- R6::R6Class(
-  classname = "CmdReplaceAbbreviations",
+ReplaceAbbreviationsCmd <- R6::R6Class(
+  classname = "ReplaceAbbreviationsCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..abbreviations = character(),
@@ -36,7 +36,7 @@ CmdReplaceAbbreviations <- R6::R6Class(
   public = list(
     initialize = function(abbreviations = NULL, replacement = NULL, ignoreCase = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceAbbreviations"
+      private$..meta[["name"]] <- "ReplaceAbbreviationsCmd"
       private$..abbreviations <- abbreviations
       private$..replacement <- replacement
       private$..ignoreCase <- ignoreCase

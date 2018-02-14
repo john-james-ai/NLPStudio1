@@ -1,14 +1,14 @@
 #------------------------------------------------------------------------------#
-#                             CmdReplaceHTML                                   #
+#                             ReplaceHTMLCmd                                   #
 #------------------------------------------------------------------------------#
-#' CmdReplaceHTML
+#' ReplaceHTMLCmd
 #'
-#' \code{CmdReplaceHTML} Command for the ReplaceHTML class.
+#' \code{ReplaceHTMLCmd} Command for the ReplaceHTML class.
 #'
 #' Class that encapsulates the command to execute an object of the ReplaceHTML
 #' class
 #'
-#' @usage CmdReplaceHTML$new(symbol = FALSE)
+#' @usage ReplaceHTMLCmd$new(symbol = FALSE)
 #'
 #' @template textCleanParams
 #' @param symbol Logical. If codeTRUE the symbols are retained with appropriate replacements.
@@ -21,11 +21,11 @@
 #' @author John James, \email{jjames@@dataScienceSalon.org}
 #' @family TextClean Classes
 #' @export
-CmdReplaceHTML <- R6::R6Class(
-  classname = "CmdReplaceHTML",
+ReplaceHTMLCmd <- R6::R6Class(
+  classname = "ReplaceHTMLCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CmdText0,
+  inherit = TextCmd0,
 
   private = list(
     ..symbol = logical()
@@ -34,7 +34,7 @@ CmdReplaceHTML <- R6::R6Class(
   public = list(
     initialize = function(symbol = TRUE) {
       private$..methodName <- "initialize"
-      private$..meta[["name"]] <- "CmdReplaceHTML"
+      private$..meta[["name"]] <- "ReplaceHTMLCmd"
       private$..symbol <- symbol
       private$..logs  <- LogR$new()
       invisible(self)
