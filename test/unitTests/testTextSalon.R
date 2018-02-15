@@ -24,7 +24,7 @@ testTextStudio <- function() {
     
 
     # Import corpus and get contents
-    corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
     docs <- corpus$getDocuments()
     docs1 <- lapply(docs, function(d) {
       d$content
@@ -32,7 +32,7 @@ testTextStudio <- function() {
 
     # Preprocess
     ts <- TextStudio$new(corpus)
-    cmd <- ReplaceInternetSlangCmd$new(slang = tokens, replacement = replace, ignoreCase = TRUE)
+    cmd <- ReplaceNonAsciiCmd$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 

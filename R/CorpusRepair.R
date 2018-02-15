@@ -23,7 +23,7 @@ CorpusRepair <- R6::R6Class(
   classname = "CorpusRepair",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = CorpusImport0,
+  inherit = CorpusSource0,
 
   private = list(
     ..codes = numeric()

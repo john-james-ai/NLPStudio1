@@ -12,10 +12,10 @@ testPreprocessCorpusReshape <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "CorpusImportDir"
+    name <- "CorpusSourceDir"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input"
-    cid <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    cid <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
     cidContent <- cid$read()
     stopifnot(length(cidContent) == 3)
     cidDocuments <- cid$getDocuments()

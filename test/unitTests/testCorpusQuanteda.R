@@ -1,9 +1,9 @@
-testCorpusImportQuanteda <- function() {
+testCorpusSourceQuanteda <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     unlink("./test/testCorpus/data", recursive = TRUE)
-    CorpusImportQuantedaTest <<- LogTest$new()
+    CorpusSourceQuantedaTest <<- LogTest$new()
     qc <- quanteda::corpus(readtext::readtext("./test/testData/input"))
     quanteda::docvars(qc, "name") <- c("Blogs", "News", "Twitter")
     quanteda::docvars(qc, "year") <- "2018"
@@ -11,30 +11,30 @@ testCorpusImportQuanteda <- function() {
   }
 
   test0 <- function(qc) {
-    test <- "test0: CorpusImportQuanteda"
+    test <- "test0: CorpusSourceQuanteda"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "CorpusImportQuanteda"
+    name <- "CorpusSourceQuanteda"
     desc <- "Creating corpus from Quanteda corpus object"
     docDesc <- c("Blogs Data", "News of the world", "Tweets and rants")
 
 
     # Validation
-    #corpus <- CorpusImportQuanteda$new() # missing params
-    #corpus <- CorpusImportQuanteda$new("foo") # missing param data source
-    #corpus <- CorpusImportQuanteda$new(222, "dataSource") # invalid name
-    #corpus <- CorpusImportQuanteda$new("foo bar", "dataSource") # invalid name
-    #corpus <- CorpusImportQuanteda$new(TRUE, "dataSource") # invalid name
-    #corpus <- CorpusImportQuanteda$new(Entity, "dataSource") # invalid name
-    #corpus <- CorpusImportQuanteda$new(222, "dataSource") # invalid name
-    # corpus <- CorpusImportQuanteda$new(newsTxt, "dataSource") # invalid name
-    # corpus <- CorpusImportQuanteda$new(start, "dataSource") # invalid name
-    #corpus <- CorpusImportQuanteda$new(name, 22) # invalid data source
-    #corpus <- CorpusImportQuanteda$new(name, TRUE) # invalid data source
+    #corpus <- CorpusSourceQuanteda$new() # missing params
+    #corpus <- CorpusSourceQuanteda$new("foo") # missing param data source
+    #corpus <- CorpusSourceQuanteda$new(222, "dataSource") # invalid name
+    #corpus <- CorpusSourceQuanteda$new("foo bar", "dataSource") # invalid name
+    #corpus <- CorpusSourceQuanteda$new(TRUE, "dataSource") # invalid name
+    #corpus <- CorpusSourceQuanteda$new(Entity, "dataSource") # invalid name
+    #corpus <- CorpusSourceQuanteda$new(222, "dataSource") # invalid name
+    # corpus <- CorpusSourceQuanteda$new(newsTxt, "dataSource") # invalid name
+    # corpus <- CorpusSourceQuanteda$new(start, "dataSource") # invalid name
+    #corpus <- CorpusSourceQuanteda$new(name, 22) # invalid data source
+    #corpus <- CorpusSourceQuanteda$new(name, TRUE) # invalid data source
 
     dataSource <- qc
-    corpus <- CorpusImportQuanteda$new(name, dataSource)$build()$getResult()
+    corpus <- CorpusSourceQuanteda$new(name, dataSource)$build()$getResult()
     content <- corpus$read()
     stopifnot(length(content) == 3)
 
@@ -45,9 +45,9 @@ testCorpusImportQuanteda <- function() {
     print(corpus$meta())
     print(corpus$docMeta())
 
-    CorpusImportQuantedaTest$logs(className = "CorpusImportQuanteda", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusImportQuantedaTest$logs(className = "CorpusImportQuanteda", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusImportQuantedaTest$logs(className = "CorpusImportQuanteda", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    CorpusSourceQuantedaTest$logs(className = "CorpusSourceQuanteda", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    CorpusSourceQuantedaTest$logs(className = "CorpusSourceQuanteda", methodName = "build", msg = paste("Successfully instantiated. "))
+    CorpusSourceQuantedaTest$logs(className = "CorpusSourceQuanteda", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -55,10 +55,10 @@ testCorpusImportQuanteda <- function() {
 
 
   testn <- function() {
-    test <- "testn: CorpusImportQuanteda: Unzip"
+    test <- "testn: CorpusSourceQuanteda: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
 
-    CorpusImportQuantedaTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    CorpusSourceQuantedaTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -69,6 +69,6 @@ test0(qc)
 
 
 }
-className <- "CorpusImportQuanteda"
-#source('./test/unitTests/testCorpusImportQuanteda.R')
-testCorpusImportQuanteda()
+className <- "CorpusSourceQuanteda"
+#source('./test/unitTests/testCorpusSourceQuanteda.R')
+testCorpusSourceQuanteda()

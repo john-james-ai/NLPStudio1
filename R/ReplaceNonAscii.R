@@ -39,6 +39,9 @@ ReplaceNonAscii <- R6::R6Class(
     processText = function(content) {
       content <- textclean::replace_non_ascii(x = content,
                                               remove.nonconverted = private$..removeNonConverted)
+      content <- textclean::mgsub(x = content,
+                                  pattern = NLPStudio:::encodings$pattern,
+                                  replacement = NLPStudio:::encodings$replace)
       return(content)
     }
   ),

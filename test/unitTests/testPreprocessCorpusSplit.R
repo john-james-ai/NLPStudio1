@@ -10,10 +10,10 @@ testPreprocessCorpusSplitStrategy <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "CorpusImportDir"
+    name <- "CorpusSourceDir"
     desc <- "Creating corpus from directory sources"
     dataSource <- "./test/testData/input"
-    corpus <- CorpusImportDir$new(name, dataSource)$build()$getResult()
+    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
     corpusContent <- corpus$read()
     stopifnot(length(corpusContent) == 3)
     docs <- corpus$getDocuments()
@@ -46,7 +46,7 @@ testPreprocessCorpusSplitStrategy <- function() {
     stopifnot(corpus$meta() == corpusR$meta())
 
     # Logit
-    PreprocessCorpusSplitStrategyTest$logs(className = "CorpusImportDir", methodName = "all", msg = paste("Imported Corpus"))
+    PreprocessCorpusSplitStrategyTest$logs(className = "CorpusSourceDir", methodName = "all", msg = paste("Imported Corpus"))
     PreprocessCorpusSplitStrategyTest$logs(className = "ProcessCorpusRehapeStrategy", methodName = "all", msg = paste("Successfully reshaped content"))
     cat(paste0(test, " Completed: Success!\n"))
 

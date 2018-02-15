@@ -48,14 +48,30 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
 
-    validateDirGlob = function(path) {
+    validateDirGlob = function(object) {
 
       status <- list()
       status[['code']] <- TRUE
+      
+      files <- character(0)
+      
+      ds <- object$getParams()
 
-      if (!isDirectory(path) & !isDirectory(dirname(path))) {
-        status[['code']] <- FALSE
-        status[['msg']] <- paste0("Invalid path. ", path, " does not exist. ")
+      if (isDirectory(ds)) {
+        files <- list.files(ds, full.names = TRUE)
+      } else if ("character" %in% class(ds)) {
+        glob <- basename(ds)
+        dir <- dirname(ds)
+        files <- list.files(dir, pattern = glob2rx(glob), full.names = TRUE)
+      } 
+      
+      if (length(files) == 0) {
+        
+        status$code <- FALSE
+        status$msg <- paste0("Unable to import corpus from ",
+                             ds, ". ",
+                             "No files match the data source. See ?",
+                             class(object)[1], " for further assistance.")
       }
       return(status)
     },
@@ -246,15 +262,15 @@ VValidatorInit <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                      Corpus Import Validation                           #
     #-------------------------------------------------------------------------#
-    corpusImportDir = function(object) {
-      return(private$validateClass(object, object$getDataSource(), "character"))
+    corpusSourceDir = function(object) {
+      return(private$validateDirGlob(object))
     },
-    corpusImportQuanteda = function(object) {
-      return(private$validateClass(object, object$getDataSource(),
+    corpusSourceQuanteda = function(object) {
+      return(private$validateClass(object, object$getParams(),
                                    "corpus"))
     },
-    corpusImportText = function(object) {
-      return(private$validateClass(object, object$getDataSource(),
+    corpusSourceText = function(object) {
+      return(private$validateClass(object, object$getParams(),
                                    c("character", "list")))
     },
 
