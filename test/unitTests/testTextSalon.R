@@ -32,7 +32,7 @@ testTextStudio <- function() {
 
     # Preprocess
     ts <- TextStudio$new(corpus)
-    cmd <- ReplaceNonAsciiCmd$new()
+    cmd <- TokenizeCmd$new(whatA = "sentence")
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 

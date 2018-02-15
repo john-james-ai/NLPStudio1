@@ -36,6 +36,20 @@ VValidatorInit <- R6::R6Class(
     ..object = character(),
     ..parent = character(),
     
+    validateTokenize = function(object) {
+      status <- list()
+      status[['code']] <- TRUE
+      
+      p <- object$getParams()
+      if (!(p$what %in% c("character", "word", "sentence"))) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Invalid to parameter value. Valid values are ",
+                                  "c('character', 'word', 'sentence'). ",
+                                  "See ?", class(object)[1], " for further assistance.")
+      }
+      return(status)
+    },
+    
     validateLogical = function(object, param, name) {
       status <- list()
       status[['code']] <- TRUE
@@ -380,6 +394,10 @@ VValidatorInit <- R6::R6Class(
         if (status$code == FALSE) return(status)
       }
       return(private$validatePatternReplacement(object))
+    },
+    
+    tokenize = function(object) {
+      return(private$validateTokenize(object))
     }
   )
 )

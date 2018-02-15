@@ -25,6 +25,7 @@ CorpusSourceDir <- R6::R6Class(
     repairDocument = function(path) {
       
       ioBin <- IOBin$new()
+      ioText <- IOText$new()
       
       content <- ioBin$read(path = path)
       
@@ -32,7 +33,12 @@ CorpusSourceDir <- R6::R6Class(
         content[content == as.raw(NLPStudio:::ctrl$pattern[i])] = as.raw(NLPStudio:::ctrl$replace[i])
       }
       
-      ioBin$write(path = path, content = content)
+      # Save to temp file and read
+      d <- tempfile(fileext = '.txt')
+      ioBin$write(path = d, content = content)
+      content <- ioText$read(path = d)
+      
+      return(content)
     }
   ),
 
@@ -78,22 +84,23 @@ CorpusSourceDir <- R6::R6Class(
         dir <- dirname(path)
         files <- list.files(dir, pattern = glob2rx(glob), full.names = TRUE)
       }
-        
+      
+      # Obtain content  
       if (private$..repair == TRUE) {
-        lapply(files, function(f) {
+        content <- lapply(files, function(f) {
           private$repairDocument(f)
         })
+      } else {
+        content <- lapply(files, function(f) {
+          io <- IOFactory$new(f)$getIOStrategy()
+          io$read(path = f)
+        })
       }
+      
       # Extract meta data
       fileNames <- basename(files)
       docNames <- tools::file_path_sans_ext(fileNames)
       source <- dirname(files)
-
-      # Read content
-      content <- lapply(files, function(f) {
-        io <- IOFactory$new(f)$getIOStrategy()
-        io$read(path = f)
-      })
 
       # Create documents
       docs <- lapply(seq_along(content), function(x) {
