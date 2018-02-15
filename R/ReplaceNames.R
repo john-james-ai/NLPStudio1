@@ -11,12 +11,12 @@
 #'
 #' @usage ReplaceNames$new(x, names = NULL, replacement = NULL)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param names Vector of names to replace.
 #' @param replacement A string with which to replace names.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -24,7 +24,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceNames <- R6::R6Class(
   classname = "ReplaceNames",

@@ -5,7 +5,7 @@
 #'
 #' \code{TextStudio} Class for performing text cleaning and preprocessing
 #'
-#' @template textSalonClasses
+#' @template textStudioClasses
 #'
 #' @section TextStudio methods:
 #' \strong{Core Methods:}

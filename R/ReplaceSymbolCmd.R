@@ -10,20 +10,20 @@
 #'
 #' @usage ReplaceSymbolCmd$new(dollar = FALSE, percent = TRUE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param dollar logical. If TRUE replaces dollar sign (\$) with "dollar".
 #' @param percent logical. If TRUE replaces percent sign (\%) with "percent".
 #' @param pound logical. If TRUE replaces pound sign (\#) with "number".
 #' @param at logical. If TRUE replaces at sign (\@) with "at".
 #' @param and logical. If TRUE replaces and sign (\&) with "and".
 #' @param  with logical. If TRUE replaces with sign (w/) with "with"
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceSymbolCmd <- R6::R6Class(
   classname = "ReplaceSymbolCmd",

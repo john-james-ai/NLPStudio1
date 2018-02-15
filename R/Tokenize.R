@@ -15,12 +15,12 @@
 #'
 #' @usage Tokenize$new(x, to = c("character", "word", "sentence"))$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param what Character string containing either c('character', 'word' ,'sentence)
 #' indicating to which format the document should be tokenized.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -29,7 +29,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 Tokenize <- R6::R6Class(
   classname = "Tokenize",

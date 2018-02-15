@@ -289,34 +289,6 @@ VValidatorInit <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                      Preprocessing Validation                           #
-    #-------------------------------------------------------------------------#
-    preprocessCorpusBinStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Corpus")))
-    },
-    preprocessCorpusEncodeStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Corpus")))
-    },
-    preprocessCorpusReshapeStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Corpus")))
-    },
-    preprocessCorpusSplitStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Corpus")))
-    },
-    preprocessDocumentBinStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Document")))
-    },
-    preprocessDocumentEncodeStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Document")))
-    },
-    preprocessDocumentReshapeStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Document")))
-    },
-    preprocessDocumentSplitStrategy = function(object) {
-      return(private$validateClass(object, object$getInput(), c("Document")))
-    },
-    
-    #-------------------------------------------------------------------------#
     #                      TextStudio Validation                              #
     #-------------------------------------------------------------------------#
     textSalon = function(object) {
@@ -394,6 +366,14 @@ VValidatorInit <- R6::R6Class(
         if (status$code == FALSE) return(status)
       }
       return(private$validatePatternReplacement(object))
+    },
+    
+    splitCorpus = function(object) {
+      return(private$validateClass(object, object$getParams()$x, c("Corpus")))
+    },
+    
+    splitDocument = function(object) {
+      return(private$validateClass(object, object$getParams()$x, c("Document")))
     },
     
     tokenize = function(object) {

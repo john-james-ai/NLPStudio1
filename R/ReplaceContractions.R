@@ -11,7 +11,7 @@
 #'
 #' @usage ReplaceContractions$new(x, contractions = lexicon::key_contractions, ignoreCase = TRUE)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param contractions Character string of contractions to be matched in the 
 #' given character vector. If NULL, the default is to use \code{\link[lexicon]{key_contractions}} data set.
 #' @param replacement Character string equal in length to contractions containing
@@ -30,9 +30,9 @@
 #' search for "then" first).
 #' @param \dots ignored.
 #'
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -40,7 +40,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceContractions <- R6::R6Class(
   classname = "ReplaceContractions",

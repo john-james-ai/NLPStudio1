@@ -10,18 +10,18 @@
 #'
 #' @usage ReplaceAbbreviationsCmd$new(abbreviation, replacement = NULL, ignoreCase = TRUE )
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param abbreviations A two column key of abbreviations (column 1) and long form replacements (column 2) or a vector of abbreviations.
 #' Default is to use qdapDictionaries's abbreviations data set.
 #' @param replacement Vector of long form replacements if a data frame is not supplied to the abbreviation argument.
 #' @param ignoreCase Should case be ignored? Only applies to default dictionary.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceAbbreviationsCmd <- R6::R6Class(
   classname = "ReplaceAbbreviationsCmd",

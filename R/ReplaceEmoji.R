@@ -11,12 +11,12 @@
 #'
 #' @usage ReplaceEmoji$new(x, emojis = NULL)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param emojis A data.table of emojis (ASCII byte representations) and
 #' corresponding word/identifier meanings.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -24,7 +24,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceEmoji <- R6::R6Class(
   classname = "ReplaceEmoji",

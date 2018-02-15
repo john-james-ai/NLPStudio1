@@ -12,12 +12,12 @@
 #' @usage ReplaceOrdinal$new(x)$execute()
 #' @usage ReplaceOrdinal$new(x, joinOrdinal = TRUE, remove = FALSE)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param joinOrdinal Logical. If FALSE the elements of larger numbers are separated with spaces. If TRUE the elements will be joined without spaces.
 #' @param remove Logical. If TRUE numbers are removed from the text.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -25,7 +25,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceOrdinal <- R6::R6Class(
   classname = "ReplaceOrdinal",

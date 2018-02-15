@@ -10,16 +10,16 @@
 #'
 #' @usage ReplaceEmojiCmd$new(emojis = NULL)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param emojis A data.table of emojis (ASCII byte representations) and
 #' corresponding word/identifier meanings.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceEmojiCmd <- R6::R6Class(
   classname = "ReplaceEmojiCmd",

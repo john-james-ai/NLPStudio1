@@ -10,16 +10,16 @@
 #'
 #' @usage ReplaceHTMLCmd$new(symbol = FALSE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param symbol Logical. If codeTRUE the symbols are retained with appropriate replacements.
 #' If FALSE they are removed.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceHTMLCmd <- R6::R6Class(
   classname = "ReplaceHTMLCmd",

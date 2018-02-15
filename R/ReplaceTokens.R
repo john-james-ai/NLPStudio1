@@ -11,7 +11,7 @@
 #'
 #' @usage ReplaceTokens$new(x, pattern, replacement, leadspace = FALSE)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param tokens Character string(s) to be matched in the given character vector.
 #' @param replacement Character string equal in length to pattern or of length
 #' one which are  a replacement for matched pattern.
@@ -28,14 +28,14 @@
 #' replacing meta strings (e.g., \code{pattern = c("the", "then")} resorts to
 #' search for "then" first).
 #'
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @return \code{ReplaceTokens} - Returns a vector with the pattern replaced.
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceTokens <- R6::R6Class(
   classname = "ReplaceTokens",

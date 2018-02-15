@@ -10,7 +10,7 @@
 #'
 #' @usage ReplaceContractionsCmd$new(contractions = NULL, ignoreCase = TRUE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param contractions Character string of contractions to be matched in the 
 #' given character vector. If NULL, the default is to use \code{\link[lexicon]{key_contractions}} data set.
 #' @param replacement Character string equal in length to contractions containing
@@ -28,13 +28,13 @@
 #' replacing meta strings (e.g., \code{contractions = c("the", "then")} resorts to 
 #' search for "then" first).
 #' @param \dots ignored.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceContractionsCmd <- R6::R6Class(
   classname = "ReplaceContractionsCmd",

@@ -10,16 +10,16 @@
 #'
 #' @usage TokenizeCmd$new(joinTokens = FALSE, remove = FALSE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param what Character string containing either c('character', 'word' ,'sentence)
 #' indicating to which format the document should be tokenized.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 TokenizeCmd <- R6::R6Class(
   classname = "TokenizeCmd",

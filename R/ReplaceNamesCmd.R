@@ -10,16 +10,16 @@
 #'
 #' @usage ReplaceNamesCmd$new(names = NULL, replacement = NULL)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param names Vector of names to replace.
 #' @param replacement A string with which to replace names.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceNamesCmd <- R6::R6Class(
   classname = "ReplaceNamesCmd",

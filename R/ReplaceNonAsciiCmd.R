@@ -10,15 +10,15 @@
 #'
 #' @usage ReplaceNonAsciiCmd$new(removeNonConverted = FALSE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param removeNonConverted Logical. If TRUE unmapped encodings are deleted from the string.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceNonAsciiCmd <- R6::R6Class(
   classname = "ReplaceNonAsciiCmd",

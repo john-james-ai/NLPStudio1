@@ -21,12 +21,12 @@
 #'
 #' @usage ReplaceWordElongation$new(x, impartMeaning = FALSE)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param impartMeaning logical. If TRUE, known elongation semantics are used as replacements
 #' (see textclean:::meaning_elongations for known elongation semantics and replacements).
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -34,7 +34,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceWordElongation <- R6::R6Class(
   classname = "ReplaceWordElongation",

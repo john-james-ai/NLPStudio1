@@ -3,19 +3,19 @@
 #------------------------------------------------------------------------------#
 #' TextCmd0
 #'
-#' \code{TextCmd0} Abstract class  for the TextClean family of classes.
+#' \code{TextCmd0} Abstract class  for the TextStudio family of classes.
 #'
-#' This abstract class defines a common interface and methods for the TextClean
+#' This abstract class defines a common interface and methods for the TextStudio
 #' family of classes.
 #'
-#' @template textCleanParams
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioParams
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean classes
+#' @family TextStudio classes
 #' @export
 TextCmd0 <- R6::R6Class(
   classname = "TextCmd0",

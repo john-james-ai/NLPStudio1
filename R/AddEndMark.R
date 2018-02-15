@@ -11,16 +11,16 @@
 #'
 #' @usage AddEndMark$new(x, replacement = "|", endmarks = c("?", ".", "!"), ...)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param replacement Symbol added for missing endmarks
 #' @param endmarks List of endmark symbols to detect
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 AddEndMark <- R6::R6Class(
   classname = "AddEndMark",

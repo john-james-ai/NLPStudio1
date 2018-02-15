@@ -10,14 +10,14 @@
 #'
 #' @usage ReplaceBacktickCmd$new()
 #'
-#' @template textCleanParams
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioParams
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceBacktickCmd <- R6::R6Class(
   classname = "ReplaceBacktickCmd",

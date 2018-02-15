@@ -10,7 +10,7 @@
 #'
 #' @usage StripTextCmd$new(keepChars = NULL, removeDigits = TRUE, lowerCase = TRUE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param keepChars A character vector of symbols (i.e., punctuation) that
 #' strip should keep. The default is to strip every symbol except apostrophes
 #' and a double tilde "~~". The double tilde "~~" is included for a
@@ -20,13 +20,13 @@
 #' @param removeDigits Logical. If TRUE, digits are removed from the text.
 #' @param removeApostrophe Logical. If TRUE, digits are removed from the text.
 #' @param lowerCase Logical.  If TRUE, forces all alphabetic characters to lower case.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 StripTextCmd <- R6::R6Class(
   classname = "StripTextCmd",

@@ -10,17 +10,17 @@
 #'
 #' @usage ReplaceInternetSlangCmd$new(slang = NULL, replacement = NULL, ignoreCase = TRUE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param slang A vector of slang strings to replace.
 #' @param replacement A vector of strings with which to replace slang
 #' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case)
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceInternetSlangCmd <- R6::R6Class(
   classname = "ReplaceInternetSlangCmd",

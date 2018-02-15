@@ -10,16 +10,16 @@
 #'
 #' @usage ReplaceEmoticonCmd$new(emoticons = NULL)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param emoticons A data.table of emoticons (graphical representations) and
 #' corresponding word meanings.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceEmoticonCmd <- R6::R6Class(
   classname = "ReplaceEmoticonCmd",

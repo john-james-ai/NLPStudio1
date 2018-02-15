@@ -11,14 +11,14 @@
 #'
 #' @usage ReplaceInternetSlang$new(x, slang = NULL, replacement = NULL, ignoreCase = TRUE)$execute()
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param slang A vector of slang strings to replace.
 #' @param replacement A vector of strings with which to replace slang
 #' @param ignoreCase Logical. If TRUE the case of slang will be ignored (replacement regardless of case). 
 #' Applies to default internet slang only.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @examples
 #'
@@ -26,7 +26,7 @@
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceInternetSlang <- R6::R6Class(
   classname = "ReplaceInternetSlang",

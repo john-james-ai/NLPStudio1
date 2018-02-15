@@ -10,16 +10,16 @@
 #'
 #' @usage RemovePunctCmd$new(endmark = FALSE, apostrophe = FALSE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param endmark Logical indicating whether to remove endmarks.
 #' @param apostrophe Logical indicating whether to remove apostrophes.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 RemovePunctCmd <- R6::R6Class(
   classname = "RemovePunctCmd",

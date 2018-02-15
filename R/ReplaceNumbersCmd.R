@@ -10,16 +10,16 @@
 #'
 #' @usage ReplaceNumbersCmd$new(joinNumbers = FALSE, remove = FALSE)
 #'
-#' @template textCleanParams
+#' @template textStudioParams
 #' @param joinNumbers Logical. If FALSE the elements of larger numbers are separated with spaces. If TRUE the elements will be joined without spaces.
 #' @param remove Logical. If TRUE numbers are removed from the text.
-#' @template textCleanMethods
-#' @template textCleanClasses
-#' @template textCleanDesign
+#' @template textStudioMethods
+#' @template textStudioClasses
+#' @template textStudioDesign
 #'
 #' @docType class
 #' @author John James, \email{jjames@@dataScienceSalon.org}
-#' @family TextClean Classes
+#' @family TextStudio Classes
 #' @export
 ReplaceNumbersCmd <- R6::R6Class(
   classname = "ReplaceNumbersCmd",
