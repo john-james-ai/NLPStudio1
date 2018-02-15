@@ -25,7 +25,7 @@ ReplaceNamesCmd <- R6::R6Class(
   classname = "ReplaceNamesCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextCmd0,
+  
 
   private = list(
     ..names = character()

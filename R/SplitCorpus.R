@@ -49,7 +49,6 @@ SplitCorpus <- R6::R6Class(
 
       private$..className <- "SplitCorpus"
       private$..methodName <- "initialize"
-      private$..methodName <- "initialize"
       private$..x <- x
       private$..trainSize <- trainSize
       private$..valSize <- valSize

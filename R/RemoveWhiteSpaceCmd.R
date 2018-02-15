@@ -23,7 +23,7 @@ RemoveWhiteSpaceCmd <- R6::R6Class(
   classname = "RemoveWhiteSpaceCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextCmd0,
+  
 
   public = list(
     initialize = function() {

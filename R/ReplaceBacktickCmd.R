@@ -23,7 +23,7 @@ ReplaceBacktickCmd <- R6::R6Class(
   classname = "ReplaceBacktickCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextCmd0,
+  
 
 
   public = list(

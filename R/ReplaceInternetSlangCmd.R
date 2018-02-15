@@ -26,7 +26,7 @@ ReplaceInternetSlangCmd <- R6::R6Class(
   classname = "ReplaceInternetSlangCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextCmd0,
+  
 
   private = list(
     ..slang = character(),

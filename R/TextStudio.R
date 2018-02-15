@@ -77,9 +77,9 @@ TextStudio <- R6::R6Class(
 
       private$..methodName <- "addCommand"
 
-      if (!c("TextCmd0") %in% class(cmd)) {
+      if (!c("Text0") %in% class(cmd)) {
         private$..state <- paste0("Invalid text command object. Object must be ",
-                                  "of the TextCmd0 classes.  See ?", class(self)[1],
+                                  "of the Text0 classes.  See ?", class(self)[1],
                                   " for further assistance.")
         self$logIt("Error")
         stop()
@@ -99,9 +99,9 @@ TextStudio <- R6::R6Class(
 
       private$..methodName <- "removeCommand"
 
-      if (!c("TextCmd0") %in% class(cmd)) {
+      if (!c("Text0") %in% class(cmd)) {
         private$..state <- paste0("Invalid text command object. Object must be ",
-                                  "of the TextCmd0 classes.  See ?", class(self)[1],
+                                  "of the Text0 classes.  See ?", class(self)[1],
                                   " for further assistance.")
         self$logIt("Error")
         stop()

@@ -25,7 +25,7 @@ ReplaceEmoticonCmd <- R6::R6Class(
   classname = "ReplaceEmoticonCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = TextCmd0,
+  
 
   private = list(
     ..emoticons = data.table()
