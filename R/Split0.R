@@ -19,7 +19,7 @@ Split0 <- R6::R6Class(
   classname = "Split0",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = Text0,
 
   private = list(
     ..x = character(),

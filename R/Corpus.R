@@ -96,17 +96,15 @@ Corpus <- R6::R6Class(
     addDocument = function(document) {
 
       private$..methodName <- 'addDocument'
-
-      if (!("Document" %in% class(document))) {
-        private$..state <- paste0("Unable to add document. Document parameter ",
-                                  "is not a valid Document class object. ",
-                                  "See ?", class(self)[1], " for further ",
-                                  "assistance.")
+      
+      # Perform validation
+      v <- Validator$new()
+      status <- v$addChild(self, document)
+      if (status$code == FALSE) {
+        private$..state <- status$msg
         self$logIt("Error")
         stop()
       }
-
-      private$..methodName <- 'addDocument'
       name <- document$getName()
       private$..documents[[name]] <- document
       private$..state <- paste0("Added ", name, " to ", private$..meta[["name"]])

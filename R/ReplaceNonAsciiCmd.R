@@ -24,7 +24,7 @@ ReplaceNonAsciiCmd <- R6::R6Class(
   classname = "ReplaceNonAsciiCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  
+  inherit = Text0,  
 
   private = list(
     ..removeNonConverted = logical()

@@ -23,7 +23,7 @@ RemoveNumbersCmd <- R6::R6Class(
   classname = "RemoveNumbersCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  
+  inherit = Text0,
 
   public = list(
     initialize = function() {

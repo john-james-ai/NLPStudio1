@@ -25,7 +25,7 @@ TokenizeCmd <- R6::R6Class(
   classname = "TokenizeCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  
+  inherit = Text0,
 
   private = list(
     ..what = character()

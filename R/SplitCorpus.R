@@ -45,10 +45,11 @@ SplitCorpus <- R6::R6Class(
 
   public = list(
 
-    initialize = function(x, trainSize, valSize = 0, testSize, name = NULL, seed = NULL) {
+    initialize = function(x, name, trainSize, valSize = 0, testSize, seed = NULL) {
 
       private$..className <- "SplitCorpus"
       private$..methodName <- "initialize"
+      private$..name <- name
       private$..x <- x
       private$..trainSize <- trainSize
       private$..valSize <- valSize
@@ -76,6 +77,10 @@ SplitCorpus <- R6::R6Class(
     execute = function() {
 
       private$..methodName <- "execute"
+      
+      # Create Cross-Validation Group Corpus
+      name <- private$..name
+      cvCorpora <- Corpus$new(name = name)
 
       # Split Documents
       docs <- private$..x$getDocuments()
@@ -89,37 +94,35 @@ SplitCorpus <- R6::R6Class(
 
       # Create new corpora
       if (private$..trainSize > 0 ) {
-        trainCorpus <- Corpus$new(name = private$..x$getName())
+        trainCorpus <- Corpus$new(name = paste0(private$..x$getName(), ".train"))
         trainCorpus <- private$cloneCorpus(private$..x, trainCorpus)
         for (i in 1:length(cvSets)) {
-          private$..cvSet[["train"]] <- trainCorpus$addDocument(cvSets[[i]]$train)
+          trainCorpus <- trainCorpus$addDocument(cvSets[[i]]$train)
         }
+        cvCorpora <- cvCorpora$addDocument(trainCorpus)
       }
       if (private$..valSize > 0 ) {
-        validationCorpus <- Corpus$new(name = private$..x$getName())
+        validationCorpus <- Corpus$new(name = paste0(private$..x$getName(), ".validation"))
         validationCorpus <- private$cloneCorpus(private$..x, validationCorpus)
         for (i in 1:length(cvSets)) {
-          private$..cvSet[["validation"]] <- validationCorpus$addDocument(cvSets[[i]]$validation)
+          validationCorpus <- validationCorpus$addDocument(cvSets[[i]]$validation)
         }
+        cvCorpora <- cvCorpora$addDocument(validationCorpus)
       }
       if (private$..testSize > 0 ) {
-        testCorpus <- Corpus$new(name = private$..x$getName())
+        testCorpus <- Corpus$new(name = paste0(private$..x$getName(), ".test"))
         testCorpus <- private$cloneCorpus(private$..x, testCorpus)
         for (i in 1:length(cvSets)) {
-          private$..cvSet[["test"]] <- testCorpus$addDocument(cvSets[[i]]$test)
+          testCorpus <- testCorpus$addDocument(cvSets[[i]]$test)
         }
+        cvCorpora <- cvCorpora$addDocument(testCorpus)
       }
-
+      
       # log
       private$..state <- paste0("Successfully performed SplitCorpus.")
       self$logIt()
 
-      invisible(self)
-    },
-
-
-    getResult = function() {
-      return(private$..cvSet)
+      return(cvCorpora)
     },
 
     #-------------------------------------------------------------------------#

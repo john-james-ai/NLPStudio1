@@ -27,7 +27,7 @@ ReplaceAbbreviationsCmd <- R6::R6Class(
   classname = "ReplaceAbbreviationsCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  
+  inherit = Text0,
 
   private = list(
     ..abbreviations = character(),

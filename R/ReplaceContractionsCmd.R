@@ -40,7 +40,7 @@ ReplaceContractionsCmd <- R6::R6Class(
   classname = "ReplaceContractionsCmd",
   lock_objects = FALSE,
   lock_class = FALSE,
-  
+  inherit = Text0,
   
   private = list(
     ..contractions = character(),

@@ -32,7 +32,7 @@ testTextStudio <- function() {
 
     # Preprocess
     ts <- TextStudio$new(corpus)
-    cmd <- TokenizeCmd$new(whatA = "sentence")
+    cmd <- TokenizeCmd$new(what = "sentence")
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
@@ -55,6 +55,50 @@ testTextStudio <- function() {
 
     return(corpus2)
   }
+  
+  test1 <- function() {
+    test <- "test1: TextStudio: SplitCorpus"
+    cat(paste0("\n",test, " Commencing\n"))
+    
+    # Build Corpus from directory source
+    name <- "CVCorpus"
+    desc <- "Creating corpus from directory sources"
+    dataSource <- "./test/testData/input"
+    
+    # Import corpus and get contents
+    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
+    
+    # Split Corpus
+    ts <- TextStudio$new(corpus)
+    cmd <- SplitCorpusCmd$new(name, trainSize = .8, valSize = .1, testSize = .1)
+    ts <- ts$addCommand(cmd)
+    splits <<- ts$execute()$getResult()
+    
+    # Get documents
+    origDocs <- corpus$getDocuments()
+    
+    # Check Splits
+    cv <- splits$getDocuments()
+    stopifnot(length(cv) == 3)
+    
+    lapply(cv, function(i) {
+      cvName <- i$getName()
+      print(paste("This cross validation set:", cvName))
+      docs <- i$getDocuments()
+      lapply(docs, function(d) {
+        name <- d$getName()
+        doc <- d$content
+        print(paste("Cv:", cvName, "Document:", name, "Length:", length(doc)))
+      })
+    }) 
+
+
+    TextStudioTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    cat(paste0(test, " Completed: Success!\n"))
+    
+    return(splits)
+  }
+  
 
 
   testn <- function() {
@@ -81,7 +125,7 @@ downloadPath <- "./test/testCorpus/swiftKey/data/external"
 
 init()
 corpus2 <<- test0()
-
+splits <<- test1()
 
 }
 className <- "TextStudio"

@@ -96,7 +96,7 @@ SplitDocument <- R6::R6Class(
 
       # Create training set
       if (private$..trainSize > 0) {
-        train <- Document$new(name = name)
+        train <- Document$new(name = paste0(name, ".train"))
         train <- private$cloneDocument(private$..x, train)
         train$content <- content[ss==1]
         private$..cvSet[["train"]] <- train
@@ -104,7 +104,7 @@ SplitDocument <- R6::R6Class(
 
       # Create validation set
       if (private$..valSize > 0) {
-        val <- Document$new(name = name)
+        val <- Document$new(name = paste0(name, ".validation"))
         val <- private$cloneDocument(private$..x, val)
         val$content <- content[ss==2]
         private$..cvSet[["validation"]] <- val
@@ -112,7 +112,7 @@ SplitDocument <- R6::R6Class(
 
       # Create test set
       if (private$..testSize > 0) {
-        test <- Document$new(name = name)
+        test <- Document$new(name = paste0(name, ".test"))
         test <- private$cloneDocument(private$..x, test)
         test$content <- content[ss==3]
         private$..cvSet[["test"]] <- test
