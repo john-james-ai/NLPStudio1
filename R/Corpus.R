@@ -42,9 +42,10 @@
 #'
 #' @section Parameters
 #' @param dataSource A DataSource or
-#' @param field Character string name for a field to be added to the document or corpus object meta data.
-#' @param name Character string containing the name of the corpus object. This variable is used in the instantiation and remove methods.
-#' @param path Character string containing the path to the corpus object.
+#' @param key Character string name for a field to be added to the Document or Corpus object metadata.
+#' @param value Character string, numeric, logical, or integer value to be assigned to the key value in the Document or Corpus metadata 
+#' @param name Character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.
+#' @param path Character string containing the path to the Corpus object.
 #' @param visitor An object of one of the visitor classes.
 #'
 #' @docType class

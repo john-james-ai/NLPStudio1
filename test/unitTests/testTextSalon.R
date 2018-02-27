@@ -16,9 +16,9 @@ testTextStudio <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "Corpus"
-    desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/fast"
+    name <- "LateNightCorpus"
+    desc <- "Creating corpus from directory sources at 2:00am"
+    dataSource <- "./test/testData/hc"
     tokens <- c("You", "you", "plant", "Been", "been", "home")
     replace <- c("BITCH", "BOAT", "DANCE", "LOVE", "PARTY", "HOPE")
     
@@ -32,7 +32,7 @@ testTextStudio <- function() {
 
     # Preprocess
     ts <- TextStudio$new(corpus)
-    cmd <- TokenizeCmd$new(what = "sentence")
+    cmd <- CheckCorpusCmd$new()
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
@@ -63,7 +63,7 @@ testTextStudio <- function() {
     # Build Corpus from directory source
     name <- "CVCorpus"
     desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input"
+    dataSource <- "./test/testData/hc"
     
     # Import corpus and get contents
     corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
@@ -83,6 +83,7 @@ testTextStudio <- function() {
     
     lapply(cv, function(i) {
       cvName <- i$getName()
+      cat("\n")
       print(paste("This cross validation set:", cvName))
       docs <- i$getDocuments()
       lapply(docs, function(d) {

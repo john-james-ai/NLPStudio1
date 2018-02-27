@@ -70,13 +70,14 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(name) {
+    initialize = function(name, content = NULL) {
 
       # Instantiate variables
       private$..meta[["name"]] <- name
       private$..className <- 'Document'
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
+      private$..content <- content
       private$..created <- Sys.time()
       private$..modified <- Sys.time()
       private$..accessed <- Sys.time()

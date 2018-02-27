@@ -11,9 +11,9 @@ testCorpusSourceDir <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Init params
-    name <- "corpus"
-    desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input"
+    name <- "fast"
+    desc <- "Creating corpus from directory sources (Fast)"
+    dataSource <- "./test/testData/fast"
 
     # Validation
     #corpus <- CorpusSourceDir$new() # missing params

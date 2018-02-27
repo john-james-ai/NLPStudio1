@@ -250,6 +250,29 @@ VValidatorInit <- R6::R6Class(
       
       return(status)
     },
+    
+    validateAdaptor = function(object, formats, classes) {
+      
+      status <- list()
+      status[['code']] <- TRUE
+      
+      params <- getParams(object)
+      x <- params$x
+      format <- params$format
+      if (sum(grepl(class(x)[1], classes)) == 0) {
+        status$code <- FALSE
+        stats$msg <- paste0("Invalid object class for adaptation.  Parameter x must ",
+                            "be a valid corpus object from the NLPStudio, Quanteda, ",
+                            "TM, textclean or qdap packages.")
+      } else if (sum(grepl(format, formats)) == 0) {
+        status$code <- FALSE
+        stats$msg <- paste0("Invalid object format for adaptation.  Format parameter must ",
+                            "be 'character', 'list', 'q', 'quanteda', 'kRp', or 'tm' format. ")
+      }
+      
+      return(status)
+    },
+    
 
     validateStub = function(object) {
       status <- list()
@@ -271,6 +294,15 @@ VValidatorInit <- R6::R6Class(
     },
     document = function(object) {
       return(private$validateName(object))
+    },
+    
+    #-------------------------------------------------------------------------#
+    #                           Adaptor Validation                            #
+    #-------------------------------------------------------------------------#
+    adaptorQ = function(object) {
+      formats <- c("q", "Q", "quanteda", "Quanteda",  "QUANTEDA")
+      classes <- c("Corpus", "corpus")
+      return(private$validateAdaptor(object, formats, classes))
     },
 
     #-------------------------------------------------------------------------#
