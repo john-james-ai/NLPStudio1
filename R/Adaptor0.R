@@ -33,7 +33,7 @@ Adaptor0 <- R6::R6Class(
     #-------------------------------------------------------------------------#
     adapt = function() { 
       
-      if ("Corpus" %in% class(private$..x)) {
+      if (sum(c("Corpus", "Entity") %in% class(private$..x)) == 2) {
         return(private$adaptTo())
       } else {
         return(private$adaptFrom())

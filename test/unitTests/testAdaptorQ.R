@@ -7,7 +7,7 @@ testCorpusSourceDir <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: CorpusSourceDir: Directory"
+    test <- "test0: Create corpus"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Init params
@@ -15,30 +15,21 @@ testCorpusSourceDir <- function() {
     desc <- "Creating corpus from directory sources (Fast)"
     dataSource <- "./test/testData/fast"
 
-    # Validation
-    #corpus <- CorpusSourceDir$new() # missing params
-    #corpus <- CorpusSourceDir$new("foo") # missing param data source
-    #corpus <- CorpusSourceDir$new(222, "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new("foo bar", "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new(TRUE, "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new(Entity, "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new(222, "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new(newsTxt, "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new(start, "dataSource") # invalid name
-    #corpus <- CorpusSourceDir$new(name, 22) # invalid data source
-    #corpus <- CorpusSourceDir$new(name, TRUE) # invalid data source
-    #corpus <- CorpusSourceDir$new(name, "./test/testData/input/*.doc")$build()$getResult() # invalid data source
-
     # Build Corpus from directory source
     corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
     corpusContent <- corpus$read()
     stopifnot(length(corpusContent) == 3)
     docs <- corpus$getDocuments()
     stopifnot(length(docs) == 3)
+    
+    # Add corpus metadata
     corpus$meta(key = "Description", value = desc)
+    corpus$meta(key = "Author", value = "HC Corpus")
+    print(corpus$meta())
+    
+    # Add document metadata
     corpus$docMeta(key = "Year", value = "2018")
     corpus$docMeta(key = "Genre", value = c("Blogs", "News", "Tweets"))
-    print(corpus$meta())
     print(corpus$docMeta())
 
     CorpusSourceDirTest$logs(className = "CorpusSourceDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
@@ -51,23 +42,50 @@ testCorpusSourceDir <- function() {
 
   
 
-  testn <- function() {
-    test <- "testn: CorpusSourceDir: Unzip"
+  test1 <- function(corpus) {
+    test <- "test1: Create quanteda corpus"
     cat(paste0("\n",test, " Commencing\n"))
+    
+    qCorpus <- AdaptorQ$new(x = corpus, format = "q")$adapt()
+    print(quanteda::metacorpus(qCorpus))
+    print(quanteda::metadoc(qCorpus))
 
     CorpusSourceDirTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
-    return()
+    return(qCorpus)
+  }
+  
+  test2 <- function(corpus) {
+    test <- "test2: Create NLPStudio Corpus and compare"
+    cat(paste0("\n",test, " Commencing\n"))
+    
+    corpusNew <- AdaptorQ$new(x = corpus, format = "q")$adapt()
+    for (i in length(corpus$meta())) {
+      stopifnot(all.equal(corpus$meta()[[i]], corpusNew$metadata[[i]]))
+    }
+    print("Old Corpus Metadata")
+    print(corpus$meta())
+    print("New Corpus Metadata")
+    print(as.data.frame(corpusNew$metadata))
+    print("Old Corpus Document Metadata")
+    print(corpus$docMeta())
+    print("New Corpus Document Metaata")
+    print(corpusNew$documents[,c(2:ncol(corpusNew$documents))])
+    
+    CorpusSourceDirTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    cat(paste0(test, " Completed: Success!\n"))
+    
+    return(qCorpus)
   }
 
 
 downloadPath <- "./test/testCorpus/swiftKey/data/external"
 
 init()
-corpus0 <<- test0()
-corpus1 <<- test1()
-test2()
+corpus <<- test0()
+qCorpus <<- test1(corpus)
+corpus <<- test2(corpus)
 
 
 }

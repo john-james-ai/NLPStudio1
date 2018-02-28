@@ -2,6 +2,7 @@
 
 export(Adaptor0)
 export(AdaptorQ)
+export(AdaptorTM)
 export(AddCommaSpace)
 export(AddCommaSpaceCmd)
 export(AddEndMark)

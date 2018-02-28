@@ -80,7 +80,7 @@ Corpus <- R6::R6Class(
 
       if (private$validateParams()$code == FALSE) stop()
 
-      private$..id <- private$createId()
+      private$..meta[["id"]] <- private$createId()
 
       # Create log entry
       private$..state <- paste0("Corpus, ", name, ", instantiated.")

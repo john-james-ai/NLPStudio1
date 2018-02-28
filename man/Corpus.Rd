@@ -11,11 +11,13 @@ Corpus
 \arguments{
 \item{dataSource}{A DataSource or}
 
-\item{field}{Character string name for a field to be added to the document or corpus object meta data.}
+\item{key}{Character string name for a field to be added to the Document or Corpus object metadata.}
 
-\item{name}{Character string containing the name of the corpus object. This variable is used in the instantiation and remove methods.}
+\item{value}{Character string, numeric, logical, or integer value to be assigned to the key value in the Document or Corpus metadata}
 
-\item{path}{Character string containing the path to the corpus object.}
+\item{name}{Character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.}
+
+\item{path}{Character string containing the path to the Corpus object.}
 
 \item{visitor}{An object of one of the visitor classes.}
 }

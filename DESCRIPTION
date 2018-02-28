@@ -29,11 +29,11 @@ Imports:
     openNLP,
     parsedate,
     qdap,
-    qdapDictionaries,
     quanteda,
     R6,
     readtext,
     textclean,
+    tm,
     tools,
     NLPLists
 Remotes: github::DataScienceSalon/NLPLists

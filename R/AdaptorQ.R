@@ -22,7 +22,7 @@ AdaptorQ <- R6::R6Class(
   classname = "AdaptorQ",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Entity,
+  inherit = Adaptor0,
   
   private = list(
     ..x = character(),
@@ -31,7 +31,7 @@ AdaptorQ <- R6::R6Class(
     adaptTo = function() {
       
       # Extract metadata
-      cMeta <- as.list(private$..x$meta()[1,])
+      cMeta <- as.list(private$..x$meta())
       names(cMeta) <- colnames(private$..x$meta())
       dMeta <- private$..x$docMeta()
       
@@ -102,17 +102,6 @@ AdaptorQ <- R6::R6Class(
       invisible(self)
       
       
-    },
-    #-------------------------------------------------------------------------#
-    #                              Adapt Method                               #
-    #-------------------------------------------------------------------------#
-    adapt = function() { 
-      
-      if ("Corpus" %in% class(private$..x)) {
-        return(private$adaptTo())
-      } else {
-        return(private$adaptFrom())
-      }
     },
     
     #-------------------------------------------------------------------------#
