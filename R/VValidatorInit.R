@@ -40,13 +40,15 @@ VValidatorInit <- R6::R6Class(
       status <- list()
       status[['code']] <- TRUE
       
-      if (!("Corpus" %in% class(object))) {
+      params <- object$getParams()
+      
+      
+      if (!("Corpus" %in% class(params$x))) {
         status[['code']] <- FALSE
         status[['msg']] <- paste0("Invalid to object. Object must be of the Corpus class. ",
                                   "See ?", class(object)[1], " for further assistance.")
       } else {
-        p <- object$getParams()
-        if (!(p$what %in% c("word", "sentence"))) {
+        if (!(params$what %in% c("word", "sentence"))) {
           status[['code']] <- FALSE
           status[['msg']] <- paste0("Invalid to parameter value. Valid values are ",
                                     "c('word', 'sentence'). ",

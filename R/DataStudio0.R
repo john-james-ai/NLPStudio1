@@ -20,8 +20,7 @@ DataStudio0 <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..x = character(),
-    ..result = character()
+    ..x = character()
   ),
 
   public = list(
@@ -31,24 +30,14 @@ DataStudio0 <- R6::R6Class(
 
       private$..methodName <- "execute"
       
-      # Initialize resulting corpus
-      private$..result <- private$..x
-      
-      indocs <- private$..x$getDocuments()
-      outdocs <- private$..result$getDocuments()
-      
-      for (i in 1:length(indocs)) {
-        n <- indocs$getName()
-        outdocs[[i]]$content <- private$processData(indocs[[i]]$content)
-        private$..result$addDocument(outdocs[[i]])
-      }
+      corpus <- private$processCorpus(private$..x)
 
       # Log it
       private$..state <- paste0("Executed ", class(self)[1], " on ",
                                 private$..x$getName(), ". ")
       self$logIt()
 
-      return(private$..result)
+      return(corpus)
     }
   )
 )

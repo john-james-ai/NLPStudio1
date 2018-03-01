@@ -66,7 +66,7 @@ PreprocessDocumentReshapeStrategy <- R6::R6Class(
       content <- private$reshapeSent(content)
 
       # Save content
-      private$..out$content <- content
+      private$..out$text <- content
 
       # log
       private$..state <- paste0("Successfully reshaped Document into ",

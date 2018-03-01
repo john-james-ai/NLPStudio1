@@ -64,7 +64,7 @@ CorpusSourceText <- R6::R6Class(
 
         # Create document and add content
         doc <- Document$new(paste0(private$..corpus$getName(), "-Document"))
-        doc$content <- docs
+        doc$text <- docs
 
         # Add document to corpus
         private$..corpus <- private$..corpus$addDocument(doc)
@@ -79,7 +79,7 @@ CorpusSourceText <- R6::R6Class(
 
         for (i in 1:length(docs)) {
           doc <- Document$new(docNames[[i]])
-          doc$content <- docs[[i]]
+          doc$text <- docs[[i]]
           private$..corpus <- private$..corpus$addDocument(doc)
         }
       } else {

@@ -20,7 +20,7 @@ testSplitCorpus <- function() {
     stopifnot(length(docs) == 3)
     lapply(docs, function(d) {
       name <- d$getName()
-      print(paste("Length of original", name, " content is:", length(d$content)))
+      print(paste("Length of original", name, " content is:", length(d$text)))
     })
     
     # Preprocess
@@ -93,9 +93,9 @@ testSplitCorpus <- function() {
     # Check document contents
     lapply(seq_along(origDocs), function(d) {
       print(paste("     Analyzing document:", origDocs[[d]]$getName()))
-      print(paste("Original content length:", length(origDocs[[d]]$content)))
-      print(paste("Training content length:", length(trainDocs[[d]]$content)))
-      print(paste("    Test content length:", length(testDocs[[d]]$content)))
+      print(paste("Original content length:", length(origDocs[[d]]$text)))
+      print(paste("Training content length:", length(trainDocs[[d]]$text)))
+      print(paste("    Test content length:", length(testDocs[[d]]$text)))
     })
 
     # Logit
@@ -140,10 +140,10 @@ testSplitCorpus <- function() {
     # Check document contents
     lapply(seq_along(origDocs), function(d) {
       print(paste("\nAnalyzing document:", origDocs[[d]]$getName()))
-      print(paste("  Original content length:", length(origDocs[[d]]$content)))
-      print(paste("  Training content length:", length(trainDocs[[d]]$content)))
-      print(paste("Validation content length:", length(valDocs[[d]]$content)))
-      print(paste("      Test content length:", length(testDocs[[d]]$content)))
+      print(paste("  Original content length:", length(origDocs[[d]]$text)))
+      print(paste("  Training content length:", length(trainDocs[[d]]$text)))
+      print(paste("Validation content length:", length(valDocs[[d]]$text)))
+      print(paste("      Test content length:", length(testDocs[[d]]$text)))
     })
 
     # Logit

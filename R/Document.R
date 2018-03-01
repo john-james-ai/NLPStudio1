@@ -48,20 +48,23 @@ Document <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..content = character(),
-    ..analyses = list()
+    ..text = character(),
+    ..dna = list()  # Data and Analysis list
   ),
 
   active = list(
-    content = function(value) {
+    text = function(value) {
 
       if (missing(value)) {
-        return(private$..content)
+        private$..meta[['user']] <- Sys.info()["user"]
+        private$..meta[['accessed']] <- Sys.time()
+        return(private$..text)
       } else {
-        private$..content <- value
+        private$..text <- value
+        private$..meta[['user']] <- Sys.info()["user"]
         private$..meta[["modified"]] <- Sys.time()
         private$..meta[["accessed"]] <- Sys.time()
-        private$..state <- "Updated content."
+        private$..state <- "Updated text content."
         self$logIt()
         invisible(self)
       }
@@ -73,36 +76,70 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(name, content = NULL) {
+    initialize = function() {
 
       # Instantiate variables
-      private$..meta[["name"]] <- name
       private$..className <- 'Document'
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
-      private$..content <- content
+      private$..text <- content
+      private$..meta[['user']] <- Sys.info()["user"]
       private$..meta[["created"]] <- Sys.time()
       private$..meta[["modified"]] <- Sys.time()
       private$..meta[["accessed"]] <- Sys.time()
-      private$..id <- private$createId()
+      private$..meta[["id"]] <- private$createId()
 
       if (private$validateParams()$code == FALSE) stop()
 
       # Create log entry
-      private$..state <- paste0("Document, ", private$..meta[["name"]], ", instantiated.")
+      private$..state <- paste0("Document id ", private$..meta[["id"]], ", instantiated.")
       self$logIt()
 
       invisible(self)
     },
-
-    getFileName = function() {
-      private$..methodName <- "getFileName"
-      if (!is.null(private$..meta$fileName)) {
-        return(private$..meta$fileName)
-      } else {
-        return(NULL)
+    
+    #-------------------------------------------------------------------------#
+    #                             Data Object Methods                         #
+    #-------------------------------------------------------------------------#
+    addDNA = function(object) {
+      
+      private$..methodName <- "addData"
+      
+      # Validate
+      if (!(class(object)[1] %in% c("Data", "Analysis"))) {
+        private$..state <- "Objects must be Data or Analysis class objects."
+        self$logIt("Error")
+        stop()
       }
+      
+      id <- object$getId()
+      private$..dna[[id]] <- object
+      private$..state <- paste0("Added ", id, " to Document ", 
+                                private$..meta[["name"]], ".")
+      self$logIt()
+      invisible(self)
     },
+    
+    getDNA = function(id = NULL, type = NULL) {
+      # If id is provided, both meta data and content for the Data or Analyis "DNA"
+      # object is returned. Otherwise a data frame containing meta data is returned.
+      # If type is provided, the data frame will contain meta data only for the type
+      # of DNA object requested.
+      
+      dna <- rbindlist(lapply(private$..dna, function(d) {
+        d$meta()
+      }))
+      
+      if (!is.null(id)) {
+        dna <- dna %>% filter(id == id)
+      } else if (!is.null(type)) {
+        dna <- dna %>% filter(type == type)
+      }
+      
+      return(dna)
+      
+    },
+
 
     #-------------------------------------------------------------------------#
     #                             IO Methods                                  #
@@ -119,13 +156,15 @@ Document <- R6::R6Class(
 
       if (!is.null(private$..meta[["filePath"]])) {
         if (is.null(io))  io <- IOFactory$new(private$..meta[["filePath"]])$getIOStrategy()
-        private$..content <- io$read(path = private$..meta[["filePath"]])
+        private$..text <- io$read(path = private$..meta[["filePath"]])
         private$..state <- paste0("Read ", private$..meta[["name"]], " from ",
                                   private$..meta[["filePath"]], ".")
       }
-      private$..accessed <- Sys.time()
       self$logIt()
-      return(private$..content)
+      
+      private$..meta[["accessed"]] <- Sys.time()
+      
+      return(private$..text)
     },
 
     write = function(path = NULL, io = NULL) {
@@ -148,10 +187,12 @@ Document <- R6::R6Class(
 
       if (is.null(io))  io <- IOFactory$new(private$..[["filePath"]])$getIOStrategy()
 
-      io$write(path = private$..meta[["filePath"]], content = private$..content)
+      io$write(path = private$..meta[["filePath"]], content = private$..text)
 
       private$..state <- paste0("Saved ", private$..meta["name"], " to ", path, ". ")
       self$logIt()
+      
+      private$..meta[["accessed"]] <- Sys.time()
       invisible(self)
     },
     
@@ -160,21 +201,6 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     accept = function(visitor)  {
       visitor$document(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                            Test Methods                                 #
-    #-------------------------------------------------------------------------#
-    exposeObject = function() {
-      document <- list(
-        id = private$..id,
-        meta = self$meta(),
-        state = private$..state,
-        created = private$..created,
-        modified = private$..modified,
-        accessed = private$..accessed
-      )
-      return(document)
     }
   )
 )

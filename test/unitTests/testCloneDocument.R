@@ -17,7 +17,7 @@ testCloneDocument <- function() {
 
     # Instantiate
     blogs <- Document$new(name = 'blogs')
-    blogs$content <- blogsTxt
+    blogs$text <- blogsTxt
     d <- blogs$exposeObject()
     stopifnot(d$name == 'blogs')
 
@@ -67,15 +67,15 @@ testCloneDocument <- function() {
     keys <- keys[keys!= "name"]
     values <- as.list(blogs$meta())
     values["name"] <- NULL
-    blogs2$content <- blogs$content
+    blogs2$text <- blogs$text
     lapply(seq_along(keys), function(k) {
       blogs2$meta(key = keys[[k]], value = values[[k]])
     })
 
     meta1 <- blogs2$meta()
     meta2 <- blogs$meta()
-    content1 <- blogs$content
-    content2 <- blogs2$content
+    content1 <- blogs$text
+    content2 <- blogs2$text
     stopifnot(identical(meta1, meta2))
     stopifnot(identical(content1, content2))
 

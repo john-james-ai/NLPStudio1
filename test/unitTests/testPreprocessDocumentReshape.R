@@ -16,7 +16,7 @@ testPreprocessDocumentReshape <- function() {
 
     # Instantiate
     news <- Document$new(name = 'news')
-    news$content <- newsTxt
+    news$text <- newsTxt
 
     # Update meta data
     news <- news$meta(key = "title", value = "News")
@@ -65,11 +65,11 @@ testPreprocessDocumentReshape <- function() {
     stopifnot(d$meta$dateCreated == d2$meta$dateCreated)
     stopifnot(d$meta$source == d2$meta$source)
     stopifnot(d$meta$format == d2$meta$format)
-    stopifnot(!identical(news$content, news2$content))
+    stopifnot(!identical(news$text, news2$text))
 
     # Check content
-    c1 <- news$content
-    c2 <- news2$content
+    c1 <- news$text
+    c2 <- news2$text
     print(paste0("Length of old content is ", length(c1)))
     print(paste0("Length of new content is ", length(c2)))
     print("*******************************************")

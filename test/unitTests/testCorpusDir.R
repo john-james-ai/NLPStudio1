@@ -90,16 +90,16 @@ testCorpusSourceDir <- function() {
     docs1 <- corpus1$getDocuments()
     docs2 <- corpus2$getDocuments()
     lapply(seq_along(docs1), function(d) {
-      c1 <- docs1[[d]]$content
-      c2 <- docs2[[d]]$content
+      c1 <- docs1[[d]]$text
+      c2 <- docs2[[d]]$text
       print(paste("Document", docs1[[d]]$getName(), "has length", length(c1)))
       print(paste("Document", docs2[[d]]$getName(), "has length", length(c2)))
       
     })
     
     lapply(seq_along(docs1), function(d) {
-      c1 <- docs1[[d]]$content
-      c2 <- docs2[[d]]$content
+      c1 <- docs1[[d]]$text
+      c2 <- docs2[[d]]$text
       print(head(c1, 1))
       print(head(c2, 1))
       

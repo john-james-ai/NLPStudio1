@@ -68,8 +68,8 @@ testDocument <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Add content via active binding
-    blogs$content <- blogsTxt
-    bc3 <- blogs$content
+    blogs$text <- blogsTxt
+    bc3 <- blogs$text
     blogsTxt <- blogs$read()
     stopifnot(blogsTxt == bc3)
 
@@ -100,7 +100,7 @@ testDocument <- function() {
     print(head(blogsTxt), 2)
 
     # Write binary file
-    blogs$content <- newsTxt
+    blogs$text <- newsTxt
     blogs$write(blogsBinFilePath, io = IOBin$new())
     stopifnot(file.exists(blogsBinFilePath))
 
@@ -111,14 +111,14 @@ testDocument <- function() {
     # Read Binary file
     blogsBinContent <- blogs$read(blogsBinFilePath, io = IOBin$new())
     stopifnot(length(blogsBinContent) > 2000)
-    stopifnot(blogsBinContent == blogs$content)
+    stopifnot(blogsBinContent == blogs$text)
     print(head(blogsBinContent), 2)
 
     # Read Txt File from File
     start <- Sys.time()
     blogsTxtContent <- blogs$read(blogsTxtFilePath)
     stopifnot(length(blogsTxtContent) == 2000)
-    stopifnot(blogsTxtContent == blogs$content)
+    stopifnot(blogsTxtContent == blogs$text)
     end <- Sys.time()
     readTime1 <- difftime(end, start)
     print(paste("Readtime1: ", readTime1))
@@ -127,7 +127,7 @@ testDocument <- function() {
     start <- Sys.time()
     blogsTxtContent <- blogs$read(blogsTxtFilePath)
     stopifnot(length(blogsTxtContent) == 2000)
-    stopifnot(blogsTxtContent == blogs$content)
+    stopifnot(blogsTxtContent == blogs$text)
     end <- Sys.time()
     readTime2 <- difftime(end, start)
     print(paste("Readtime2: ", readTime2))

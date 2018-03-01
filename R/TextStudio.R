@@ -55,9 +55,9 @@ TextStudio <- R6::R6Class(
       private$..state <- paste0("TextStudio, ", private$..meta[["name"]], ", instantiated.")
       private$..logs <- LogR$new()
       private$..x <- x
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
 
       # Validation
       if (private$validateParams()$code == FALSE) stop()

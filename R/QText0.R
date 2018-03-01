@@ -46,11 +46,11 @@ TextStudio0 <- R6::R6Class(
       if ("Corpus" %in% class(private$..x)) {
         documents <- private$..x$getDocuments()
         for (i in 1:length(documents)) {
-          documents[[i]]$content <- private$processText(documents[[i]]$content)
+          documents[[i]]$text <- private$processText(documents[[i]]$text)
           private$..x$addDocument(documents[[i]])
         }
       } else if ("Document" %in% class(private$..x)) {
-        private$..x$content <- private$processText(private$..x$content)
+        private$..x$text <- private$processText(private$..x$text)
       } else if ("list" %in% class(private$..x)) {
         for (i in 1:length(private$..x)) {
           private$..x[[i]] <- private$processText(private$..x[[i]])

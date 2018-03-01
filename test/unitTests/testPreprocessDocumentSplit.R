@@ -13,12 +13,12 @@ testPreprocessDocumentSplitStrategy <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     twitter <- Document$new(name = "twitter")
-    twitter$content <- tweets
-    print(paste0("Length of old content is ", length(twitter$content)))
+    twitter$text <- tweets
+    print(paste0("Length of old content is ", length(twitter$text)))
 
     # Reshape data
     twitter <<- PreprocessDocumentReshapeStrategy$new(object = twitter)$preprocess()$getResult()
-    print(paste0("Length of reshaped content is ", length(twitter$content)))
+    print(paste0("Length of reshaped content is ", length(twitter$text)))
 
     # Update meta data
     twitter <- twitter$meta(key = "title", value = "Tweets")
@@ -72,13 +72,13 @@ testPreprocessDocumentSplitStrategy <- function() {
 
     #Print head of each file
     print("Training Set")
-    print(head(train$content))
+    print(head(train$text))
     print("Test Set")
-    print(head(testSet$content))
+    print(head(testSet$text))
 
     # Check text length
-    print(paste0("Length of training set is ", length(train$content)))
-    print(paste0("Length of test set is ", length(testSet$content)))
+    print(paste0("Length of training set is ", length(train$text)))
+    print(paste0("Length of test set is ", length(testSet$text)))
 
     # Logit
     PreprocessDocumentSplitStrategyTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized split"))
@@ -107,17 +107,17 @@ testPreprocessDocumentSplitStrategy <- function() {
     stopifnot(twitter$meta() == testSet$meta())
 
     # Check text length
-    print(paste0("Length of training set is ", length(train$content)))
-    print(paste0("Length of validation set is ", length(val$content)))
-    print(paste0("Length of test set is ", length(testSet$content)))
+    print(paste0("Length of training set is ", length(train$text)))
+    print(paste0("Length of validation set is ", length(val$text)))
+    print(paste0("Length of test set is ", length(testSet$text)))
 
     #Print head of each file
     print("Training Set")
-    print(head(train$content))
+    print(head(train$text))
     print("Validation Set")
-    print(head(val$content))
+    print(head(val$text))
     print("Test Set")
-    print(head(testSet$content))
+    print(head(testSet$text))
 
     # Logit
     PreprocessDocumentSplitStrategyTest$logs(className = className, methodName = "initialize", msg = paste("Successfully initialized split"))

@@ -56,8 +56,8 @@ NLPStudio <- R6::R6Class(
             private$..meta[["name"]] <- "nlpStudio"
             private$..desc <- "NLPStudio: Natural Language Processing Environment"
             private$..path <- "./NLPStudio"
-            private$..modified <- Sys.time()
-            private$..created <- Sys.time()
+            private$..meta[["modified"]] <- Sys.time()
+            private$..meta[["created"]] <- Sys.time()
 
             # Create NLPStudio home directory
             if (!dir.exists(private$..path)) dir.create(private$..path, recursive = TRUE)
@@ -108,7 +108,7 @@ NLPStudio <- R6::R6Class(
             pipeline$parent <- self
 
             # Update modified time
-            private$..modified <- Sys.time()
+            private$..meta[["modified"]] <- Sys.time()
 
             # Save state and log Event
             private$..state <-
@@ -180,8 +180,8 @@ NLPStudio <- R6::R6Class(
               pipelines = private$..pipelines,
               logs = private$..logs,
               state = private$..state,
-              created = private$..created,
-              modified = private$..modified
+              created = private$..meta[["created"]],
+              modified = private$..meta[["modified"]]
             )
             return(o)
           }

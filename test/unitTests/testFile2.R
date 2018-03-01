@@ -26,7 +26,7 @@ testFile <- function() {
     b <- blogs$exposeObject()
     stopifnot(b$fileSize > 1000)
     stopifnot(b$fileFormat == 'txt')
-    stopifnot(length(b$content) > 1000)
+    stopifnot(length(b$text) > 1000)
 
     # Read file
     blogsContent <- blogs$read()
@@ -82,7 +82,7 @@ testFile <- function() {
     # Write binary format
     blogsBin2 <- File$new(name, path)$setContent(blogsBin)$saveFile(io)
     b <- blogsBin2$exposeObject()
-    stopifnot(class(b$content) == 'raw')
+    stopifnot(class(b$text) == 'raw')
 
     # Logit
     FileTest$logs(className = className, methodName = "loadFile", msg = paste("Successfully loaded binary data"))

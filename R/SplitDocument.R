@@ -79,7 +79,7 @@ SplitDocument <- R6::R6Class(
     execute = function() {
       
       # Obtain content
-      content <- private$..x$content
+      content <- private$..x$text
       
       # Set seed
       if (!is.null(private$..seed)) {
@@ -98,7 +98,7 @@ SplitDocument <- R6::R6Class(
       if (private$..trainSize > 0) {
         train <- Document$new(name = paste0(name, ".train"))
         train <- private$cloneDocument(private$..x, train)
-        train$content <- content[ss==1]
+        train$text <- content[ss==1]
         private$..cvSet[["train"]] <- train
       }
 
@@ -106,7 +106,7 @@ SplitDocument <- R6::R6Class(
       if (private$..valSize > 0) {
         val <- Document$new(name = paste0(name, ".validation"))
         val <- private$cloneDocument(private$..x, val)
-        val$content <- content[ss==2]
+        val$text <- content[ss==2]
         private$..cvSet[["validation"]] <- val
       }
 
@@ -114,7 +114,7 @@ SplitDocument <- R6::R6Class(
       if (private$..testSize > 0) {
         test <- Document$new(name = paste0(name, ".test"))
         test <- private$cloneDocument(private$..x, test)
-        test$content <- content[ss==3]
+        test$text <- content[ss==3]
         private$..cvSet[["test"]] <- test
       }
 

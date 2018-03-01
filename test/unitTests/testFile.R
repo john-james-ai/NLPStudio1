@@ -44,11 +44,11 @@ testFile <- function() {
 
     # Read content
     file <- newz$read()
-    stopifnot(length(newz$content) > 1000)
+    stopifnot(length(newz$text) > 1000)
 
     # Write Text
     txtFile <- File$new(name = 'txtFile', path = outpath)
-    txtFile$content <- file
+    txtFile$text <- file
     txtFile <- txtFile$write()
     b <- txtFile$exposeObject()
     stopifnot(b$name == 'txtFile')
@@ -78,13 +78,13 @@ testFile <- function() {
 
     # ReadBin
     file <- newz$read(IOBin$new())
-    stopifnot(length(newz$content) > 1000)
+    stopifnot(length(newz$text) > 1000)
     b <- newz$exposeObject()
     stopifnot((Sys.time() -  b$accessed) < 1)
 
     # WriteBin
     binFile <- File$new(name = 'binFile', path = outpath)
-    binFile$content <- file
+    binFile$text <- file
     binFile$write(io = IOBin$new())
     b <- binFile$exposeObject()
     stopifnot(b$name == 'binFile')
@@ -116,7 +116,7 @@ testFile <- function() {
 
     # Write rdata
     rdataFile <- File$new(name = 'rdataFile', path = outpath)
-    rdataFile$content <- file
+    rdataFile$text <- file
     rdataFile$write()
     b <- rdataFile$exposeObject()
     stopifnot(b$name == 'rdataFile')
@@ -128,7 +128,7 @@ testFile <- function() {
 
     # Read RData
     file <- rdataFile$read()
-    stopifnot(length(newz$content) > 1000)
+    stopifnot(length(newz$text) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in rdata format"))
@@ -151,7 +151,7 @@ testFile <- function() {
 
     # Write csv
     csvFile <- File$new(name = 'csvFile', path = outpath)
-    csvFile$content <- content
+    csvFile$text <- content
     csvFile$write()
     b <- csvFile$exposeObject()
     stopifnot(b$name == 'csvFile')
@@ -163,7 +163,7 @@ testFile <- function() {
 
     # Read CSV
     file <- csvFile$read()
-    stopifnot(nrow(newz$content) > 1000)
+    stopifnot(nrow(newz$text) > 1000)
 
     # Logit
     FileTest$logs(className = className, methodName = "read", msg = paste("Successfully read the file in csv format"))
@@ -183,13 +183,13 @@ testFile <- function() {
 
     # Read content
     file <- newz$read()
-    stopifnot(length(newz$content) > 1000)
+    stopifnot(length(newz$text) > 1000)
 
     # Write Text
     csvFile <- File$new(name = 'csvFile', path = outpath)
     #txtFile <- txtFile$lock()
     #txtFile <- txtFile$unlock()
-    csvFile$content <- file
+    csvFile$text <- file
     csvFile <- csvFile$write()
 
     # Logit

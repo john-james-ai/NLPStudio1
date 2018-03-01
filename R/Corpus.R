@@ -73,6 +73,7 @@ Corpus <- R6::R6Class(
       private$..meta[['name']] <- name
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
+      private$..meta[['user']] <- Sys.info()["user"]
       private$..meta[["created"]] <- Sys.time()
       private$..meta[["modified"]] <- Sys.time()
       private$..meta[["accessed"]] <- Sys.time()
@@ -106,9 +107,9 @@ Corpus <- R6::R6Class(
         self$logIt("Error")
         stop()
       }
-      name <- document$getName()
-      private$..documents[[name]] <- document
-      private$..state <- paste0("Added ", name, " to ", private$..meta[["name"]])
+      id <- document$getId()
+      private$..documents[[id]] <- document
+      private$..state <- paste0("Added Document id", id, " to ", private$..meta[["name"]])
       self$logIt()
       invisible(self)
 
@@ -127,10 +128,9 @@ Corpus <- R6::R6Class(
         stop()
       }
 
-      private$..methodName <- 'removeDocument'
-      name <- document$getName()
-      private$..documents[[name]] <- NULL
-      private$..state <- paste0("Removed ", name, " from ", private$..meta[["name"]])
+      id <- document$getId()
+      private$..documents[[id]] <- NULL
+      private$..state <- paste0("Removed Document id", id, " from ", private$..meta[["name"]])
       self$logIt()
       invisible(self)
 
@@ -147,11 +147,28 @@ Corpus <- R6::R6Class(
     purgeContent = function() {
       private$..methodName <- 'purgeContent'
       lapply(private$..documents, function(d) {
-        d$content <- NULL
+        d$text <- NULL
       })
       private$..state <- paste0("Purged content from ", private$..meta[["name"]])
       self$logIt()
       invisible(self)
+    },
+    
+    #-------------------------------------------------------------------------#
+    #                         Data and Analysis Methods                       #
+    #-------------------------------------------------------------------------#
+    getDNA = function(id = NULL, type = NULL) {
+      
+      if (!is.null(id)) {
+        dna <- lapply(private$..documents, function(d) {
+          d$getDNA(id = id)
+        })
+      } else {
+        dna <- rbindlist(lapply(private$..documents, function(d) {
+          d$getDNA(type = type)
+        }))
+      }
+      return(dna)
     },
 
     #-------------------------------------------------------------------------#
@@ -167,7 +184,7 @@ Corpus <- R6::R6Class(
         }
         d$read(path = path, io = io)
       })
-      private$..accessed <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..state <- paste0("Read corpus documents")
       self$logIt()
 
@@ -274,8 +291,8 @@ Corpus <- R6::R6Class(
         path = private$..path,
         logs = private$..logs,
         state = private$..state,
-        modified = private$..modified,
-        created = private$..created,
+        modified = private$..meta[["modified"]],
+        created = private$..meta[["created"]],
         documents = private$..documents,
         docMeta = self$docMeta()
       )

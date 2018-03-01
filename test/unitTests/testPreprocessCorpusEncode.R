@@ -79,8 +79,8 @@ testPreprocessCorpusEncodeStrategy <- function() {
     docs2 <- ct$getDocuments()
 
     lapply(seq_along(docs1), function(d) {
-      t1 <- docs1[[d]]$content
-      t2 <- docs2[[d]]$content
+      t1 <- docs1[[d]]$text
+      t2 <- docs2[[d]]$text
       m1 <- docs1[[d]]$meta()
       m2 <- docs2[[d]]$meta()
       stopifnot(identical(m1, m2))
@@ -127,8 +127,8 @@ testPreprocessCorpusEncodeStrategy <- function() {
     docs2 <- ct$getDocuments()
 
     lapply(seq_along(docs1), function(d) {
-      t1 <- docs1[[d]]$content
-      t2 <- docs2[[d]]$content
+      t1 <- docs1[[d]]$text
+      t2 <- docs2[[d]]$text
       m1 <- docs1[[d]]$meta()
       m2 <- docs2[[d]]$meta()
       stopifnot(identical(m1, m2))

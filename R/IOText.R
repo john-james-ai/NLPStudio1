@@ -47,7 +47,7 @@ IOText <- R6::R6Class(
         on.exit(close(con))
         content <- readLines(con)
         private$..state <- paste0("Successfully read ", fileName, ".")
-        private$..accessed <- Sys.time()
+        private$..meta[["accessed"]] <- Sys.time()
         self$logIt()
       } else {
         private$..state <- paste0('Unable to read ', fileName, '. ',
@@ -75,9 +75,9 @@ IOText <- R6::R6Class(
       private$..state <- paste0("Successfully wrote ", fileName, ".")
       self$logIt()
 
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
 
       invisible(self)
     }

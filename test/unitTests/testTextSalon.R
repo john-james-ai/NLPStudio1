@@ -27,7 +27,7 @@ testTextStudio <- function() {
     corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
     docs <- corpus$getDocuments()
     docs1 <- lapply(docs, function(d) {
-      d$content
+      d$text
     })
 
     # Preprocess
@@ -39,7 +39,7 @@ testTextStudio <- function() {
     # Get Documents
     docs <- corpus2$getDocuments()
     docs2 <- lapply(docs, function(d) {
-      d$content
+      d$text
     })
 
     for (i in 1:length(docs)) {
@@ -88,7 +88,7 @@ testTextStudio <- function() {
       docs <- i$getDocuments()
       lapply(docs, function(d) {
         name <- d$getName()
-        doc <- d$content
+        doc <- d$text
         print(paste("Cv:", cvName, "Document:", name, "Length:", length(doc)))
       })
     }) 

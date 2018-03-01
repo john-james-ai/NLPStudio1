@@ -38,7 +38,7 @@ AdaptorQ <- R6::R6Class(
       # Create named corpus vectors, one document per vector
       docs <- private$..x$getDocuments()
       content <- unlist(lapply(docs, function(d) {
-        paste(d$content, collapse = "")
+        paste(d$text, collapse = "")
       }))
       
       # Create quanteda corpus object
@@ -86,9 +86,9 @@ AdaptorQ <- R6::R6Class(
       
       private$..className <- "AdaptorQ"
       private$..methodName <- "initialize"
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
       
       private$..x <- x

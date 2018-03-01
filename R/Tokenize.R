@@ -40,7 +40,13 @@ Tokenize <- R6::R6Class(
   private = list(
     ..what = character(),
     
-    processData = function(content) {
+    processDocument = function(document) {
+      
+      private$..method <- "processDocument"
+      
+      content <- document$text
+      
+      # Produce data object content
       if (private$..what == "sentence") {
         
         # Use sentence token from openNLP and NLP packages
@@ -49,16 +55,37 @@ Tokenize <- R6::R6Class(
         sa <- openNLP::Maxent_Sent_Token_Annotator()
         a <- NLP::annotate(s, sa)
         tokenized <- s[a]
-
+        
       } else {
         tokenized <- quanteda::tokens(x = content, what = private$..what)
       }
-      return(tokenized)
+      
+      # Create Data Object and add to Document object
+      id <- paste0(class(self)[1], "-", private$..what)
+      data <- Data$new(id = id, content = tokenized)
+      document$addDNA(data)
+      
+      private$..state <- paste0("Tokenized ", document$getName(), " document.")
+      self$logIt()
+      
+      return(document)
+    },
+    
+    processCorpus = function(corpus) {
+      
+      private$..method <- "processCorpus"
+      docs <- corpus$getDocuments()
+      lapply(docs, function(d) {
+        corpus$addDocument(private$processDocument(d))
+      })
+      private$..state <- paste0("Tokenized ", corpus$getName(), " corpus. ")
+      self$logIt()
+      return(corpus)
     }
   ),
   
   public = list(
-    initialize = function(x, what) {
+    initialize = function(x, what= NULL) {
       private$..className <- "Tokenize"
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "Tokenize"
@@ -69,6 +96,21 @@ Tokenize <- R6::R6Class(
       if (private$validateParams()$code == FALSE) stop()
       
       invisible(self)
+    },
+    
+    execute = function() {
+      
+      private$..methodName <- "execute"
+      
+      # Update 
+      corpus <- private$processCorpus(private$..x)
+      
+      # Log it
+      private$..state <- paste0("Executed ", class(self)[1], " on ",
+                                private$..x$getName(), ". ")
+      self$logIt()
+      
+      return(corpus)
     },
     
     getParams = function() {

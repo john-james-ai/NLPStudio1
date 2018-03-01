@@ -27,10 +27,10 @@ testCorpusSourceText <- function() {
     stopifnot(length(corpusVecFlatDocuments) == 1)
 
     # Update content
-    corpusVecFlatDocuments[[1]]$content <- bigBlogs
+    corpusVecFlatDocuments[[1]]$text <- bigBlogs
     corpusVecFlatContent <- corpusVecFlat$read()
     stopifnot(length(corpusVecFlatContent[[1]]) > 2000)
-    stopifnot(length(corpusVecFlatDocuments[[1]]$content) > 2000)
+    stopifnot(length(corpusVecFlatDocuments[[1]]$text) > 2000)
 
     # Update metadata
     corpusVecFlat$meta(key = "name", value = name)
@@ -41,7 +41,7 @@ testCorpusSourceText <- function() {
     print(corpusVecFlat$docMeta())
 
     # Change Content
-    corpusVecFlatDocuments[[1]]$content <- bigBlogs
+    corpusVecFlatDocuments[[1]]$text <- bigBlogs
 
     # Build Corpus from vector non-flat
     name <- "corpusVec"
@@ -56,10 +56,10 @@ testCorpusSourceText <- function() {
     stopifnot(length(corpusVecDocuments) == 3)
 
     # Update content
-    corpusVecDocuments[[1]]$content <- bigBlogs
+    corpusVecDocuments[[1]]$text <- bigBlogs
     corpusVecContent <- corpusVec$read()
     stopifnot(length(corpusVecContent[[1]]) > 2000)
-    stopifnot(length(corpusVecDocuments[[1]]$content) > 2000)
+    stopifnot(length(corpusVecDocuments[[1]]$text) > 2000)
 
     # Update metadata
     corpusVec$meta(key = "name", value = name)
@@ -83,17 +83,17 @@ testCorpusSourceText <- function() {
     stopifnot(length(corpusListDocuments) == 3)
 
     # Update content
-    corpusListDocuments[[1]]$content <- bigBlogs
+    corpusListDocuments[[1]]$text <- bigBlogs
     corpusListContent <- corpusList$read()
     stopifnot(length(corpusListContent[[1]]) > 2000)
-    stopifnot(length(corpusListDocuments[[1]]$content) > 2000)
+    stopifnot(length(corpusListDocuments[[1]]$text) > 2000)
 
     # Update metadata
     corpusList$meta(key = "name", value = name)
     corpusList$meta(key = "desc", value = desc)
     corpusList$docMeta(key = "name", value = docNames)
     corpusList$docMeta(key = "desc", docDesc)
-    corpusVecFlatDocuments[[1]]$content <- bigBlogs
+    corpusVecFlatDocuments[[1]]$text <- bigBlogs
     print(corpusList$meta())
     print(corpusList$docMeta())
 

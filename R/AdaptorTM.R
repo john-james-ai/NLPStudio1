@@ -38,7 +38,7 @@ AdaptorTM <- R6::R6Class(
       # Create named corpus vectors, one document per vector
       docs <- private$..x$getDocuments()
       content <- unlist(lapply(docs, function(d) {
-        paste(d$content, collapse = "")
+        paste(d$text, collapse = "")
       }))
       
       # Create tm corpus object
@@ -75,7 +75,7 @@ AdaptorTM <- R6::R6Class(
       # Add documents and metadata
       for (i in 1:length(private$..x)) {
         d <- Document$new(name = private$..x[[i]]$meta$name, 
-                          content = as.character(private$..x[[i]]$content))  
+                          content = as.character(private$..x[[i]]$text))  
         keys <- names(dMeta[[i]])
         values <- dMeta[[i]]
         idx <- unlist(lapply(values, function(v) {length(v) > 0}))
@@ -105,9 +105,9 @@ AdaptorTM <- R6::R6Class(
       
       private$..className <- "AdaptorTM"
       private$..methodName <- "initialize"
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
       
       private$..x <- x

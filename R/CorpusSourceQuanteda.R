@@ -79,7 +79,7 @@ CorpusSourceQuanteda <- R6::R6Class(
         for (j in 1:length(keys)) {                   # Update metadata for document
           doc <- doc$meta(key = keys[j], value = values[j])
         }
-        doc$content <- texts[i]                       # Add content
+        doc$text <- texts[i]                       # Add content
         private$..corpus <- private$..corpus$addDocument(doc)  # Add document to corpus
       }
 

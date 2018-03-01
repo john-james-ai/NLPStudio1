@@ -105,7 +105,7 @@ CorpusSourceDir <- R6::R6Class(
       # Create documents
       docs <- lapply(seq_along(content), function(x) {
         doc <- Document$new(name = docNames[x])
-        doc$content <- content[[x]]
+        doc$text <- content[[x]]
         doc$meta(key = "fileName", value = fileNames[x])
         doc$meta(key = "filePath", value = files[x])
         doc$meta(key = "source", value = source[x])

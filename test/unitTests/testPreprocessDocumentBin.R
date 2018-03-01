@@ -16,7 +16,7 @@ testPreprocessDocumentBin <- function() {
 
     # Instantiate
     news <- Document$new(name = 'news')
-    news$content <- newsTxt
+    news$text <- newsTxt
 
     # Update meta data
     news <- news$meta(key = "title", value = "News")
@@ -64,11 +64,11 @@ testPreprocessDocumentBin <- function() {
     stopifnot(d$meta$dateCreated == d2$meta$dateCreated)
     stopifnot(d$meta$source == d2$meta$source)
     stopifnot(d$meta$format == d2$meta$format)
-    stopifnot(!identical(news$content, news2$content))
+    stopifnot(!identical(news$text, news2$text))
 
     # Check content
-    c1 <- news$content
-    c2 <- news2$content
+    c1 <- news$text
+    c2 <- news2$text
     print(paste0("Length of old content is ", length(c1)))
     print(paste0("Length of new content is ", length(c2)))
 
@@ -105,11 +105,11 @@ testPreprocessDocumentBin <- function() {
     stopifnot(d3$meta$dateCreated == d2$meta$dateCreated)
     stopifnot(d3$meta$source == d2$meta$source)
     stopifnot(d3$meta$format == d2$meta$format)
-    stopifnot(!identical(news2$content, news3$content))
+    stopifnot(!identical(news2$text, news3$text))
 
     # Check content
-    c2 <- news2$content
-    c3 <- news3$content
+    c2 <- news2$text
+    c3 <- news3$text
     print(paste0("Length of old content is ", length(c2)))
     print(paste0("Length of new content is ", length(c3)))
 
@@ -145,11 +145,11 @@ testPreprocessDocumentBin <- function() {
     stopifnot(d1$meta$dateCreated == d2$meta$dateCreated)
     stopifnot(d1$meta$source == d2$meta$source)
     stopifnot(d1$meta$format == d2$meta$format)
-    stopifnot(!identical(news$content, news2$content))
+    stopifnot(!identical(news$text, news2$text))
 
     # Check content
-    c1 <- news$content
-    c2 <- news2$content
+    c1 <- news$text
+    c2 <- news2$text
     print(paste0("Length of old content is ", length(c1)))
     print(paste0("Length of new content is ", length(c2)))
 
