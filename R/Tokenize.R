@@ -13,7 +13,7 @@
 #' \url{https://cran.r-project.org/web/packages/quanteda/quanteda.pdf}
 #' \url{https://cran.r-project.org/web/packages/openNLP/openNLP.pdf}
 #'
-#' @usage Tokenize$new(x, to = c("character", "word", "sentence"))$execute()
+#' @usage Tokenize$new(x, what = c("sentence", "word"))$execute()
 #'
 #' @template textStudioParams
 #' @param what Character string containing either c('character', 'word' ,'sentence)
@@ -35,14 +35,25 @@ Tokenize <- R6::R6Class(
   classname = "Tokenize",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Text0,
+  inherit = DataStudio0,
   
   private = list(
     ..what = character(),
     
-    processText = function(content) {
-      content <- quanteda::tokens(x = content, what = private$..what)
-      return(content)
+    processData = function(content) {
+      if (private$..what == "sentence") {
+        
+        # Use sentence token from openNLP and NLP packages
+        s <- paste(content, collapse = "")
+        s <- NLP::as.String(s)
+        sa <- openNLP::Maxent_Sent_Token_Annotator()
+        a <- NLP::annotate(s, sa)
+        tokenized <- s[a]
+
+      } else {
+        tokenized <- quanteda::tokens(x = content, what = private$..what)
+      }
+      return(tokenized)
     }
   ),
   

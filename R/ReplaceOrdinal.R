@@ -31,7 +31,7 @@ ReplaceOrdinal <- R6::R6Class(
   classname = "ReplaceOrdinal",
   lock_objects = FALSE,
   lock_class = FALSE,
-  inherit = Text0,
+  inherit = TextStudio0,
 
   private = list(
 

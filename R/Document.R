@@ -48,7 +48,8 @@ Document <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..content = character()
+    ..content = character(),
+    ..analyses = list()
   ),
 
   active = list(
@@ -58,8 +59,10 @@ Document <- R6::R6Class(
         return(private$..content)
       } else {
         private$..content <- value
-        private$..modified <- Sys.time()
-        private$..accessed <- Sys.time()
+        private$..meta[["modified"]] <- Sys.time()
+        private$..meta[["accessed"]] <- Sys.time()
+        private$..state <- "Updated content."
+        self$logIt()
         invisible(self)
       }
     }
@@ -78,9 +81,9 @@ Document <- R6::R6Class(
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
       private$..content <- content
-      private$..created <- Sys.time()
-      private$..modified <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..id <- private$createId()
 
       if (private$validateParams()$code == FALSE) stop()
@@ -151,7 +154,7 @@ Document <- R6::R6Class(
       self$logIt()
       invisible(self)
     },
-
+    
     #-------------------------------------------------------------------------#
     #                           Visitor Methods                               #
     #-------------------------------------------------------------------------#

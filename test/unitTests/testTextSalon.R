@@ -18,7 +18,7 @@ testTextStudio <- function() {
     # Build Corpus from directory source
     name <- "LateNightCorpus"
     desc <- "Creating corpus from directory sources at 2:00am"
-    dataSource <- "./test/testData/hc"
+    dataSource <- "./test/testData/fast"
     tokens <- c("You", "you", "plant", "Been", "been", "home")
     replace <- c("BITCH", "BOAT", "DANCE", "LOVE", "PARTY", "HOPE")
     
@@ -32,7 +32,7 @@ testTextStudio <- function() {
 
     # Preprocess
     ts <- TextStudio$new(corpus)
-    cmd <- CheckCorpusCmd$new()
+    cmd <- TokenizeCmd$new(what = "sentence")
     ts <- ts$addCommand(cmd)
     corpus2 <- ts$execute()$getResult()
 
@@ -126,7 +126,7 @@ downloadPath <- "./test/testCorpus/swiftKey/data/external"
 
 init()
 corpus2 <<- test0()
-splits <<- test1()
+#splits <<- test1()
 
 }
 className <- "TextStudio"

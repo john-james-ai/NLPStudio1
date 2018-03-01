@@ -73,9 +73,9 @@ Corpus <- R6::R6Class(
       private$..meta[['name']] <- name
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
-      private$..modified <- Sys.time()
-      private$..created <- Sys.time()
-      private$..accessed <- Sys.time()
+      private$..meta[["created"]] <- Sys.time()
+      private$..meta[["modified"]] <- Sys.time()
+      private$..meta[["accessed"]] <- Sys.time()
       private$..logs <- LogR$new()
 
       if (private$validateParams()$code == FALSE) stop()
@@ -90,7 +90,7 @@ Corpus <- R6::R6Class(
     },
 
     #-------------------------------------------------------------------------#
-    #                    Document Aggregation Methods                         #
+    #                         Document Methods                                #
     #-------------------------------------------------------------------------#
     getDocuments = function()  { private$..documents },
 
@@ -134,6 +134,24 @@ Corpus <- R6::R6Class(
       self$logIt()
       invisible(self)
 
+    },
+    
+    purgeDocuments = function() {
+      private$..methodName <- 'purgeDocuments'
+      private$..documents <- list()
+      private$..state <- paste0("Purged documents from ", private$..meta[["name"]])
+      self$logIt()
+      invisible(self)
+    },
+    
+    purgeContent = function() {
+      private$..methodName <- 'purgeContent'
+      lapply(private$..documents, function(d) {
+        d$content <- NULL
+      })
+      private$..state <- paste0("Purged content from ", private$..meta[["name"]])
+      self$logIt()
+      invisible(self)
     },
 
     #-------------------------------------------------------------------------#
