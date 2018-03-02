@@ -18,13 +18,13 @@ testTextStudio <- function() {
     # Build Corpus from directory source
     name <- "LateNightCorpus"
     desc <- "Creating corpus from directory sources at 2:00am"
-    dataSource <- "./test/testData/fast"
+    corpusSource <- "./test/testData/fast"
     tokens <- c("You", "you", "plant", "Been", "been", "home")
     replace <- c("BITCH", "BOAT", "DANCE", "LOVE", "PARTY", "HOPE")
     
 
     # Import corpus and get contents
-    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
+    corpus <- SourceDir$new(name, corpusSource)$build()$getResult()
     docs <- corpus$getDocuments()
     docs1 <- lapply(docs, function(d) {
       d$text
@@ -63,10 +63,10 @@ testTextStudio <- function() {
     # Build Corpus from directory source
     name <- "CVCorpus"
     desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/hc"
+    corpusSource <- "./test/testData/hc"
     
     # Import corpus and get contents
-    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
+    corpus <- SourceDir$new(name, corpusSource)$build()$getResult()
     
     # Split Corpus
     ts <- TextStudio$new(corpus)

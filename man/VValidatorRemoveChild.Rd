@@ -33,8 +33,8 @@ The VValidatorRemoveChild methods are as follows:
 \seealso{
 Other Validation Visitor Classes: \code{\link{VValidatorAddChild}},
   \code{\link{VValidatorBuild}},
-  \code{\link{VValidatorDocument0}},
   \code{\link{VValidatorInit}},
+  \code{\link{VValidatorMeta}},
   \code{\link{VValidatorSetParent}},
   \code{\link{VValidator}}
 }

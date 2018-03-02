@@ -51,7 +51,7 @@ SplitDocument <- R6::R6Class(
       private$..className <- "SplitDocument"
       private$..methodName <- "initialize"
       private$..x <- x
-      private$..name <- name
+      private$..meta[["name"]] <- name
       private$..trainSize <- trainSize
       private$..valSize <- valSize
       private$..testSize <- testSize
@@ -92,7 +92,7 @@ SplitDocument <- R6::R6Class(
       ss <- sample(x, size = length(content), replace = TRUE, prob = proportions)
       
       # Format name
-      name <- ifelse(is.null(private$..name), private$..x$getName(), private$..name)
+      name <- ifelse(is.null(private$..meta[["name"]]), private$..x$getName(), private$..meta[["name"]])
 
       # Create training set
       if (private$..trainSize > 0) {

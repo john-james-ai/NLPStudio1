@@ -11,7 +11,7 @@
 #' @section Methods:
 #' \strong{Core Methods}
 #'  \describe{
-#'   \item{\code{new(name, path, dataSource)}}{Instantiates an object of the Corpus class.}
+#'   \item{\code{new(name, path, corpusSource)}}{Instantiates an object of the Corpus class.}
 #'  }
 #'
 #' \strong{Document Methods}
@@ -41,7 +41,7 @@
 #'  }
 #'
 #' @section Parameters
-#' @param dataSource A DataSource or
+#' @param corpusSource A DataSource or
 #' @param key Character string name for a field to be added to the Document or Corpus object metadata.
 #' @param value Character string, numeric, logical, or integer value to be assigned to the key value in the Document or Corpus metadata 
 #' @param name Character string containing the name of the Corpus object. This variable is used in the instantiation and remove methods.

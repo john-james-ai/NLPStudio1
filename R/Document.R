@@ -82,8 +82,6 @@ Document <- R6::R6Class(
       private$..className <- 'Document'
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
-      private$..id <- private$createId()
-      private$..meta[["attachId"]] <- paste0(class(self)[1], "-", name)
       private$..meta[['class']] <- class(self)[1]
       private$..meta[['name']] <- name
       private$..meta[['user']] <- Sys.info()["user"]
@@ -92,6 +90,8 @@ Document <- R6::R6Class(
       private$..meta[["accessed"]] <- Sys.time()
 
       if (private$validateParams()$code == FALSE) stop()
+      
+      private$..id <- private$createId()
 
       # Create log entry
       private$..state <- paste0("Document ", name, ", instantiated.")
@@ -114,34 +114,35 @@ Document <- R6::R6Class(
       }
       
       # Attach 
-      aid <- object$attachId()
-      private$..attachments[[aid]] <- object
+      id <- object$getId()
+      private$..attachments[[id]] <- object
       
       # Log
-      private$..state <- paste0("Attached ", aid, " to ", private$..meta[["name"]], ".")
+      private$..state <- paste0("Attached a ", class(object)[1], " object to ", private$..meta[["name"]], ".")
       self$logIt()
       
       invisible(self)
       
     },
     
-    
-    unattach = function(object) {
-      private$..methodName <- "attach"
+    detach = function(id) {
+      private$..methodName <- "detach"
       
-      # Validate
-      aid <- object$attachId()
-      
-      if (exists(private$..attachments[[aid]])) {
-        private$..attachments[[aid]] <- NULL
-        private$..state <- paste0("Unattached ", aid, " from ", private$..meta[["name"]], ".")
+      if (exists(private$..attachments[[id]])) {
+        object <- private$..attachments[[id]]
+        private$..attachments[[id]] <- NULL
+        private$..state <- paste0("Unattached ", aid, " from ", 
+                                  private$..meta[["name"]], ".")
         self$logIt()
+        
       } else {
-        private$..state <- paste0("Object ", aid, " was not attached to ", private$..meta[["name"]], ".")
+        object <- NULL
+        private$..state <- paste0("Object ", aid, " was not attached to ", 
+                                  private$..meta[["name"]], ". Returning NULL")
         self$logIt("Warn")
       }
       
-      invisible(self)
+      return(object)
     },
     
     #-------------------------------------------------------------------------#

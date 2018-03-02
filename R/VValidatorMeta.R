@@ -1,41 +1,39 @@
 #==============================================================================#
-#                                   VValidatorDocument0                             #
+#                              VValidatorMeta                                  #
 #==============================================================================#
-#' VValidatorDocument0
+#' VValidatorMeta
 #'
 #'
-#' \code{VValidatorDocument0} Visitor class responsible for validating the assignment and removal of members from classes.
+#' \code{VValidatorMeta} Visitor class for validating Meta data objects.
 #'
-#' @section VValidatorDocument0 Methods:
+#' @section VValidatorMeta Methods:
 #'  \describe{
-#'   \item{\code{pipeline(object, request)}}{Method for validating a request to add a member to the Pipeline class.}
-#'   \item{\code{corpus(object, request)}}{Method for validating a request to add a member to the Corpus class.}
-#'   \item{\code{document(object, request)}}{Method for validating a request to add a member to the Document class.}
+#'   \item{\code{meta(object)}}{Method for validating a Meta class object.}
 #' }
 #'
 #' @param object Object of the class for which the meta data is being created.
-#' @param request  List containing the field, its classname
 #'
 #' @docType class
 #' @author John James, \email{jjames@@DataScienceSalon.org}
 #' @family Validation Visitor Classes
 #' @export
-VValidatorDocument0 <- R6::R6Class(
-  classname = "VValidatorDocument0",
+VValidatorMeta <- R6::R6Class(
+  classname = "VValidatorMeta",
   inherit = VValidator,
   lock_objects = FALSE,
   lock_class = FALSE,
 
   private = list(
 
-    ..name = 'VValidatorDocument0',
-    ..classes = c('character()', 'numeric()'),
-    ..request = list(),
-
     validate = function(object) {
 
       status <- list()
       status[['code']] <- TRUE
+      
+      # Get parameters
+      p <- object$getParams()
+      key <- p$key
+      value <- p$value
 
       if (!(private$..request$className %in% private$..classes)) {
         status[['code']] <- FALSE

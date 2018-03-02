@@ -13,10 +13,10 @@ testTokenize <- function() {
     # Init params
     name <- "fast"
     desc <- "Creating corpus from directory sources (Fast)"
-    dataSource <- "./test/testData/fast"
+    corpusSource <- "./test/testData/fast"
 
     # Build Corpus from directory source
-    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
+    corpus <- SourceDir$new(name, corpusSource)$build()$getResult()
     corpusContent <- corpus$read()
     stopifnot(length(corpusContent) == 3)
     docs <- corpus$getDocuments()
@@ -32,9 +32,9 @@ testTokenize <- function() {
     corpus$docMeta(key = "Genre", value = c("Blogs", "News", "Tweets"))
     print(corpus$docMeta())
 
-    TokenizeTest$logs(className = "CorpusSourceDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    TokenizeTest$logs(className = "CorpusSourceDir", methodName = "build", msg = paste("Successfully instantiated. "))
-    TokenizeTest$logs(className = "CorpusSourceDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    TokenizeTest$logs(className = "SourceDir", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    TokenizeTest$logs(className = "SourceDir", methodName = "build", msg = paste("Successfully instantiated. "))
+    TokenizeTest$logs(className = "SourceDir", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return(corpus)

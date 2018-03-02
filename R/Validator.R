@@ -85,8 +85,8 @@ Validator <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                            Administration                               #
     #-------------------------------------------------------------------------#
-    meta = function(object, request) {
-      visitor <- VValidatorDocument0$new(object, request)
+    meta = function(object) {
+      visitor <- VValidatorMeta$new()
       object$accept(visitor)
     }
 

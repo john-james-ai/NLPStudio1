@@ -52,7 +52,7 @@ ReplaceNonAscii <- R6::R6Class(
       private$..methodName <- "initialize"
       private$..meta[["name"]] <-  "ReplaceNonAscii"
       private$..x <- x
-      private$..names <- names
+      private$..meta[["name"]] <- names
       private$..removeNonConverted <- removeNonConverted
       private$..logs  <- LogR$new()
       invisible(self)

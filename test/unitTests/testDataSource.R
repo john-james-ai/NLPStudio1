@@ -6,13 +6,13 @@ testDataSource <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: DataSourceText"
+    test <- "test0: DataSourceVector"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Test Directory
-    dataSource <- "./test/testData/input"
+    corpusSource <- "./test/testData/input"
     docNames = c("en_US.blogs", "en_US.news", "en_US.twitter")
-    textDir <- DataSourceText$new(dataSource = dataSource)$getSource()
+    textDir <- DataSourceVector$new(corpusSource = corpusSource)$getSource()
     stopifnot(length(textDir) == 3)
     stopifnot(length(textDir[[1]]) == 2000)
     stopifnot(length(textDir[[2]]) == 2000)
@@ -21,14 +21,14 @@ testDataSource <- function() {
 
 
     # Test filename
-    dataSource <- "./test/testData/input/en_US.blogs.txt"
-    textFile <- DataSourceText$new(dataSource = dataSource)$getSource()
+    corpusSource <- "./test/testData/input/en_US.blogs.txt"
+    textFile <- DataSourceVector$new(corpusSource = corpusSource)$getSource()
     stopifnot(length(textFile) == 2000)
     stopifnot(names(textFile) == "en_US.blogs")
 
     # Test List
-    dataSource <- content
-    textList <- DataSourceText$new(dataSource = dataSource)$getSource()
+    corpusSource <- content
+    textList <- DataSourceVector$new(corpusSource = corpusSource)$getSource()
     stopifnot(length(textList) == 3)
     stopifnot(length(textList[[1]]) == 2000)
     stopifnot(length(textList[[2]]) == 2000)
@@ -37,8 +37,8 @@ testDataSource <- function() {
 
     # Test List (Unnamed)
     docNames = c("Document1", "Document2", "Document3")
-    dataSource <- content2
-    textUnnamedList <- DataSourceText$new(dataSource = dataSource)$getSource()
+    corpusSource <- content2
+    textUnnamedList <- DataSourceVector$new(corpusSource = corpusSource)$getSource()
     stopifnot(length(textUnnamedList) == 3)
     stopifnot(length(textUnnamedList[[1]]) == 2000)
     stopifnot(length(textUnnamedList[[2]]) == 2000)
@@ -46,8 +46,8 @@ testDataSource <- function() {
     stopifnot(names(textUnnamedList) == docNames)
 
     # Test vector
-    dataSource <- news
-    textVec <- DataSourceText$new(dataSource = dataSource)$getSource()
+    corpusSource <- news
+    textVec <- DataSourceVector$new(corpusSource = corpusSource)$getSource()
     stopifnot(length(textVec) == 2000)
     stopifnot(names(textVec) == "en_US.news")
 

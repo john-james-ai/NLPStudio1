@@ -34,7 +34,7 @@ SplitCorpusCmd <- R6::R6Class(
     initialize = function(name = NULL, trainSize, testSize, valSize = NULL, seed = NULL) {
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "SplitCorpusCmd"
-      private$..name <- ifelse(is.null(name), paste0("CVSet-", 
+      private$..meta[["name"]] <- ifelse(is.null(name), paste0("CVSet-", 
                                                      private$..createId()), name)
       private$..trainSize <- trainSize
       private$..valSize <- valSize
@@ -44,7 +44,7 @@ SplitCorpusCmd <- R6::R6Class(
       invisible(self)
     },
     execute = function(x) {
-      x <- SplitCorpus$new(x, name = private$..name,
+      x <- SplitCorpus$new(x, name = private$..meta[["name"]],
                            trainSize = private$..trainSize,
                            valSize = private$..valSize,
                            testSize = private$..testSize,

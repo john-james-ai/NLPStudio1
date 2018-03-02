@@ -4,7 +4,7 @@ testDataBuilder <- function() {
     source('./test/testFunctions/LogTest.R')
     if (exists("builder", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("builder", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("director", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("director", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
-    if (exists("dataSource", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("dataSource", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
+    if (exists("corpusSource", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("corpusSource", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("cSource", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("cSource", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     if (exists("data", envir = .GlobalEnv))  rm(list = ls(envir = .GlobalEnv)[grep("data", ls(envir = .GlobalEnv))], envir = .GlobalEnv)
     unlink("./test/testData/data", recursive = TRUE)
@@ -31,10 +31,10 @@ testDataBuilder <- function() {
     params[['zipFiles']] <- c(file.path('final/en_US/en_US.blogs.txt'),
                               file.path('final/en_US/en_US.news.txt'),
                               file.path('final/en_US/en_US.twitter.txt'))
-    dataSource <- BuildDataRawWebZip$new(name = name, path = path, params = params)
+    corpusSource <- BuildDataRawWebZip$new(name = name, path = path, params = params)
 
     # Create commands
-    cSource <- CSourceData$new(builder, dataSource)
+    cSource <- CSourceData$new(builder, corpusSource)
     cRepair <- CRepair$new(builder, )
     director <- director$addCommand(cSource)
 

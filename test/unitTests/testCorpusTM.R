@@ -20,8 +20,8 @@ testCorpusTM <- function() {
     name <- "corpusTM"
     desc <- "Creating corpus from TM corpus object"
     docDesc <- c("Blogs Data", "News of the world", "Tweets and rants")
-    dataSource <- tmc
-    corpusTM <- CorpusTM$new(name, dataSource)$build()$getResult()
+    corpusSource <- tmc
+    corpusTM <- CorpusTM$new(name, corpusSource)$build()$getResult()
     corpusTMContent <- corpusTM$read()
     stopifnot(length(corpusTMContent) == 3)
 

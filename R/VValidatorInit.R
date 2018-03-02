@@ -281,7 +281,38 @@ VValidatorInit <- R6::R6Class(
       return(status)
     },
     
-
+    
+    validateMeta = function(object) {
+      
+      status <- list()
+      status[['code']] <- TRUE
+      
+      name <- object$meta(key = "name")
+      
+      # Validate name is well-formed
+      v <- ValidatorString$new()
+      if (v$validate(value = name, expect = NULL) == FALSE) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Cannot create ", class(object)[1],
+                                  " object. ", "Object name, must be a character ",
+                                  "string with no spaces.  See ?", class(object)[1],
+                                  " for further assistance")
+        return(status)
+      }
+      
+      # Confirm not missing
+      if (is.null(name) | is.na(name)) {
+        status[['code']] <- FALSE
+        status[['msg']] <- paste0("Name parameter is missing with no default. ",
+                                  "See ?", class(object)[1], " for further assistance.")
+        return(status)
+      }
+      
+      
+      
+      return(status)
+    },
+    
     validateStub = function(object) {
       status <- list()
       status[['code']] <- TRUE
@@ -290,7 +321,10 @@ VValidatorInit <- R6::R6Class(
   ),
 
   public = list(
-
+    
+    #-------------------------------------------------------------------------#
+    #                        Validate Core Classes                            #
+    #-------------------------------------------------------------------------#
     initialize = function() {
       invisible(self)
     },
@@ -302,6 +336,13 @@ VValidatorInit <- R6::R6Class(
     },
     document = function(object) {
       return(private$validateName(object))
+    },
+    
+    #-------------------------------------------------------------------------#
+    #                          Metadata Class(es)                             #
+    #-------------------------------------------------------------------------#
+    meta = function(object) {
+      return(private$validateMeta(object))
     },
     
     #-------------------------------------------------------------------------#
@@ -322,18 +363,18 @@ VValidatorInit <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                      Corpus Import Validation                           #
     #-------------------------------------------------------------------------#
-    corpusSourceDir = function(object) {
+    sourceDir = function(object) {
       return(private$validateDirGlob(object))
     },
-    corpusSourceQuanteda = function(object) {
+    sourceQuanteda = function(object) {
       return(private$validateClass(object, object$getParams(),
                                    "corpus"))
     },
-    corpusSourceText = function(object) {
+    sourceVector = function(object) {
       return(private$validateClass(object, object$getParams(),
                                    c("character", "list")))
     },
-
+    
     #-------------------------------------------------------------------------#
     #                      TextStudio Validation                              #
     #-------------------------------------------------------------------------#

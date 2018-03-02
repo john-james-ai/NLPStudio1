@@ -8,7 +8,7 @@
 #' This base class defines members and methods common across all entity related
 #' classes, including Studio, Corpus, Set, and Document classes.
 #'
-#' @section Document methods:
+#' @section Entity methods:
 #'  \itemize{
 #'   \item{\code{desc()}}{Active binding getter/setter for object description.}
 #'   \item{\code{getName()}}{Method for retrieving an object's name.}
@@ -26,7 +26,7 @@ Entity <- R6::R6Class(
 
   private = list(
     ..id = character(),
-    ..meta = list(),
+    ..meta = character(),
     ..className = character(),
     ..methodName = character(),
     ..state = character(),
@@ -60,8 +60,7 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Basic Get  Methods                            #
     #-------------------------------------------------------------------------#
-    getClassName = function() private$..className,
-    getName = function() private$..meta[["name"]],
+    getName = function() private$..meta$object[["name"]],
     getId = function() private$..id,
     
     #-------------------------------------------------------------------------#
@@ -107,44 +106,6 @@ Entity <- R6::R6Class(
       private$..meta[["user"]] <- Sys.info()
       private$..meta[["modified"]] <- file.info(path)[["mtime"]]
       private$..meta[["accessed"]] <- Sys.time()
-      invisible(self)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                           Metadata Methods                              #
-    #-------------------------------------------------------------------------#
-    meta = function(key = NULL, value = NULL, purge = FALSE) {
-
-      private$..methodName <- 'meta'
-      
-      # The available metadata variables can be changed for Corpus and Document
-      # objects only.
-      if (!(c("Document", "Corpus") %in% class(self))) {
-        private$..state <- paste0("The meta method is only implemented for the ", 
-                                  "Document and Corpus classes.")
-        self$logIt("Error")
-        stop()
-      }
-      
-      if (isTRUE(purge)) {
-        private$..meta <- list()
-        
-      } else  if (is.null(key) & is.null(value)) {
-        m <- Filter(Negate(is.null), private$..meta)
-        return(as.data.frame(m, stringsAsFactors = FALSE))
-        
-      } else if (!is.null(key) & is.null(value)) {
-        return(private$..meta[[key]])
-        
-      } else {
-        private$..meta[[key]] <- value
-        
-        # Log it
-        private$..state <- paste0("Added ", key, " with value: ",value,
-                                  " to metadata for ",private$..meta[["name"]],
-                                  ".")
-        self$logIt()
-      }
       invisible(self)
     },
 

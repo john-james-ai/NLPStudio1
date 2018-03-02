@@ -9,7 +9,7 @@
 Corpus
 }
 \arguments{
-\item{dataSource}{A DataSource or}
+\item{corpusSource}{A DataSource or}
 
 \item{key}{Character string name for a field to be added to the Document or Corpus object metadata.}
 
@@ -32,7 +32,7 @@ for reading, writing, and managing the documents therein.
 
 \strong{Core Methods}
  \describe{
-  \item{\code{new(name, path, dataSource)}}{Instantiates an object of the Corpus class.}
+  \item{\code{new(name, path, corpusSource)}}{Instantiates an object of the Corpus class.}
  }
 
 \strong{Document Methods}

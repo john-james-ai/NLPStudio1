@@ -12,10 +12,10 @@ testPreprocessCorpusEncodeStrategy <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "CorpusSourceDir"
+    name <- "SourceDir"
     desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input"
-    cid <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
+    corpusSource <- "./test/testData/input"
+    cid <- SourceDir$new(name, corpusSource)$build()$getResult()
     cidContent <- cid$read()
     stopifnot(length(cidContent) == 3)
     cidDocuments <- cid$getDocuments()

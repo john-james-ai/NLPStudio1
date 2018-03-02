@@ -1,9 +1,9 @@
-testCorpusSourceText <- function() {
+testSourceVector <- function() {
 
   init <- function() {
     source('./test/testFunctions/LogTest.R')
     unlink("./test/testCorpus/data", recursive = TRUE)
-    CorpusSourceTextTest <<- LogTest$new()
+    SourceVectorTest <<- LogTest$new()
     files <- list.files(path = "./test/testData/input", full.names = TRUE)
     corpus <<- lapply(files, function(f) {
       readLines(f)
@@ -12,15 +12,15 @@ testCorpusSourceText <- function() {
   }
 
   test0 <- function() {
-    test <- "test0: CorpusSourceText"
+    test <- "test0: SourceVector"
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from Vector Flat
     name <- "corpusVecFlat"
     desc <- "Creating corpus from flat vector"
     docDesc <- c("Blogs for Slogs", "News of the World", "Tweets for Twits")
-    dataSource <- corpus[[2]]
-    corpusVecFlat <- CorpusSourceText$new(name, dataSource, flat = TRUE)$build()$getResult()
+    corpusSource <- corpus[[2]]
+    corpusVecFlat <- SourceVector$new(name, corpusSource, flat = TRUE)$build()$getResult()
     corpusVecFlatContent <- corpusVecFlat$read()
     stopifnot(length(corpusVecFlatContent[[1]]) == 2000)
     corpusVecFlatDocuments <- corpusVecFlat$getDocuments()
@@ -48,8 +48,8 @@ testCorpusSourceText <- function() {
     docNames <- c("blogs", "news", "twitter")
     desc <- "Creating corpus from vector"
     qc <- quanteda::corpus(readtext::readtext("./test/testData/input/*.txt"))
-    dataSource <- qc$documents$texts
-    corpusVec <- CorpusSourceText$new(name, dataSource)$build()$getResult()
+    corpusSource <- qc$documents$texts
+    corpusVec <- SourceVector$new(name, corpusSource)$build()$getResult()
     corpusVecContent <- corpusVec$read()
     stopifnot(length(corpusVecContent) == 3)
     corpusVecDocuments <- corpusVec$getDocuments()
@@ -72,8 +72,8 @@ testCorpusSourceText <- function() {
     # Build Corpus from list
     name <- "corpusList"
     desc <- "Creating corpus from list"
-    dataSource <- corpus
-    corpusList <- CorpusSourceText$new(name, dataSource)$build()$getResult()
+    corpusSource <- corpus
+    corpusList <- SourceVector$new(name, corpusSource)$build()$getResult()
     corpusListContent <- corpusList$read()
     stopifnot(length(corpusListContent) == 3)
     stopifnot(length(corpusListContent[[1]]) == 2000)
@@ -97,9 +97,9 @@ testCorpusSourceText <- function() {
     print(corpusList$meta())
     print(corpusList$docMeta())
 
-    CorpusSourceTextTest$logs(className = "CorpusSourceText", methodName = "initiate", msg = paste("Successfully instantiated. "))
-    CorpusSourceTextTest$logs(className = "CorpusSourceText", methodName = "build", msg = paste("Successfully instantiated. "))
-    CorpusSourceTextTest$logs(className = "CorpusSourceText", methodName = "getResult", msg = paste("Successfully returned corpus. "))
+    SourceVectorTest$logs(className = "SourceVector", methodName = "initiate", msg = paste("Successfully instantiated. "))
+    SourceVectorTest$logs(className = "SourceVector", methodName = "build", msg = paste("Successfully instantiated. "))
+    SourceVectorTest$logs(className = "SourceVector", methodName = "getResult", msg = paste("Successfully returned corpus. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -107,10 +107,10 @@ testCorpusSourceText <- function() {
 
 
   testn <- function() {
-    test <- "testn: CorpusSourceText: Unzip"
+    test <- "testn: SourceVector: Unzip"
     cat(paste0("\n",test, " Commencing\n"))
 
-    CorpusSourceTextTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
+    SourceVectorTest$logs(className = className, methodName = "initiate", msg = paste("Successfully instantiated file collection. "))
     cat(paste0(test, " Completed: Success!\n"))
 
     return()
@@ -125,6 +125,6 @@ raw <- test0()
 
 
 }
-className <- "CorpusSourceText"
-#source('./test/unitTests/testCorpusSourceText.R')
-testCorpusSourceText()
+className <- "SourceVector"
+#source('./test/unitTests/testSourceVector.R')
+testSourceVector()

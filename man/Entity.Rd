@@ -15,7 +15,7 @@ Entity
 This base class defines members and methods common across all entity related
 classes, including Studio, Corpus, Set, and Document classes.
 }
-\section{Document methods}{
+\section{Entity methods}{
 
  \itemize{
   \item{\code{desc()}}{Active binding getter/setter for object description.}

@@ -32,23 +32,24 @@ Text <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function(content) {
+    initialize = function(content, type = NULL) {
 
       # Instantiate variables
       private$..className <- 'Text'
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
-      private$..id <- private$createId()
       private$..content <- content
-      private$..meta[["attachId"]] <- class(self)[1]
       private$..meta[['class']] <- class(self)[1]
+      private$..meta[["type"]] <- type
       private$..meta[['user']] <- Sys.info()["user"]
       private$..meta[["created"]] <- Sys.time()
       private$..meta[["modified"]] <- Sys.time()
       private$..meta[["accessed"]] <- Sys.time()
+      
+      private$..id <- private$createId()
 
       # Create log entry
-      private$..state <- paste0("Text, ", private$..meta[["name"]], ", instantiated.")
+      private$..state <- paste0("Text object instantiated.")
       self$logIt()
 
       invisible(self)

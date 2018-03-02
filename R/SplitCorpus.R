@@ -49,7 +49,7 @@ SplitCorpus <- R6::R6Class(
 
       private$..className <- "SplitCorpus"
       private$..methodName <- "initialize"
-      private$..name <- name
+      private$..meta[["name"]] <- name
       private$..x <- x
       private$..trainSize <- trainSize
       private$..valSize <- valSize
@@ -79,7 +79,7 @@ SplitCorpus <- R6::R6Class(
       private$..methodName <- "execute"
       
       # Create Cross-Validation Group Corpus
-      name <- private$..name
+      name <- private$..meta[["name"]]
       cvCorpora <- Corpus$new(name = name)
 
       # Split Documents

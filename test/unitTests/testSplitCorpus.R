@@ -10,10 +10,10 @@ testSplitCorpus <- function() {
     cat(paste0("\n",test, " Commencing\n"))
 
     # Build Corpus from directory source
-    name <- "CorpusSourceDir"
+    name <- "SourceDir"
     desc <- "Creating corpus from directory sources"
-    dataSource <- "./test/testData/input"
-    corpus <- CorpusSourceDir$new(name, dataSource)$build()$getResult()
+    corpusSource <- "./test/testData/input"
+    corpus <- SourceDir$new(name, corpusSource)$build()$getResult()
     corpusContent <- corpus$read()
     stopifnot(length(corpusContent) == 3)
     docs <- corpus$getDocuments()
@@ -42,7 +42,7 @@ testSplitCorpus <- function() {
     corpus <- corpus$docMeta(key = "name", value = c("Party", "Dance", "Love"))
 
     # Logit
-    SplitCorpusTest$logs(className = "CorpusSourceDir", methodName = "all", msg = paste("Imported Corpus"))
+    SplitCorpusTest$logs(className = "SourceDir", methodName = "all", msg = paste("Imported Corpus"))
     SplitCorpusTest$logs(className = "ProcessCorpusRehapeStrategy", methodName = "all", msg = paste("Successfully reshaped content"))
     cat(paste0(test, " Completed: Success!\n"))
 

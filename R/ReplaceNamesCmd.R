@@ -35,13 +35,13 @@ ReplaceNamesCmd <- R6::R6Class(
     initialize = function(names = NULL, replacement = NULL) {
       private$..methodName <- "initialize"
       private$..meta[["name"]] <- "ReplaceNamesCmd"
-      private$..names <- names
+      private$..meta[["name"]] <- names
       private$..replacement <- replacement
       private$..logs  <- LogR$new()
       invisible(self)
     },
     execute = function(x) {
-      x <- ReplaceNames$new(x, names = private$..names,
+      x <- ReplaceNames$new(x, names = private$..meta[["name"]],
                             replacement = private$..replacement)$execute()
       return(x)
     }
