@@ -62,7 +62,53 @@ Entity <- R6::R6Class(
     #-------------------------------------------------------------------------#
     getClassName = function() private$..className,
     getName = function() private$..meta[["name"]],
-    getId = function() private$..meta[["id"]],
+    getId = function() private$..id,
+    
+    #-------------------------------------------------------------------------#
+    #                             IO Methods                                  #
+    #-------------------------------------------------------------------------#
+    read = function(path, io = NULL) {
+      
+      private$..methodName <- 'read'
+      
+      # Update text file metadata
+      private$..meta[["filePath"]] <- path
+      private$..meta[["fileName"]] <- basename(path)
+      
+      # Read content
+      if (is.null(io))  io <- IOFactory$new(private$..meta[["filePath"]])$getIOStrategy()
+      private$..content <- io$read(path = private$..meta[["filePath"]])
+      private$..state <- paste0("Read Text id ", private$..id, " from ",
+                                private$..meta[["filePath"]], ".")
+      self$logIt()
+      
+      private$..meta[["user"]] <- Sys.info()[["user"]]
+      private$..meta[["modified"]] <- file.info(path)[["mtime"]]
+      private$..meta[["accessed"]] <- Sys.time()
+      
+      invisible(self)
+    },
+    
+    write = function(path, io = NULL) {
+      
+      private$..methodName <- 'write'
+      
+      # Update text file metadata
+      private$..meta[["filePath"]] <- path
+      private$..meta[["fileName"]] <- basename(path)
+      
+      # Write text file
+      if (is.null(io))  io <- IOFactory$new(private$..[["filePath"]])$getIOStrategy()
+      io$write(path = private$..meta[["filePath"]], content = private$..content)
+      
+      private$..state <- paste0("Saved Text id ", private$..meta["id"], " to ", path, ". ")
+      self$logIt()
+      
+      private$..meta[["user"]] <- Sys.info()
+      private$..meta[["modified"]] <- file.info(path)[["mtime"]]
+      private$..meta[["accessed"]] <- Sys.time()
+      invisible(self)
+    },
 
     #-------------------------------------------------------------------------#
     #                           Metadata Methods                              #
@@ -70,6 +116,15 @@ Entity <- R6::R6Class(
     meta = function(key = NULL, value = NULL, purge = FALSE) {
 
       private$..methodName <- 'meta'
+      
+      # The available metadata variables can be changed for Corpus and Document
+      # objects only.
+      if (!(c("Document", "Corpus") %in% class(self))) {
+        private$..state <- paste0("The meta method is only implemented for the ", 
+                                  "Document and Corpus classes.")
+        self$logIt("Error")
+        stop()
+      }
       
       if (isTRUE(purge)) {
         private$..meta <- list()

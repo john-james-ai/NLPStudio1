@@ -48,22 +48,22 @@ Document <- R6::R6Class(
   inherit = Entity,
 
   private = list(
-    ..text = character(),
-    ..dna = list()  # Data and Analysis list
+    ..attachments = list()
+    
   ),
 
   active = list(
     text = function(value) {
 
       if (missing(value)) {
-        private$..meta[['user']] <- Sys.info()["user"]
-        private$..meta[['accessed']] <- Sys.time()
+        private$..text$meta(key = 'user', value = Sys.info()["user"])
+        private$..text$meta(key = 'accessed', value = Sys.time())
         return(private$..text)
       } else {
-        private$..text <- value
-        private$..meta[['user']] <- Sys.info()["user"]
-        private$..meta[["modified"]] <- Sys.time()
-        private$..meta[["accessed"]] <- Sys.time()
+        private$..text$content <- value
+        private$..text$meta(key = 'user', value = Sys.info()["user"])
+        private$..text$meta(key = 'modified', value = Sys.time())
+        private$..text$meta(key = 'accessed', value = Sys.time())
         private$..state <- "Updated text content."
         self$logIt()
         invisible(self)
@@ -76,123 +76,71 @@ Document <- R6::R6Class(
     #-------------------------------------------------------------------------#
     #                           Core Methods                                  #
     #-------------------------------------------------------------------------#
-    initialize = function() {
+    initialize = function(name) {
 
       # Instantiate variables
       private$..className <- 'Document'
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
-      private$..text <- content
+      private$..id <- private$createId()
+      private$..meta[["attachId"]] <- paste0(class(self)[1], "-", name)
+      private$..meta[['class']] <- class(self)[1]
+      private$..meta[['name']] <- name
       private$..meta[['user']] <- Sys.info()["user"]
       private$..meta[["created"]] <- Sys.time()
       private$..meta[["modified"]] <- Sys.time()
       private$..meta[["accessed"]] <- Sys.time()
-      private$..meta[["id"]] <- private$createId()
 
       if (private$validateParams()$code == FALSE) stop()
 
       # Create log entry
-      private$..state <- paste0("Document id ", private$..meta[["id"]], ", instantiated.")
+      private$..state <- paste0("Document ", name, ", instantiated.")
       self$logIt()
 
       invisible(self)
     },
     
-    #-------------------------------------------------------------------------#
-    #                             Data Object Methods                         #
-    #-------------------------------------------------------------------------#
-    addDNA = function(object) {
-      
-      private$..methodName <- "addData"
+    attach = function(object) {
+      private$..methodName <- "attach"
       
       # Validate
-      if (!(class(object)[1] %in% c("Data", "Analysis"))) {
-        private$..state <- "Objects must be Data or Analysis class objects."
-        self$logIt("Error")
-        stop()
-      }
-      
-      id <- object$getId()
-      private$..dna[[id]] <- object
-      private$..state <- paste0("Added ", id, " to Document ", 
-                                private$..meta[["name"]], ".")
-      self$logIt()
-      invisible(self)
-    },
-    
-    getDNA = function(id = NULL, type = NULL) {
-      # If id is provided, both meta data and content for the Data or Analyis "DNA"
-      # object is returned. Otherwise a data frame containing meta data is returned.
-      # If type is provided, the data frame will contain meta data only for the type
-      # of DNA object requested.
-      
-      dna <- rbindlist(lapply(private$..dna, function(d) {
-        d$meta()
-      }))
-      
-      if (!is.null(id)) {
-        dna <- dna %>% filter(id == id)
-      } else if (!is.null(type)) {
-        dna <- dna %>% filter(type == type)
-      }
-      
-      return(dna)
-      
-    },
-
-
-    #-------------------------------------------------------------------------#
-    #                             IO Methods                                  #
-    #-------------------------------------------------------------------------#
-    read = function(path = NULL, io = NULL) {
-
-      private$..methodName <- 'read'
-
-      if (!is.null(path)) {
-
-        private$..meta[["filePath"]] <- path
-        private$..meta[["fileName"]] <- basename(path)
-      }
-
-      if (!is.null(private$..meta[["filePath"]])) {
-        if (is.null(io))  io <- IOFactory$new(private$..meta[["filePath"]])$getIOStrategy()
-        private$..text <- io$read(path = private$..meta[["filePath"]])
-        private$..state <- paste0("Read ", private$..meta[["name"]], " from ",
-                                  private$..meta[["filePath"]], ".")
-      }
-      self$logIt()
-      
-      private$..meta[["accessed"]] <- Sys.time()
-      
-      return(private$..text)
-    },
-
-    write = function(path = NULL, io = NULL) {
-
-      private$..methodName <- 'write'
-
-      if (!is.null(path)) {
-        private$..meta[["filePath"]] <- path
-        private$..meta[["fileName"]] <- basename(path)
-      }
-
-      if (is.null(private$..meta[["filePath"]])) {
-        private$..state <- paste0("Unable to write document. The file path ",
-                                  "parameter must be designated the first ",
-                                  "time a file is read from or written to file. ",
+      if (sum(class(object) %in% c("Text", "Data", "Analysis")) == 0) {
+        private$..state <- paste0("Unable to attach object of class ", class(object)[1],
+                                  ". Only objects of the Text, Data, and Analysis ",
+                                  "classes may be attached to Document objects. ",
                                   "See ?", class(self)[1], " for further assistance.")
         self$logIt("Error")
         stop()
       }
-
-      if (is.null(io))  io <- IOFactory$new(private$..[["filePath"]])$getIOStrategy()
-
-      io$write(path = private$..meta[["filePath"]], content = private$..text)
-
-      private$..state <- paste0("Saved ", private$..meta["name"], " to ", path, ". ")
+      
+      # Attach 
+      aid <- object$attachId()
+      private$..attachments[[aid]] <- object
+      
+      # Log
+      private$..state <- paste0("Attached ", aid, " to ", private$..meta[["name"]], ".")
       self$logIt()
       
-      private$..meta[["accessed"]] <- Sys.time()
+      invisible(self)
+      
+    },
+    
+    
+    unattach = function(object) {
+      private$..methodName <- "attach"
+      
+      # Validate
+      aid <- object$attachId()
+      
+      if (exists(private$..attachments[[aid]])) {
+        private$..attachments[[aid]] <- NULL
+        private$..state <- paste0("Unattached ", aid, " from ", private$..meta[["name"]], ".")
+        self$logIt()
+      } else {
+        private$..state <- paste0("Object ", aid, " was not attached to ", private$..meta[["name"]], ".")
+        self$logIt("Warn")
+      }
+      
       invisible(self)
     },
     

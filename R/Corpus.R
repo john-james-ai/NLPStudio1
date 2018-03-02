@@ -70,9 +70,10 @@ Corpus <- R6::R6Class(
     initialize = function(name) {
 
       # Instantiate variables
-      private$..meta[['name']] <- name
       private$..className <- 'Corpus'
       private$..methodName <- 'initialize'
+      private$..meta[['class']] <- class(self)[1]
+      private$..meta[['name']] <- name
       private$..meta[['user']] <- Sys.info()["user"]
       private$..meta[["created"]] <- Sys.time()
       private$..meta[["modified"]] <- Sys.time()
@@ -81,7 +82,7 @@ Corpus <- R6::R6Class(
 
       if (private$validateParams()$code == FALSE) stop()
 
-      private$..meta[["id"]] <- private$createId()
+      private$..id <- private$createId()
 
       # Create log entry
       private$..state <- paste0("Corpus, ", name, ", instantiated.")
@@ -144,77 +145,6 @@ Corpus <- R6::R6Class(
       invisible(self)
     },
     
-    purgeContent = function() {
-      private$..methodName <- 'purgeContent'
-      lapply(private$..documents, function(d) {
-        d$text <- NULL
-      })
-      private$..state <- paste0("Purged content from ", private$..meta[["name"]])
-      self$logIt()
-      invisible(self)
-    },
-    
-    #-------------------------------------------------------------------------#
-    #                         Data and Analysis Methods                       #
-    #-------------------------------------------------------------------------#
-    getDNA = function(id = NULL, type = NULL) {
-      
-      if (!is.null(id)) {
-        dna <- lapply(private$..documents, function(d) {
-          d$getDNA(id = id)
-        })
-      } else {
-        dna <- rbindlist(lapply(private$..documents, function(d) {
-          d$getDNA(type = type)
-        }))
-      }
-      return(dna)
-    },
-
-    #-------------------------------------------------------------------------#
-    #                               IO Methods                                #
-    #-------------------------------------------------------------------------#
-    read = function(path = NULL, io = NULL) {
-
-      private$..methodName <- "read"
-
-      content <- lapply(private$..documents, function(d) {
-        if (!is.null(path)) {
-          path <- file.path(path, d$getFileName())
-        }
-        d$read(path = path, io = io)
-      })
-      private$..meta[["accessed"]] <- Sys.time()
-      private$..state <- paste0("Read corpus documents")
-      self$logIt()
-
-      return(content)
-    },
-
-    write = function(path, io = NULL) {
-
-      private$..methodName <- "write"
-
-      lapply(private$..documents, function(d) {
-        if (!is.null(d$getFileName())) {
-          fileName <- d$getFileName()
-        } else {
-          fileName <- paste0(d$getName(), ".txt")
-          d$meta(key = "fileName", value = fileName)
-        }
-        path <- file.path(path, fileName)
-
-        if (is.null(io))   io <- IOText$new()
-
-        d$write(path = path, io = io)
-      })
-
-      private$..state <- paste0("Write corpus to ", path, ".")
-      self$logIt()
-
-      invisible(self)
-    },
-
     #-------------------------------------------------------------------------#
     #                          Metadata Methods                               #
     #-------------------------------------------------------------------------#

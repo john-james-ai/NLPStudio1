@@ -59,7 +59,7 @@ Text <- R6::R6Class(
       private$..className <- 'Text'
       private$..methodName <- 'initialize'
       private$..logs <- LogR$new()
-      private$..meta[["id"]] <- private$createId()
+      private$..id <- private$createId()
       private$..meta[['type']] <- class(self)[1]
       private$..meta[['user']] <- Sys.info()["user"]
       private$..meta[["created"]] <- Sys.time()
@@ -68,7 +68,7 @@ Text <- R6::R6Class(
       private$..content <- content
 
       # Create log entry
-      private$..state <- paste0("Text object id ", private$..meta[["id"]], ", instantiated.")
+      private$..state <- paste0("Text object id ", private$..id, ", instantiated.")
       self$logIt()
 
       invisible(self)

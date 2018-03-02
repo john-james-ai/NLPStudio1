@@ -28,11 +28,21 @@ TextStudio0 <- R6::R6Class(
     ..regex = character(),
     ..replacement = character(),
     
-    processText = function(content) {
+    processDocument = function(document) {
       content <- gsub(private$..regex,
                       private$..replacement,
-                      content, perl = TRUE)
-      return(content)
+                      document$text, perl = TRUE)
+      document$text <- content
+      return(document)
+    },
+    
+    processCorpus = function() {
+      docs <- private$..x$getDocuments()
+      for (i in 1:length(docs)) {
+        doc <- private$processDocument(docs[[i]])
+        private$..x$attach(doc)
+      }
+      return()
     }
   ),
 
@@ -44,20 +54,11 @@ TextStudio0 <- R6::R6Class(
       private$..methodName <- "execute"
 
       if ("Corpus" %in% class(private$..x)) {
-        documents <- private$..x$getDocuments()
-        for (i in 1:length(documents)) {
-          documents[[i]]$text <- private$processText(documents[[i]]$text)
-          private$..x$addDocument(documents[[i]])
-        }
-      } else if ("Document" %in% class(private$..x)) {
-        private$..x$text <- private$processText(private$..x$text)
-      } else if ("list" %in% class(private$..x)) {
-        for (i in 1:length(private$..x)) {
-          private$..x[[i]] <- private$processText(private$..x[[i]])
-        }
+        private$processCorpus()
+        
       } else {
-        private$..x <- private$processText(private$..x)
-      }
+        private$processDocument(private$..x)
+      } 
 
       # Log it
       private$..state <- paste0("Executed ", class(self)[1], " on ",
